@@ -1,0 +1,473 @@
+; BackGround - SB2 Snow Field
+
+; Creator: Chrono_Strife
+; E-Mail: chronostrifeff7h@hotmail.com
+; Web: FFFury - http://members.lycos.co.uk/cstrife/
+; Ripped: Super Butouden 2
+; Edited: Chrono_Strife
+
+;--------------------------------------------------------
+[Info]
+;Name of the stage.
+name = "Snow Field"
+
+[Camera]
+startx = 0
+starty = 0
+
+boundleft =  -500
+boundright = 500
+boundhigh = -310
+boundlow = 0
+
+verticalfollow = 0.7
+tension = 50
+
+
+;--------------------------------------------------------
+[PlayerInfo]
+;--- Player 1 ---
+p1startx = -65
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+;--- Player 2 ---
+p2startx = 65
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+;--- Common ---
+ ;Don't change these values.
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+;--------------------------------------------------------
+[Scaling]
+ ;No need to change these values
+topz     = 0
+botz     = 50
+topscale = 1
+botscale = 1.2
+
+;--------------------------------------------------------
+[Bound]
+screenleft = 15
+screenright = 15
+
+;--------------------------------------------------------
+[StageInfo]
+zoffset   = 215
+autoturn  = 1
+
+;--------------------------------------------------------
+[Shadow]
+color = 108,108,108
+yscale = 0.4
+
+;--------------------------------------------------------
+[Music]
+ bgmusic = sound\Blood.mp3
+ bgvolume = 600
+
+;========================================================
+
+; Main background definition
+[BGdef]
+spr = sb2snowfield.sff
+
+[BG Sky01]
+type  = parallax
+spriteno = 3,0
+layerno = 0
+start = 0, 32
+delta = 0.8, 1
+velocity = 0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG HighClouds05]
+type  = parallax
+spriteno = 6,4
+layerno = 0
+start = 0, -247
+delta = 0.4, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG HighClouds06]
+type  = parallax
+spriteno = 6,5
+layerno = 0
+start = 0, -256
+delta = 0.45, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG HighClouds07]
+type  = parallax
+spriteno = 6,6
+layerno = 0
+start = 0, -272
+delta = 0.5, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG HighClouds08]
+type  = parallax
+spriteno = 6,7
+layerno = 0
+start = 0, -288
+delta = 0.55, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG HighClouds04]
+type  = parallax
+spriteno = 6,3
+layerno = 0
+start = 0, -227
+delta = 0.4, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG HighClouds03]
+type  = parallax
+spriteno = 6,2
+layerno = 0
+start = 0, -208
+delta = 0.45, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG HighClouds02]
+type  = parallax
+spriteno = 6,1
+layerno = 0
+start = 0, -199
+delta = 0.5, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG HighClouds01]
+type  = parallax
+spriteno = 6,0
+layerno = 0
+start = 0, -183
+delta = 0.55, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG LowClouds01]
+type  = parallax
+spriteno = 4,0
+layerno = 0
+start = 0, 30
+delta = 0.4, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG LowClouds02]
+type  = parallax
+spriteno = 4,1
+layerno = 0
+start = 0, 14
+delta = 0.45, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG LowClouds03]
+type  = parallax
+spriteno = 4,2
+layerno = 0
+start = 0, -2
+delta = 0.5, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG MidClouds01]
+type  = parallax
+spriteno = 5,0
+layerno = 0
+start = 0, -28
+delta = 0.55, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG MidClouds02]
+type  = parallax
+spriteno = 5,1
+layerno = 0
+start = 0, -45
+delta = 0.6, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG MidClouds03]
+type  = parallax
+spriteno = 5,2
+layerno = 0
+start = 0, -58
+delta = 0.65, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG MidClouds04]
+type  = parallax
+spriteno = 5,3
+layerno = 0
+start = 0, -68
+delta = 0.7, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG MidClouds05]
+type  = parallax
+spriteno = 5,4
+layerno = 0
+start = 0, -81
+delta = 0.75, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG MidClouds10]
+type  = parallax
+spriteno = 5,9
+layerno = 0
+start = 0, -167
+delta = 0.6, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG MidClouds09]
+type  = parallax
+spriteno = 5,8
+layerno = 0
+start = 0, -145
+delta = 0.65, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG MidClouds08]
+type  = parallax
+spriteno = 5,7
+layerno = 0
+start = 0, -129
+delta = 0.7, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG MidClouds07]
+type  = parallax
+spriteno = 5,6
+layerno = 0
+start = 0, -113
+delta = 0.75, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG MIDClouds06]
+type  = parallax
+spriteno = 5,5
+layerno = 0
+start = 0, -105
+delta = 0.8, 1
+velocity = 0.0,0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG Mountains01]
+type  = parallax
+spriteno = 2,0
+layerno = 0
+start = 0, 96
+delta = 0.9, 1
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG Arena]
+type  = normal
+spriteno = 1, 0
+layerno = 0                
+start = 0, 163
+delta = 1, 1
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+[BG Snow01]
+type  = normal
+spriteno = 8,0
+layerno = 1
+start = 0, -125
+delta = 1, 1
+velocity = -3,2.5
+trans = none
+mask  = 1
+tile  = 1, 1
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+
+;[BG FrontalClouds01]
+;type  = normal
+;spriteno = 7,0
+;layerno = 1
+;start = 0, -125
+;delta = 1.6, 0.8
+;velocity = 2,0
+;trans = add1
+;mask  = 1
+;tile  = 1, 0
+;xscale = 1, 1
+;yscalestart = 100
+;yscaledelta = 0
+
+[BG FrontalClouds01]
+type = anim
+actionno = 7
+layerno = 1
+start = 0, -125
+delta = 1.6, 0.9
+velocity = 1,0
+trans = none
+mask = 1
+tile = 1,0
+tilespacing = 256
+scale = 1, 1
+
+[BG ForeGround]
+type  = normal
+spriteno = 0,0
+layerno = 1
+start = 0, 183
+delta = 1.6, 1.0
+trans = none
+mask  = 1
+tile  = 1, 0
+xscale = 1, 1
+yscalestart = 100
+yscaledelta = 0
+;----------------------------------------------------------------------
+;-=Animations=-
+;Cloud
+[Begin Action 7]
+7,0, 0,0, -1,,AS215D64

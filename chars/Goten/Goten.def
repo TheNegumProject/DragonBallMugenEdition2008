@@ -1,0 +1,18 @@
+
+[Info]
+name    = "Goten88"
+displayname = "Goten"
+versiondate = 12,15,2004
+authorname = "Pextin, Toad & Maybe Redneck"
+pal.defaults = 1
+
+[Files]
+cmd      = Goten.cmd
+cns      = Goten.cns
+st       = Goten.cns
+st1      = AI.cns
+stcommon = common1.cns
+sprite   = Goten.sff
+anim     = Goten.air
+pal1     = Goten.act
+sound    = Goten.snd

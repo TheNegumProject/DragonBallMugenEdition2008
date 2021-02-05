@@ -1,0 +1,37 @@
+; Definition file for Yamcha 3.2 by Chrono_Strife
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Yamcha3SB3 by Chrono_Strife";Name of character
+displayname = "Yamcha"             ;Name of character to display
+versiondate = 25,12,2006           ;Version date of character
+mugenversion = 14,06,2003          ;Version of M.U.G.E.N character works on
+author = "Chrono_Strife"           ;Character author name
+pal.defaults = 1,4,2,5,3,6         ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd      = YamchaCMD.cmd           ;Command set
+cns      = YamchaCNS.cns           ;Constants
+st       = YamchaCNS.cns           ;States
+st3      = Puar.cns                ;Puar States
+stcommon = common.cns              ;Common states
+sprite   = YamchaSFF.sff           ;Sprite
+anim     = YamchaAIR.air           ;Animation
+sound    = YamchaSND.snd           ;Sound
+pal1     = YamchaAS1.act           ;Palettes (can have up to 12)
+pal2     = YamchaAS2.act
+pal3     = YamchaAS3.act
+pal4     = YamchaSS1.act
+pal5     = YamchaSS2.act
+pal6     = YamchaSS3.act
+pal7     = YamchaAS4.act
+pal8     = YamchaAS5.act
+pal9     = YamchaAS6.act
+pal10    = YamchaSS4.act
+pal11    = YamchaSS5.act
+pal12    = YamchaSS6.act
+
+[Arcade]
+;intro.storyboard=story/intro.def

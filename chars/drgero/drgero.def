@@ -1,0 +1,26 @@
+[Info]
+name = "Dr Gero"
+displayname = "Dr Gero"
+versiondate = 06,08,2008
+mugenversion = 
+author = "CHOUJIN"
+pal.defaults = 4,5,1,2
+
+[Files]
+cns = drgero.cns
+cmd = drgero.cmd
+stcommon = common1.cns
+sprite = drgero.sff
+anim = drgero.air
+st = drgero.cns
+st1 = attack.cns
+st2 = special.cns
+st3 = hyper.cns
+st4 = misc.cns
+sound = drgero.snd
+pal1 = blue.act
+pal2 = green.act
+pal3 = brown.act
+pal4 = normal.act
+pal5 = buku1.act
+pal6 = buku2.act

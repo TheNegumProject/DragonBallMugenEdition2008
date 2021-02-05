@@ -1,0 +1,141 @@
+; Destruction Stage
+; Sprites Ripped from Hyper Dimension
+; Programming by Pextin
+
+
+;--------------------------------------------------------
+[Info]
+ ;Name of the stage.
+name = "Destruction"
+
+;--------------------------------------------------------
+[Camera]
+startx = 0
+starty = 0
+boundleft = -122
+boundright = 69
+boundhigh = -10
+boundlow = 0
+verticalfollow = .2
+floortension = 0
+tension = 60
+
+;--------------------------------------------------------
+[PlayerInfo]
+;--- Player 1 ---
+p1startx = -70       
+p1starty = 0         
+p1startz = 0           
+p1facing = 1            
+
+;--- Player 2 ---
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+;--- Common ---
+leftbound  = -1000 
+rightbound =  1000 
+topbound  =  0     
+botbound  =  0     
+
+;--------------------------------------------------------
+[Scaling]
+topz     = 0      
+botz     = 50   
+topscale = 1      
+botscale = 1.2    
+
+;--------------------------------------------------------
+[Bound]
+screenleft = 15 
+screenright = 15   
+
+;--------------------------------------------------------
+[StageInfo]
+zoffset = 215
+autoturn = 1
+resetBG = 1
+
+;--------------------------------------------------------
+[Shadow]
+color = 32,32,32
+yscale = .1
+reflect = 1
+
+;--------------------------------------------------------
+[Music]
+bgmusic = sound/life.mp3
+bgvolume = 600
+
+;========================================================
+;--------------------------------------------------------
+; Background definition
+; ***
+;-------------------------------------
+; [BG x]
+; type = ?       "Normal"/"Parallax"/"Height"  (def: "normal")
+; spriteno = ?, ? Sprite group and number: groupno, imgno  (req'd)
+; start = ?, ?   Starting location (integer)  (def: 0, 0)
+; delta = ?, ?   Change in location per camera unit moved (float)  (def: 1,1)
+; trans = ?      Transparency settings: "none"/"add"/"sub"/"avg" (def: "none")
+; mask = ?       Masking (int): 0 - off, 1 - on  (def: 0)
+; velocity = ?, ? Velocity: x, y (float): speed background moves (def: 0, 0)
+; tile = ?, ?    Tiling: xtile, ytile (int): 0 - off, 1 - infinite,
+;                        >1 - tile that number of times  (def: 0, 0)
+; tilespacing = ?, ? Tiling: x, y (int) : space between tiles (def: 0, 0)
+;  Parallax-only:
+; xscale = ?, ?    Top xscale, bottom xscale (float) (if used, then no tiling)
+; width = ?, ?     Top width, bottom width (int)  (if used, then tiles;
+;                             use either this or above, but not both)
+; yscalestart = ?  Starting y-scale (float, in percent)  (def: 100)
+; yscaledelta = ?  Change in y-scale per unit (float, in percent)  (def: 0)
+
+;-------------------------------------
+; Main background definition
+[BGdef]
+spr = stages/Destruction.sff
+debugbg = 0
+
+[BG 0]
+type  = normal
+spriteno = 1, 0
+layerno = 0                
+start = 2, 81
+delta = .3,.9
+trans = none
+mask  = 0
+tile  = 0, 0
+tilespacing = 0,0
+window = 0,0, 319, 239
+windowdelta = 0,0
+
+
+[BG Front]
+type=anim
+start=-35,114
+delta=1,.9
+mask=0
+layerno=0
+actionno=1
+
+[Begin Action 1]
+0, 0, 0,0, 3
+0, 1, 0,0, 3
+0, 2, 0,0, 3
+0, 3, 0,0, 3
+0, 4, 0,0, 3
+0, 5, 0,0, 3
+0, 6, 0,0, 3
+0, 7, 0,0, 3
+0, 8, 0,0, 3
+0, 9, 0,0, 3
+0, 10, 0,0, 3
+0, 11, 0,0, 3
+0, 12, 0,0, 3
+0, 13, 0,0, 3
+0, 14, 0,0, 3
+0, 15, 0,0, 3
+0, 16, 0,0, 3
+;----------

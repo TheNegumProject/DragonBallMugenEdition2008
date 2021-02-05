@@ -1,0 +1,1984 @@
+
+;----------
+;AI Codes
+;----------
+
+;This CNS file contains all of Broli's -2/-3 states. It also contains most 
+;of Broli's AI programming.
+;---------------------------------------------------------------------------
+
+[Statedef -2]
+
+;---------------------------------------------------------------------------
+;Misc
+
+;ExplodÁ-Å
+[State -2,0]
+type = RemoveExplod
+trigger1 = StateNo != 180
+trigger1 = StateNo != 1040
+trigger1 = StateNo != 2100
+trigger1 = StateNo != 1030
+trigger1 = StateNo != 1070
+trigger1 = StateNo != 3000
+trigger1 = StateNo != 3010
+trigger1 = StateNo != 3020
+trigger1 = StateNo != 3021
+trigger1 = StateNo != 3030
+trigger1 = StateNo != 3040
+id = 555
+
+;ƒ_ƒEƒ“‚µ‚½‚Æ‚«‚Ìº
+[State -2, 1]
+type = PlaySnd
+trigger1 = Time = 2
+trigger1 = stateno = 5070
+trigger1 = alive = 1
+value = 5,12
+
+;ƒQ[ƒW‘‰Á
+[State -2, NormalPower]
+type = PowerAdd
+trigger1 = P1Name = "Broli Remix ver1.2"
+trigger1 = TimeMod = 1,0
+trigger1 = stateno != 191
+trigger1 = Var(5) = 0
+value = 2
+
+;ƒQ[ƒW‘‰Á
+[State -2, USSJPower]
+type = Poweradd
+trigger1 = P1Name = "Broli Remix ver1.2"
+trigger1 = TimeMod = 1,0
+trigger1 = stateno != 191
+trigger1 = Var(5) != 0
+value = 4
+
+;ƒQ[ƒWŒ¸-iŽãj
+[State -2, 3]
+type = PowerAdd
+triggerall = Time = 1
+trigger1 = anim = 5000
+trigger2 = anim = 5010
+trigger3 = anim = 5020
+trigger4 = anim = 5030
+value = 10
+
+;ƒQ[ƒWŒ¸-i’†j
+[State -2, 4]
+type = PowerAdd
+triggerall = Time = 1
+trigger1 = anim = 5001
+trigger2 = anim = 5011
+trigger3 = anim = 5021
+trigger4 = anim = 5070
+value = 20
+
+;ƒQ[ƒWŒ¸-i‹-j
+[State -2, 5]
+type = PowerAdd
+triggerall = Time = 1
+trigger1 = anim = 5002
+trigger2 = anim = 5012
+trigger3 = anim = 5022
+value = 30
+
+;‘§Ø‚ê-p
+[State -2, breathVar]
+type = VarSet
+trigger1 = Ctrl = 1
+trigger2 = stateno = 2000
+v = 1
+value = 0
+
+[State -2, HitOverride1]
+type = HitOverride
+trigger1 = 1
+time = 1
+attr = SCA, NP, SP
+slot = 0
+stateno = 9000
+
+[State -2, HitOverride2]
+type = HitOverride
+triggerall = command != "holdback"
+trigger1 = StateNo = [0, 105]
+trigger1 = StateNo != 50
+trigger1 = StateNo != [70, 85]
+time = 1
+attr = SCA, HP
+slot = 1
+stateno = 9010
+
+[State -2, Armor1]
+type = VarSet
+trigger1 = StateNo >= 200 && MoveType != H
+trigger1 = StateNo != [130, 160] 
+trigger1 = StateNo != 50 
+trigger1 = StateNo != [70, 85]
+var(25) = StateNo
+
+[State -2, Armor2]
+type = HitOverride
+triggerall = Life > 500
+trigger1 = MoveType = A
+trigger2 = StateNo = [20, 105]
+trigger2 = StateNo != 50
+trigger2 = StateNo != [70, 85]
+time = 1
+slot = 2
+attr = SCA, AA
+stateno = 9010
+
+[State -2, ProjArmor]
+type = HitOverride
+triggerall = command != "holdback"
+trigger1 = MoveType != I
+trigger1 = StateNo != [0, 105]
+time = 1
+slot = 5
+attr = SCA, HP
+stateno = 9000
+
+[State -2, GroundBorder]
+type = PosSet
+triggerall = Pos Y > 0
+trigger1 = MoveType = A
+trigger2 = MoveType = I
+trigger2 = StateNo != 50
+y = 0
+
+[State -2, AirBorder]
+type = ChangeState
+triggerall = Pos Y <= -1000
+trigger1 = StateNo != 50
+value = 50
+
+[State -2, NoJuggleCheck]
+type = AssertSpecial
+trigger1 = PalNo = [7, 12]
+flag = NoJuggleCheck
+
+[State -2, FlySnd]
+type = PlaySnd
+trigger1 = Var(3) = 1
+trigger1 = TimeMod = 15,0
+value = 22, 3
+
+[State -2, PowerSet1]
+type = PowerSet
+trigger1 = RoundState != 2
+trigger1 = RoundNo = 1
+value = 1000
+
+[State -2, PowerSet2]
+type = PowerSet
+trigger1 = RoundState = 1
+trigger1 = RoundNo = 2
+value = 2000
+
+[State -2, PowerSet3]
+type = PowerSet
+trigger1 = RoundState = 1
+trigger1 = RoundNo >= 3
+value = 3000
+
+[State -2, Life1]
+type = LifeSet
+trigger1 = RoundState = 1
+trigger1 = P2Life <= 1000
+value = 1250
+
+[State -2, Life2]
+type = LifeSet
+trigger1 = RoundState = 1
+trigger1 = P2Life > 1000 && P2Life < 1500
+value = 1500
+
+[State -2, Life3]
+type = LifeSet
+trigger1 = RoundState = 1
+trigger1 = P2Life >= 1500 && P2Life < 2000 
+value = 1750
+
+[State -2, Life4]
+type = LifeSet
+trigger1 = RoundState = 1
+trigger1 = P2Life >= 2000 && P2Life < 2500
+value = 2250
+
+[State -2, Life5]
+type = LifeSet
+trigger1 = RoundState = 1
+trigger1 = P2Life >= 2500 && P2Life < 3000 
+value = 2750
+
+[State -2, Life6]
+type = LifeSet
+trigger1 = RoundState = 1
+trigger1 = P2Life >= 3000 && P2Life < 3500
+value = 3250
+
+[State -2, Life7]
+type = LifeSet
+trigger1 = RoundState = 1
+trigger1 = P2Life >= 3500 && P2Life < 4000 
+value = 3750
+
+[State -2, Life8]
+type = LifeSet
+trigger1 = RoundState = 1
+trigger1 = P2Life >= 4000 && P2Life < 4500
+value = 4250
+
+[State -2, VarRandom]
+type = VarRandom
+trigger1 = 1
+range = 100
+v = 10
+
+[State -2, AttackMulSet]
+type = AttackMulSet
+trigger1 = Var(5) = 0
+value = 1.3
+
+[State -2, DefenceMulSet1]
+type = DefenceMulSet
+trigger1 = MoveType != H
+value = 0.2
+
+[State -2, DefenceMulSet2]
+type = DefenceMulSet
+trigger1 = MoveType != H
+value = 0.4
+
+;---------------------------------------------------------------------------
+;Fury Mode
+
+[State -2, LowAttack]
+type = AttackMulSet
+trigger1 = life <= 500
+value = 1.5
+
+[State -2, Armor]
+type = HitOverride
+trigger1 = Life <= 500
+trigger1 = StateNo = [0, 105]
+trigger1 = StateNo != 50
+trigger2 = P2BodyDist X >= 120
+time = 1
+slot = 3
+attr = SCA, AA
+stateno = 9010
+
+[State -2, Blink Red]
+type = PalFX
+trigger1 = life <= 500
+trigger1 = timemod = 20,0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+;---------------------------------------------------------------------------
+;USSJ Mode
+
+[State -2, BGPalFX]
+type  = BGPalFX
+trigger1 = Alive = 1
+trigger1 = Var(5) != 0
+trigger1 = timemod = 1,0
+time = 20
+add = 10, 10, 25
+mul = 100, 100, 100
+
+[State -2, Armor]
+type = HitOverride
+triggerall = Var(5) != 0
+trigger1 = StateNo = [20, 105]
+trigger1 = StateNo != 50
+time = 1
+slot = 4
+attr = SCA, AA, AP
+stateno = 9010
+
+[State -2, Attack]
+type = AttackMulSet
+trigger1 = var(5) != 0
+value = 1.5
+
+[State -2, SparkSnd]
+type = PlaySnd
+trigger1 = Alive = 1
+trigger1 = var(5) != 0
+trigger1 = timemod = 100,15
+time = 20
+value = 21, 1
+
+[State -2, Energy]
+type = Explod
+trigger1 = Alive = 1
+trigger1 = Var(5) != 0
+trigger1 = timemod = 10,5
+trigger1 = stateno != 5110
+trigger1 = stateno != 5150
+trigger1 = stateno != 5101
+trigger1 = stateno != 2001
+trigger1 = stateno != 1080
+time = 10
+anim = 2005       
+bindtime = 10
+removetime = 10
+sprpriority = -2
+ownpal = 1
+id = 2005
+
+[State -2, Spark]
+type = Explod
+trigger1 = Alive = 1
+trigger1 = var(5) != 0
+trigger1 = timemod = 50,15
+time = 20
+anim = 3023       
+bindtime = 10
+removetime = 10
+sprpriority = 3
+ownpal = 1
+id = 555
+
+;---------------------------------------------------------------------------
+;Speed Up (Disabled)
+
+[State -2, Speed]
+type = null;Pause
+trigger1 = Alive = 1
+trigger1 = Var(9) != 0
+trigger1 = timemod = 2,0
+trigger1 = StateNo != 3000
+trigger1 = StateNo != 3010
+trigger1 = StateNo != 3020
+trigger1 = StateNo != 3021
+trigger1 = StateNo != 3030
+trigger1 = StateNo != 3040
+trigger1 = StateNo != 3060
+trigger1 = StateNo != 2001
+movetime = 1
+time = 1
+
+
+;---------------------------------------------------------------------------
+;Auto Guard - Far Range (Player Only)
+
+[State -2, StandGuard]
+type = ChangeState
+triggerall = PalNo = [1, 6]
+triggerall = Var(3) = 1
+triggerall = Pos Y >= 0
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+trigger1 = StateNo = 0
+trigger2 = StateNo = [10, 11]
+value = 130
+
+[State -2, CrouchGuard]
+type = ChangeState
+triggerall = PalNo = [1, 6]
+triggerall = Var(3) = 1
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+trigger1 = StateNo = 0
+trigger2 = StateNo = [10, 11]
+value = 131
+
+[State -2, AirGuard]
+type = ChangeState
+triggerall = PalNo = [1, 6]
+triggerall = Var(3) = 1
+triggerall = P2BodyDist X <= 120
+triggerall = P2MoveType = A
+trigger1 = StateNo = 50
+value = 132
+
+;---------------------------------------------------------------------------
+;Auto Guard - Close Range (Player Only)
+
+[State -2, StandGuard]
+type = ChangeState
+triggerall = PalNo = [1, 6]
+triggerall = Var(3) = 1
+triggerall = Pos Y >= 0
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+trigger1 = StateNo = 0
+trigger2 = StateNo = [10, 11]
+value = 130
+
+[State -2, CrouchGuard]
+type = ChangeState
+triggerall = PalNo = [1, 6]
+triggerall = Var(3) = 1
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+trigger1 = StateNo = 0
+trigger2 = StateNo = [10, 11]
+value = 131
+
+[State -2, AirGuard]
+type = ChangeState
+triggerall = PalNo = [1, 6]
+triggerall = Var(3) = 1
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 15 
+triggerall = P2BodyDist Y >= -50
+triggerall = P2MoveType = A
+trigger1 = StateNo = 50
+value = 132
+
+;===========================================================================
+;Custom AI (Or "AI" Only)
+;===========================================================================
+
+;===========================================================================
+;Custom AI - Easy
+;===========================================================================
+
+;---------------------------------------------------------------------------
+;Auto Guard - Far Range
+
+[State -2, StandGuard]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Pos Y >= 0
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+value = 130
+
+[State -2, CrouchGuard]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+value = 131
+
+[State -2, AirGuard]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = P2BodyDist X <= 120
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+triggerall = StateType = A
+triggerall = MoveType = I
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+value = 132
+
+[State -2, FlyGuard]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Var(3) = 1
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+trigger4 = StateNo != [3000, 4100]
+value = 130
+
+;---------------------------------------------------------------------------
+;Auto Guard - Close Range
+
+[State -2, StandGuard]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Pos Y >= 0
+triggerall = Var(10) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+value = 130
+
+[State -2, CrouchGuard]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Var(10) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+value = 131
+
+[State -2, FlyGuard]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Var(3) = 1
+triggerall = Var(10) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+trigger4 = StateNo != [3000, 4100]
+value = 130
+
+;---------------------------------------------------------------------------
+;Counter Actions
+
+[State -2, StandCounter]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Pos Y >= 0
+triggerall = Var(10) = [51, 80]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+value = 5700
+
+[State -2, CrouchCounter]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Var(10) = [51, 80]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+value = 5700
+
+[State -2, FlyCounter]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Var(3) = 1
+triggerall = Var(10) = [51, 80]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0 
+trigger4 = StateNo != [3000, 4100]
+value = 5700
+
+[State -2, StandEscape]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Pos Y >= 0
+triggerall = Var(10) = [81, 100]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 2001
+triggerall = StateNo != [1090, 1098]
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+triggerall = NumProjID(2001) = 0
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+value = 2001
+
+[State -2, CrouchEscape]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Var(10) = [81, 100]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 2001
+triggerall = StateNo != [1090, 1098]
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+triggerall = NumProjID(2001) = 0
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+value = 2001
+
+[State -2, FlyEscape]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = Var(3) = 1
+triggerall = Var(10) = [81, 100]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 2001
+triggerall = StateNo != [1090, 1098]
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+triggerall = NumProjID(2001) = 0
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0 
+trigger4 = StateNo != [3000, 4100]
+value = 2001
+
+;---------------------------------------------------------------------------
+;AI Actions - Ground
+
+[State -2, Dash]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = RoundState = 2
+triggerall = MoveType = I
+triggerall = StateNo != 100
+triggerall = StateNo != 5300
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 500
+trigger1 = P2MoveType = I
+trigger1 = P2BodyDist X > 80
+value = 100
+
+;---------------------------------------------------------------------------
+;AI Actions - Air
+
+[State -2, Fly]
+type = ChangeState
+triggerall = PalNo = [7, 8]
+triggerall = P2Life > 0
+triggerall = MoveType != H
+triggerall = StateNo != [3000, 4100]
+triggerall = Pos Y >= 0
+trigger1 = P2Name = "Goku-n-hd by EmuBoarding"
+trigger1 = P2StateNo = 1500
+trigger2 = P2Name = "Mystic Gohan by Zero_X"
+trigger2 = P2StateNo = 2000
+trigger3 = P2Name = "Freeza by OverMind"
+trigger3 = P2StateNo = 3001
+trigger4 = P2Name = "Kurilin by EmuBoarding"
+trigger4 = P2StateNo = 1500
+trigger5 = P2Name = "Trunks por ssonic"
+trigger5 = P2StateNo = 1900
+trigger6 = P2Name = "Vegeta Super Sayjin 4 by EB and BS"
+trigger6 = P2StateNo = 1500
+trigger7 = P2Name = "N-Trunks by EmuBoarding"
+trigger7 = P2StateNo = 1500
+trigger8 = P2Name = "Mr.Boo by OverMind"
+trigger8 = P2StateNo = 3001
+trigger9 = P2Name = "Vegeta by OverMind"
+trigger9 = P2StateNo = 3001
+trigger10 = P2Name = "Broli Remix ver1.2"
+trigger10 = P2StateNo = 2000
+trigger11 = P2Name = "Mew Two"
+trigger11 = P2StateNo = 1051
+trigger12 = P2Name = "Raditz"
+trigger12 = P2StateNo = 1510
+trigger13 = P2Name = "C-Trunks by EmuBoarding"
+trigger13 = P2StateNo = 1500
+trigger14 = P2Name = "Piccolo por Ssonic"
+trigger14 = P2StateNo = 1900
+trigger15 = P2Name = "M. Bison"
+trigger15 = P2StateNo = 89598
+trigger16 = P2Name = "Cell por Ssonic"
+trigger16 = P2StateNo = 1900
+trigger17 = P2Name = "Recoom by Lucifer"
+trigger17 = P2StateNo = 1500
+trigger18 = P2Name = "Vegetto EX by Shishi-Ryu"
+trigger18 = P2StateNo = 2000
+trigger19 = P2StateType = S
+trigger19 = P2MoveType != H
+trigger19 = P2BodyDist Y < 0
+value = 1999
+
+;===========================================================================
+;Custom AI - Normal
+;===========================================================================
+
+;---------------------------------------------------------------------------
+;Auto Guard - Far Range
+
+[State -2, StandGuard]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Pos Y >= 0
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+value = 130
+
+[State -2, CrouchGuard]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+value = 131
+
+[State -2, AirGuard]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2BodyDist X <= 120
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+triggerall = StateType = A
+triggerall = MoveType = I
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+value = 132
+
+[State -2, FlyGuard]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Var(3) = 1
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+trigger4 = StateNo != [3000, 4100]
+value = 130
+
+;---------------------------------------------------------------------------
+;Auto Guard - Close Range
+
+[State -2, StandGuard]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Pos Y >= 0
+triggerall = Var(10) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+value = 130
+
+[State -2, CrouchGuard]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Var(10) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+value = 131
+
+[State -2, FlyGuard]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Var(3) = 1
+triggerall = Var(10) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+trigger4 = StateNo != [3000, 4100]
+value = 130
+
+;---------------------------------------------------------------------------
+;Counter Actions
+
+[State -2, StandCounter]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Pos Y >= 0
+triggerall = Var(10) = [51, 80]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+value = 5700
+
+[State -2, CrouchCounter]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Var(10) = [51, 80]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+value = 5700
+
+[State -2, FlyCounter]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Var(3) = 1
+triggerall = Var(10) = [51, 80]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0 
+trigger4 = StateNo != [3000, 4100]
+value = 5700
+
+[State -2, StandEscape]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Pos Y >= 0
+triggerall = Var(10) = [81, 100]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 2001
+triggerall = StateNo != [1090, 1098]
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+triggerall = NumProjID(2001) = 0
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+value = 2001
+
+[State -2, CrouchEscape]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Var(10) = [81, 100]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 2001
+triggerall = StateNo != [1090, 1098]
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+triggerall = NumProjID(2001) = 0
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+value = 2001
+
+[State -2, FlyEscape]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = Var(3) = 1
+triggerall = Var(10) = [81, 100]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 2001
+triggerall = StateNo != [1090, 1098]
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+triggerall = NumProjID(2001) = 0
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0 
+trigger4 = StateNo != [3000, 4100]
+value = 2001
+
+[State -2, MoveCounter]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Life > 0
+triggerall = P2MoveType = A
+triggerall = Pos Y >= 0
+trigger1 = P2Name = "Go Hibiki"
+trigger1 = P2StateNo = [2041, 2059]
+value = 5700
+
+;---------------------------------------------------------------------------
+;AI Actions - Ground
+
+[State -2, HyperDash]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power >= 500 && Power < 3000
+triggerall = P2BodyDist X >= 80
+triggerall = StateNo != 3050
+triggerall = StateNo != 4000
+triggerall = PrevStateNo != 3050
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -55
+triggerall = P2MoveType = H && P2StateNo != [140, 155]
+triggerall = P2StateType != L
+trigger1 = MoveType = I
+trigger2 = MoveType = A
+trigger2 = StateNo != 1071
+trigger2 = StateNo != 2005
+trigger2 = StateNo != 2012
+value = 3050
+
+[State -2, Nandato]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power >= 3000 
+triggerall = P2BodyDist X >= 80
+triggerall = StateNo != 3060
+triggerall = PrevStateNo != 3060
+triggerall = StateNo != 4000
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -55
+triggerall = P2MoveType = H && P2StateNo != [140, 155]
+trigger1 = MoveType = I
+trigger2 = MoveType = A
+trigger2 = StateNo != 1071
+trigger2 = StateNo != 2005
+trigger2 = StateNo != 2012
+value = 3060
+
+[State -2, K.F.M.S.W.A]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Life > 0
+triggerall = Power >= 2000
+triggerall = StateNo = [0, 20]
+triggerall = PrevStateNo != 3010
+trigger1 = P2BodyDist X <= 50
+trigger1 = P2BodyDist Y < -40 && P2BodyDist Y >= -50
+value = 3000
+
+[State -2, Throw]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Name != "Psycho Shredder[S]"
+triggerall = P2Name != "Broli Remix ver1.2"
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = P2BodyDist X <= 10
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -50
+triggerall = P2MoveType != H
+triggerall = StateNo != [1080, 1084]
+triggerall = StateNo != 2001
+trigger1 = MoveType = I
+value = 1080
+
+[State -2, EarthQuake]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power >= 500
+triggerall = MoveType = I
+trigger1 = P2StateType = L
+value = 2015
+
+[State -2, Dash]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = RoundState = 2
+triggerall = MoveType = I
+triggerall = StateNo != 100
+triggerall = StateNo != 5300
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 500
+trigger1 = P2MoveType = I
+trigger1 = P2BodyDist X > 80
+value = 100
+
+;---------------------------------------------------------------------------
+;AI Actions - Air
+
+[State -2, AerialKick]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Life > 0
+triggerall = StateNo != 2000
+triggerall = Var(10) = [0, 30]
+triggerall = P2BodyDist X <= 70 && P2BodyDist Y > 0
+triggerall = Var(3) = 0
+triggerall = MoveType = I
+trigger1 = StateNo = 40
+trigger2 = StateNo = 70
+value = 2100
+
+[State -2, AirKick]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Life > 0
+triggerall = StateNo != 2000
+triggerall = Var(10) = [0, 20]
+triggerall = P2BodyDist X <= 50 && P2BodyDist X > 15
+triggerall = Var(3) = 0
+triggerall = MoveType = I
+trigger1 = StateNo = 50
+trigger2 = StateNo = 70
+value = 610
+
+[State -2, AirKick]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Life > 0
+triggerall = StateNo != 2000
+triggerall = Var(10) = [0, 10]
+triggerall = P2BodyDist X <= 15 
+triggerall = Var(3) = 0
+triggerall = MoveType = I
+trigger1 = StateNo = 50
+trigger2 = StateNo = 70
+value = 610
+
+[State -2, AirThrow]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Life > 0
+triggerall = Var(10) != [0, 10]
+triggerall = P2BodyDist X <= 15 
+triggerall = Var(3) = 0
+triggerall = MoveType = I
+trigger1 = StateType = A
+trigger2 = StateNo = 70
+value = 1080
+
+[State -2, Fly]
+type = ChangeState
+triggerall = PalNo = [9, 10]
+triggerall = P2Life > 0
+triggerall = MoveType != H
+triggerall = StateNo != [3000, 4100]
+triggerall = Pos Y >= 0
+trigger1 = P2Name = "Goku-n-hd by EmuBoarding"
+trigger1 = P2StateNo = 1500
+trigger2 = P2Name = "Mystic Gohan by Zero_X"
+trigger2 = P2StateNo = 2000
+trigger3 = P2Name = "Freeza by OverMind"
+trigger3 = P2StateNo = 3001
+trigger4 = P2Name = "Kurilin by EmuBoarding"
+trigger4 = P2StateNo = 1500
+trigger5 = P2Name = "Trunks por ssonic"
+trigger5 = P2StateNo = 1900
+trigger6 = P2Name = "Vegeta Super Sayjin 4 by EB and BS"
+trigger6 = P2StateNo = 1500
+trigger7 = P2Name = "N-Trunks by EmuBoarding"
+trigger7 = P2StateNo = 1500
+trigger8 = P2Name = "Mr.Boo by OverMind"
+trigger8 = P2StateNo = 3001
+trigger9 = P2Name = "Vegeta by OverMind"
+trigger9 = P2StateNo = 3001
+trigger10 = P2Name = "Broli Remix ver1.2"
+trigger10 = P2StateNo = 2000
+trigger11 = P2Name = "Mew Two"
+trigger11 = P2StateNo = 1051
+trigger12 = P2Name = "Raditz"
+trigger12 = P2StateNo = 1510
+trigger13 = P2Name = "C-Trunks by EmuBoarding"
+trigger13 = P2StateNo = 1500
+trigger14 = P2Name = "Piccolo por Ssonic"
+trigger14 = P2StateNo = 1900
+trigger15 = P2Name = "M. Bison"
+trigger15 = P2StateNo = 89598
+trigger16 = P2Name = "Cell por Ssonic"
+trigger16 = P2StateNo = 1900
+trigger17 = P2Name = "Recoom by Lucifer"
+trigger17 = P2StateNo = 1500
+trigger18 = P2Name = "Vegetto EX by Shishi-Ryu"
+trigger18 = P2StateNo = 2000
+trigger19 = P2StateType = S
+trigger19 = P2MoveType != H
+trigger19 = P2BodyDist Y < 0
+value = 1999
+
+;===========================================================================
+;Custom AI - Hard
+;===========================================================================
+
+;---------------------------------------------------------------------------
+;Auto Guard - Far Range
+
+[State -2, StandGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Pos Y >= 0
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+trigger7 = MoveType = A
+trigger7 = PrevStateNo != [130, 154]
+trigger7 = StateNo != [3000, 4100]
+value = 130
+
+[State -2, CrouchGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+trigger8 = MoveType = A
+trigger8 = PrevStateNo != [130, 154]
+trigger8 = StateNo != [3000, 4100]
+value = 131
+
+[State -2, AirGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2BodyDist X <= 120
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+triggerall = StateType = A
+triggerall = MoveType = I
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+trigger5 = MoveType = A
+trigger5 = PrevStateNo != [130, 154]
+trigger5 = StateNo != [3000, 4100]
+value = 132
+
+[State -2, FlyGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Var(3) = 1
+triggerall = StateType = S
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 2001
+triggerall = StateNo != 132
+triggerall = StateNo != [154, 155]
+triggerall = P2MoveType = A
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+trigger4 = StateNo != [3000, 4100]
+trigger5 = MoveType = A
+trigger5 = PrevStateNo != [130, 154]
+trigger5 = StateNo != [3000, 4100]
+value = 130
+
+;---------------------------------------------------------------------------
+;Auto Guard - Close Range
+
+[State -2, StandGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Pos Y >= 0
+triggerall = Var(10) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+trigger7 = MoveType = A
+trigger7 = PrevStateNo != [130, 154]
+trigger7 = StateNo != [3000, 4100]
+value = 130
+
+[State -2, CrouchGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Var(10) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+trigger8 = MoveType = A
+trigger8 = PrevStateNo != [130, 154]
+trigger8 = StateNo != [3000, 4100]
+value = 131
+
+[State -2, FlyGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Var(3) = 1
+triggerall = StateType = S
+triggerall = Var(10) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = StateNo != 132
+triggerall = StateNo != [154, 155]
+triggerall = P2MoveType = A
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+trigger4 = StateNo != [3000, 4100]
+trigger5 = MoveType = A
+trigger5 = PrevStateNo != [130, 154]
+trigger5 = StateNo != [3000, 4100]
+value = 130
+
+;---------------------------------------------------------------------------
+;Counter Actions
+
+[State -2, StandCounter]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Pos Y >= 0
+triggerall = Var(10) = [51, 80]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+trigger7 = MoveType = A
+trigger7 = PrevStateNo != [130, 154]
+trigger7 = StateNo != [3000, 4100]
+value = 5700
+
+[State -2, CrouchCounter]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Var(10) = [51, 80]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+trigger8 = MoveType = A
+trigger8 = PrevStateNo != [130, 154]
+trigger8 = StateNo != [3000, 4100]
+value = 5700
+
+[State -2, FlyCounter]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Var(3) = 1
+triggerall = Var(10) = [51, 80]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0 
+trigger4 = StateNo != [3000, 4100]
+trigger5 = MoveType = A
+trigger5 = PrevStateNo != [130, 154]
+trigger5 = StateNo != [3000, 4100]
+value = 5700
+
+[State -2, StandEscape]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Pos Y >= 0
+triggerall = Var(10) = [81, 100]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 2001
+triggerall = StateNo != [1090, 1098]
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 100
+trigger4 = StateNo = 105
+trigger5 = StateNo = 52
+trigger6 = P2BodyDist X < 0
+trigger6 = StateNo != [3000, 4100]
+trigger7 = MoveType = A
+trigger7 = PrevStateNo != [130, 154]
+trigger7 = StateNo != [3000, 4100]
+value = 2001
+
+[State -2, CrouchEscape]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Var(10) = [81, 100]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 2001
+triggerall = StateNo != [1090, 1098]
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 151
+trigger4 = StateNo = 150
+trigger5 = StateNo = 140
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+trigger8 = MoveType = A
+trigger8 = PrevStateNo != [130, 154]
+trigger8 = StateNo != [3000, 4100]
+value = 2001
+
+[State -2, FlyEscape]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Var(3) = 1
+triggerall = Var(10) = [81, 100]
+triggerall = StateNo != [130, 150]
+triggerall = PrevStateNo != [130, 150]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 2001
+triggerall = StateNo != [1090, 1098]
+triggerall = P2MoveType = A
+triggerall = MoveType != H
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0 
+trigger4 = StateNo != [3000, 4100]
+trigger5 = MoveType = A
+trigger5 = PrevStateNo != [130, 154]
+trigger5 = StateNo != [3000, 4100]
+value = 2001
+
+[State -2, MoveCounter1]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = P2MoveType = A
+triggerall = Pos Y >= 0
+trigger1 = P2Name = "Go Hibiki"
+trigger1 = P2StateNo = [2041, 2059]
+value = 5700
+
+[State -2, MoveCounter2]
+type = ChangeState
+triggerall = PalNo = [7, 12]
+triggerall = Var(10) = [0, 30]
+triggerall = P2Life > 0
+triggerall = P2MoveType = A
+triggerall = Pos Y >= 0
+triggerall = StateNo = [130, 154]
+trigger1 = P2Name = "Go Hibiki"
+trigger1 = P2StateNo = [2041, 2059]
+value = 2001
+
+;---------------------------------------------------------------------------
+;AI Actions - Ground
+
+[State -2, Kiai Hou]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Name != "Broli Remix ver1.2"
+triggerall = P2Life > 0
+triggerall = P2BodyDist X > 120
+triggerall = P2BodyDist Y > -50 && P2BodyDist Y < 20
+triggerall = StateNo != 1060
+triggerall = StateNo != 5300
+trigger1 = P2MoveType = A
+trigger1 = MoveType != H
+value = 1060
+
+[State -2, Tsuibi Kikou Ha]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Name != "Broli Remix ver1.2"
+triggerall = P2Life > 0
+triggerall = Power >= 500
+triggerall = MoveType = I
+triggerall = NumHelper <= 1
+triggerall = Pos Y >= 0
+trigger1 = P2BodyDist X > 200
+trigger2 = P2BodyDist X >= 40
+trigger2 = P2BodyDist Y < -200
+trigger2 = P2BodyDist X >= 40
+value = 2005
+
+[State -2, Renzoku Energy Dan]
+type = ChangeState
+triggerall = PalNo = [7, 12]
+triggerall = P2Name != "Psycho Shredder[S]"
+triggerall = P2Name != "Broli Remix ver1.2"
+triggerall = RoundState = 2
+triggerall = Pos Y >= -100
+triggerall = P2Life > 0
+triggerall = Power >= 2000
+triggerall = MoveType != A
+triggerall = StateNo = 0
+triggerall = P2StateType = S
+trigger1 = P2BodyDist X > 120 && P2BodyDist X <= 200
+trigger2 = P2BodyDist Y < -120 && P2BodyDist Y >= -200
+trigger3 = P2BodyDist Y > 0 && P2BodyDist Y <= 200
+value = 4000
+
+[State -2, HyperDash1]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power >= 500 && Power < 3000
+triggerall = P2BodyDist X >= 80
+triggerall = StateNo != 3050
+triggerall = StateNo != 4000
+triggerall = PrevStateNo != 3050
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -55
+triggerall = P2MoveType = H && P2StateNo != [140, 155]
+triggerall = P2StateType != L
+trigger1 = MoveType = I
+trigger2 = MoveType = A
+trigger2 = StateNo != 1071
+trigger2 = StateNo != 2005
+trigger2 = StateNo != 2012
+value = 3050
+
+[State -2, HyperDash2]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Var(10) = [0, 10]
+triggerall = P2BodyDist X >= 80
+triggerall = StateNo != 3050
+triggerall = StateNo != 4000
+triggerall = PrevStateNo != 3050
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -55
+triggerall = P2MoveType = H && P2StateNo != [140, 155]
+triggerall = P2StateType != L
+trigger1 = MoveType = I
+trigger2 = MoveType = A
+trigger2 = StateNo != 1071
+trigger2 = StateNo != 2005
+trigger2 = StateNo != 2012
+value = 3050
+
+[State -2, Nandato]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power >= 3000 
+triggerall = P2BodyDist X >= 80
+triggerall = StateNo != 3060
+triggerall = PrevStateNo != 3060
+triggerall = StateNo != 4000
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -55
+triggerall = P2MoveType = H && P2StateNo != [140, 155]
+trigger1 = MoveType = I
+trigger2 = MoveType = A
+trigger2 = StateNo != 1071
+trigger2 = StateNo != 2005
+trigger2 = StateNo != 2012
+value = 3060
+
+[State -2, CrouchAttack]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = StateNo != 2014 
+triggerall = StateNo != [1080, 1084]
+triggerall = MoveType = I
+triggerall = P2BodyDist X <= 50 
+triggerall = P2BodyDist Y > -50 && P2BodyDist Y < 20
+trigger1 = P2StateType = C
+trigger2 = P2StateType = L
+value = 2014
+
+[State -2, Hell's Smash]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Power < 2000
+triggerall = StateNo != [3000, 4100]
+triggerall = P2BodyDist X <= 50
+triggerall = P2BodyDist Y <= -60 && P2BodyDist Y >= -75
+triggerall = StateNo != [1090, 1098]
+triggerall = PrevStateNo != [1090, 1098]
+triggerall = StateNo != [1080, 1084]
+triggerall = StateNo != 50
+triggerall = PrevStateNo != 50
+trigger1 = Pos Y >= 0
+value = 1090
+
+[State -2, K.F.M.S.W.A]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Power >= 2000
+triggerall = StateNo = [0, 20]
+triggerall = PrevStateNo != 3010
+trigger1 = P2BodyDist X <= 50
+trigger1 = P2BodyDist Y < -40 && P2BodyDist Y >= -50
+value = 3000
+
+[State -2, Throw]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Name != "Psycho Shredder[S]"
+triggerall = P2Name != "Broli Remix ver1.2"
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = P2BodyDist X <= 10
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -50
+triggerall = P2MoveType != H
+triggerall = StateNo != [1080, 1084]
+triggerall = StateNo != 2001
+trigger1 = MoveType = I
+value = 1080
+
+[State -2, Bakuhatsu Ha]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power >= 500 && Power < 1000
+triggerall = StateNo != 1070
+triggerall = P2Name != "Psycho Shredder[S]"
+triggerall = P2Name != "Broli Remix ver1.2"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 1070
+
+[State -2, Bakuhatsu Ha EX]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power >= 1000
+triggerall = StateNo != 1071
+triggerall = P2Name != "Psycho Shredder[S]"
+triggerall = P2Name != "Broli Remix ver1.2"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -120 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 1071
+
+[State -2, EarthQuake]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power >= 500
+triggerall = MoveType = I
+trigger1 = P2StateType = L
+value = 2015
+
+[State -2, Dash]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = RoundState = 2
+triggerall = MoveType = I
+triggerall = StateNo != 100
+triggerall = StateNo != 5300
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 500
+trigger1 = P2MoveType = I
+trigger1 = P2BodyDist X > 60
+value = 100
+
+;---------------------------------------------------------------------------
+;AI Actions - Air
+
+[State -2, AerialKick]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = StateNo != 2000
+triggerall = Var(10) = [0, 30]
+triggerall = P2BodyDist X <= 70 && P2BodyDist Y > 0
+triggerall = Var(3) = 0
+triggerall = MoveType = I
+trigger1 = StateNo = 40
+trigger2 = StateNo = 70
+value = 2100
+
+[State -2, AirKick]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = StateNo != 2000
+triggerall = Var(10) = [0, 20]
+triggerall = P2BodyDist X <= 50 && P2BodyDist X > 15
+triggerall = Var(3) = 0
+triggerall = MoveType = I
+trigger1 = StateNo = 50
+trigger2 = StateNo = 70
+value = 610
+
+[State -2, AirKick]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = StateNo != 2000
+triggerall = Var(10) = [0, 10]
+triggerall = P2BodyDist X <= 15 
+triggerall = Var(3) = 0
+triggerall = MoveType = I
+trigger1 = StateNo = 50
+trigger2 = StateNo = 70
+value = 610
+
+[State -2, AirThrow]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Var(10) != [0, 10]
+triggerall = P2BodyDist X <= 15 
+triggerall = Var(3) = 0
+triggerall = MoveType = I
+trigger1 = StateType = A
+trigger2 = StateNo = 70
+value = 1080
+
+[State -2, Fly]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = MoveType != H
+triggerall = StateNo != [3000, 4100]
+triggerall = Pos Y >= 0
+trigger1 = P2Name = "Goku-n-hd by EmuBoarding"
+trigger1 = P2StateNo = 1500
+trigger2 = P2Name = "Mystic Gohan by Zero_X"
+trigger2 = P2StateNo = 2000
+trigger3 = P2Name = "Freeza by OverMind"
+trigger3 = P2StateNo = 3001
+trigger4 = P2Name = "Kurilin by EmuBoarding"
+trigger4 = P2StateNo = 1500
+trigger5 = P2Name = "Trunks por ssonic"
+trigger5 = P2StateNo = 1900
+trigger6 = P2Name = "Vegeta Super Sayjin 4 by EB and BS"
+trigger6 = P2StateNo = 1500
+trigger7 = P2Name = "N-Trunks by EmuBoarding"
+trigger7 = P2StateNo = 1500
+trigger8 = P2Name = "Mr.Boo by OverMind"
+trigger8 = P2StateNo = 3001
+trigger9 = P2Name = "Vegeta by OverMind"
+trigger9 = P2StateNo = 3001
+trigger10 = P2Name = "Broli Remix ver1.2"
+trigger10 = P2StateNo = 2000
+trigger11 = P2Name = "Mew Two"
+trigger11 = P2StateNo = 1051
+trigger12 = P2Name = "Raditz"
+trigger12 = P2StateNo = 1510
+trigger13 = P2Name = "C-Trunks by EmuBoarding"
+trigger13 = P2StateNo = 1500
+trigger14 = P2Name = "Piccolo por Ssonic"
+trigger14 = P2StateNo = 1900
+trigger15 = P2Name = "M. Bison"
+trigger15 = P2StateNo = 89598
+trigger16 = P2Name = "Cell por Ssonic"
+trigger16 = P2StateNo = 1900
+trigger17 = P2Name = "Recoom by Lucifer"
+trigger17 = P2StateNo = 1500
+trigger18 = P2Name = "Vegetto EX by Shishi-Ryu"
+trigger18 = P2StateNo = 2000
+trigger19 = P2Name = "Goku Super Sayajin 2 by ribeiro"
+trigger19 = P2StateNo = 2000
+trigger20 = P2Name = "Pan Dragonball GT por Ssonic"  
+trigger20 = P2StateNo = 1900
+trigger21 = P2Name = "The Necromancer"
+trigger21 = P2StateNo = 2000
+trigger22 = P2StateType = S
+trigger22 = P2MoveType != H
+trigger22 = P2BodyDist Y < 0
+value = 1999
+

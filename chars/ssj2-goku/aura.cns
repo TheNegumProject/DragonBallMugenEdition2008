@@ -1,0 +1,172 @@
+;Modo aura (+ poder)
+
+[Statedef 6000]
+type    = S
+movetype= I
+physics = N
+velset = 0,0
+poweradd = 0
+juggle = 0
+ctrl = 0
+anim = 6000
+
+[State 6000, 1]
+type=PlaySnd
+trigger1=Time=0
+value=730,0
+volume = 255
+
+[State 6000, Varset]
+type = VarSet
+trigger1 = AnimElem = 3
+v = 6
+value = 1
+
+[State 6000, voar]
+type=ChangeState
+trigger1=AnimTime=0
+trigger1=Pos Y < 0
+value=1500
+
+[State 6000, 8]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[Statedef -2];------------------------------------------------------------
+;=========================================================================
+
+[State -2,1]
+type=RemoveExplod
+trigger1=stateno=0
+trigger2=stateno=1510
+trigger3=stateno=2000
+trigger4=stateno=1070
+trigger5=stateno=1020
+trigger6=stateno=1030
+trigger7=stateno=1050
+trigger8=stateno=1060
+trigger9=stateno=1000
+trigger10=stateno=1010
+trigger11=stateno=5000
+trigger12=stateno=5001
+trigger13=stateno=5010
+trigger14=stateno=5011
+trigger15=stateno=5020
+trigger16=stateno=5030
+trigger17=stateno=5035
+trigger18=stateno=5040
+trigger19=stateno=5050
+trigger20=stateno=5070
+trigger21=stateno=5071
+trigger22=stateno=5080
+trigger23=stateno=5081
+trigger24=stateno=40
+trigger25=stateno=50
+trigger26=stateno=10
+trigger27=stateno=20
+trigger28=stateno=21
+ID=6050
+
+[State -2, 2]
+type=PlaySnd
+triggerall=Time=1
+trigger1=stateno=52
+trigger2=stateno=106
+value=10,0
+
+[State -2, 1]
+type=VarSet
+triggerall=Var(6)=1
+trigger1=power=0
+trigger2=life=0
+v=5
+value=1
+
+[State -2, 1]
+type=VarSet
+trigger1=time=0
+v=5
+value=1
+
+[State -2, 1]
+type=VarSet
+triggerall=Var(6)=1
+trigger1=power=0
+trigger2=life=0
+v=6
+value=0
+
+[State -2,1]
+type=DisplayToClipboard
+trigger1=Var(5)=1
+text="Goku SSJ2 normal %d, VelX %f, VelY %f"
+params=Var(5),P2BodyDist X,P2BodyDist Y 
+
+[State -2,1]
+type=DisplayToClipboard
+trigger1=Var(6)=1
+text="Goku SSJ2 + AURA %d, VelX %f, VelY %f"
+params=Var(6),P2BodyDist X,P2BodyDist Y 
+
+[State -2, + 2] 
+type=DefenceMulset
+trigger1=Var(6)=1
+trigger1=MoveType != H
+value = 3.50
+ignorehitpause=1
+
+[State -2, + 3] 
+type=attackMulset
+trigger1=Var(6)=1
+trigger1=MoveType != A
+value = 3.50
+ignorehitpause=1
+
+[State -2,AtaqueMaior]
+type = AttackMulSet
+trigger1 = Var(5) = 1
+trigger1 = power <= 0
+value = 1
+
+[State -2,DefesaMaior]
+type = DefenceMulSet
+trigger1 = Var(5) = 1
+trigger1 = power <= 0
+value = 1
+
+[State -2, 5] 
+type=EnvShake
+trigger1=TimeMod=6,0
+trigger1=Var(6)=1
+time=5
+ignorehitpause=1
+
+[State -2, 6] 
+type=Poweradd
+triggerall=Var(6)=1
+trigger1=Time > 0
+value=-3
+ignorehitpause=1
+
+[State -2, 7]
+type=RemoveExplod
+trigger1=Var(5)=1
+trigger1=time=1
+ID=9005
+
+[State -2, 8]
+type=Explod
+triggerall=p1name="SSJ2-GOKU by BARDOCK" 
+triggerall=IsHelper != 1
+triggerall=Var(6)=1
+trigger1=NumExplod(9005)=0
+id=9005
+anim=9005
+pos=0,0
+sprpriority=10
+bindtime=-1
+ownpal=1
+ignorehitpause=1
+scale = 0.90,0.90

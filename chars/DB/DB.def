@@ -1,0 +1,22 @@
+
+[Info]
+name = "Goku DB"        
+displayname = "Goku DB" 
+author = "Goten88 & DBZPD" 
+versiondate = 09,19,2004 
+pal.defaults = 1
+
+[Files]
+cmd     = DB.cmd  
+cns     = DB.cns  
+st      = DB.cns
+st2      = AI.cns
+stcommon = common1.cns 
+sprite  = DB.sff   
+anim    = DB.air   
+sound   = DB.snd 
+pal1    = DB.act
+pal2    = DB2.act
+pal3    = DB3.act
+pal4    = DB4.act
+

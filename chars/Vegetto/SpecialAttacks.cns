@@ -1,0 +1,911 @@
+;---------------------------------------------------------------------------
+;Teleport kick
+[Statedef 1000]
+type    = S                     
+movetype= A                     
+physics = S                     
+juggle  = 1                      
+velset = 0,0                     
+ctrl = 0                         
+anim = 1000                    
+poweradd = -1000                 
+sprpriority = 2 
+
+[State -2, AfterImage]
+type = AfterImage
+trigger1 = time = 1
+time = 0
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 1
+trigger2 = AnimElem = 6
+value = s100,1
+
+[State 8555, 21]
+type = EnvShake
+trigger1 = animelem = 3
+time = 10
+ampl = -1
+freq = 70
+phase = 30
+removeongethit = 1
+;supermovetime = 1000
+ignorehitpause = 1
+
+[State 210, 3]
+type = PosAdd
+trigger1 = p2movetype != H && p2statetype != A
+trigger1 = animelem = 4
+trigger2 = p2statetype = L
+trigger2 = animelem = 4
+x = (P2BodyDist X+80)
+y = (P2BodyDist y+20)
+
+[State 210, 3]
+type = PosAdd
+trigger1 = p2statetype = A
+trigger1 = animelem = 4
+x = (P2BodyDist X+80)
+y = (P2BodyDist y+20)
+
+[State 210, 3]
+type = PosAdd
+trigger1 = p2movetype = H
+trigger1 = animelem = 4
+x = (P2BodyDist X+50)
+
+[State 210, 1]
+type = turn
+trigger1 = AnimElem = 5
+
+[State 3010, Super A]
+type = SuperPause
+trigger1 = time = 1
+pos = -5, -55
+anim = -1
+time = 20 ;60
+movetime = 20
+darken = 0
+p2defmul = 1
+
+[State 210, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1010
+ctrl = 0
+
+;---------------------------------------------------------------------------
+;Teleport SMASH
+[Statedef 1008]
+type    = S                     
+movetype= A                     
+physics = S                     
+juggle  = 1                      
+velset = 0,0                     
+ctrl = 0                         
+anim = 1000                    
+poweradd = -1000                 
+sprpriority = 2 
+
+[State -2, AfterImage]
+type = AfterImage
+trigger1 = time = 1
+time = 0
+
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 1
+value = s100,1
+
+[State 8555, 21]
+type = EnvShake
+trigger1 = animelem = 3
+time = 10
+ampl = -1
+freq = 70
+phase = 30
+removeongethit = 1
+;supermovetime = 1000
+ignorehitpause = 1
+
+[State 210, 3]
+type = PosAdd
+trigger1 = p2movetype != H && p2statetype != A
+trigger1 = animelem = 4
+trigger2 = p2statetype = L
+trigger2 = animelem = 4
+x = (P2BodyDist X+30)
+y = (P2BodyDist y-76)
+
+[State 210, 3]
+type = PosAdd
+trigger1 = p2statetype = A
+trigger1 = animelem = 4
+x = (P2BodyDist X + 30)
+y = (P2BodyDist y-76)
+
+[State 210, 3]
+type = PosAdd
+trigger1 = p2movetype = H
+trigger1 = animelem = 4
+x = (P2BodyDist X+30)
+y = (P2BodyDist y-76)
+
+[State 3010, Super A]
+type = SuperPause
+trigger1 = time = 1
+pos = -5, -55
+anim = -1
+time = 20 ;60
+movetime = 20
+darken = 0
+p2defmul = 1
+
+[State 210, 3]
+type = ChangeState
+trigger1 = time = 17
+value = 1020
+ctrl = 0
+
+
+;---------------------------------------------------------------------------
+;KICK 
+[Statedef 1010]
+type    = S                     
+movetype= A                     
+physics = S                      
+juggle  = 1                      
+velset = 0,0                     
+ctrl = 0                         
+anim = 1010                      
+poweradd = 0                   
+sprpriority = 2   
+
+[State 200, 3]
+type = statetypeset
+trigger1 = p2statetype = A
+statetype = A
+
+[State 12003, 0]
+type = NotHitBy
+trigger1 = animelem = 1
+trigger2 = animelem =2
+trigger3 = animelem =3
+trigger4 = animelem =4
+value = SCA
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [0,500]
+value = s0,1
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [501,999]
+value = s0,0
+
+[State 210, 1]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s2, 0
+
+[State 1100, HitDef]
+type = HitDef
+trigger1 = AnimElem = 2
+attr = A, SA
+animtype  = Heavy
+air.animtype  = diugup
+damage= 70,10
+priority  = 3, Hit
+hitflag = MAF
+guardflag = MA
+pausetime = 10, 1
+sparkno = S9005
+guard.sparkno = -1
+guard.sparkxy = -30,-40
+sparkxy = 100, 40
+hitsound = S1, 0
+guardsound =  s3,0  
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+guard.ctrltime = 20
+ground.velocity = -6.5,-7.8
+guard.velocity = -9
+air.velocity = -6.5,-7.8
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -12.6
+fall = 1
+fall.recover = 0
+air.fall = 1
+air.recover = 0
+envshake.time = 14 ;BOOM!!
+envshake.freq = 60;BOOM!!
+envshake.ampl = 11;BOOM!!
+.yaccel = -1.0
+
+[State 1110]
+type = explod
+trigger1 = moveguarded && time = 2
+anim = 8100
+pos = 10, -40
+postype = p2
+facing = facing*facing
+bindtime = -1
+supermove = 0
+sprpriority = 3
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+persistent = 1
+scale = 1.0,1
+id = 9010
+
+[State 200, 3]
+type = ChangeState
+trigger1 = time = 12  && statetype != A
+value = 52
+ctrl = 0
+
+[State 200, 3]
+type = ChangeState
+trigger1 = AnimTime = 0  && statetype = A
+value = 51
+ctrl = 1
+
+
+;---------------------------------------------------------------------------
+;PUNCH
+[Statedef 1020]
+type    = A                     
+movetype= A                     
+physics = N                      
+juggle  = 1                      
+velset = 0,0                     
+ctrl = 0                         
+anim = 1020                      
+poweradd = 0                   
+sprpriority = 2   
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 1
+value = s100,1
+
+[State 12003, 0]
+type = NotHitBy
+trigger1 = animelem = 1
+trigger2 = animelem =2
+trigger3 = animelem =3
+trigger4 = animelem =4
+trigger5 = animelem =5
+trigger6 = animelem =6
+value = SCA
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [0,500]
+value = s0,1
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [501,999]
+value = s0,0
+
+[State 210, 1]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s2, 0
+
+[State 1110]
+type = explod
+trigger1 = moveguarded && time = 11
+anim = 8100
+pos = -10, -40
+postype = p2
+facing = facing*facing
+bindtime = -1
+supermove = 0
+sprpriority = 3
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+persistent = 1
+scale = 1.0,1
+id = 9010
+
+[State 1100, HitDef]
+type = HitDef
+trigger1 = AnimElem = 2
+attr = A, SA
+animtype  = Heavy
+air.animtype  = diugup
+damage= 75,10
+priority  = 3, Hit
+hitflag = MAF
+guardflag = MA
+pausetime = 10, 1
+sparkno = S9006
+guard.sparkno = -1
+sparkxy = -78, 100
+hitsound = S1, 0
+guardsound =  s3,0  
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+guard.ctrltime = 20
+ground.velocity = 0,11
+guard.velocity = -9
+air.velocity = 0,11
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -12.6
+fall = 1
+fall.recover = 0
+air.fall = 1
+air.recover = 0
+envshake.time = 14 ;BOOM!!
+envshake.freq = 60;BOOM!!
+envshake.ampl = 11;BOOM!!
+.yaccel = 3
+
+[State 200, 3]
+type = ChangeState
+trigger1 = AnimTime = 0  && statetype = A
+value = 102
+ctrl = 1
+
+
+;---------------------------------------------------------------------------
+;SOMERSAULT
+[Statedef 1100]
+type    = S                     
+movetype= A                     
+physics = S                      
+juggle  = 7                      
+velset = 0,0                     
+ctrl = 0                         
+anim = 1100                      
+poweradd = 0                   
+sprpriority = 2  
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [0,500]
+value = s0,1
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [501,999]
+value = s0,0
+
+[State 210, 1]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s2, 0
+
+[State 210, 1]
+type = PlaySnd
+trigger1 = time = 9
+value = s200, 3
+
+[State 1110]
+type = explod
+trigger1 = time = 8
+anim = 1101
+pos = 40, -70
+postype = p1
+facing = facing*facing
+bindtime = -1
+supermove = 1
+sprpriority = 5
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 1
+persistent = 1
+scale = 0.9,0.9
+id = 9010
+
+[State 1100, HitDef]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, SA
+animtype  = Heavy
+air.animtype  = diugup
+damage= 40,10
+priority  = 3, Hit
+hitflag = MAF
+guardflag = MA
+pausetime = 10, 1
+sparkno = S8000
+guard.sparkno = S8100
+sparkxy = -48, -60
+hitsound = S1, 0
+guardsound =  s3,0  
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+guard.ctrltime = 20
+ground.velocity = -5,-8
+guard.velocity = -9
+air.velocity = -4,-7
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -12.6
+fall = 1
+fall.recover = 0
+air.fall = 1
+air.recover = 0
+envshake.time = 14 ;BOOM!!
+envshake.freq = 60;BOOM!!
+envshake.ampl = 11;BOOM!!
+.yaccel = .3
+
+[State 200, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 52
+ctrl = 0
+
+;--------------------------------------------
+;Ki-Ken AIR
+[Statedef 1350]
+type    = A
+movetype= A
+physics = A
+juggle  = 5
+poweradd= -500
+ctrl = 0
+anim = 1304
+sprpriority = 2
+
+[State -2, AfterImage]
+type = AfterImage
+trigger1 = time = 1
+time = 0
+
+[State 1000, 4]
+type = Helper
+trigger1 = AnimElem = 2
+helpertype = normal
+name = "Kiblastair"
+ID = 1352
+pos = 40, -10
+postype = p1
+stateno = 1352
+ownpal = 1
+
+[State 1000, 11]
+type = Width
+trigger1 = Time = [12, 37]
+player = 20, 5
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [0,500]
+value = s0,1
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [501,999]
+value = s0,0
+
+[State 1000, 12]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s100, 2
+channel = 0
+
+[State 1000, 14]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 625
+ctrl = 0
+
+;---------------------------------------------------------------------------
+; Ki-Ken AIR: Helper
+;----------------------------
+[Statedef 1352]
+type    = A
+movetype= A
+anim = 3027
+sprpriority = 3
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = time = 1
+time = 1
+pos = 45,-30
+
+[state 1005, 1]
+type = VelSet
+trigger1 = animelem = 1
+x = 5.3
+y = 3.0
+
+[State 1005, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = A, SP                     
+damage = 38, 5
+animtype = Heavy                 
+guardflag = MA                  
+hitflag = MAF                  
+priority = 4, Hit               
+sprpriority = 4
+pausetime = 3, 3      
+guard.sparkno = S3028     
+sparkno = s3028                
+sparkxy = -30, 20              
+hitsound = S1, 4                  
+guardsound = S3,0               
+ground.type = High               
+ground.slidetime = 15
+ground.hittime  = 25             
+ground.velocity = -5
+airguard.velocity = -1     
+air.type = High                  
+air.velocity = -4, 2          
+air.hittime = 25
+palfx.time = 31
+palfx.add = 160,240,140
+palfx.mul = 80,120,220
+palfx.sinadd = 80, 80, 80, 5
+air.fall = 1
+
+[State 1005, 6]
+type = HitBy
+trigger1 = 1
+value = SCA, NP,SP,HP
+
+[State 1005, 7]
+type = HitOverride
+trigger1 = 1
+attr = SCA, AA,AT,AP,NA,NP,SP,HP,NT,HT
+stateno = 1308
+time = -1
+
+[State 1008, 2]
+type = DestroySelf
+trigger1 = movecontact
+
+[State 1005, 8]
+type = ChangeState
+trigger1 = Pos Y >= 0 && Vel Y > 0
+value = 1358
+
+
+
+;---------------------------------------------------------------------------
+; Ki-Ken: Helper (end)
+[Statedef 1358]
+type = A
+movetype = I
+ctrl = 0
+anim = 3028
+velset = 0, 0
+sprpriority = 2
+
+[State 1008]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = s3, 0
+
+[State 1008, 2]
+type = DestroySelf
+trigger1 = animtime = 0
+
+
+;--------------------------------------------
+;Ki-Ken LOW
+[Statedef 1302]
+type    = S
+movetype= A
+physics = S
+juggle  = 5
+poweradd= -500
+ctrl = 0
+velset = 0,0
+anim = 1302
+sprpriority = 2
+
+[State -2, AfterImage]
+type = AfterImage
+trigger1 = time = 1
+time = 0
+
+[State 1000, 4]
+type = Helper
+trigger1 = AnimElem = 2
+helpertype = normal
+name = "Kiblastlow"
+ID = 1312
+pos = 40, -10
+postype = p1
+stateno = 1312
+ownpal = 1
+
+[State 1000, 11]
+type = Width
+trigger1 = Time = [12, 37]
+player = 20, 5
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [0,500]
+value = s0,1
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [501,999]
+value = s0,0
+
+[State 1000, 12]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s100, 2
+channel = 0
+
+[State 1000, 14]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Ki-Ken LOW: Helper
+;----------------------------
+[Statedef 1312]
+type    = A
+movetype= A
+anim = 1355
+sprpriority = 3
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = time = 1
+time = 1
+pos = 85,10
+
+[state 1005, 1]
+type = VelSet
+trigger1 = animelem = 3
+x = 5.0
+
+[State 1005, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = C, SP                     
+damage = 38, 5
+animtype = Heavy                 
+guardflag = MA                  
+hitflag = MAF                  
+priority = 4, Hit               
+sprpriority = 4
+pausetime = 3, 3      
+guard.sparkno = S1350       
+sparkno = s1350                  
+sparkxy = -20, -43              
+hitsound = S1, 4                  
+guardsound = S3,0               
+ground.type = Low               
+ground.slidetime = 15
+ground.hittime  = 25             
+ground.velocity = -5
+airguard.velocity = -1     
+air.type = High                  
+air.velocity = -4, -2           
+air.hittime = 25
+palfx.time = 31
+palfx.add = 160,240,140
+palfx.mul = 80,120,220
+palfx.sinadd = 80, 80, 80, 5
+air.fall = 1
+
+[State 1005, 6]
+type = HitBy
+trigger1 = 1
+value = SCA, NP,SP,HP
+
+[State 1005, 7]
+type = HitOverride
+trigger1 = 1
+attr = SCA, AA,AT,AP,NA,NP,SP,HP,NT,HT
+stateno = 1308
+time = -1
+
+
+[State 1008, 2]
+type = DestroySelf
+trigger1 = movecontact
+
+[State 1005, 8]
+type = ChangeState
+trigger1 = BackEdgeDist < -5 || FrontEdgeDist < -5
+value = 1318
+
+
+
+;---------------------------------------------------------------------------
+; Ki-Ken: Helper (end)
+[Statedef 1318]
+type = A
+movetype = I
+ctrl = 0
+anim = 1351
+velset = 0, 0
+sprpriority = 2
+
+[State 1008]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = s3, 0
+
+[State 1008, 2]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;--------------------------------------------------------------------------
+
+;--------------------------------------------
+;Ki-Ken
+[Statedef 1300]
+type    = S
+movetype= A
+physics = S
+juggle  = 5
+poweradd= -500
+ctrl = 0
+velset = 0,0
+anim = 1300
+sprpriority = 2
+
+[State -2, AfterImage]
+type = AfterImage
+trigger1 = time = 1
+time = 0
+
+[State 1000, 4]
+type = Helper
+trigger1 = AnimElem = 2
+helpertype = normal
+name = "Kiblast"
+ID = 1310
+pos = 40, -10
+postype = p1
+stateno = 1310
+ownpal = 1
+
+[State 1000, 11]
+type = Width
+trigger1 = Time = [12, 37]
+player = 20, 5
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [0,500]
+value = s0,1
+
+[State 210, 1]
+type = playsnd
+trigger1 = AnimElem = 2
+trigger1 = random = [501,999]
+value = s0,0
+
+[State 1000, 12]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = s100, 2
+channel = 0
+
+[State 1000, 14]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Ki-Ken: Helper
+;----------------------------
+[Statedef 1310]
+type    = A
+movetype= A
+anim = 1310
+sprpriority = 3
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = time = 1
+time = 1
+pos = 70,-30
+
+[state 1005, 1]
+type = VelSet
+trigger1 = Time = 0
+x = 7.0
+
+[State 1005, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = A, SP                     
+damage = 38, 5
+animtype = Heavy                 
+guardflag = MA                  
+hitflag = MAF                  
+priority = 4, Hit               
+sprpriority = 4
+pausetime = 3, 3      
+guard.sparkno = S1350       
+sparkno = s1350                  
+sparkxy = -20, -43              
+hitsound = S1, 4                  
+guardsound = S3,0               
+ground.type = High               
+ground.slidetime = 15
+ground.hittime  = 25             
+ground.velocity = -5
+airguard.velocity = -1     
+air.type = High                  
+air.velocity = -4, -2           
+air.hittime = 25
+palfx.time = 31
+palfx.add = 160,240,140
+palfx.mul = 80,120,220
+palfx.sinadd = 80, 80, 80, 5
+air.fall = 1
+
+[State 1005, 6]
+type = HitBy
+trigger1 = 1
+value = SCA, NP,SP,HP
+
+[State 1005, 7]
+type = HitOverride
+trigger1 = 1
+attr = SCA, AA,AT,AP,NA,NP,SP,HP,NT,HT
+stateno = 1308
+time = -1
+
+
+[State 1008, 2]
+type = DestroySelf
+trigger1 = movecontact
+
+[State 1005, 8]
+type = ChangeState
+trigger1 = BackEdgeDist < -5 || FrontEdgeDist < -5
+value = 1308
+
+
+
+;---------------------------------------------------------------------------
+; Ki-Ken: Helper (end)
+[Statedef 1308]
+type = A
+movetype = I
+ctrl = 0
+anim = 1350
+velset = 0, 0
+sprpriority = 2
+
+[State 1008]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = s3, 0
+
+[State 1008, 2]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;--------------------------------------------------------------------------

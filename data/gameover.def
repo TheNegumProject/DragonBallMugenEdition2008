@@ -1,0 +1,20 @@
+;Game Over - Dragon Ball M.U.G.E.N Edition 2008
+;------------------------------------------------
+;email = nienic@o2.pl
+;www.dbme2k8.xt.pl
+
+
+
+[SceneDef]
+spr = gameover.sff
+
+[Scene 0]
+bgm = credits.mp3
+bgm.loop = 0
+clearcolor = 0,0,0
+layerall.pos = 0,0
+layer0.anim = 0
+end.time = 1030
+
+[Begin Action 0]
+0,0, 0,0, 1030

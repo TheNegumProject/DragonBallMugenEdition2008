@@ -1,0 +1,325 @@
+
+;Custom States
+;-------------
+
+;These states are used to prevent any opponents from countering any of 
+;Broli's attacks. Some states are used to override Broli's getting hit 
+;states.
+
+;---------------------------------------------------------------------------
+;Weak Hit - High/Air
+[Statedef 6000]
+type    = S
+movetype= H
+physics = N
+velset = 0,0
+
+[State 6000, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6000
+
+[State 6000, 2]
+type = SelfState
+trigger1 = Time = 20
+value = 5000
+
+;---------------------------------------------------------------------------
+;Medium Hit - High/Air
+[Statedef 6001]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6001, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6000
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 20
+value = 5000
+
+;---------------------------------------------------------------------------
+;Strong Hit - High/Air
+[Statedef 6002]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6002, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6002
+
+[State 6002, 2]
+type = SelfState
+trigger1 = Time = 20
+value = 5000
+
+;---------------------------------------------------------------------------
+;Weak Hit - Low/Air
+[Statedef 6010]
+type    = S
+movetype= H
+physics = N
+velset = 0,0
+
+[State 6010, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6002
+
+[State 6010, 2]
+type = SelfState
+trigger1 = Time = 20
+value = 5010
+
+;---------------------------------------------------------------------------
+;Medium Hit - Low/Air
+[Statedef 6011]
+type    = C
+movetype= H
+physics = N
+velset = 0,0
+
+[State 6011, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6011
+
+[State 6011, 2]
+type = SelfState
+trigger1 = Time = 20
+value = 5011
+
+;---------------------------------------------------------------------------
+;Strong Hit - Low/Air
+[Statedef 6012]
+type    = S
+movetype= H
+physics = N
+velset = 0,0
+
+[State 6012, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6012
+
+[State 6012, 2]
+type = SelfState
+trigger1 = Time = 20
+value = 5012
+
+;---------------------------------------------------------------------------
+;Weak Hit - Crouch
+[Statedef 6020]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 6020, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6020
+
+[State 6020, 2]
+type = SelfState
+trigger1 = Time = 20
+value = 5020
+
+;---------------------------------------------------------------------------
+;Medium Hit - Crouch
+[Statedef 6021]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 6021, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6021
+
+[State 6021, 2]
+type = SelfState
+trigger1 = Time = 20
+value = 5021
+
+;---------------------------------------------------------------------------
+;Strong Hit - Crouch
+[Statedef 6022]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 6022, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6022
+
+[State 6022, 2]
+type = SelfState
+trigger1 = Time = 20
+value = 5022
+
+;---------------------------------------------------------------------------
+;Lie Down
+[Statedef 6110]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+
+[State 6110, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6110
+
+[State 6110, 2]
+type = SelfState
+trigger1 = Time = 20
+value = 5110
+
+;---------------------------------------------------------------------------
+;Combo Hit - High/Air
+[Statedef 6200]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6200, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6011
+
+[State 6000, 2]
+type = SelfState
+trigger1 = Time = 50
+value = 5011
+
+;---------------------------------------------------------------------------
+;Ultimate - Knocked up
+[Statedef 6300]
+type    = A
+physics = N
+ctrl = 0
+velset = 0,-140
+
+[State 6300, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6300
+
+[State 6300, VelAdd]
+type = VelAdd
+trigger1 = Time >= 0
+y = 0.40
+
+[State 6300, VelMul] 
+type = VelMul
+trigger1 = Time = 0
+y = 0.10
+
+[State 6300, VelSetX]
+Type = VelSet
+Trigger1 = Time >= 0
+X = 0
+
+[State 6300, AfterImage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 10
+
+[State 6300, 6]
+type = ChangeState
+trigger1 = Pos Y >= .1
+value = 5110
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;USSJ Hit
+[Statedef 6301]
+type    = S
+movetype= H
+physics = N
+velset = 0,0
+
+[State 6301, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6301
+
+[State 6301, 3]
+type = SelfState
+trigger1 = Time = 35
+value = 5030
+
+;---------------------------------------------------------------------------
+;Counter Hit
+[Statedef 9100]
+type    = S
+movetype= H
+physics = N
+velset = -20,-5
+
+[State 9100, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6301
+
+[State 9100, 2]
+type = LifeAdd
+trigger1 = Time = 0
+value = -200
+
+[State 9100, 3]
+type = SelfState
+trigger1 = Time = 10
+value = 5030
+
+;---------------------------------------------------------------------------
+;Tsuibi Kikou Ha - Projectile Hit 
+[Statedef 9101]
+type    = S
+movetype= H
+physics = N
+
+[State 9101, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 6301
+
+[State 9101, 2]
+type = LifeAdd
+trigger1 = Time = 0
+value = -150
+
+[State 9101, 2]
+type = PowerAdd
+trigger1 = Time = 0
+value = -150
+
+[State 9100, 3]
+type = SelfState
+trigger1 = Time = 0
+value = 5030
+
+
+
+
+

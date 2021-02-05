@@ -1,0 +1,300 @@
+; Introduction cutscene for Trunks final.
+
+[SceneDef]
+spr = arcade/arcade.sff
+startscene = 0 
+
+;------------------------------------
+; trunks Final (foto 1)
+[Scene 0]
+fadein.time = 100
+fadein.col = 0,0,0
+fadeout.time = 120
+fadeout.col = 255,255,255
+layer0.offset = 0,0
+layer0.anim = 200
+bgm = arcade/Intro.mid
+bgm.loop = 0                                          
+end.time = 800
+
+; Foto
+[Begin Action 200]
+200,0, 0,0, 70
+200,1, 0,0, -1
+
+;------------------------------------
+[Scene 1]
+; Fade
+fadein.time = 90
+fadein.col = 0,0,0   
+fadeout.time = 90
+fadeout.col = 0,0,0   
+clearcolor = 0,0,0
+layer0.offset = 90,110
+layer0.anim = 103
+bgm =
+bgm.loop = 0                    
+end.time = 400
+
+; frase
+[Begin Action 103]
+103,0, 0,0, -1
+
+;------------------------------------
+; terra destruida
+[Scene 2]
+fadein.time = 50
+fadein.col = 255,255,255
+fadeout.time = 200
+fadeout.col = 255,255,255
+bg.name = BG0 
+layer0.offset = 79,220
+layer0.anim = 21
+layer1.offset = 240,220
+layer1.anim = 43
+layer2.offset = 280,220
+layer2.anim = 44
+;falas
+layer3.offset = 5,70
+layer3.anim = 60
+layer3.starttime = 40
+layer4.offset = 220,70
+layer4.anim = 61
+layer4.starttime = 280
+bgm = arcade/gohan.mid
+bgm.loop = 0                                          
+end.time = 700
+
+[BG0Def]
+
+[BG0 terra]
+type = normal
+spriteno = 3,0
+start = -160,0
+tile = 0,0
+
+[BG0 terra]
+type = anim
+actionno = 1
+start = -160,0
+delta = 1, 1
+mask = 1
+
+;------------------------------------
+; terra
+[Begin Action 1]
+1,0, 0,0, 4
+1,1, 0,0, 4
+1,2, 0,0, 4
+
+; Trunks
+[Begin Action 21]
+21,0, 0,0, 510
+21,1, 0,0, -1
+
+; Nº 18
+[Begin Action 43]
+23,0, 0,0, 500
+23,1, 0,0, -1
+
+; Nº 17
+[Begin Action 44]
+24,0, 0,0, -1
+
+;------------------------------------
+; Dialogos entre os chars
+
+; trunks fala 
+[Begin Action 60]
+33,0, 0,0, 10,,A
+33,0, 0,0, 15
+33,1, 0,0, 170
+33,0, 0,0, 15
+33,0, 0,0, 10,,A
+-1,0, 0,0, -1
+
+; Nº 18 fala 
+[Begin Action 61]
+31,0, 0,0, 10,,A
+31,0, 0,0, 15
+31,2, 0,0, 150
+31,0, 0,0, 15
+31,0, 0,0, 10,,A
+-1,0, 0,0, -1
+
+;------------------------------------
+; terra destruida 2
+[Scene 3]
+fadein.time = 200
+fadein.col = 255,255,255
+fadeout.time = 200
+fadeout.col = 255,255,255
+bg.name = BG1 
+layer0.offset = 79,220
+layer0.anim = 41
+layer1.offset = 240,220
+layer1.anim = 84
+;falas
+layer3.offset = 220,70
+layer3.anim = 65
+layer3.starttime = 60                                  
+end.time = 600
+
+[BG1Def]
+
+[BG1 terra]
+type = normal
+spriteno = 3,0
+start = -160,0
+tile = 0,0
+
+[BG1 terra]
+type = anim
+actionno = 1
+start = -160,0
+delta = 1, 1
+mask = 1
+
+;------------------------------------
+; Trunks
+[Begin Action 41]
+21,0, 0,0, 430
+21,1, 0,0, -1
+
+; Nº 17
+[Begin Action 84]
+24,0, 0,0, 420
+24,1, 0,0, -1
+
+;------------------------------------
+; Dialogos entre os chars
+
+; Nº 17 fala 
+[Begin Action 65]
+32,0, 0,0, 10,,A
+32,0, 0,0, 15
+32,1, 0,0, 150
+32,2, 0,0, 150
+32,0, 0,0, 15
+32,0, 0,0, 10,,A
+-1,0, 0,0, -1
+
+;------------------------------------
+; terra destruida 3
+[Scene 4]
+fadein.time = 200
+fadein.col = 255,255,255
+fadeout.time = 150
+fadeout.col = 255,255,255
+bg.name = BG1 
+layer0.offset = 79,220
+layer0.anim = 48
+;falas
+layer3.offset = 5,70
+layer3.anim = 68
+layer3.starttime = 60
+bgm = arcade\final.mid
+bgm.loop = 0                                         
+end.time = 700
+
+;------------------------------------
+; Trunks
+[Begin Action 48]
+21,0, 0,0, -1
+
+;------------------------------------
+; Dialogos entre os chars
+
+; trunks fala 
+[Begin Action 68]
+33,0, 0,0, 10,,A
+33,0, 0,0, 15
+33,2, 0,0, 600
+
+;------------------------------------
+[Scene 5]
+; Fade
+fadein.time = 90
+fadein.col = 0,0,0   
+fadeout.time = 90
+fadeout.col = 0,0,0   
+clearcolor = 0,0,0
+layer0.offset = 110,110
+layer0.anim = 104
+end.time = 400
+
+; frase
+[Begin Action 104]
+104,0, 0,0, -1
+
+;------------------------------------
+; terra normal
+[Scene 2]
+fadein.time = 50
+fadein.col = 255,255,255
+fadeout.time = 300
+fadeout.col = 255,255,255
+bg.name = BG2 
+layer0.offset = 79,220
+layer0.anim = 300
+layer1.offset = 240,220
+layer1.anim = 301
+;falas
+layer3.offset = 5,70
+layer3.anim = 70
+layer3.starttime = 40
+layer4.offset = 220,70
+layer4.anim = 72
+layer4.starttime = 510
+layer5.offset = 5,70
+layer5.anim = 71
+layer5.starttime = 720
+end.time = 1310
+
+[BG2Def]
+
+[BG2 terra]
+type = normal
+spriteno = 210,0
+start = -160,0
+tile = 0,0
+
+;------------------------------------
+; Trunks
+[Begin Action 300]
+22,0, 0,0, 1040
+22,1, 0,0, -1
+
+; Cell
+[Begin Action 301]
+25,0, 0,0, -1
+
+;------------------------------------
+; Dialogos entre os chars
+
+; trunks fala 
+[Begin Action 70]
+34,0, 0,0, 10,,A
+34,0, 0,0, 15
+34,1, 0,0, 400
+34,0, 0,0, 15
+34,0, 0,0, 10,,A
+-1,0, 0,0, -1
+
+; trunks fala 
+[Begin Action 71]
+34,0, 0,0, 10,,A
+34,0, 0,0, 15
+34,2, 0,0, 270
+34,0, 0,0, 15
+34,0, 0,0, 10,,A
+-1,0, 0,0, -1
+
+; Cell Fala
+[Begin Action 72]
+35,0, 0,0, 10,,A
+35,0, 0,0, 15
+35,1, 0,0, 150
+35,0, 0,0, 15
+35,0, 0,0, 10,,A
+-1,0, 0,0, -1

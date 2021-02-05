@@ -1,0 +1,35 @@
+;-------------------------
+;    | Future Trunks |
+;-------------------------
+
+; Player information
+[Info]
+name = "Trunks por ssonic"          ;Name of character
+displayname = "Future Trunks"       ;Name of character to display
+versiondate = 04,18,2001            ;Version date of character
+mugenversion = 04,01,2001           ;Version of M.U.G.E.N character works on
+author = "Ssonic & Dude"            ;Character author name
+pal.defaults = 2,5,7,12             ;Default palettes in order of preference
+
+; Files for the character
+[Files]
+cmd      = Ftrunks.cmd 		    ;Commands
+cns      = Ftrunks.cns 		    ;States
+st       = Ftrunks.cns 		    ;States
+stcommon = Common.cns  		    ;States
+sprite   = Ftrunks.sff  	    ;Sprites 
+anim     = FTrunks.air 		    ;Animations
+sound    = Ftrunks.snd   	    ;Sounds
+pal1     = palettes\original2.act    ;Palettes (can have up to 12)
+pal2     = palettes\original1.act   ;Palettes (can have up to 12)
+pal3     = palettes\vermelho.act    ;Palettes (can have up to 12)
+pal4     = palettes\verde.act       ;Palettes (can have up to 12)
+pal5     = palettes\preto.act       ;Palettes (can have up to 12)
+pal6     = palettes\Mostarda.act    ;Palettes (can have up to 12)
+pal7     = palettes\vasco.act       ;Palettes (can have up to 12)
+pal8     = palettes\flamengo.act    ;Palettes (can have up to 12)
+pal9     = palettes\Evil.act        ;Palettes (can have up to 12)
+pal10    = palettes\maluco.act      ;Palettes (can have up to 12)
+pal11    = palettes\maluco2.act     ;Palettes (can have up to 12)
+pal12    = palettes\brasil.act      ;Palettes (can have up to 12)
+   

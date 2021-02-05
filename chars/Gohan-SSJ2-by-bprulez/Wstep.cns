@@ -1,0 +1,661 @@
+; INTRO
+[Statedef 191]
+type = S
+ctrl = 0
+anim = 1190
+velset = 0,0,0
+
+[State 191, 2]
+type = changestate
+;triggerall = time  >= 0
+trigger1 = P2Name = "Cell por Ssonic"
+trigger2 = P4Name = "Cell por Ssonic"
+trigger3 = P2Name = "perfect cell by _Vision"
+trigger4 = P4Name = "perfect cell by _Vision"
+trigger5 = P2Name = "[Necromancer's] Cell"
+trigger6 = P4Name = "[Necromancer's] Cell"
+trigger7 = P2Name = "Perfect Cell"
+trigger8 = P4Name = "Perfect Cell"
+trigger9 = P2Name = "Cell 2 form"
+trigger10 = P4Name = "Cell 2 form"
+trigger11 = P2Name = "Cell"
+trigger12 = P4Name = "Cell"
+value = 1191
+ctrl = 0
+
+[State 735, 2]
+type = PowerAdd
+trigger1 = Time = 0
+value = 6999
+
+[state 730, tishok]
+type = explod
+trigger1 = time = 68
+trigger1 = pos Y >= 0
+anim = 7015
+ID = 130
+pos = -3,0
+postype = P1
+ownpal = 1
+sprpriority = -100
+
+[state 730, tishok]
+type = explod
+trigger1 = time = 68
+trigger1 = pos Y >= 0
+anim = 7018
+ID = 130
+pos = 0,0
+postype = P1
+ownpal = 1
+sprpriority = 999999
+
+[state 730, tishok]
+type = explod
+trigger1 = NumExplod(703) = 0
+trigger1 = Time > 200
+anim = 9506
+ID = 703
+pos = -1,-2
+postype = P1
+ownpal = 1
+bindtime = -1
+sprpriority = 999
+removetime = -1
+scale = 0.60, 0.60
+
+
+[State 9001, 1]
+type = RemoveExplod
+trigger1 = time >= 0
+trigger1 = time <= 103
+ID = 667
+
+[State 9001, 1]
+type = RemoveExplod
+trigger1 = time >= 0
+trigger1 = time <= 103
+ID = 668
+
+[State 0, ]
+type = StopSnd
+trigger1 = time >= 0
+trigger1 = time <= 103
+channel = 10
+
+[State 0, ]
+type = StopSnd
+trigger1 = time>=0
+trigger1 = time<=100
+channel = 8
+
+[State 1800, 6]
+type = PlaySnd
+trigger1 = AnimElem = 28
+value = 0,1
+channel = 3
+
+[State 3000, 1]
+type = Explod
+trigger1 = time = 103
+id = 7997
+anim = 7997
+pos = 0,0
+postype = back
+sprpriority = 999
+removeongethit = 1
+removetime = 25
+bindtime = -1
+supermove = 1
+ownpal = 1
+
+[State 2000,Raio]
+type = Explod
+trigger1 = AnimElem = 6
+anim = 742
+pos = 0,0
+ownpal = 1
+sprpriority = 3
+removetime = 25
+supermovetime = 25
+scale = 0.80, 0.70
+
+[State -2,1]
+type = Explod
+trigger1 = alive = 1
+trigger1 = time = 200
+trigger1 = NumExplod(702) = 0
+anim = 702
+ID = 702
+pos = 0,-10
+postype = P1
+bindtime = -1
+sprpriority = -100
+removetime = -1
+scale = 0.90, 0.90
+
+[state 730, tishok]
+type = explod
+trigger1 = NumExplod(703) = 0
+trigger1 = Time = 200
+anim = 9506
+ID = 703
+pos = -1,-2
+postype = P1
+ownpal = 1
+bindtime = -1
+sprpriority = 999
+removetime = -1
+scale = 0.60, 0.60
+
+[State 191]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = 9, 5
+
+[State 191]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 190, 1
+
+[State 954, 1] 
+type = EnvShake
+trigger1 = AnimElem = 6
+time = 30
+ampl = 3
+freq = 127
+
+[State 191, 0]
+type = AssertSpecial
+trigger1 = time = [0,400]
+flag = intro
+
+[State 191, 1];all
+type = explod
+trigger1 = AnimElem = 1
+trigger1 = P2Name != "Vegeta Normal 2 by EB"
+;trigger1 = P4Name != "Vegeta Normal 2 by EB"
+trigger1 = P2Name != "Vegeta Super Sayjin 4 by EB and BS"
+;trigger1 = P4Name != "Vegeta Super Sayjin 4 by EB and BS"
+trigger1 = P2Name != "vegeta-n-3 by EmuBoarding"
+;trigger1 = P4Name != "vegeta-n-3 by EmuBoarding"
+trigger1 = P2Name != "Vegeta by OverMind"
+;trigger1 = P4Name != "Vegeta by OverMind"
+trigger1 = P2Name != "N-Trunks by EmuBoarding"
+;trigger1 = P4Name != "N-Trunks by EmuBoarding"
+trigger1 = P2Name != "C-Trunks by EmuBoarding"
+;trigger1 = P4Name != "C-Trunks by EmuBoarding"
+trigger1 = P2Name != "Trunks por ssonic"
+;trigger1 = P4Name != "Trunks por ssonic"
+trigger1 = P2Name != "Kuririn by EmuBoarding"
+;trigger1 = P4Name != "Kuririn by EmuBoarding"
+trigger1 = P2Name != "freeza"
+;trigger1 = P4Name != "freeza"
+trigger1 = P2Name != "Freeza by Z-fight"
+;trigger1 = P4Name != "Freeza by Z-fight"
+trigger1 = P2Name != "Cell por Ssonic"
+;trigger1 = P4Name != "Cell por Ssonic"
+trigger1 = P2Name != "perfect cell"
+;trigger1 = P4Name != "perfect cell"
+trigger1 = P2Name != "Mystic Gohan by Zero_X"
+;trigger1 = P4Name != "Mystic Gohan by Zero_X"
+trigger1 = P2Name != "Broli Remix ver1.2"
+;trigger1 = P4Name != "Broli Remix ver1.2"
+trigger1 = P2Name != "[FlowaGirl's] Broli"
+trigger1 = P2Name != "Broli The Legendary SSJ"
+anim = 191
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1
+bindtime = 600
+ownpal = 1
+supermove = 1
+removetime = 600
+ontop = 1
+
+[State 191, 1];vegeta
+type = explod
+triggerall = AnimElem = 1
+triggerall = NumExplod = 0
+trigger1 = P2Name = "Vegeta Normal 2 by EB"
+;trigger2 = P4Name = "Vegeta Normal 2 by EB"
+trigger2 = P2Name = "Vegeta Super Sayjin 4 by EB and BS"
+;trigger4 = P4Name = "Vegeta Super Sayjin 4 by EB and BS"
+trigger3 = P2Name = "vegeta-n-3 by EmuBoarding"
+;trigger6 = P4Name = "vegeta-n-3 by EmuBoarding"
+trigger4 = P2Name = "Vegeta by OverMind"
+;trigger8 = P4Name = "Vegeta by OverMind"
+anim = 192
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1
+bindtime = 600
+ownpal = 1
+supermove = 1
+removetime = 600
+ontop = 1
+
+[State 191, 1];Trunks
+type = explod
+triggerall = AnimElem = 1
+triggerall = NumExplod = 0
+trigger1 = P2Name = "C-Trunks by EmuBoarding"
+;trigger4 = P4Name = "C-Trunks by EmuBoarding"
+trigger2 = P2Name = "Trunks por ssonic"
+;trigger6 = P4Name = "Trunks por ssonic"
+anim = 193
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1
+bindtime = 600
+ownpal = 1
+supermove = 1
+removetime = 600
+ontop = 1
+
+[State 190, 1] ;If opponent is Trunk's
+type = ChangeState
+triggerall = Time = 0
+trigger1 = P2Name = "N-Trunks by EmuBoarding"
+value = 9895
+
+[State 191, 1];kurilin
+type = explod
+triggerall = AnimElem = 1
+triggerall = NumExplod = 0
+trigger1 = P2Name = "Kuririn by EmuBoarding"
+trigger2 = P4Name = "Kuririn by EmuBoarding"
+anim = 191
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1
+bindtime = 600
+ownpal = 1
+supermove = 1
+removetime = 600
+ontop = 1
+
+[State 191, 1];kurilin
+type = explod
+triggerall = AnimElem = 1
+triggerall = NumExplod = 0
+trigger1 = P2Name = "Broli Remix ver1.2"
+trigger2 = P4Name = "Broli Remix ver1.2"
+anim = 194
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1
+bindtime = 600
+ownpal = 1
+supermove = 1
+removetime = 600
+ontop = 1
+
+[State 191, 1];kurilin
+type = explod
+triggerall = AnimElem = 1
+triggerall = NumExplod = 0
+trigger1 = P2Name ="[FlowaGirl's] Broli"
+trigger2 = P4Name ="[FlowaGirl's] Broli"
+anim = 194
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1
+bindtime = 600
+ownpal = 1
+supermove = 1
+removetime = 600
+ontop = 1
+
+[State 191, 1];kurilin
+type = explod
+triggerall = AnimElem = 1
+triggerall = NumExplod = 0
+trigger1 = P2Name = "Broli The Legendary SSJ"
+trigger2 = P4Name = "Broli The Legendary SSJ"
+anim = 194
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1
+bindtime = 600
+ownpal = 1
+supermove = 1
+removetime = 600
+ontop = 1
+
+[State 191, 1];freeza
+type = explod
+triggerall = AnimElem = 1
+triggerall = NumExplod = 0
+trigger1 = P2Name = "freeza"
+trigger3 = P4Name = "freeza"
+trigger2 = P2Name = "Freeza by Z-fight"
+trigger4 = P4Name = "Freeza by Z-fight"
+anim = 195
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1
+bindtime = 600
+ownpal = 1
+supermove = 1
+removetime = 600
+ontop = 1
+
+[State 191, 1];cell
+type = explod
+triggerall = AnimElem = 1
+triggerall = NumExplod = 0
+trigger1 = P2Name = "Cell por Ssonic"
+trigger2 = P4Name = "Cell por Ssonic"
+trigger3 = P2Name = "perfect cell by _Vision"
+trigger4 = P4Name = "perfect cell by _Vision"
+anim = 196
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1
+bindtime = 600
+ownpal = 1
+supermove = 1
+removetime = 600
+ontop = 1
+
+[State 191, 1];gohan
+type = explod
+triggerall = AnimElem = 1
+triggerall = NumExplod = 0
+trigger1 = P2Name = "Mystic Gohan by Zero_X"
+trigger2 = P4Name = "Mystic Gohan by Zero_X"
+anim = 197
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1
+bindtime = 600
+ownpal = 1
+supermove = 1
+removetime = 600
+ontop = 1
+
+[State 3000, 1];fundo  
+type = Explod
+trigger1 = time = 83
+id = 7997
+anim = 7997
+pos = 0,0
+postype = back
+sprpriority = 999
+removeongethit = 1
+removetime = 25
+bindtime = -1
+supermove = 1
+ownpal = 1
+
+[State 2000,Raio]
+type = Explod
+trigger1 = AnimElem = 6
+anim = 742
+pos = -10,0
+ownpal = 1
+sprpriority = 3
+removetime = 25
+supermovetime = 25
+scale = 0.80, 0.70
+
+[State -2,1]
+type = Explod
+trigger1 = alive = 1
+trigger1 = time = 89
+trigger1 = NumExplod(702) = 0
+anim = 702
+ID = 702
+pos = 0,-10
+postype = P1
+bindtime = 1
+sprpriority = -100
+removetime = -1
+scale = 0.90, 0.90
+
+[state 730, tishok]
+type = explod
+trigger1 = NumExplod(703) = 0
+trigger1 = Time = 89
+anim = 9506
+ID = 703
+pos = -1,-2
+postype = P1
+ownpal = 1
+bindtime = -1
+sprpriority = 999
+removetime = -1
+scale = 0.80, 0.70
+
+[State 190, 1] ;If opponent is Brolli
+type = null;PlaySnd
+trigger1 = time = 236
+trigger1 = P2Name = "Broli Remix ver1.2"
+value = 9,6
+
+[State 1800, 6]
+type = PlaySnd
+trigger1 = AnimElem = 28
+value = 0,1
+channel = 3
+
+[State 9001, 1]
+type = RemoveExplod
+trigger1 = time >= 0
+trigger1 = time <= 103
+ID = 667
+
+[State 9001, 1]
+type = RemoveExplod
+trigger1 = time >= 0
+trigger1 = time <= 103
+ID = 668
+
+[State 0, ]
+type = StopSnd
+trigger1 = time >= 0
+trigger1 = time <= 103
+channel = 10
+
+[State 191]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = 9, 5
+
+[State 954, 1] 
+type = EnvShake
+trigger1 = AnimElem = 6
+time = 30
+ampl = 3
+freq = 127
+[State 191, 2]
+type = changestate
+trigger1 = animtime = 100
+trigger2 = NumExplod = 0
+value = 0
+ctrl = 0
+
+;Intro contra o Trunks
+[Statedef 9895]
+type = S
+ctrl = 0
+anim = 190
+velset = 0,0,0
+
+[State 9001, 1]
+type = RemoveExplod
+trigger1 = time >= 0
+trigger1 = time <= 103
+ID = 667
+
+[State 9001, 1]
+type = RemoveExplod
+trigger1 = time >= 0
+trigger1 = time <= 103
+ID = 668
+
+[State 0, ]
+type = StopSnd
+trigger1 = time >= 0
+trigger1 = time <= 103
+channel = 10
+
+[State 4010, 3]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 1, 1 
+
+[State 191]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 190, 1
+
+[State 3000, 1];fundo  
+type = Explod
+trigger1 = time = 83
+id = 7997
+anim = 7997
+pos = 0,0
+postype = back
+sprpriority = -999
+removeongethit = 1
+removetime = 25
+bindtime = -1
+supermove = 1
+ownpal = 1
+
+[State 2000,Raio]
+type = Explod
+trigger1 = AnimElem = 6
+anim = F4002
+pos = 0,0
+ownpal = 1
+sprpriority = 3
+removetime = 55
+supermovetime = 55
+
+[State 745, 4]
+type = null;Explod
+trigger1 = Time = 83
+anim = F9502
+pos = 0,0
+postype = P1
+sprpriority = 3
+ownpal = 1
+
+[State -2,1]
+type = Explod
+trigger1 = alive = 1
+trigger1 = time = 89
+trigger1 = NumExplod(702) = 0
+anim = 702
+ID = 702
+pos = 0,0
+postype = P1
+bindtime = -1
+sprpriority = -100
+removetime = -1
+scale = 0.90, 0.90
+
+[state 730, tishok]
+type = explod
+trigger1 = NumExplod(703) = 0
+trigger1 = Time = 89
+anim = 9506
+ID = 703
+pos = -1,-2
+postype = P1
+ownpal = 1
+bindtime = -1
+sprpriority = 999
+removetime = -1
+scale = 0.90, 0.90
+
+[State 9001, 1]
+type = RemoveExplod
+trigger1 = time = 5
+ID = 703
+
+[State 190, 1] ;If opponent is Brolli
+type = null;PlaySnd
+trigger1 = time = 236
+trigger1 = P2Name = "Broli Remix ver1.2"
+value = 9,6
+
+[State 191]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = 9, 5
+
+[State 954, 1] 
+type = EnvShake
+trigger1 = AnimElem = 6
+time = 30
+ampl = 3
+freq = 127
+[State 190, begin]
+type = AssertSpecial
+trigger1 = time = [0,800]
+flag = intro
+
+[State 3000,MBS]
+type = explod
+trigger1 = AnimElem = 1
+anim = 9895
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 1;-2
+bindtime = 900
+ownpal = 1
+supermove = 1
+removetime = 900
+
+[State 400, 1]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 0, 15
+
+[State 190, 3]
+type = changestate
+trigger1 = animtime = 900
+value = 0
+ctrl = 0
+
+;Intro 2
+[Statedef 197]
+type = S
+ctrl = 0
+anim = 0
+velset = 0,0,0
+
+[state 730, tishok]
+type = explod
+trigger1 = NumExplod(703) = 0
+trigger1 = Time >= 0
+anim = 9506
+ID = 703
+pos = -1,-2
+postype = P1
+ownpal = 1
+bindtime = -1
+sprpriority = 999
+removetime = -2
+scale = 0.90, 0.90
+
+[State 190, 3]
+type = changestate
+trigger1 = animtime = 900
+value = 0
+ctrl = 0

@@ -1,0 +1,29 @@
+; Definition file for Broli
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name              ="Broly by ynvaser"
+displayname   ="Broly"
+versiondate     =23,12,2007
+mugenversion =04,14,2001
+author             ="ynvaser"
+pal.defaults     =1,2,3,4
+
+[Files]
+cmd            =broly.cmd
+cns             =broly.cns
+stcommon   =common1.cns
+sprite          =broly.sff
+anim           =broly.air
+sound         =broly.snd
+st                =ST.st
+pal1=broly.act
+pal2=broly3.act
+pal3=broly2.act
+pal4=broly4.act
+st1=Helpers.st
+st2=AI.st
+[Arcade]
+intro.storyboard=
+ending.storyboard=

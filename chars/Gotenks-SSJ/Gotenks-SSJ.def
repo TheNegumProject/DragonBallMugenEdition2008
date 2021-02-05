@@ -1,0 +1,25 @@
+
+[Info]
+name    ="Gotenks by Pextin"
+displayname ="Gotenks"
+versiondate =11,03,2005
+pal.defaults =1
+mugenversion=11,01,2001
+author=""
+
+[Files]
+cmd      =Gotenks-SSJ.cmd
+cns      =Gotenks-SSJ.cns
+st       =Gotenks-SSJ.cns
+stcommon =common1.cns
+st1      =Supers.cns
+st2      =AI.cns
+st3      =BBVB.cns
+st4      =SDM.cns
+sprite   =Gotenks-SSJ.sff
+anim     =Gotenks-SSJ.air
+pal1     =Gotenks-SSJ.act
+sound    =Gotenks-SSJ.snd
+[Arcade]
+intro.storyboard=
+ending.storyboard=

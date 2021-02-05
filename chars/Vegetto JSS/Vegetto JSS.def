@@ -1,0 +1,27 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name ="Vegetto R"
+displayname ="Vegetto JSS"
+versiondate =04,14,2001
+mugenversion =04,14,2001
+author ="by Ripper"
+pal.defaults =
+
+; Files for the player
+[Files]
+cmd     =vegettojss.cmd
+cns     =vegettojss.cns
+st      =vegettojss.cns
+stcommon =podstawa.cns
+sprite  =vegettojss.sff
+anim    =vegettojss.air
+sound   =vegettojss.snd
+st1=ai.cns
+
+
+; Arcade mode
+[Arcade]
+intro.storyboard =intro.def

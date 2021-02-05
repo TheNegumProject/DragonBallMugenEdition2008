@@ -1,0 +1,18 @@
+;Definition File for Cell by Komodo
+[Info]
+name    = "Cell"
+displayname = "Cell"
+pal.defaults = 0,1,2,3
+
+[Files]
+cmd     = cell.cmd
+cns     = cell.cns
+st      = cell.cns
+stcommon = cell1.cns
+sprite  = cell.sff
+anim    = cell.air
+sound   = cell.snd
+pal1 = cell1.act
+pal2 = cell2.act
+pal3 = cell.act
+pal4 = cell3.act

@@ -1,0 +1,27 @@
+;=======================================;
+;        Character Def File for:        ;
+;            Majin Boo by Orestes       ;
+;     for MUGEN v. (version number)     ;
+;       Maker's Website HTTP here       ;
+;                                       ;
+;   Made with MUGEN Editing Ensemble    ;
+;     (http://ragnaroknemo.cjb.net)     ;
+;=======================================;
+
+[Info]
+name 		= "Majin Boo"
+displayname 	= "Majin Buu"
+author 		= "Orestes"
+pal.defaults 	=1,2
+
+[Files]
+cns 	  = MajinBoo.cns
+stcommon  = MajinBoo.cns
+st 	  = MajinBoo.cns
+
+cmd 	  = MajinBoo.cmd
+anim 	  = MajinBoo.air
+sprite	  = MajinBoo.sff
+sound	  = MajinBoo.snd
+
+pal1 	  = MajinBoo01.act

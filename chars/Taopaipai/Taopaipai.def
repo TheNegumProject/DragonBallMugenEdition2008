@@ -1,0 +1,28 @@
+; Definition file for Bardock
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Taopaipai"        ;Name of character
+displayname = "Taopaipai" ;Name of character to display
+versiondate = 04,14,2001    ;Version date of character
+mugenversion = 04,14,2001   ;Version of M.U.G.E.N character works on
+author = "Bardock"         ;Character author name
+pal.defaults =      ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd     = taopaipai.cmd   ;Command set
+cns     = taopaipai.cns   ;Constants
+st      = taopaipai.cns   ;States
+stcommon = taopaipai1.cns ;Common states
+sprite  = taopaipai.sff   ;Sprite
+anim    = taopaipai.air   ;Animation
+sound   = taopaipai.snd   ;Sound
+pal1    = rosa.act  ;Palettes (can have up to 12)
+pal2    = azul.act
+
+; Arcade mode
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

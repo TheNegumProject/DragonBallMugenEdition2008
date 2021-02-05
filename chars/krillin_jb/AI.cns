@@ -1,0 +1,71 @@
+;---------------------------------------------------------------------------
+; States that are always executed (use statedef -2)
+;---------------------------------------------------------------------
+
+[Statedef -2]
+
+; Clipboard da ai
+[State -2, 1]
+type = DisplayToClipboard
+trigger1 = var(59) = 1
+text = "Ai activada"
+
+
+;no vueles
+[State -2, AI1]
+type = null ;ChangeState
+;triggerall = Ctrl
+;triggerall = StateType = S
+triggerall = var(59) = 1
+;triggerall = random < 499
+triggerall = Stateno = 900
+trigger1 = Pos Y <= -100
+;trigger1 = P2BodyDist Y > 100
+;trigger1 = P2BodyDist X > 0
+;trigger1 = P2BodyDist X < 160
+;trigger2 = Stateno != 0
+;trigger1 = Stateno = 0
+value = 50 ;100
+
+
+
+;Si p2 permanece volando
+[State -2, AI2]
+type = null ;ChangeState
+triggerall = var(59) = 1
+;triggerall = random < 499
+triggerall = Stateno != 900
+trigger1 = P2statetype = S
+trigger1 = P2BodyDist Y < 37
+value = 2100 ;100 DA ERROR
+
+
+
+;-------------------------
+[State -2, AI1]; no vueles
+type = ChangeState
+triggerall = var(59) = 1
+;triggerall = random < 499
+triggerall = Stateno = 900
+trigger1 = P2statetype = S
+trigger1 = P2BodyDist Y < 37
+value = 50 ;100
+
+
+[State -2, AI2]; carga ki
+type =  null ;ChangeState
+triggerall = var(59) = 1
+;triggerall = random < 499
+triggerall = Stateno = 900 
+trigger1 = P2statetype = S
+;trigger1 = P2BodyDist X <= 0
+trigger1 = P2BodyDist Y <= 37
+trigger1 = Power <= 2999
+value = 830
+
+[State -2, Combo]
+type = ChangeState
+value = 2500
+trigger1 = (var(59) = 1) && (MoveContact) && (stateno = 250)
+
+

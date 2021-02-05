@@ -1,0 +1,24 @@
+[Info]
+name="Piccolo"
+displayname="Piccolo"
+versiondate=12/15/2006
+mugenversion=04,14,2001
+author="TheOne(aka T.j)"
+pal.defaults=1,2,3,4,5
+[Files]
+sprite=piccolo.sff
+sound=piccolo.snd
+anim=piccolo.air
+cmd=piccolo.cmd
+cns=piccolo.cns
+st=piccolo.cns
+stcommon=common.cns
+pal1=pal0.act
+pal2=pal1.act
+pal3=pal2.act
+pal4=pal3.act
+pal5=pal4.act
+pal6=pal5.act
+[Arcade]
+intro.storyboard=
+ending.storyboard=

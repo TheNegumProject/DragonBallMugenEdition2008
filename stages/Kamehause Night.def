@@ -1,0 +1,374 @@
+;===================Agradecimientos y creditos======================
+
+;1.GRACIAS A Dios Por Dejarme vivir Y seguir con Mi Vida!
+;2.A Mi por darme tiempo para hacer la stage Xd.
+;3.LEe Por ayudarme Cada vez q nesesitaba ayuda.
+;4.Vieja del Agua Por hacer el Sprite de Master roshi.
+;5.Bardock Por El sprite de Yajirobe
+
+;=======================================
+[Info]
+Name = "KameHause Night"
+;Author = "Dragolink1"
+;Date = "6 Nov 207"
+;=======================================
+[Camera]
+
+startx = 0
+starty = 0
+
+boundleft = -95
+boundright = 87
+
+boundhigh = -255
+boundlow = 0
+
+verticalfollow = 1
+floortension = 0
+tension = 60
+
+;=======================================
+[PlayerInfo]
+
+p1startx = -75
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+p2startx = 75
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+leftbound  = -950
+rightbound =  950
+topbound  =  -1500
+botbound  =  0
+
+;=======================================
+[Scaling]
+
+topz     = 0
+botz     = 50
+topscale = 1
+botscale = 1
+
+;=======================================
+[Bound]
+
+screenleft = 0
+screenright = 0
+
+;=======================================
+[StageInfo]
+
+zoffset = 210
+
+autoturn = 1
+
+resetBG = 1
+
+;=======================================
+[Shadow]
+
+intensity = 150
+
+color = 0,0,0
+
+yscale = 1
+
+fade.range = -100,-100
+
+;=======================================
+[Reflection]
+
+intensity = 0
+
+;=======================================
+[Music]
+
+bgmusic = stages/Ambiente.mp3
+bgvolume = 600
+
+;=======================================
+[BGdef]
+
+spr = Kamehause Night.sff
+debugbg = 1
+
+;=======================================
+[BG]
+type  = normal
+spriteno = 1, 0
+start = -255,-200
+mask = 0
+tile  = 0,0
+
+;==[Estrellas]==
+
+[BG 1]
+type = normal
+spriteno = 1,3
+delta = 1,1
+start = 300,-300
+velocity = -3,3
+Mask = 1
+Trans = Add
+
+[BG 1]
+type = normal
+spriteno = 1,3
+delta = 1,1
+start = 549,-549
+velocity = -4,4
+tile = 1,1
+tilespacing = 200,-400
+Mask = 1
+Trans = Add
+
+[BG 1]
+type = normal
+spriteno = 1,3
+delta = 1,1
+start = 671,-671
+velocity = -5,5
+tile = 1,1
+tilespacing = 1200,-1400
+Mask = 1
+Trans = Add
+
+[BG 1]
+type = normal
+spriteno = 1,3
+delta = 1,1
+start = 1020,-1020
+velocity = -4,4
+tile = 0,1
+tilespacing = 1700,-1900
+Mask = 1
+Trans = Add
+
+;==[Estrellas Fin]==
+
+[BG 1]
+type  = normal
+spriteno = 1, 2
+start = -255,-260
+trans = Add
+mask = 1
+tile  = 0,0
+
+[BG 1]
+type  = normal
+spriteno = 1, 1
+start = -255,20
+mask = 1
+tile  = 0,0
+
+[BG 2]
+type  = normal
+spriteno = 2, 0
+start = -255,-250
+trans = none
+mask = 1
+tile  = 0,0
+
+[BG 3]
+Type = anim
+actionno = 1
+delta = 1,1
+Start = 103,150
+mask = 1
+
+[BG 4]
+type  = normal
+spriteno = 3, 0
+start = 0,-300
+trans = Add
+mask = 0
+tile  = 0,0
+
+[BG 5]
+type  = normal
+spriteno = 3,1
+layerno = 1
+trans = add
+tile  = 1,0
+start = 0,-200
+velocity = 0.60,0
+mask = 1
+
+[BG 6]
+Type = anim
+actionno = 2
+delta = 1,1
+Start = 57,100
+mask = 1
+trans = add
+
+[BG 7]
+Type = Anim
+actionno = 3
+delta = 1,1
+Start = -340,0
+mask = 1
+
+[BG 9]
+Type = anim
+actionno = 5
+delta = 1,1
+Start = -20,174
+mask = 1
+trans = add
+
+[BG 10]
+type  = normal
+spriteno = 2,11
+layerno = 0
+start = 133,141
+mask = 1
+
+
+
+
+
+
+;=======================================
+[Begin action 1]
+
+2,1, 2,0, 9, ,A
+2,2, 0,0, 4, ,A
+2,3, 0,0, 14, ,A
+
+;---------------
+
+[Begin action 2]
+
+2,4,  0,0, 15,
+2,4,  0,1, 10,
+2,4,  0,2, 10,
+2,4,  0,3, 10,
+2,4,  0,4, 10,
+2,4,  0,5, 10,
+2,4,  0,4, 10,
+2,4,  0,3, 10,
+2,4,  0,2, 10,
+2,4,  0,1, 10,
+
+;---------------
+
+[Begin action 3]
+
+2,5,0,0,2
+2,5,10,1,2
+2,5,20,2,2
+2,5,30,3,2
+2,5,40,4,2
+2,5,50,3,2
+2,5,60,2,2
+2,5,70,1,2
+2,5,80,2,2
+2,5,90,3,2
+2,5,100,4,2
+2,5,110,3,2
+2,5,120,2,2
+2,5,130,1,2
+2,5,140,2,2
+2,5,150,3,2
+2,5,160,4,2
+2,5,170,3,2
+2,5,180,2,2
+2,5,190,1,2
+2,5,200,0,2
+2,5,210,0,2
+2,5,220,0,2
+2,5,230,1,2
+2,5,240,2,2
+2,5,240,2,2
+2,5,240,3,2
+2,5,240,3,2
+2,5,240,3,2
+2,5,240,2,2
+2,5,240,2,2
+2,5,240,2,2
+2,5,240,3,2
+2,5,240,3,2
+2,5,240,3,2
+2,5,240,2,2
+2,5,240,2,2
+2,5,240,2,2
+2,5,240,3,2
+2,5,240,3,2
+2,5,240,3,2
+2,5,240,2,2
+2,5,240,2,2
+2,5,240,2,2
+2,5,240,3,2
+2,5,240,3,2
+2,5,240,2,2
+2,5,240,1,2
+2,5,240,-1,2
+2,5,250,-2,2
+2,5,260,-4,2
+2,5,270,-6,2
+2,5,280,-8,2
+2,5,290,-10,2
+2,5,300,-12,2
+2,5,310,-14,2
+2,5,320,-16,2
+2,5,330,-18,2
+2,5,340,-20,2
+2,5,350,-22,2
+2,5,360,-24,2
+2,5,370,-26,2
+2,5,380,-28,2
+2,5,390,-30,2
+2,5,400,-32,2
+2,5,410,-34,2
+2,5,420,-36,2
+2,5,430,-38,2
+2,5,440,-40,2
+2,5,450,-42,2
+2,5,460,-44,2
+2,5,470,-50,2
+2,5,480,-52,2
+2,5,490,-54,2
+2,5,500,-56,2
+2,5,510,-58,2
+2,5,520,-60,2
+2,5,530,-62,2
+2,5,540,-64,2
+2,5,550,-66,2
+2,5,560,-68,2
+2,5,570,-70,2
+2,5,580,-72,2
+2,5,590,0,2
+2,5,600,0,2
+2,5,610,0,2
+2,5,620,0,2
+2,5,630,0,2
+2,5,640,0,2
+2,5,650,0,2
+2,5,660,0,2
+2,5,670,0,2
+2,5,680,0,2
+2,5,690,0,2
+
+;---------------
+
+[Begin action 5]
+
+2,7,  0,0, 5,
+2,8,  0,0, 5,
+2,9,  0,0, 5,
+2,10,  0,0, 5,
+
+;---------------
+
+[Begin action 6]
+
+1,3, 0,0, 1, ,A
+
+
+
+;=======================================

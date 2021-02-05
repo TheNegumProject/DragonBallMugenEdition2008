@@ -1,0 +1,191 @@
+;=======================================
+[Info]
+name = "Namek"
+Author = "Alien San"
+Site = "http://alien.samouczek.com"
+;=======================================
+[Camera]
+startx = 0
+starty = -1000
+
+boundleft = -240
+boundright = 190
+
+boundhigh = -100
+boundlow = 0
+
+verticalfollow = .8
+tension = 50
+floortension = 0
+
+;=======================================
+[PlayerInfo]
+;--- Player 1 ---
+p1startx = -80
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+;--- Player 2 ---
+p2startx = 80
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+;--- Common ---
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+;=======================================
+[Scaling]
+topz     = 0
+botz     = 50
+topscale = 1
+botscale = 1.2
+
+;=======================================
+[Bound]
+screenleft = 15
+screenright = 15
+
+;=======================================
+[StageInfo]
+zoffset = 230
+zoffsetlink = 1
+autoturn = 1
+resetBG = 1
+
+;=======================================
+[Shadow]
+color = 0,0,0
+yscale = 0.3
+reflect = 0
+intensity = 100
+fade.range = -365,-35
+
+[Reflection]
+intensity = 0
+
+;=======================================
+[Music]
+bgmusic = stages/Namek.mp3
+bgvolume = 600
+
+
+;=======================================
+; Main background definition
+[BGdef]
+spr = stages/namek.SFF
+debugbg = 0
+
+
+[BG 2 tlo]
+type  = normal
+spriteno = 0, 2
+start = -160,80
+delta = 1, 1
+mask = 1
+velocity = 0, 0
+tile = 1, 0
+tilespacing = 0, 0
+
+[BG 1]
+type  = anim
+start = 0,-150
+delta = 1,1
+trans = none
+mask  = 1
+layerno = 0
+actionno = 2
+
+[Begin Action 2]
+-1,-1, 0,0, 30
+1,0, 0,0, 4,,A
+1,1, 0,0, 4,,A
+1,2, 0,0, 4,,A
+1,3, 0,0, 4,,A
+1,4, 0,0, 4,,A
+-1,-1, 0,0, 73
+1,0, -100,50, 4,,A
+1,1, -100,50, 4,,A
+1,2, -100,50, 4,,A
+1,3, -100,50, 4,,A
+1,4, -100,50, 4,,A
+-1,-1, 0,0, 50
+1,0, -130,-20, 4,,A
+1,1, -130,-20, 4,,A
+1,2, -130,-20, 4,,A
+1,3, -130,-20, 4,,A
+1,4, -130,-20, 4,,A
+-1,-1, 0,0, 60
+1,0, 50,30, 4,,A
+1,1, 50,30, 4,,A
+1,2, 50,30, 4,,A
+1,3, 50,30, 4,,A
+1,4, 50,30, 4,,A
+-1,-1, 0,0, 150
+1,0, -120,20, 4,,A
+1,1, -120,20, 4,,A
+1,2, -120,20, 4,,A
+1,3, -120,20, 4,,A
+1,4, -120,20, 4,,A
+-1,-1, 0,0, 73
+1,0, 50,0, 4,,A
+1,1, 50,0, 4,,A
+1,2, 50,0, 4,,A
+1,3, 50,0, 4,,A
+1,4, 50,0, 4,,A
+-1,-1, 0,0, 150
+
+[BG Fog1]
+type = normal
+spriteno =0,1
+start = -160,-20     
+tile = -1 
+tilespacing = 60,0
+velocity = 0.2, 0
+mask = 0
+trans = add
+
+[BG Fog1]
+type = normal
+spriteno =0,1
+start = -160,40     
+tile = -1 
+tilespacing = 60,0
+velocity = 2, 0
+mask = 0
+trans = add
+
+[BG Fog1]
+type = normal
+spriteno =0,1
+start = -160,100     
+tile = -1 
+tilespacing = 60,0
+velocity = -1, 0
+mask = 0
+trans = add
+
+[BG Fog1]
+type = normal
+spriteno =0,1
+start = -160,160     
+tile = -1 
+tilespacing = 60,0
+velocity = -3, 0
+mask = 0
+trans = add
+
+
+[BG Floor]
+type  = normal
+spriteno = 0,3
+layerno = 0
+start = -160,80
+tile  = 1,0
+velocity = 0,0
+mask = 1
+

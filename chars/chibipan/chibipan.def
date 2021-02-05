@@ -1,0 +1,20 @@
+Chibi Pan by Bardock
+
+[Info]
+name    = "PAN by Bardock"
+displayname = "Pan"
+author = "Bardock"     
+pal.defaults = 1
+
+[Files]
+cmd     = chibipan.cmd     
+cns     = chibipan.cns     
+st      = chibipan.cns  
+stcommon = common1.cns   
+sprite  = chibipan.sff      
+anim    = chibipan.air      
+sound   = chibipan.snd
+pal1    = chibipan.act
+pal2    = chibipan.act
+pal3    = chibipan.act
+pal4    = chibipan.act      

@@ -1,0 +1,24 @@
+; Android 17
+; Contains all the filenames needed for the character
+; ZGTEAM ; www.zgteam.cjb.net
+; Player information
+[Info]
+name = "Android 17 by HyperionX"        ;Name of character
+displayname = "Android 17" ;Name of character to display
+versiondate = 04,14,2001    ;Version date of character
+mugenversion = 04,14,2001   ;Version of M.U.G.E.N character works on
+author = "HyperionX"         ;Character author name
+pal.defaults =  1     ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd     = and17.cmd   ;Command set
+cns     = and17.cns   ;Constants
+st      = and17.cns   ;States
+stcommon = common1.cns ;Common states
+sprite  = and17.sff   ;Sprite
+anim    = and17.air   ;Animation
+sound   = and17.snd   ;Sound
+pal1    = 1.act  ;Palettes (can have up to 12)
+
+

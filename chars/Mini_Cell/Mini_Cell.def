@@ -1,0 +1,31 @@
+; Definition file for Gotenks-san
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name ="Mini_Cell"
+displayname ="Cell-jr"
+versiondate =04,14,2002
+mugenversion =11,01,2001
+author ="Goku@/Gokax"
+pal.defaults=1,2,3,4,5
+
+
+; Files for the player
+[Files]
+cmd     =Mini_Cell.cmd
+cns     =Mini_Cell.cns
+st      =Mini_Cell.cns
+st2     =latanie.cns
+stcommon =common1.cns
+sprite  =Mini_Cell.sff
+anim    =Mini_Cell.air
+sound   =muzyka.snd
+pal1=Mini_Cell.act
+st1=latanie.cns
+
+
+; Arcade mode
+[Arcade]
+intro.storyboard =intro.def
+ending.storyboard =.def

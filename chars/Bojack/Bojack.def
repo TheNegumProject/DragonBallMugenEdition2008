@@ -1,0 +1,25 @@
+; Definition file for Bojack Enhanced 1.01 by Chrono_Strife and DW
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Bojack Enhanced 1.01"          ;Name of character
+displayname = "Bojack"                 ;Name of character to display
+versiondate = 24,08,2005               ;Version date of character
+mugenversion = 14,06,2003              ;Version of M.U.G.E.N character works on
+author = "Chrono_Strife and DW"        ;Character author name
+pal.defaults = 1,2,3                   ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd      = bojackCMD.cmd               ;Command set
+cns      = bojackCNS.cns               ;Constants
+st       = bojackCNS.cns               ;States
+stcommon = commonCNS.cns               ;Common states
+sprite   = bojackSFF.sff               ;Sprite
+anim     = bojackAIR.air               ;Animation
+sound    = bojackSND.snd               ;Sound
+pal1     = GreenTealACT.act            ;Palettes (can have up to 12)
+pal2     = BlueBlackACT.act
+pal3     = RedBlackACT.act
+;pal4     = ColorColorACT.act

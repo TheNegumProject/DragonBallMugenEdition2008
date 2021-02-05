@@ -1,0 +1,71 @@
+|-Goku DB's Moves------------------------------------------------------------------
+Version 1.1
+Character made by 
+Goten88 a.k.a Pextin
+http://goten88.shorturl.com
+|-Basics---------------------------------------------------------------------------
+
+a   = Light Kick
+b   = Strong Kick
+c   = High Kick
+x   = Light Punch
+y   = Strong Punch
+z   = Power Pole
+
+D, a   = Toe Kick
+D, b   = Straight Kick
+D, c   = Sliding Kick
+D, x   = Punch
+D, y   = Uppercut
+D, z   = Power Pole
+
+U, a   = Light Downward Kick
+U, b   = Medium Forward Kick
+U, c   = Hard Upward Kick
+U, x   = Punch
+U, y   = Power Pole Swing
+U, z   = Power Pole Downward Swing
+
+Super Jump          - D, U
+Super Jump FW       - D, UF
+Super Jump BACK     - D, UB
+Throw               - F, z or B, z
+
+|-Specials-------------------------------------------------------------------------
+
+Power Kick-Light        - D,DB,B, a
+Power Kick-Hard         - D,DB,B, b
+Double Palm-Light       - D,DF,F, b
+Double Palm-Hard        - D,DF,F, c
+Kamehameha Blast-Light  - D,DF,F, x
+Kamehameha Blast-Hard   - D,DF,F, y
+Super Uppercut          - D,DF,F, z
+
+|-Supers Moves---------------------------------------------------------------------
+
+Kamehameha Beam         - D,DB,B,D,DB,B, x (Power >= 2000)
+Power Pole Extend       - D,DF,F,D,DF,F, a (Power >= 1000)
+Whirling Tornado        - D,DB,B,D,DF,F, y (Power >= 1000)(Can be moved around with F & B!!)
+
+
+Special thanks to:
+
+Akira Toriyama - For creating Dragonball
+Bandai - For the Trunks & Goten sprites from Super Butouden 3 that I edited into Goku
+Elecbyte - For making Mugen
+Detah - For doing the sff and pallete before I had to redo everything for the last act to work.
+DBZPD - For great some extra sprites & advice. <-- He is Da Man lol
+Dark Roken - For advice and the 3 cool palettes & FX.
+Toad - For some sweet effects.
+Strife - For always being there to be stupid lol which is awesome !!!!!
+Majita - For a ub22 sheet of Goku which I cut sprites from and converted to sb style.
+Neocide - For ripping the sweet sounds from Budoukai.
+Thrawn - For suggestions and explanations.
+Dizzy - For suggestions and beta testing.
+Flowa Girl - For Beta testing
+Redspider - For suggestions and some custom sprites
+Annubis - For sounds that I may have or haven't used.
+Redneck - For ripping some sprites.
+Capcom Vs Snk - For some fx I used.
+
+and anyone else I can't think of who helped me.

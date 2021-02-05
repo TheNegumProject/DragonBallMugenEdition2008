@@ -1,0 +1,17 @@
+[Info]
+name    = "Another Gohan by Tenshin-han"
+displayname 	= "Another Gohan" 		
+versiondate 	= 21,07,2001    		
+mugenversion 	= 14,04,2001 		
+author 		= "Tenshin-han"     
+pal.defaults 	= 1  	
+
+[Files]
+cmd     = MG.cmd
+cns     = MG.cns
+st      = MG.cns
+stcommon = MG1.cns
+sprite  = MG.sff
+anim    = MG.air
+sound   = MG.snd
+pal1 = 1.act

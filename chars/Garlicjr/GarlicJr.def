@@ -1,0 +1,28 @@
+; Definition file for Garlic Jr by Chrono_Strife
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "GarlicJr"                      ;Name of character
+displayname = "Garlic Jr."             ;Name of character to display - ichi jo ban tai tai chou
+versiondate = 08,13,2008               ;Version date of character
+mugenversion = 14,06,2003              ;Version of M.U.G.E.N character works on
+author = "Chrono_Strife"               ;Character author name
+pal.defaults = 1,2,3,4,5,6             ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd      = coding/GarlicJrCMD.cmd      ;Command set
+cns      = coding/GarlicJrCNS.cns      ;Constants
+st       = coding/GarlicJrCNS.cns      ;States
+st2      = coding/HelpersCNS.cns       ;Helper States
+stcommon = coding/commonCNS.cns        ;Common states
+sprite   = graphical/GarlicJrSFF.sff   ;Sprite
+anim     = coding/GarlicJrAIR.air      ;Animation
+sound    = audio/GarlicJrSND.snd       ;Sound
+pal1     = graphical/GarlicJr.act      ;Original Garlic Jr(DBZ Movie 1)
+pal2     = graphical/Vampire.act       ;Vampire Garlic Jr
+pal3     = graphical/Bojack.act        ;DW's Bojack
+pal4     = graphical/Rokens.act        ;Roken made Garlic Jr(BT3)
+pal5     = graphical/Demon.act         ;Demon(Garlic Jr's Father inspired)
+pal6     = graphical/Piccolo.act       ;Roken's Piccolo

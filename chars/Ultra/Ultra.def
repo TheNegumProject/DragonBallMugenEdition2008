@@ -1,0 +1,39 @@
+; ..:: Ultra Trunks ::.. | Ver 1.0
+; ***From SB2 ~ Sprites modified by Next***
+; 
+;----------------------------------------
+;By	: Next  	: 
+;	:        	: 
+;			: 
+;----------------------------------------
+
+;---------------------
+;Character Information
+;---------------------
+[Info]
+name			="Next's trunks"
+displayname		="Ultra Trunks"
+versiondate		=1.0
+mugenversion		=04,14,2002
+author			="The NEXT Level"
+pal.defaults		=1
+
+;---------------
+;Character Files 
+;---------------
+[Files]
+cmd			=Ultra.cmd
+cns			=Ultra.cns
+st			=Ultra.cns
+stcommon		=Ultra.cns
+sprite			=Ultra.sff
+anim			=Ultra.air
+sound			=Ultra.snd
+pal1=Ultra.act
+
+;[Arcade]
+;intro.storyboard = GokuIntro.def
+;ending.storyboard = GokuEnding.def
+[Arcade]
+intro.storyboard=
+ending.storyboard=

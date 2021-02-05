@@ -1,0 +1,354 @@
+AI
+
+[statedef -3]
+[state -3, varset]
+type = varrandom
+triggerall = var(20) = 1
+triggerall = life > 0
+trigger1 = timemod = 200, 0
+v = 15
+range = 100
+[state -3, varset]
+type = varrandom
+triggerall = var(20) = 1
+triggerall = life > 0
+triggerall = movetype != h
+trigger1 = timemod = 10, 0
+v = 7
+range = 100
+[state -3, varset]
+type = varrandom
+triggerall = var(20) = 1
+triggerall = life > 0
+triggerall = movetype = h
+trigger1 = timemod = 60, 0
+v = 7
+range = 100
+
+[state -3, varset]
+type = varset
+triggerall = life <= 0
+triggerall = 1
+trigger1 = var(20) = 0
+trigger2 = var(20) = 1
+v = 15
+value =	0
+[state -3, varset]
+type = varset
+triggerall = life <= 0
+triggerall = 1
+trigger1 = var(20) = 0
+trigger2 = var(20) = 1
+v = 7
+value = 0
+
+[state -3, varset]
+type = posset
+triggerall = var(20) = 1
+triggerall = movetype = i
+trigger1 = pos y > 0
+y = 0
+
+;---------------------------------------------------------------------------
+[state -3, teleport]
+type = changestate
+value = 14001
+triggerall = var(7) = [1,60]
+triggerall = var(9) = [45,49]
+triggerall = p2dist x <= 40
+trigger1 = ctrl = 1
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 201
+trigger3 = movecontact = 1
+trigger4 = stateno = 210
+trigger4 = movecontact = 1
+trigger5 = stateno = 215
+trigger5 = movecontact = 1
+trigger6 = stateno = 205
+trigger6 = movecontact = 1
+trigger7 = stateno = 216
+trigger7 = movecontact = 1
+;trigger8 = stateno = 1510
+[state -3, teleport]
+type = changestate
+value = 14001
+triggerall = var(7) = [1,60]
+triggerall = var(9) = [95,99]
+triggerall = p2dist x <= 40
+trigger1 = ctrl = 1
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 201
+trigger3 = movecontact = 1
+trigger4 = stateno = 210
+trigger4 = movecontact = 1
+trigger5 = stateno = 215
+trigger5 = movecontact = 1
+trigger6 = stateno = 205
+trigger6 = movecontact = 1
+trigger7 = stateno = 216
+trigger7 = movecontact = 1
+;trigger8 = stateno = 1510
+[state -3, teleport]
+type = changestate
+value = 14001
+triggerall = var(7) = [1,60]
+triggerall = var(9) = [145,149]
+triggerall = p2dist x <= 40
+trigger1 = ctrl = 1
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 201
+trigger3 = movecontact = 1
+trigger4 = stateno = 210
+trigger4 = movecontact = 1
+trigger5 = stateno = 215
+trigger5 = movecontact = 1
+trigger6 = stateno = 205
+trigger6 = movecontact = 1
+trigger7 = stateno = 216
+trigger7 = movecontact = 1
+;trigger8 = stateno = 1510
+[state -3, teleport]
+type = changestate
+value = 14001
+triggerall = var(7) = [1,60]
+triggerall = var(9) = [195,199]
+triggerall = p2dist x <= 40
+trigger1 = ctrl = 1
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 201
+trigger3 = movecontact = 1
+trigger4 = stateno = 210
+trigger4 = movecontact = 1
+trigger5 = stateno = 215
+trigger5 = movecontact = 1
+trigger6 = stateno = 205
+trigger6 = movecontact = 1
+trigger7 = stateno = 216
+trigger7 = movecontact = 1
+;trigger8 = stateno = 1510
+[state -3, teleport]
+type = changestate
+value = 14001
+triggerall = var(7) = [1,60]
+triggerall = var(9) = [245,249]
+triggerall = p2dist x <= 40
+trigger1 = ctrl = 1
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 201
+trigger3 = movecontact = 1
+trigger4 = stateno = 210
+trigger4 = movecontact = 1
+trigger5 = stateno = 215
+trigger5 = movecontact = 1
+trigger6 = stateno = 205
+trigger6 = movecontact = 1
+trigger7 = stateno = 216
+trigger7 = movecontact = 1
+;trigger8 = stateno = 1510
+[state -3, teleport]
+type = changestate
+value = 14001
+triggerall = var(7) = [1,60]
+triggerall = var(9) = [295,300]
+triggerall = p2dist x <= 40
+trigger1 = ctrl = 1
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 201
+trigger3 = movecontact = 1
+trigger4 = stateno = 210
+trigger4 = movecontact = 1
+trigger5 = stateno = 215
+trigger5 = movecontact = 1
+trigger6 = stateno = 205
+trigger6 = movecontact = 1
+trigger7 = stateno = 216
+trigger7 = movecontact = 1
+;trigger8 = stateno = 1510
+;---------------------------------------------------------------------------
+[state -3, Charge power]
+type = changestate
+triggerall = var(7) = [1,80]
+triggerall = (var(15) != [10,30])&&(var(15) != 100)
+triggerall = movetype != h
+triggerall = p2life > 0
+triggerall = p2dist x > 50
+triggerall = numhelper(4321) = 0
+triggerall = stateno != 11950 && stateno != 1940
+triggerall = stateno != 5511
+triggerall = stateno != 731
+triggerall = stateno != 2030 && stateno != 3030
+triggerall = power != 6000 && life != 3000
+trigger1 = power <= 1000
+trigger2 = life <= 500
+;trigger8 = stateno = 1510
+value = 730
+[state -3, Charge power]
+type = changestate
+triggerall = var(7) = [1,10]
+triggerall = (var(15) != [10,30])&&(var(15) != 100)
+triggerall = movetype != h
+triggerall = p2life > 0
+triggerall = p2dist x > 50
+triggerall = numhelper(4321) = 0
+triggerall = stateno != 11950 && stateno != 1940
+triggerall = stateno != 5511
+triggerall = stateno != 731
+triggerall = stateno != 2030 && stateno != 3030
+triggerall = power != 6000 && life != 3000
+trigger1 = power > 1000
+trigger2 = life > 500
+;trigger8 = stateno = 1510
+value = 730
+;---------------------------------------------------------------------------
+[state -3, Atacks]
+type = changestate
+value = 200
+triggerall = var(7) = [1,60]
+triggerall = var(9) = [0,44]
+triggerall = movetype != h
+triggerall = p2dist x <= 40
+triggerall = p2dist y = [-50,90]
+triggerall = statetype = s
+trigger1 = ctrl = 1
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 210
+trigger3 = movecontact = 1
+trigger4 = stateno = 211
+trigger4 = movecontact = 1
+trigger5 = stateno = 214
+trigger5 = movecontact = 1
+;trigger8 = stateno = 1510
+[state -3, Atacks]
+type = changestate
+value = 210
+triggerall = var(7) = [1,60]
+triggerall = var(9) = [50,94]
+triggerall = movetype != h
+triggerall = p2dist x <= 40
+triggerall = p2dist y = [-50,90]
+triggerall = statetype = s
+trigger1 = ctrl = 1
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 210
+trigger3 = movecontact = 1
+trigger4 = stateno = 211
+trigger4 = movecontact = 1
+trigger5 = stateno = 214
+trigger5 = movecontact = 1
+;trigger8 = stateno = 1510
+[state -3, Atacks]
+type = changestate
+value = 211
+triggerall = var(7) = [1,60]
+triggerall = var(9) = [100,144]
+triggerall = movetype != h
+triggerall = p2dist x <= 40
+triggerall = p2dist y = [-50,90]
+triggerall = statetype = s
+trigger1 = ctrl = 1
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 210
+trigger3 = movecontact = 1
+trigger4 = stateno = 211
+trigger4 = movecontact = 1
+trigger5 = stateno = 214
+trigger5 = movecontact = 1
+;trigger8 = stateno = 1510
+[state -3, Atacks]
+type = changestate
+value = 214
+triggerall = var(7) = [1,60]
+triggerall = var(9) = [200,244]
+triggerall = movetype != h
+triggerall = p2dist x <= 40
+triggerall = p2dist y = [-50,90]
+triggerall = statetype = s
+trigger1 = ctrl = 1
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 210
+trigger3 = movecontact = 1
+trigger4 = stateno = 211
+trigger4 = movecontact = 1
+trigger5 = stateno = 214
+trigger5 = movecontact = 1
+;trigger8 = stateno = 1510
+;---------------------------------------------------------------------------
+[state -3, Guard]
+type = changestate
+triggerall = var(7) = [66,89]
+triggerall = statetype = s
+triggerall = numhelper(4321) = 0
+triggerall = stateno != 130
+triggerall = p2movetype = a
+trigger1 = movetype = h
+;trigger8 = stateno = 1510
+value = 120
+[state -3, Guard]
+type = changestate
+triggerall = var(7) = [66,89]
+triggerall = statetype = a
+triggerall = numhelper(4321) = 0
+triggerall = stateno != 132
+triggerall = p2movetype = a
+trigger1 = movetype = h
+;trigger8 = stateno = 1510
+value = 121
+[state -3, Guard]
+type = changestate
+triggerall = var(7) = [66,89]
+triggerall = statetype = c
+triggerall = numhelper(4321) = 0
+triggerall = stateno != 131
+triggerall = p2movetype = a
+trigger1 = movetype = h
+;trigger8 = stateno = 1510
+value = 122
+;---------------------------------------------------------------------------
+[state -3, fly]
+type = changestate
+triggerall = var(7) = [11,40]
+triggerall = p2life > 0
+triggerall = pos y >= 0
+triggerall = statetype = s
+triggerall = movetype != h
+triggerall = stateno = 0
+triggerall = numhelper(2500) = 0
+triggerall = stateno != 1500 && stateno != 50 && stateno != 1510
+trigger1 = p2statetype = s
+trigger1 = p2movetype != h
+trigger1 = p2dist y < (-pos y)
+value = 1500
+
+[state -3, fly]
+type = changestate
+triggerall = var(7) = [41,70]
+triggerall = p2life > 0
+triggerall = pos y < 0
+triggerall = statetype = s
+triggerall = movetype != h
+triggerall = numhelper(2500) = 0
+triggerall = stateno = 1500 || stateno = 1510
+triggerall = stateno != 50
+trigger1 = p2statetype = s
+trigger1 = p2movetype != h
+trigger1 = p2dist y >= (-pos y)
+value = 50
+
+[state -3, fly]
+type = changestate
+trigger1 = stateno = 1500
+trigger1 = ctrl = 1
+value = 1510
+
+
+

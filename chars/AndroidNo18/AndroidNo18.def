@@ -1,0 +1,29 @@
+;=======================================;
+;        Character Def File for:        ;
+;       Android No. 18 by Orestes       ;
+;=======================================;
+
+[Info]
+name 		= "Android No. 18 by Orestes"
+displayname 	= "Android No. 18"
+author 		= "Orestes"
+pal.defaults 	=1,2
+
+[Files]
+stcommon 	= common1.cns
+cns 		= AndroidNo18.cns
+st 		= AndroidNo18.cns
+st1		= Hyper.cns
+st2		= Special.cns
+
+cmd 		= AndroidNo18.cmd
+anim 		= AndroidNo182.air
+sound 		= AndroidNo18.snd
+sprite 		= AndroidNo18.sff
+
+;pal1 		= AndroidNo18a.act
+;pal2 		= AndroidNo18b.act
+;pal3 		= AndroidNo18c.act
+;pal4 		= AndroidNo18d.act
+;pal5 		= AndroidNo18e.act
+;pal6 		= AndroidNo18f.act

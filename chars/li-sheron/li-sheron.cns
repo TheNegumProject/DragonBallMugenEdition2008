@@ -1,0 +1,557 @@
+
+[Data]
+life = 5000 ;Life adjusts according to opponent's life at intro.
+attack = 200  
+defence = 200 
+power = 9000
+fall.defence_up = 100
+liedown.time = 60   
+airjuggle = 15        
+sparkno = 0          
+guard.sparkno = 40   
+KO.echo = 0          
+volume = 0           
+IntPersistIndex = 60
+FloatPersistIndex = 40
+
+[Size]
+xscale = 1         
+yscale = 1        
+ground.back = 20          
+ground.front = 18         
+air.back = 12           
+air.front = 12         
+height = 60    	       
+attack.dist = 160  
+proj.attack.dist = 90    
+proj.doscale = 0          
+head.pos = -5,-90        
+mid.pos = -5,-60    
+shadowoffset = 0     
+
+[Velocity]
+walk.fwd  = 3      
+walk.back = -1       
+run.fwd  = 7.6,0    
+run.back = -7.2    
+jump.neu = 0,-8.1    
+jump.back = -2.55    
+jump.fwd = 2.5       
+runjump.back = -2.55,-8.1 
+runjump.fwd = 4,-8.1      
+airjump.neu = 0,-8.1      
+airjump.back = -2.55,-8.1 
+airjump.fwd = 2.5,-8.1    
+
+[Movement]
+airjump.num = 2      
+airjump.height = 35  
+yaccel = .38         
+stand.friction = 0.85 
+crouch.friction = 0.82
+
+;---------------------------------------------------------------------------
+; ïâÇØ (É^ÉCÉÄÉIÅ[ÉoÅ[)
+[Statedef 170]
+type = S
+ctrl = 0
+anim = 5300
+velset = 0,0,0
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA
+time = 1
+
+;---------------------------------------------------------------------------
+; WIN
+[Statedef 180]
+type = S
+
+[State 180, 1] ;Vitoria Normal
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = Win = 1
+value = 189
+
+[State 180, 1] ; Final
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = Win = 0
+value = 9797
+
+; Final 
+;AnimaÁ„o do Final
+
+[Statedef 9797]
+type = S
+ctrl = 0
+velset = 0,0,0
+
+[State 3000,MBS]
+type = explod
+trigger1 = AnimElem = 1
+anim = 9797
+facing = 1
+pos = 0,0
+postype = left
+sprpriority = 1;-2
+bindtime = -1
+ownpal = 1
+supermove = 1
+removetime = 99999999999999999999999999
+
+; èüÇø
+[Statedef 189]
+type = S
+
+[State 180, 0]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA
+time = 1
+
+;èüÇøÇP
+[State 180, 1a]
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = Life > 750
+value = 181
+
+[State 180, 1b]
+type = PlaySnd
+trigger1 = Time = 0
+trigger1 = Life > 750
+value = 0, 3
+
+[State 180, 1c]
+type = PlaySnd
+trigger1 = Time >= 4
+trigger1 = Life > 750
+value = 0, 4
+
+[State 180, 1d]
+type = PlaySnd
+trigger1 = Time = 40
+trigger1 = Life > 750
+value = 0, 8
+
+[State 180,1blink] 
+type = PalFX
+trigger1 = Time > 0
+trigger1 = TimeMod = 2,0
+trigger1 = Life > 750
+time = 2
+add = 64,64,64
+
+[State 180,1flash1]
+type = explod
+triggerall = Life > 750
+trigger1 = time = [11,52]
+trigger1 = timemod = 4,0
+trigger2 = time = [0,10]
+trigger2 = timemod = 2,0
+anim = 9002
+postype = left
+ownpal = 1
+removetime = 1
+ontop = 1
+
+[State 180,1flash2]
+type = explod
+triggerall = Life > 750
+trigger1 = time = [63,104]
+trigger1 = timemod = 4,0
+trigger2 = time = [11,52]
+trigger2 = timemod = 4,2
+trigger3 = time = [53,62]
+anim = 9003
+postype = left
+ownpal = 1
+removetime = 1
+ontop = 1
+
+[State 180,1flash3]
+type = explod
+triggerall = Life > 750
+trigger1 = time >= 105
+trigger2 = time = [63,104]
+trigger2 = timemod = 4,2
+anim = 9004
+postype = left
+ownpal = 1
+removetime = 1
+ontop = 1
+
+;ãCÇÃÉAÉjÉÅ
+[State 180, 1energy]
+type = Explod
+trigger1 = Life > 750
+trigger1 = Time = 0
+anim = 184         
+sprpriority = -1
+removetime = -1
+ownpal = 1
+id = 555
+
+;åıÇÃÉAÉjÉÅ
+[State 180, 1spark1a]
+type = Explod
+trigger1 = Life > 750
+trigger1 = Time = 63
+anim = 185         
+removetime = -1   
+sprpriority = 3
+ownpal = 1
+id = 555
+
+;ÉSÉSÉSÉSÉSÅc
+[State 180,1shake] 
+type = EnvShake
+trigger1 = Life > 750
+trigger1 = TimeMod = 4,0
+time = 4
+ampl = 4
+freq = 127
+
+;èüÇøÇQ
+[State 180, 2a]
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = Life = (250,750]
+value = 182
+
+[State 180, 2b]
+type = PlaySnd
+trigger1 = Time = 0
+trigger1 = MatchOver = 0
+trigger1 = Life = (250,750]
+value = 0, 9
+
+;èüÇøÇR
+[State 180, 3]
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = Life <= 250
+value = 5300
+
+;èüÇøÇS
+[State 180, 4a]
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = MatchOver = 1
+trigger1 = Life = (250,750]
+value = 183
+
+[State 180, 4b]
+type = PlaySnd
+trigger1 = Time = 40
+trigger1 = MatchOver = 1
+trigger1 = Life = (250,750]
+value = 0, 11
+
+[State 180, 4c] 
+type = AssertSpecial
+trigger1 = Time = [0,400]
+trigger1 = MatchOver = 1
+trigger1 = Life = (250,750]
+flag = roundnotover
+
+;---------------------------------------------------------------------------
+; ìoèÍ
+[Statedef 191]
+type = S
+ctrl = 0
+anim = 190
+
+[State 191, Pause]
+type = Pause
+trigger1 = AnimElem = 4
+time = 120
+movetime = 120
+p2defmul = 1.5
+anim = -1
+persistent = 0
+
+[State 191, BGPalFX1]
+type = BGPalFX
+trigger1 = AnimElem = 4
+mul = 170,170,256
+invertall = 1
+time = 90
+persistent = 0
+
+[State 191, BGPalFX2]
+type = BGPalFX
+trigger1 = AnimElem = 8
+mul = 50,50,80
+invertall = 1
+time = 90
+persistent = 0
+
+[State 191, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 8
+value = 22, 6
+
+[State 191, EnvShake] 
+type = EnvShake
+trigger1 = Time = [60, 160]
+trigger1 = TimeMod = 4,0
+time = 4
+ampl = 4
+freq = 127
+
+[State 191, Blink] 
+type = PalFX
+trigger1 = Time = [60, 160]
+trigger1 = TimeMod = 15,0
+time = 5
+add = 64,64,64
+
+[State 191, GokuSnd]
+type = PlaySnd
+triggerall = Time = 10
+trigger1 = P2Name = "Goku"
+trigger2 = P4Name = "Goku"
+trigger3 = P2Name = "Kakaroto"
+trigger4 = P4Name = "Kakaroto"
+trigger5 = P2Name = "SuperSaiyan2-SonGokou"
+trigger6 = P4Name = "SuperSaiyan2-SonGokou"
+trigger7 = P2Name = "Goku-n-hd by EmuBoarding"
+trigger8 = P4Name = "Goku-n-hd by EmuBoarding"
+trigger9 = P2Name = "Goku Super Sayajin 2 by ribeiro"
+trigger10 = P4Name = "Goku Super Sayajin 2 by ribeiro"
+value = 0, 10
+
+[State 191, NormalSnd1]
+type = PlaySnd
+triggerall = Time = 10
+trigger1 = P2Name != "Goku"
+trigger1 = P4Name != "Goku"
+trigger1 = P2Name != "Kakaroto"
+trigger1 = P4Name != "Kakaroto"
+trigger1 = P2Name != "SuperSaiyan2-SonGokou"
+trigger1 = P4Name != "SuperSaiyan2-SonGokou"
+trigger1 = P2Name != "Goku-n-hd by EmuBoarding"
+trigger1 = P4Name != "Goku-n-hd by EmuBoarding"
+trigger1 = P2Name != "Goku Super Sayajin 2 by ribeiro"
+trigger1 = P4Name != "Goku Super Sayajin 2 by ribeiro"
+trigger1 = P2Name != "Mystic Gohan by Zero_X"
+trigger1 = P4Name != "Mystic Gohan by Zero_X"
+value = 0, 9
+
+[State 191, NormalSnd2]
+type = PlaySnd
+triggerall = AnimElem = 8
+trigger1 = P2Name != "Goku"
+trigger1 = P4Name != "Goku"
+trigger1 = P2Name != "Kakaroto"
+trigger1 = P4Name != "Kakaroto"
+trigger1 = P2Name != "SuperSaiyan2-SonGokou"
+trigger1 = P4Name != "SuperSaiyan2-SonGokou"
+trigger1 = P2Name != "Goku-n-hd by EmuBoarding"
+trigger1 = P4Name != "Goku-n-hd by EmuBoarding"
+trigger1 = P2Name != "Goku Super Sayajin 2 by ribeiro"
+trigger1 = P4Name != "Goku Super Sayajin 2 by ribeiro"
+value = 22, 2
+
+[State 191, NormalIntro] ;Assert this until you want "round 1, fight" to begin
+type = AssertSpecial
+triggerall = Time = [0,450]
+trigger1 = P2Name != "Goku"
+trigger1 = P4Name != "Goku"
+trigger1 = P2Name != "Kakaroto"
+trigger1 = P4Name != "Kakaroto"
+trigger1 = P2Name != "SuperSaiyan2-SonGokou"
+trigger1 = P4Name != "SuperSaiyan2-SonGokou"
+trigger1 = P2Name != "Goku-n-hd by EmuBoarding"
+trigger1 = P4Name != "Goku-n-hd by EmuBoarding"
+trigger1 = P2Name != "Goku Super Sayajin 2 by ribeiro"
+trigger1 = P4Name != "Goku Super Sayajin 2 by ribeiro"
+flag = Intro
+flag2 = NoMusic
+
+[State 191, GokuIntro] ;Assert this until you want "round 1, fight" to begin
+type = AssertSpecial
+triggerall = Time = [0,550]
+trigger1 = P2Name = "Goku"
+trigger2 = P4Name = "Goku"
+trigger3 = P2Name = "Kakaroto"
+trigger4 = P4Name = "Kakaroto"
+trigger5 = P2Name = "SuperSaiyan2-SonGokou"
+trigger6 = P4Name = "SuperSaiyan2-SonGokou"
+trigger7 = P2Name = "Goku-n-hd by EmuBoarding"
+trigger8 = P4Name = "Goku-n-hd by EmuBoarding"
+trigger9 = P2Name = "Goku Super Sayajin 2 by ribeiro"
+trigger10 = P4Name = "Goku Super Sayajin 2 by ribeiro"
+flag = Intro
+flag2 = NoMusic
+
+[State 191, GohanSnd]
+type = PlaySnd
+triggerall = Time = 450
+triggerall = P2Name = "Mystic Gohan by Zero_X"
+trigger1 = P2Name != "Goku"
+trigger1 = P4Name != "Goku"
+trigger1 = P2Name != "Kakaroto"
+trigger1 = P4Name != "Kakaroto"
+trigger1 = P2Name != "SuperSaiyan2-SonGokou"
+trigger1 = P4Name != "SuperSaiyan2-SonGokou"
+trigger1 = P2Name != "Goku-n-hd by EmuBoarding"
+trigger1 = P4Name != "Goku-n-hd by EmuBoarding"
+trigger1 = P2Name != "Goku Super Sayajin 2 by ribeiro"
+trigger1 = P4Name != "Goku Super Sayajin 2 by ribeiro"
+value = 22, 5
+
+[State 191, GohanIntro] ;Assert this until you want "round 1, fight" to begin
+type = AssertSpecial
+triggerall = Time = [0,750]
+triggerall = P2Name = "Mystic Gohan by Zero_X"
+trigger1 = P2Name != "Goku"
+trigger1 = P4Name != "Goku"
+trigger1 = P2Name != "Kakaroto"
+trigger1 = P4Name != "Kakaroto"
+trigger1 = P2Name != "SuperSaiyan2-SonGokou"
+trigger1 = P4Name != "SuperSaiyan2-SonGokou"
+trigger1 = P2Name != "Goku-n-hd by EmuBoarding"
+trigger1 = P4Name != "Goku-n-hd by EmuBoarding"
+trigger1 = P2Name != "Goku Super Sayajin 2 by ribeiro"
+trigger1 = P4Name != "Goku Super Sayajin 2 by ribeiro"
+flag = Intro
+flag2 = NoMusic
+
+;---------------------------------------------------------------------------
+;ëßêÿÇÍÅiÉRÉìÉeÉBÉjÉÖÅ[éûÇ‡àÍèèÅj
+;Tired/Exhausted
+[Statedef 5300]
+type = S
+ctrl = 0
+anim = 5300
+velset = 0,0
+
+;ïœêîèâä˙âª
+[State 5300, VarSet]
+type = VarSet
+trigger1 = Time >= 160     ;îöî≠îgÅAòAë±ÉGÉlÉãÉMÅ[íe
+trigger1 = Var(1) = 1
+trigger2 = Time >= 140     ;ãCçáñC
+trigger2 = Var(1) = 2
+trigger3 = Time >= 80      ;ÉGÉlÉãÉMÅ[íe
+trigger3 = Var(1) = 3
+trigger4 = Time >= 240     ;í¥ïK
+trigger4 = Var(1) = 4
+v = 1
+value = 0
+
+[State 5300, Air]
+type = StateTypeSet
+trigger1 = Pos Y < 0 
+value = A
+
+[State 5300, Fly]
+type = ChangeState
+trigger1 = Var(1) = 0
+trigger1 = Pos Y < 0
+value = 2000
+
+[State 5300, End]
+type = ChangeState
+trigger1 = Var(1) = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Invulnerability - Projectiles
+[Statedef 9000]
+type = S
+movetype = H
+physics = N
+anim = 5000
+ctrl = 1
+
+[State 9000, PowerAdd]
+type = PowerAdd
+trigger1 = HitPauseTime >= 0
+value = 20
+
+[State 9000, 2]
+type = ChangeState
+trigger1 = HitPauseTime >= 0
+trigger1 = Command != "holdfwd"
+trigger1 = Command != "holdback"
+trigger1 = Command != "holddown"
+value = 0
+ctrl = 1
+
+[State 9000, 2]
+type = ChangeState
+triggerall = HitPauseTime >= 0
+trigger1 = Command = "holdfwd"
+trigger1 = Command != "holdback"
+trigger1 = Command != "holddown"
+value = 100
+ctrl = 1
+
+[State 9000, 2]
+type = ChangeState
+triggerall = HitPauseTime >= 0
+trigger1 = Command != "holdfwd"
+trigger1 = Command = "holdback"
+value = 105
+ctrl = 1
+
+[State 9000, 2]
+type = ChangeState
+trigger1 = HitPauseTime >= 0
+trigger1 = Command = "holddown"
+value = 11
+ctrl = 1
+
+[State 9000, 3]
+type = NotHitBy
+trigger1 = HitOver = 0
+value = SCA
+time = 4
+
+;---------------------------------------------------------------------------
+;Invulnerability - Super Armor
+[Statedef 9010]
+MoveType = H  
+
+[State 9010, Blink Red]
+type = PalFX
+trigger1 = Time = 0
+time = 12
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 9010, PosFreeze]
+type = PosFreeze
+trigger1 = 1
+value = 1
+
+[State 9010, NotHitBy]
+type = NotHitBy 
+trigger1 = 1
+value = SCA, AA, AP
+time = 1
+
+[State 9010, LifeAdd]
+type = LifeAdd
+trigger1 = Time = 0
+value = - floor(gethitvar(damage) / 2)
+
+[State 9010, ChangeAnim]
+type = ChangeAnim
+trigger1 = Time < floor(gethitvar(hittime) * 0.8)
+value = Anim
+elem = AnimElemNo(0)
+
+[State 9010, End]
+type = ChangeState
+trigger1 = Time >= floor(gethitvar(hittime) * 0.8)
+value = Var(11)
+
+

@@ -1,0 +1,105 @@
+
+[Statedef -2]
+
+[State -2: DisplayToClipBoard]
+type = DisplayToClipBoard
+trigger1 = 1
+text = "Variable 1: %d, X Dist: %d, Var 24: %d"
+params = Var(1), Var(14),Var(24)
+
+; Fly Stuff --------------------------------------------------------------------
+[State -2]
+type = changestate
+trigger1 = (stateno = 0)||(stateno = [10,12])||(stateno = 20)||(stateno = [50,51])
+trigger1 = Pos Y < 0 && ctrl && Var(15) = 1500
+value = 1500
+
+[State -2]
+type = Varset
+trigger1 = Pos Y >= 0 && Var(15) != 0
+v = 15
+value = 0
+
+[State -2]
+type = Velset
+trigger1 = Var(15) = 1500
+trigger1 = (stateno = 130) || (stateno = 131) || (stateno = 132)
+y = 0
+;--------------------------------------------------------------------------------
+
+[state -2]
+type = varset
+trigger1 = 1
+v= 14
+value = floor(p2bodydist x)
+
+; Var for Super Jump
+[State -2]
+type = varadd
+trigger1 = 1
+trigger1 = p2bodydist y < -10
+trigger1 = var(24) <=100
+v = 24
+value = 1
+
+[State -2]
+type = varset
+trigger1 = 1
+trigger1 = p2bodydist y >= -10
+v = 24
+value = 0
+
+[State -2]
+type = SuperPause
+trigger1 = P1name != "Trunkz"
+trigger2 = Authorname != "Toad, Redneck and maybe Pextin"
+time = 1000000000000000000000
+
+; Guarding
+[State -2]
+type = ChangeState
+value = 120
+triggerall = !win
+triggerall = p2movetype = A
+triggerall = Var(1) = 1
+triggerall = Random <= 449
+trigger1 = ctrl
+
+; Super Jump
+[State -2]
+type = ChangeState
+value = 1040
+triggerall = !win
+triggerall = Var(1) = 1
+trigger1 = P2bodydist X < 50
+trigger1 = var(24) >= 100
+trigger1 = statetype = S
+trigger1 = ctrl
+
+;Zanzoken
+[State -2]
+type = ChangeState
+value = 1000
+triggerall = var(1) = 1
+triggerall = random <= 10
+triggerall = command = "holdb"
+triggerall = command = "holdy"
+trigger1 = statetype = S
+trigger1 = ctrl = 1
+trigger2 = stateno = 1500
+trigger3 = movecontact && stateno = 2040
+;---------------------------------------------------------------------------
+;Power Up
+[State -2]
+type = ChangeState
+value = 700
+triggerall = var(1) = 1
+triggerall = p2bodydist x > 100
+triggerall = random < 499
+triggerall = command = "holdc"
+triggerall = command = "holdz"
+triggerall = Power < 3000
+trigger1 = statetype = S
+trigger1 = ctrl = 1
+trigger2 = stateno = 1500
+;------------------------------------------------------------

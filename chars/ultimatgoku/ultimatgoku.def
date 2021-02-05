@@ -1,0 +1,17 @@
+[Info]
+name    = "Son Goku"
+displayname = "Son-Goku"
+author = "Nemesis 82 and Biohazard82"
+
+; Files for the character
+[Files]
+cmd     = gokuoll.cmd     ;Command set
+cns     = gokuoll.cns     ;Constants
+st      = gokuoll.cns     ;States
+st1     = p2stateno.cns
+st2     = ai.cns
+stcommon = commonoll.cns   ;Common states
+sprite  = gokuoll.sff     ;Sprite
+anim    = gokuoll.air     ;Animation
+sound   = gokuoll.snd     ;Sound
+pal1    = gokuoll1.act  ;Paletter

@@ -1,0 +1,516 @@
+;Programming by Goten88
+
+[Statedef 4000]
+type = S
+physics = S
+sprpriority = 0
+anim = 0
+ctrl = 0
+
+[State 4001]
+type = Posset
+trigger1 = pos y < 1
+y = 0
+
+[State 4001]
+type = AssertSpecial
+trigger1 = time >= 0
+flag = nokoslow
+
+[State 1]
+type = Parentvarset
+trigger1 = ishelper
+trigger1 = parent,var(27) >= 400
+v = 39
+value = 0
+
+[State 1]
+type = veladd
+triggerall = ishelper
+trigger1 = parent,var(27) >= 400
+y = -3
+
+[state 1]
+type = changestate
+triggerall = ishelper
+trigger1 = parent,var(27) >= 400
+trigger2 = parent,alive = 0
+value = 5050
+ctrl = 0
+
+[state 1]
+type = changestate
+triggerall = ishelper
+;trigger1 = parent,var(27) >= 400
+trigger1 = win
+trigger2 = lose
+value = 4001
+ctrl = 0
+
+[State 192,Attack]
+Type = AttackMulSet
+trigger1 = time = 1
+value = .6
+
+[State 1500,Turn]
+type = Turn
+trigger1 = P2Dist X < 0
+
+[State 4000]
+type = ChangeState
+trigger1 = Pos Y < 0
+value = 52
+
+[state 4000]
+type = removeexplod
+trigger1 = numexplod(1903) > 0
+trigger1 = stateno != 250
+value = 1903
+
+[state 4000]
+type = removeexplod
+trigger1 = numexplod(1904) > 0
+trigger1 = stateno != 250
+value = 1904
+
+;Run Fwd
+[state 4000]
+type = ChangeState
+value = 100
+triggerall = !win
+trigger1 = Random <= 49
+trigger1 = P2bodydist X > 10
+trigger1 = stateno = 4000
+
+; Jump
+[state 4000]
+type = ChangeState
+value = 10040
+triggerall = !win
+trigger1 = P2bodydist X > 50
+trigger1 = Random <= 50
+trigger1 = stateno = 4000
+
+; Super Jump
+[state 4000]
+type = ChangeState
+value = 1040
+triggerall = !win
+trigger1 = P2bodydist X < 50
+trigger1 = var(24) >= 200
+trigger1 = stateno = 4000
+
+;---MOVES--------------------------------------------------------------------
+
+; Throw
+[state 4000]
+type = ChangeState
+value = 800
+triggerall = !win
+triggerall = P2bodydist X <= 10
+triggerall = (p2statetype = S) || (p2statetype = C)
+trigger1 = stateno = 200 && MoveHit = 1
+trigger1 = Random <= 59
+
+; 1st Punch
+[state 4000]
+type = ChangeState
+value = 200
+triggerall = !win
+triggerall = P2bodydist X < 30
+trigger1 = Random <= 400
+trigger1 = stateno = 4000
+trigger2 = Random <= 549
+trigger2 = stateno = 201 && MoveHit = 1
+
+; 2nd Punch
+[state 4000]
+type = ChangeState
+value = 201
+triggerall = !win
+triggerall = P2bodydist X < 30
+trigger1 = Random <= 349
+trigger1 = stateno = 4000
+
+; Ki Shot
+[state 4000]
+type = ChangeState
+value = 203
+triggerall = !win
+triggerall = P2bodydist X < 30
+trigger1 = Random <= 300
+trigger1 = stateno = 4000
+
+; Upper Cut
+[state 4000]
+type = ChangeState
+value = 202
+triggerall = !win
+triggerall = Random < 49
+triggerall = P2bodydist X < 30
+trigger1 = stateno = 201 && MoveHit = 1
+trigger2 = stateno = 4000
+
+; Kick 1
+[state 4000]
+type = ChangeState
+value = 210
+triggerall = !win
+triggerall = P2bodydist X < 30
+trigger1 = (stateno = 201) && MoveHit = 1
+trigger1 = Random <= 549
+trigger2 = Random <= 349
+trigger2 = stateno = 4000
+
+; Kick 2
+[state 4000]
+type = ChangeState
+value = 211
+triggerall = !win
+triggerall = P2bodydist X < 30
+trigger1 = Random <= 349
+trigger1 = stateno = 4000
+trigger2 = stateno = 210 && MoveHit = 1
+trigger2 = Random <= 549
+
+; Kick 3
+[state 4000]
+type = ChangeState
+value = 212
+triggerall = !win
+triggerall = P2bodydist X < 30
+trigger1 = Random <= 349
+trigger1 = stateno = 4000
+
+;Dodonpa
+[state 4000]
+type = ChangeState
+value = 2000
+triggerall = !win
+triggerall = random <= 60
+triggerall = power >= 2000
+trigger1 = stateno = 4000
+trigger2 = ((stateno = 202) || (stateno = 412)) && MoveContact = 1
+trigger3 = ((stateno = 810) && (p2stateno = 821))
+
+;Tri Beam Ha
+[state 4000]
+type = ChangeState
+value = 3000
+triggerall = !win
+triggerall = Var(5) < 1
+triggerall = random <= 60
+triggerall = power >= 1000
+trigger1 = stateno = 4000
+trigger1 = p2statetype = S
+trigger2 = ((stateno = 202) || (stateno = 412)) && MoveContact = 1
+trigger3 = ((stateno = 810) && (p2stateno = 821))
+
+;Crouching Punch
+[state 4000]
+type = ChangeState
+value = 400
+triggerall = !win
+triggerall = P2bodydist X < 30
+triggerall = Random <= 349
+trigger1 = stateno = 4000
+trigger2 = stateno = 201 && movecontact = 1
+trigger3 = stateno = 200 && MoveContact = 1
+
+;Crouching Power Pole
+[state 4000]
+type = ChangeState
+value = 401
+triggerall = !win
+triggerall = P2bodydist X < 30
+triggerall = Random <= 349
+trigger1 = stateno = 4000
+
+;Crouching Kick
+[state 4000]
+type = ChangeState
+value = 410
+triggerall = !win
+triggerall = P2bodydist X < 30
+triggerall = Random <= 349
+trigger1 = stateno = 4000
+
+;Crouching Kick
+[state 4000]
+type = ChangeState
+value = 411
+triggerall = !win
+triggerall = P2bodydist X < 30
+triggerall = Random <= 349
+trigger1 = stateno = 4000
+trigger2 = stateno = 410 && MoveContact = 1
+
+; Double Palm
+[state 4000]
+type = changestate
+value = 2400
+triggerall = !win
+triggerall = P2bodydist X <= 20
+triggerall = random <= 49
+trigger1 = stateno = 4000
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 201
+trigger3 = movecontact = 1
+trigger4 = stateno = 400 && MoveContact = 1
+trigger5 = stateno = 210 && MoveContact = 1
+trigger6 = stateno = 211 && MoveContact = 1
+trigger7 = stateno = 212 && MoveContact = 1
+trigger8 = stateno = 202 && MoveContact = 1
+trigger9 = stateno = 412 && MoveContact = 1
+trigger10 = stateno = 1800 && MoveContact = 1
+trigger11 = stateno = 1801 && MoveContact = 1
+
+;Knee Attack
+[state 4000]
+type = changestate
+value = 1801
+triggerall = !win
+triggerall = random <= 49
+triggerall = P2bodydist X <= 20
+triggerall = (statetype = S) || (statetype = C)
+trigger1 = stateno = 4000
+trigger2 = stateno = 200
+trigger2 = movecontact = 1
+trigger3 = stateno = 201
+trigger3 = movecontact = 1
+trigger4 = stateno = 400 && MoveContact = 1
+trigger5 = stateno = 210 && MoveContact = 1
+trigger6 = stateno = 211 && MoveContact = 1
+trigger7 = stateno = 212 && MoveContact = 1
+trigger8 = stateno = 202 && MoveContact = 1
+trigger9 = stateno = 412 && MoveContact = 1
+
+;Ram Dash Hard
+[state 4000]
+type = changestate
+value = 1400
+triggerall = !win
+triggerall = random <= 49
+trigger1 = ctrl = 1
+trigger1 = statetype = A
+trigger2 = stateno = 600
+trigger2 = movecontact = 1
+trigger3 = stateno = 601
+trigger3 = movecontact = 1
+trigger4 = stateno = 610
+trigger4 = movecontact = 1
+trigger5 = stateno = 611
+trigger5 = movecontact = 1
+trigger6 = (stateno = 602) && (movecontact = 1)
+trigger7 = (stateno = 612) && (movecontact = 1) && (enemynear,pos y < 0)
+
+; Jump Punch
+[state 4000]
+type = ChangeState
+value = 600
+triggerall = !win
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+
+; Jump Punch
+[state 4000]
+type = ChangeState
+value = 601
+triggerall = !win
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = (stateno = 600) && (movecontact = 1)
+
+;Jump Punch
+[state 4000]
+type = ChangeState
+value = 602
+triggerall = !win
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600
+trigger2 = movecontact = 1
+trigger3 = (stateno = 601) && (movecontact = 1)
+trigger4 = (stateno = 610) && (movecontact = 1)
+trigger5 = (stateno = 611) && (movecontact = 1)
+
+; Jump Kick
+[state 4000]
+type = ChangeState
+value = 610
+triggerall = !win
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600
+trigger2 = movecontact = 1
+
+ Jump Kick
+[state 4000]
+type = ChangeState
+value = 611
+triggerall = !win
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600
+trigger2 = movecontact = 1
+trigger3 = (stateno = 610) && (movecontact = 1)
+trigger4 = (stateno = 601) && (movecontact = 1)
+
+[Statedef 4001]
+type = S
+physics = S
+sprpriority = 0
+poweradd = 1000
+anim = 3901
+
+[State 3900]
+type = Parentvarset
+trigger1 = time = 0
+v = 39
+value = 0
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 4001]
+type = AssertSpecial
+trigger1 = time >= 0
+flag = nokoslow
+
+[State 3900, Super A]
+type = SuperPause
+trigger1 = Time = 0
+pos = 0, -60
+anim = 30
+movetime = 30
+time = 30
+
+[state 730,3]
+type = playsnd
+trigger1 = time = 1
+value = 222,4
+volume = 500
+
+[State 2100]
+type = varset
+trigger1 = time = 0
+fv = 6
+value = 0
+
+[State 2100]
+type = varadd
+trigger1 = time >= 10
+fvar(6) = .1
+
+[State 2100]
+type = Explod
+trigger1 = time = 10
+trigger2 = time = 12
+trigger3 = time = 14
+trigger4 = time = 16
+trigger5 = time = 18
+trigger6 = time = 20
+trigger7 = time = 22
+trigger8 = time = 24
+trigger9 = time = 26
+trigger10 = time = 28
+trigger11 = time = 30
+pos = 0,-50
+postype = p1
+sprpriority = 3
+removetime = 1
+scale = fvar(6), fvar(6)
+anim = 2301
+
+[state 4001]
+type = destroyself
+trigger1 = time = 30
+
+[Statedef 4002]
+type = S
+physics = S
+sprpriority = 0
+poweradd = 1000
+anim = 5110
+velset = 0,0
+
+[State 3900]
+type = Parentvarset
+trigger1 = time = 0
+v = 39
+value = 0
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[state 4002]
+type = Posset
+trigger1 = time = 0
+y = 0
+
+[State 4002]
+type = AssertSpecial
+trigger1 = time >= 0
+flag = nokoslow
+
+[State 3900, Super A]
+type = SuperPause
+trigger1 = Time = 0
+pos = 0, -60
+anim = 30
+movetime = 30
+time = 30
+
+[state 730,3]
+type = playsnd
+trigger1 = time = 1
+value = 222,4
+volume = 500
+
+[State 2100]
+type = varset
+trigger1 = time = 0
+fv = 6
+value = 0
+
+[State 2100]
+type = varadd
+trigger1 = time >= 10
+fvar(6) = .1
+
+[State 2100]
+type = Explod
+trigger1 = time = 10
+trigger2 = time = 12
+trigger3 = time = 14
+trigger4 = time = 16
+trigger5 = time = 18
+trigger6 = time = 20
+trigger7 = time = 22
+trigger8 = time = 24
+trigger9 = time = 26
+trigger10 = time = 28
+trigger11 = time = 30
+pos = 6,-12
+postype = p1
+sprpriority = 3
+removetime = 1
+scale = fvar(6), fvar(6)
+anim = 2301
+
+[state 4002]
+type = destroyself
+trigger1 = time = 30
+;------------------------------------------------------------

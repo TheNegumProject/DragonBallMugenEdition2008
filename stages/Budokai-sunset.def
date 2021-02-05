@@ -1,0 +1,421 @@
+;---------------------------------------------------------------------\
+; _____               _______                  __ __             __   =
+;|     \.-----.-----.|   |   |.--.--.  .-----.|  |  |_   .-----.|  |  =
+;|  --  |  _  |  _  ||       ||  |  |__|  _  ||  |   _|__|  _  ||  |  =
+;|_____/|_____|_____||__|_|__||___  |__|___  ||__|____|__|   __||__|  =
+;                             |_____|  |_____|           |__|         =
+;=====================================================================/
+;Nie kradnij! nie przerabiaj! nie sprzedawaj! Bo skoñczysz jak ostatni szczur! >:]
+;================================================================================================\
+; DBZ BUDOKAI TENKAICHI 2.0 / DBZ World Tournament - Sunset / v2.0 By DooM / http://DooMy.glt.pl |
+;================================================================================================/
+; Some info       |
+;=================/
+;
+; What can I say.. That stage is not ripped from somewhere.. Thats an original one.  |
+; I've putted really much work, to make that stage looks like he looks. :P           |
+; Hm.. I dont have nothing more to say - Just enjoy it! ;)                           |
+;====================================================================================/
+; What is new?    |
+;=================/
+;
+;1. New ground (it looks more like stone now)  |
+;2. New grass                                  |
+;3. New walls                                  |
+;4. New BG (sunset)                            |
+;==============================================/
+; Credits:        |
+;=================/
+;
+; Akira Toyirama, for DB. :P                                   |
+; For someone, who made that DB music used in my stage.        |
+; Mulambo (http://orimuga.altervista.org), for graphics help.  |
+;==============================================================/
+[Info]
+name = "Budokai Tenkaichi v2.0 - Sunset"
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -107
+boundright = 102
+boundhigh = -550
+boundlow = 0
+verticalfollow = .8
+floortension = 30
+tension = 160
+
+[PlayerInfo]
+p1startx = -90          
+p1starty = 0           
+p1startz = 0            
+p1facing = 1           
+p2startx = 90
+p2starty = 0
+p2startz = 0
+p2facing = -1
+leftbound  = -1000 
+rightbound =  1000 
+topbound  =  0     
+botbound  =  0     
+
+[Scaling]
+topz     = 0       
+botz     = 50      
+topscale = 1      
+botscale = 1.2     
+
+[Bound]
+screenleft = 15    
+screenright = 15
+
+[Music]
+bgmusic = sound/pop.mp3
+bgvolume = 600   
+
+[StageInfo]
+zoffset = 210
+autoturn = 1
+resetBG = 1
+
+[Shadow]
+color = 96,96,96
+yscale = -.1
+reflect = 0
+intensity = 10
+
+[Reflection]
+intensity = 0
+
+[BGdef]
+spr = budokai-sunset.sff
+
+[BG Background]
+type  = anim
+actionno = 4
+start = -268, -15
+delta = 1, 1
+velocity = 0,0
+
+[BG Baloon_bigger]
+type  = anim
+actionno = 9
+start = 351, -150
+delta = 1, 1
+velocity = 0,0
+ID = 7
+
+[BG Screen_big]
+type  = anim
+actionno = 8
+start = 350, -150
+delta = 1, 1
+velocity = 0,0
+ID = 8
+
+[BG Baloon_smaller]
+type  = anim
+actionno = 5
+start = 340, 26
+delta = 1, 1
+velocity = 0,0
+ID = 5
+
+[BG Screen_small]
+type  = anim
+actionno = 6
+start = 340, 26
+delta = 1, 1
+velocity = 0,0
+ID = 6
+
+[BG Goten'n'Trunks]
+type  = anim
+actionno = 7
+start = -74,4
+delta = 1, 1
+
+[BG BG Budokai]
+type  = anim
+actionno = 1
+start = -268, -15
+delta = 1, 1
+velocity = 0,0
+
+[BG Mappet]
+type  = anim
+actionno = 2
+start = 30,132
+delta = 1, 1
+
+[BG Mappet no.2]
+type  = anim
+actionno = 3
+start = -53,132
+delta = 1, 1
+
+[BG Umbrella1]
+type  = anim
+actionno = 11
+start = -220,175
+delta = 1, 1
+
+[BG Umbrella2]
+type  = anim
+actionno = 11
+start = -120,175
+delta = 1, 1
+
+[BG Umbrella3]
+type  = anim
+actionno = 11
+start = 116,175
+delta = 1, 1
+
+[BG Umbrella4]
+type  = anim
+actionno = 11
+start = 216,175
+delta = 1, 1
+
+[BG Commentator]
+type  = anim
+actionno = 10
+start = 2,193
+delta = 1, 1
+
+[BgCtrlDef]
+looptime = 1000
+CtrlID = 5
+
+[BgCtrl]
+type = Anim
+time = 10
+value = 5
+
+[BgCtrl]
+type = VelSet
+time = 10
+x = -.1
+
+[BgCtrlDef]
+looptime = 1250
+CtrlID = 6
+
+[BgCtrl]
+type = Anim
+time = 10
+value = 6
+
+[BgCtrl]
+type = VelSet
+time = 10
+x = -.1
+
+[BgCtrlDef]
+looptime = 6000
+CtrlID = 7
+
+[BgCtrl]
+type = Anim
+time = 3000
+value = 9
+
+[BgCtrl]
+type = VelSet
+time = 3000
+x = -.2
+
+[BgCtrlDef]
+looptime = 6000
+CtrlID = 8
+
+[BgCtrl]
+type = Anim
+time = 3000
+value = 8
+
+[BgCtrl]
+type = VelSet
+time = 3000
+x = -.2
+
+[Begin action 1]
+0,0, 0,0, 8
+
+[Begin action 2]
+1,0, 0,0, 750
+1,1, 0,0, 8
+1,2, 0,0, 8
+1,3, 0,0, 8
+1,4, 0,0, 8
+
+[Begin action 3]
+2,1, 0,0, 1000
+2,2, 0,0, 8
+2,3, 0,0, 8
+2,4, 0,0, 8
+2,3, 0,0, 8
+2,4, 0,0, 8
+2,3, 0,0, 8
+
+[Begin action 4]
+5,0, 0,0, 8
+
+[Begin action 5]
+4,0, 0,0, 8
+
+[Begin action 6]
+3,16, 0,0, 16
+3,17, 0,0, 16
+3,16, 0,0, 16
+3,17, 0,0, 16
+3,16, 0,0, 16
+3,17, 0,0, 16
+3,16, 0,0, 16
+3,17, 0,0, 16
+3,8, 0,0, 16
+3,9, 0,0, 16
+3,8, 0,0, 16
+3,9, 0,0, 16
+3,8, 0,0, 16
+3,9, 0,0, 16
+3,8, 0,0, 16
+3,9, 0,0, 16
+3,16, 0,0, 16
+3,17, 0,0, 16
+3,16, 0,0, 16
+3,17, 0,0, 16
+3,16, 0,0, 16
+3,17, 0,0, 16
+3,16, 0,0, 16
+3,17, 0,0, 16
+3,6, 0,0, 16
+3,7, 0,0, 16
+3,6, 0,0, 16
+3,7, 0,0, 16
+3,6, 0,0, 16
+3,7, 0,0, 16
+3,6, 0,0, 16
+3,7, 0,0, 16
+3,4, 0,0, 16
+3,5, 0,0, 16
+3,4, 0,0, 16
+3,5, 0,0, 16
+3,4, 0,0, 16
+3,5, 0,0, 16
+3,4, 0,0, 16
+3,5, 0,0, 16
+3,10, 0,0, 16
+3,11, 0,0, 16
+3,10, 0,0, 16
+3,11, 0,0, 16
+3,10, 0,0, 16
+3,11, 0,0, 16
+3,10, 0,0, 16
+3,11, 0,0, 16
+3,2, 0,0, 16
+3,3, 0,0, 16
+3,2, 0,0, 16
+3,3, 0,0, 16
+3,2, 0,0, 16
+3,3, 0,0, 16
+3,2, 0,0, 16
+3,3, 0,0, 16
+3,14, 0,0, 16
+3,15, 0,0, 16
+3,14, 0,0, 16
+3,15, 0,0, 16
+3,14, 0,0, 16
+3,15, 0,0, 16
+3,14, 0,0, 16
+3,15, 0,0, 16
+3,0, 0,0, 16
+3,1, 0,0, 16
+3,0, 0,0, 16
+3,1, 0,0, 16
+3,0, 0,0, 16
+3,1, 0,0, 16
+3,0, 0,0, 16
+3,1, 0,0, 16
+3,12, 0,0, 16
+3,13, 0,0, 16
+3,12, 0,0, 16
+3,13, 0,0, 16
+3,12, 0,0, 16
+3,13, 0,0, 16
+3,12, 0,0, 16
+3,13, 0,0, 16
+
+[Begin action 7]
+6,0, 0,0, 50
+6,1, 0,0, 6
+6,2, 0,0, 12
+6,1, 0,0, 6
+
+[Begin action 8]
+7,0, 0,0, 50
+7,5, 0,0, 50
+7,6, 0,0, 50
+7,7, 0,0, 50
+7,8, 0,0, 50
+7,9, 0,0, 50
+7,10, 0,0, 50
+7,2, 0,0, 50
+7,1, 0,0, 50
+7,12, 0,0, 50
+7,4, 0,0, 50
+7,3, 0,0, 50
+7,11, 0,0, 50
+
+[Begin action 9]
+4,1, 0,0, 10
+
+[Begin action 10]
+8,7, 0,0, 10
+8,6, 0,0, 10
+8,7, 0,0, 10
+8,5, 0,0, 10
+8,7, 0,0, 10
+8,6, 0,0, 10
+8,7, 0,0, 10
+8,4, 0,0, 10
+8,7, 0,0, 10
+8,3, 0,0, 10
+8,5, 0,0, 10
+8,7, 0,0, 10
+8,6, 0,0, 10
+8,7, 0,0, 10
+8,5, 0,0, 10
+8,10, 0,0, 10
+8,9, 0,0, 10
+8,10, 0,0, 10
+8,9, 0,0, 10
+8,10, 0,0, 10
+8,9, 0,0, 10
+8,8, 0,0, 50
+8,7, 0,0, 10
+8,6, 0,0, 10
+8,7, 0,0, 10
+8,5, 0,0, 10
+8,5, 0,0, 10
+8,5, 0,0, 10
+8,7, 0,0, 10
+8,4, 0,0, 10
+8,7, 0,0, 10
+8,3, 0,0, 10
+8,2, 0,0, 3
+8,1, 0,0, 10
+8,0, 0,0, 10
+8,1, 0,0, 10
+
+[Begin action 11]
+9,0, 0,0, 10
+
+;---------------------------------------------------------------------\
+; _____               _______                  __ __             __   =
+;|     \.-----.-----.|   |   |.--.--.  .-----.|  |  |_   .-----.|  |  =
+;|  --  |  _  |  _  ||       ||  |  |__|  _  ||  |   _|__|  _  ||  |  =
+;|_____/|_____|_____||__|_|__||___  |__|___  ||__|____|__|   __||__|  =
+;                             |_____|  |_____|           |__|         =
+;=====================================================================/

@@ -1,0 +1,331 @@
+
+[Statedef -2]
+
+;[state -2]
+;type = varset
+;trigger1 = 1
+;v= 17
+;value = floor(vel x)
+
+;[state -2]
+;type = varset
+;trigger1 = 1
+;v= 18
+;value = floor(vel y)
+
+;[State -2: DisplayToClipBoard]
+;type = DisplayToClipBoard
+;trigger1 = 1
+;text = "Vel X: %d, Vel Y: %d"
+;params = var(17), var(18)
+
+[State -2: DisplayToClipBoard]
+type = DisplayToClipBoard
+trigger1 = 1
+text = "Variable 1: %d, X Dist: %d, NumHelper: %d, NumHelper: %d"
+params = Var(1), Var(14), numhelper(2061),numhelper(2062)
+
+; Fly Stuff --------------------------------------------------------------------
+[State -2]
+type = changestate
+trigger1 = (stateno = 0)||(stateno = [10,12])||(stateno = 20)||(stateno = [50,51])
+trigger1 = Pos Y < 0 && ctrl && Var(15) = 1500
+v = 15
+value = 1500
+
+[State -2]
+type = Varset
+trigger1 = Pos Y >= 0 && Var(15) != 0
+v = 15
+value = 0
+
+[State -2]
+type = Velset
+trigger1 = Var(15) = 1500
+trigger1 = (stateno = 130) || (stateno = 131) || (stateno = 132)
+y = 0
+;--------------------------------------------------------------------------------
+
+; Var of P2 X Distance
+[state -2]
+type = varset
+trigger1 = 1
+v= 14
+value = floor(p2bodydist x)
+
+; Var for Super Jump
+[State -2]
+type = varadd
+trigger1 = 1
+trigger1 = p2bodydist y < -10
+trigger1 = var(24) <=100
+v = 24
+value = 1
+
+[State -2]
+type = varset
+trigger1 = 1
+trigger1 = p2bodydist y >= -10
+v = 24
+value = 0
+
+[State -2]
+type = SuperPause
+trigger1 = P1name != "PexGotenGT"
+time = 100000000000000000000
+
+; Guarding
+[State -2]
+type = ChangeState
+value = 120
+triggerall = !win
+triggerall = p2movetype = A
+triggerall = Var(1) = 1
+triggerall = Random <= 449
+trigger1 = ctrl
+
+; Super Jump
+[State -2]
+type = ChangeState
+value = 1040
+triggerall = !win
+triggerall = Var(1) = 1
+trigger1 = P2bodydist X < 50
+trigger1 = var(24) >= 200
+trigger1 = statetype = S
+trigger1 = ctrl
+
+;Run Fwd
+[State -2, Run Fwd]
+type = ChangeState
+value = 100
+triggerall = !win
+triggerall = alive = 1
+trigger1 = Var(1) = 1
+trigger1 = Random <= 30
+trigger1 = P2bodydist X > 30
+trigger1 = statetype = S
+trigger1 = ctrl
+
+;Zanzoken
+[State -2]
+type = ChangeState
+value = 1000
+triggerall = p2stateno != 1103
+triggerall = numhelper(1102) = 0
+triggerall = var(1) = 1
+triggerall = random <= 10
+triggerall = command = "holdb"
+triggerall = command = "holdy"
+trigger1 = statetype = S
+trigger1 = ctrl = 1
+trigger2 = stateno = 1500
+
+;Power Up
+[State -2]
+type = ChangeState
+value = 730
+triggerall = Var(1) = 1
+triggerall = random <= 1
+triggerall = command = "holdc"
+triggerall = command = "holdz"
+triggerall = Power < 3000
+trigger1 = statetype = S
+trigger1 = ctrl = 1
+trigger2 = stateno = 1500
+
+;SSJ Trans
+[State -2]
+type = ChangeState
+value = 1234
+triggerall = var(1) = 1
+triggerall = ishelper = 0
+triggerall = random <= 1
+triggerall = statetype = S
+triggerall = ctrl = 1
+trigger1 = var(5) = 2 && power >= 3000
+
+;SSJ Trans
+[State -2]
+type = ChangeState
+value = ifelse(random < 499,1234,1239)
+triggerall = var(1) = 1
+triggerall = ishelper = 0
+triggerall = random <= 1
+triggerall = statetype = S
+triggerall = ctrl = 1
+trigger1 = var(5) != 1 && var(5) != 2
+
+;SmackDown
+[State -2]
+type = ChangeState
+value = 620
+triggerall = var(1) = 1
+triggerall = random <= 1
+trigger1 = stateno = 600 && movecontact
+trigger2 = stateno = 601 && movecontact
+trigger3 = stateno = 610 && movecontact
+trigger4 = stateno = 611 && movecontact
+
+;Crouch UpperCut
+[State -2]
+type = ChangeState
+value = 420
+triggerall = var(1) = 1
+triggerall = random <= 1
+trigger1 = stateno = 400 && movecontact
+trigger2 = stateno = 401 && movecontact
+trigger3 = stateno = 410 && movecontact
+trigger4 = stateno = 411 && movecontact
+trigger5 = stateno = 200 && movecontact
+trigger6 = stateno = 210 && movecontact
+trigger7 = stateno = 201 && movecontact
+trigger8 = stateno = 211 && movecontact
+trigger9 = stateno = 220 && movecontact
+trigger10 = stateno = 221 && movecontact
+trigger11 = stateno = 222 && movecontact
+trigger12 = stateno = 223 && movecontact
+trigger13 = stateno = 225 && movecontact
+
+;Sliding Kick
+[State -2]
+type = ChangeState
+value = 422
+triggerall = random <= 1
+triggerall = var(1) = 1
+trigger1 = stateno = 400 && movecontact
+trigger2 = stateno = 401 && movecontact
+trigger3 = stateno = 410 && movecontact
+trigger4 = stateno = 411 && movecontact
+trigger5 = stateno = 420 && movecontact
+trigger6 = stateno = 200 && movecontact
+trigger7 = stateno = 210 && movecontact
+trigger8 = stateno = 201 && movecontact
+trigger9 = stateno = 211 && movecontact
+trigger10 = stateno = 220 && movecontact
+trigger11 = stateno = 221 && movecontact
+trigger12 = stateno = 224 && movecontact
+trigger13 = stateno = 222 && movecontact
+trigger14 = stateno = 223 && movecontact
+trigger15 = stateno = 225 && movecontact
+
+;Double Kick
+[State -2]
+type = ChangeState
+value = 421
+triggerall = random <= 1
+triggerall = var(1) = 1
+trigger1 = stateno = 400 && movecontact
+trigger2 = stateno = 401 && movecontact
+trigger3 = stateno = 410 && movecontact
+trigger4 = stateno = 411 && movecontact
+trigger5 = stateno = 420 && movecontact
+trigger6 = stateno = 200 && movecontact
+trigger7 = stateno = 210 && movecontact
+trigger8 = stateno = 201 && movecontact
+trigger19 = stateno = 211 && movecontact
+trigger10 = stateno = 220 && movecontact
+trigger11 = stateno = 221 && movecontact
+trigger12 = stateno = 222 && movecontact
+trigger13 = stateno = 422 && movecontact
+trigger14 = stateno = 225 && movecontact
+
+;Horse Kick
+[State -2]
+type = ChangeState
+value = 224
+triggerall = random <= 1
+triggerall = var(1) = 1
+trigger1 = stateno = 200 && movecontact
+trigger2 = stateno = 201 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 220 && movecontact
+trigger5 = stateno = 221 && movecontact
+trigger6 = stateno = 211 && movecontact
+trigger7 = stateno = 222 && movecontact
+trigger10 = stateno = 223 && movecontact
+trigger11 = stateno = 421 && movecontact
+trigger12 = stateno = 420 && movecontact
+trigger13 = stateno = 225 && movecontact
+trigger14 = stateno = 226 && movecontact && anim = 221 + ifelse(var(5)=1,10000,0)
+
+;Manual Grab Knee
+[State -2]
+type = ChangeState
+value = 226
+triggerall = P2BodyDist X <= 15
+triggerall = random <= 1
+triggerall = var(1) = 1
+trigger1 = stateno = 200 && movecontact
+trigger2 = stateno = 201 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 220 && movecontact
+trigger5 = stateno = 221 && movecontact
+trigger6 = stateno = 211 && movecontact
+
+;Weak Uppercut
+[State -2]
+type = ChangeState
+value = 222
+triggerall = random <= 1
+triggerall = var(1) = 1
+trigger1 = stateno = 200 && movecontact
+trigger2 = stateno = 201 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 220 && movecontact
+trigger5 = stateno = 221 && movecontact
+trigger6 = stateno = 211 && movecontact
+
+;Strong Uppercut
+[State -2]
+type = ChangeState
+value = 225
+triggerall = random <= 1
+triggerall = var(1) = 1
+trigger1 = stateno = 200 && movecontact
+trigger2 = stateno = 201 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 220 && movecontact
+trigger5 = stateno = 221 && movecontact
+trigger6 = stateno = 211 && movecontact
+trigger7 = stateno = 222 && movecontact
+trigger8 = stateno = 223 && movecontact
+
+;High Kick
+[State -2]
+type = ChangeState
+value = 223
+triggerall = random <= 1
+triggerall = var(1) = 1
+trigger1 = stateno = 200 && movecontact
+trigger2 = stateno = 201 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 220 && movecontact
+trigger5 = stateno = 221 && movecontact
+trigger6 = stateno = 211 && movecontact
+trigger7 = stateno = 222 && movecontact
+
+;Air High Kick
+[State -1]
+type = ChangeState
+value = 621
+triggerall = random <= 1
+triggerall = var(1) = 1
+trigger1 = stateno = 600 && movecontact
+trigger2 = stateno = 601 && movecontact
+trigger3 = stateno = 610 && movecontact
+trigger4 = stateno = 611 && movecontact
+
+[state -2]
+type = attackmulset
+trigger1 = palno = 7
+trigger1 = var(5) != 1
+value = 1.2
+
+[State -2]
+type = Varset
+trigger1 = palno = 7
+trigger1 = var(5) != 1
+v = 5
+value = 1
+;------------------------------------------------------------

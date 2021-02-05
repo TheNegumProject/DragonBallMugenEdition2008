@@ -1,0 +1,36 @@
+[Info]
+name ="Zangya"
+displayname ="Zangya"
+versiondate =12,01,2003
+mugenversion =06,14,2003
+char.version = Remake
+author ="SSj3 Vejita (Remake Saikyo y SaWWeN)"
+pal.defaults =1,2,3,4,5,6
+
+[Files]
+;Code
+cns =Zangya.cns
+cmd =12.cmd
+stcommon =Common.cns
+st =sete.st
+;Media
+sprite =Zangya.sff
+anim =Zangya.air
+sound =Zangya.snd
+;Palettes
+
+; Arcade mode
+;[Arcade]
+;intro.storyboard =intro.def
+ending.storyboard =
+pal1=Saikyopower.act
+pal2=OriginalColors.act
+pal3=DarkZangya.act
+pal4=Greenplanet.act
+pal5=Gringa.act
+pal6=Human.act
+st1=Zangya2.st
+st2=Zangya3.st
+[Arcade]
+intro.storyboard=
+ending.storyboard=

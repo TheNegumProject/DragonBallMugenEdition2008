@@ -1,0 +1,249 @@
+; Introduction cutscene for Trunks story.
+
+[SceneDef]
+spr = arcade/arcade.sff
+startscene = 0 
+
+;------------------------------------
+[Scene 0]
+; Fade
+fadeout.time = 90
+fadeout.col = 0,0,0   
+clearcolor = 0,0,0
+bg.name = BG10
+end.time = 400
+bgm = arcade/dbz.mid
+bgm.loop = 0
+end.time = 400
+
+[BG10Def]
+
+[BG10 Credits]
+id = 1
+type = normal
+spriteno = 100,0
+start = -99,240
+window = 0,24, 319,250
+
+;BG controller to stop text from scrolling
+[BG10CtrlDef frase]
+CtrlID = 1
+looptime = -1
+
+[BG10Ctrl Start scrolling]
+type = VelSet
+time = 0
+y = -0.5
+
+[BG10Ctrl Stop scrolling]
+type = VelSet
+time = 250
+y = 0
+
+;------------------------------------
+; Terra destruida
+[Scene 1]
+fadein.time = 50
+fadein.col = 255,255,255
+fadeout.time = 50
+fadeout.col = 255,255,255
+bg.name = BG0 
+layer0.offset = 79,220
+layer0.anim = 20
+layer1.offset = 240,220
+layer1.anim = 23
+layer2.offset = 280,220
+layer2.anim = 24
+;falas
+layer3.offset = 5,70
+layer3.anim = 30
+layer3.starttime = 40
+layer4.offset = 220,70
+layer4.anim = 31
+layer4.starttime = 280
+bgm = arcade\gohan.mid
+bgm.loop = 0                                          
+end.time = 600
+
+[BG0Def]
+
+[BG0 terra]
+type = normal
+spriteno = 3,0
+start = -160,0
+tile = 0,0
+
+[BG0 terra]
+type = anim
+actionno = 1
+start = -160,0
+delta = 1, 1
+mask = 1
+
+;------------------------------------
+; terra
+[Begin Action 1]
+1,0, 0,0, 4
+1,1, 0,0, 4
+1,2, 0,0, 4
+
+; gohan SSJ
+[Begin Action 20]
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,0, 0,0, 7
+20,1, 0,0, 7
+20,2, 0,0, 7
+20,1, 0,0, 7
+20,3, 0,0, -1
+
+; Nº 18
+[Begin Action 23]
+23,0, 0,0, 490
+23,1, 0,0, -1
+
+; Nº 17
+[Begin Action 24]
+24,0, 0,0, 490
+24,1, 0,0, -1
+
+;------------------------------------
+; Dialogos entre os chars
+
+; gohan fala 
+[Begin Action 30]
+30,0, 0,0, 10,,A
+30,0, 0,0, 15
+30,1, 0,0, 170
+30,0, 0,0, 15
+30,0, 0,0, 10,,A
+-1,0, 0,0, -1
+
+; Nº 18 fala 
+[Begin Action 31]
+31,0, 0,0, 10,,A
+31,0, 0,0, 15
+31,1, 0,0, 150
+31,0, 0,0, 15
+31,0, 0,0, 10,,A
+-1,0, 0,0, -1
+
+;------------------------------------
+; mangá 
+[Scene 2]
+fadein.time = 100
+fadein.col = 255,255,255
+fadeout.time = 100
+fadeout.col = 255,255,255
+layer0.offset = 0,0
+layer0.anim = 102
+end.time = 400
+
+; Mangá
+[Begin Action 102]
+102,0, 0,0, -1
+
+;------------------------------------
+[Scene 3]
+; Fade
+fadeout.time = 90
+fadeout.col = 0,0,0   
+clearcolor = 0,0,0
+bg.name = BG20
+bgm = arcade\hist.mid
+bgm.loop = 0
+end.time = 2100
+
+[BG20Def]
+
+[BG20 história]
+id = 1
+type = normal
+spriteno = 101,0
+start = -99,240
+window = 0,24, 319,250
+
+;BG controller to stop text from scrolling
+[BG20CtrlDef frase]
+CtrlID = 1
+looptime = -1
+
+[BG20Ctrl Start scrolling]
+type = VelSet
+time = 0
+y = -0.2
+
+[BG20Ctrl Stop scrolling]
+type = VelSet
+time = 2500
+y = 0

@@ -1,0 +1,36 @@
+; Definition file for GOKU SSJ 2
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "SSJ2-GOKU by BARDOCK"        
+displayname = "GOKU SSJ 2" 
+versiondate = 04,14,2001    
+mugenversion = 04,14,2001   
+author = "Bardock"         
+pal.defaults =       
+
+; Files for the player
+[Files]
+cmd     = SSJ2-GOKU.cmd   ; Command set
+cns     = SSJ2-GOKU.cns   ; Constants
+st      = SSJ2-GOKU.cns   ; States
+st1     = defesa.cns ; states
+st2     = seq-teste.cns
+st3     = aura.cns
+stcommon = SSJ2-GOKU1.cns ;Common states
+sprite  = SSJ2-GOKU.sff   ;Sprite
+anim    = SSJ2-GOKU.air   ;Animation
+sound   = SSJ2-GOKU.snd   ;Sound
+pal1    = SSJ2-GOKU.act
+pal2    = SSJ2-GOKU1.act
+pal3    = SSJ2-GOKU2.act
+pal4    = SSJ2-GOKU3.act
+pal5    = SSJ2-GOKU4.act
+pal6    = SSJ2-GOKU5.act
+
+
+; Arcade mode
+[Arcade]
+intro.storyboard =  ssj2-goku-intro.def
+ending.storyboard = ssj2-goku-final.def

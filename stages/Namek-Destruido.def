@@ -1,0 +1,636 @@
+;=======================================
+[Info]
+name = "Namek Destruido"
+Autor = "LordlEe"
+Web = "http://mugentriforce.shorturl.com"
+Foro = "http://dbzpocketbattle.creatuforo.com"
+;=======================================
+;            Gracias A:
+;<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>
+;- ShinRyoga, por el Magma
+;- TonyADV, por el FX de Niebla roja
+;=======================================
+[Camera]
+startx = 0
+starty = 0
+
+boundleft = -240
+boundright = 240
+
+boundhigh = -100
+boundlow = 0
+
+verticalfollow = .8
+tension = 50
+floortension = 0
+
+;=======================================
+[PlayerInfo]
+;--- Player 1 ---
+p1startx = -80
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+;--- Player 2 ---
+p2startx = 80
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+;--- Common ---
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+;=======================================
+[Scaling]
+topz     = 0
+botz     = 50
+topscale = 1
+botscale = 1.2
+
+;=======================================
+[Bound]
+screenleft = 15
+screenright = 15
+
+;=======================================
+[StageInfo]
+zoffset = 210
+zoffsetlink = 1
+autoturn = 1
+resetBG = 1
+
+;=======================================
+[Shadow]
+color = 0,0,0
+yscale = 0.3
+reflect = 0
+intensity = 100
+fade.range = -365,-35
+
+[Reflection]
+intensity = 0
+
+;=======================================
+[Music]
+bgmusic = sound/Dust.mp3
+bgvolume = 600
+
+;=======================================
+[BGdef]
+spr = stages/Namek-Destruido.sff
+debugbg = 0
+
+;=======================================
+[BG Fondo]
+type        = normal
+spriteno    = 1,0
+layerno     = 0
+start       = 0,0
+trans       = none
+mask        = 0
+tile        = 1,1
+ID          = 1
+
+[BG Nubes]
+type        = normal
+spriteno    = 2,6
+layerno     = 0
+delta       = .0714285, 1
+start       = 0,-100
+trans       = none
+mask        = 0
+ID          = 1
+
+[BG Magma]
+type        = parallax
+spriteno    = 1,1
+start       = 0,81
+delta       = .0714285, 1
+xscale      = 1, 3.7777778
+mask        = 0
+ID          = 1
+
+[BG Magma Efecto]
+type        = normal
+spriteno    = 1,2
+layerno     = 0
+start       = 50,81
+trans       = add
+mask        = 0
+delta       = .0714285, 1
+tile        = 1,0
+velocity    = .1,0
+ID          = 1
+
+[BG Isla]
+type        = normal
+spriteno    = 2,4
+layerno     = 0
+delta       = .0714285, 1
+start       = -35,66
+trans       = none
+mask        = 1
+ID          = 1
+
+[BG FX Isla]
+type        = normal
+spriteno    = 2,8
+layerno     = 0
+delta       = .0714285, 1
+start       = -180,77
+trans       = add
+mask        = 1
+ID          = 1
+
+[BG Rayos]
+type        = anim
+layerno     = 0
+start       = 0,-150
+delta       = .0714285, 1
+actionno    = 2
+mask        = 1
+ID          = 1
+
+[Begin Action 2]
+-1,-1, 0,0, 30
+3,0, 0,0, 4,,A
+3,1, 0,0, 4,,A
+3,2, 0,0, 4,,A
+3,3, 0,0, 4,,A
+3,4, 0,0, 4,,A
+-1,-1, 0,0, 73
+3,0, -100,50, 4,,A
+3,1, -100,50, 4,,A
+3,2, -100,50, 4,,A
+3,3, -100,50, 4,,A
+3,4, -100,50, 4,,A
+-1,-1, 0,0, 50
+3,0, -130,-20, 4,,A
+3,1, -130,-20, 4,,A
+3,2, -130,-20, 4,,A
+3,3, -130,-20, 4,,A
+3,4, -130,-20, 4,,A
+-1,-1, 0,0, 60
+3,0, 50,30, 4,,A
+3,1, 50,30, 4,,A
+3,2, 50,30, 4,,A
+3,3, 50,30, 4,,A
+3,4, 50,30, 4,,A
+-1,-1, 0,0, 150
+3,0, -120,20, 4,,A
+3,1, -120,20, 4,,A
+3,2, -120,20, 4,,A
+3,3, -120,20, 4,,A
+3,4, -120,20, 4,,A
+-1,-1, 0,0, 73
+3,0, 50,0, 4,,A
+3,1, 50,0, 4,,A
+3,2, 50,0, 4,,A
+3,3, 50,0, 4,,A
+3,4, 50,0, 4,,A
+-1,-1, 0,0, 150
+
+[BG Fuego]
+type        = anim
+layerno     = 0
+start       = 1,107
+delta       = .0714285, 1
+actionno    = 3
+mask        = 1
+ID          = 1
+
+[Begin Action 3]
+-1,-1, 0,0, 38
+4,0, 0,0, 3,,A
+4,1, 0,0, 3,,A
+4,2, 0,0, 3,,A
+4,3, 0,0, 3,,A
+4,4, 0,0, 3,,A
+4,5, 0,0, 3,,A
+4,6, 0,0, 3,,A
+4,7, 0,0, 3,,A
+4,8, 0,0, 3,,A
+4,9, 0,0, 3,,A
+4,10, 0,0, 3,,A
+4,11, 0,0, 3,,A
+4,12, 0,0, 3,,A
+4,13, 0,0, 3,,A
+4,14, 0,0, 3,,A
+4,15, 0,0, 3,,A
+4,16, 0,0, 3,,A
+4,17, 0,0, 3,,A
+4,18, 0,0, 3,,A
+-1,-1, 0,0, 36
+4,0, -100,50, 3,,A
+4,1, -100,50, 3,,A
+4,2, -100,50, 3,,A
+4,3, -100,50, 3,,A
+4,4, -100,50, 3,,A
+4,5, -100,50, 3,,A
+4,6, -100,50, 3,,A
+4,7, -100,50, 3,,A
+4,8, -100,50, 3,,A
+4,9, -100,50, 3,,A
+4,10, -100,50, 3,,A
+4,11, -100,50, 3,,A
+4,12, -100,50, 3,,A
+4,13, -100,50, 3,,A
+4,14, -100,50, 3,,A
+4,15, -100,50, 3,,A
+4,16, -100,50, 3,,A
+4,17, -100,50, 3,,A
+4,18, -100,50, 3,,A
+-1,-1, 0,0, 8
+4,0, -130,-20, 3,,A
+4,1, -130,-20, 3,,A
+4,2, -130,-20, 3,,A
+4,3, -130,-20, 3,,A
+4,4, -130,-20, 3,,A
+4,5, -130,-20, 3,,A
+4,6, -130,-20, 3,,A
+4,7, -130,-20, 3,,A
+4,8, -130,-20, 3,,A
+4,9, -130,-20, 3,,A
+4,10, -130,-20, 3,,A
+4,11, -130,-20, 3,,A
+4,12, -130,-20, 3,,A
+4,13, -130,-20, 3,,A
+4,14, -130,-20, 3,,A
+4,15, -130,-20, 3,,A
+4,16, -130,-20, 3,,A
+4,17, -130,-20, 3,,A
+4,18, -130,-20, 3,,A
+-1,-1, 0,0, 19
+4,0, 50,30, 3,,A
+4,1, 50,30, 3,,A
+4,2, 50,30, 3,,A
+4,3, 50,30, 3,,A
+4,4, 50,30, 3,,A
+4,5, 50,30, 3,,A
+4,6, 50,30, 3,,A
+4,7, 50,30, 3,,A
+4,8, 50,30, 3,,A
+4,9, 50,30, 3,,A
+4,10, 50,30, 3,,A
+4,11, 50,30, 3,,A
+4,12, 50,30, 3,,A
+4,13, 50,30, 3,,A
+4,14, 50,30, 3,,A
+4,15, 50,30, 3,,A
+4,16, 50,30, 3,,A
+4,17, 50,30, 3,,A
+4,18, 50,30, 3,,A
+-1,-1, 0,0, 117
+4,0, -120,20, 3,,A
+4,1, -120,20, 3,,A
+4,2, -120,20, 3,,A
+4,3, -120,20, 3,,A
+4,4, -120,20, 3,,A
+4,5, -120,20, 3,,A
+4,6, -120,20, 3,,A
+4,7, -120,20, 3,,A
+4,8, -120,20, 3,,A
+4,9, -120,20, 3,,A
+4,10, -120,20, 3,,A
+4,11, -120,20, 3,,A
+4,12, -120,20, 3,,A
+4,13, -120,20, 3,,A
+4,14, -120,20, 3,,A
+4,15, -120,20, 3,,A
+4,16, -120,20, 3,,A
+4,17, -120,20, 3,,A
+4,18, -120,20, 3,,A
+-1,-1, 0,0, 35
+4,0, 50,0, 3,,A
+4,1, 50,0, 3,,A
+4,2, 50,0, 3,,A
+4,3, 50,0, 3,,A
+4,4, 50,0, 3,,A
+4,5, 50,0, 3,,A
+4,6, 50,0, 3,,A
+4,7, 50,0, 3,,A
+4,8, 50,0, 3,,A
+4,9, 50,0, 3,,A
+4,10, 50,0, 3,,A
+4,11, 50,0, 3,,A
+4,12, 50,0, 3,,A
+4,13, 50,0, 3,,A
+4,14, 50,0, 3,,A
+4,15, 50,0, 3,,A
+4,16, 50,0, 3,,A
+4,17, 50,0, 3,,A
+4,18, 50,0, 3,,A
+-1,-1, 0,0, 111
+
+[BG Arboles]
+type        = normal
+spriteno    = 2,5
+layerno     = 0
+start       = 60,0
+trans       = none
+mask        = 1
+delta       = .3
+ID          = 1
+
+[BG Roca 3]
+type        = normal
+spriteno    = 2,2
+layerno     = 0
+start       = -200,149
+trans       = none
+mask        = 1
+tile        = 0,0
+ID          = 1
+
+[BG Roca 1]
+type        = normal
+spriteno    = 2,0
+layerno     = 0
+start       = -300,106
+trans       = none
+mask        = 1
+tile        = 0,0
+ID          = 1
+
+[BG Roca 2]
+type        = normal
+spriteno    = 2,1
+layerno     = 0
+start       = 0,138
+trans       = none
+mask        = 1
+tile        = 0,0
+ID          = 1
+
+[BG Roca 4]
+type        = normal
+spriteno    = 2,3
+layerno     = 0
+start       = 230,141
+trans       = none
+mask        = 1
+tile        = 0,0
+ID          = 1
+
+[BG Background]
+type        = anim
+layerno     = 0
+start       = 0,170
+actionno    = 1
+ID          = 1
+
+[Begin Action 1]
+0,0, 0,0, 6
+0,1, 0,0, 6
+0,2, 0,0, 6
+0,3, 0,0, 6
+0,4, 0,0, 6
+0,5, 0,0, 6
+0,6, 0,0, 6
+0,7, 0,0, 6
+
+[BgCtrlDef 1]
+looptime    = 1600
+CtrlId      = 1
+
+[BgCtrl 1.0]
+type        = sinY
+time        = 200
+value       = 1,6
+[BgCtrl 1.1]
+type        = sinY
+time        = 240
+value       = 2,5
+[BgCtrl 1.2]
+type        = sinY
+time        = 460
+value       = 0
+[BgCtrl 1.3]
+type        = sinY
+time        = 760
+value       = 1,6
+[BgCtrl 1.4]
+type        = sinY
+time        = 860
+value       = 0
+[BgCtrl 1.5]
+type        = sinY
+time        = 960
+value       = 1,6
+[BgCtrl 1.6]
+type        = sinY
+time        = 1061
+value       = 3,4
+[BgCtrl 1.7]
+type        = sinY
+time        = 1260
+value       = 1,6
+[BgCtrl 1.8]
+type        = sinY
+time        = 1280
+value       = 0
+
+;Efecto Rocas (Rapidas)
+;======================
+[BG 0]
+type        = normal
+spriteno    = 5,0
+layerno     = 1
+start       = 230,-100
+trans       = none
+mask        = 1
+tile        = 1,1
+tilespacing = 300,0
+ID          = 2
+;window      = 0,0,320,220
+
+[BG 1]
+type        = normal
+spriteno    = 5,1
+layerno     = 1
+start       = 50,140
+trans       = none
+mask        = 1
+tile        = 1,1
+tilespacing = 400,0
+ID          = 2
+;window      = 0,0,320,220
+
+[BG 2]
+type        = normal
+spriteno    = 5,2
+layerno     = 1
+start       = 570,40
+trans       = none
+mask        = 1
+tile        = 1,1
+tilespacing = 300,0
+ID          = 2
+;window      = 0,0,320,220
+
+[BG 3]
+type        = normal
+spriteno    = 5,1
+layerno     = 1
+start       = 15,0
+trans       = none
+mask        = 1
+tile        = 1,1
+tilespacing = 300,0
+ID          = 2
+;window      = 0,0,320,220
+
+[BGCtrlDef 2]
+CtrlID = 2
+looptime = -1
+
+[BGCtrl 2.1]
+type = VelAdd
+time = 0
+y = -0.50
+
+[BgCtrlDef 1]
+looptime    = 1600
+CtrlId      = 2
+
+[BgCtrl 1.0]
+type        = sinY
+time        = 200
+value       = 1,6
+[BgCtrl 1.1]
+type        = sinY
+time        = 240
+value       = 2,5
+[BgCtrl 1.2]
+type        = sinY
+time        = 460
+value       = 0
+[BgCtrl 1.3]
+type        = sinY
+time        = 760
+value       = 1,6
+[BgCtrl 1.4]
+type        = sinY
+time        = 860
+value       = 0
+[BgCtrl 1.5]
+type        = sinY
+time        = 960
+value       = 1,6
+[BgCtrl 1.6]
+type        = sinY
+time        = 1061
+value       = 3,4
+[BgCtrl 1.7]
+type        = sinY
+time        = 1260
+value       = 1,6
+[BgCtrl 1.8]
+type        = sinY
+time        = 1280
+value       = 0
+
+;Efecto Rocas (Lentas)
+;=====================
+[BG 0.1]
+type        = normal
+spriteno    = 5,0
+layerno     = 1
+start       = -230,-100
+trans       = none
+mask        = 1
+tile        = 1,1
+tilespacing = 300,0
+ID          = 3
+;window      = 0,0,320,220
+
+[BG 1.1]
+type        = normal
+spriteno    = 5,1
+layerno     = 1
+start       = 500,140
+trans       = none
+mask        = 1
+tile        = 1,1
+tilespacing = 300,0
+ID          = 3
+;window      = 0,0,320,220
+
+[BG 2.1]
+type        = normal
+spriteno    = 5,2
+layerno     = 1
+start       = 420,-20
+trans       = none
+mask        = 1
+tile        = 1,1
+tilespacing = 300,0
+ID          = 2
+;window      = 0,0,320,220
+
+[BG 3.1]
+type        = normal
+spriteno    = 5,3
+layerno     = 1
+start       = -15,100
+trans       = none
+mask        = 1
+tile        = 1,1
+tilespacing = 300,0
+ID          = 3
+;window      = 0,0,320,220
+
+[BGCtrlDef 3]
+CtrlID = 3
+looptime = -1
+
+[BGCtrl 3.1]
+type = VelAdd
+time = 0
+y = -0.80
+
+[BgCtrlDef 1]
+looptime    = 1600
+CtrlId      = 3
+
+[BgCtrl 1.0]
+type        = sinY
+time        = 200
+value       = 1,6
+[BgCtrl 1.1]
+type        = sinY
+time        = 240
+value       = 2,5
+[BgCtrl 1.2]
+type        = sinY
+time        = 460
+value       = 0
+[BgCtrl 1.3]
+type        = sinY
+time        = 760
+value       = 1,6
+[BgCtrl 1.4]
+type        = sinY
+time        = 860
+value       = 0
+[BgCtrl 1.5]
+type        = sinY
+time        = 960
+value       = 1,6
+[BgCtrl 1.6]
+type        = sinY
+time        = 1061
+value       = 3,4
+[BgCtrl 1.7]
+type        = sinY
+time        = 1260
+value       = 1,6
+[BgCtrl 1.8]
+type        = sinY
+time        = 1280
+value       = 0
+;=======================================

@@ -1,0 +1,55 @@
+;Super Soco
+[Statedef 1020]
+type    = S
+movetype= A
+physics = N
+juggle  = 6
+poweradd= -500
+velset = 0,0
+anim = 1020
+ctrl = 0
+
+[State 1020, 1]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 2000, 0
+volume = 255
+
+[State 2001,PosAdd]
+type = PosAdd
+trigger1 = AnimElem = 9
+x = p2bodydist x + 2  
+y = p2bodydist y + 0
+
+[State 1020, 6]
+type = HitDef
+trigger1 = AnimElem = 10
+attr = S, NA
+animtype  = Hard
+damage    = 102,4
+getpower  = 0
+guardflag = MA
+pausetime = 1,1
+sparkxy = -15,-45
+hitsound   = -1
+guardsound = -1
+ground.type = Trip
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -18,-10
+guard.velocity = -9
+air.velocity = -10,-7
+airguard.velocity = -6, -4
+fall = 1
+
+[State 1500, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 1500
+
+[State 1020, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1

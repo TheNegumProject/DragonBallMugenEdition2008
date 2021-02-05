@@ -1,0 +1,3966 @@
+;=====================================
+;"KRILLIN", from Buyuu Retsudan (edit)
+;=====================================
+
+;----------------------------------------
+;Author:	Jabi (D-GENERACION Z)
+;Web:		http://www.jabixtreme.cjb.net/
+;E-mail:    jabixtreme@hotmail.com
+;----------------------------------------
+
+;===========================================================================
+
+;===========
+;== NOTAS ==
+;===========
+
+
+;Variables:
+;--------------------
+;var(59): AI (Inteligencia artificial)
+;var(58): Desactiva Shunkanido kame-hame-ha
+;var(57): Cancelacion automatica del Shunkanido kame-hame-ha
+
+
+
+
+;SFF/AIR/State Data:
+;-------------------
+
+;800-999: Basic (Throws/Misc.)==> Estados especiales.
+;	800: Throw
+;	805: Throw, Air
+;     830: Carga de KI
+;     840: Desaparece
+;     850: Cansancio
+;     900: Modo Fly
+;     910: Modo Fly empezar
+;     950: Aterrizaje
+
+
+;1000-2999: Ataques Speciales
+;	 1000:
+;	 1100:
+;	 1200:
+;	 1300: Combo_x (combo)==> reiteracion de tecla.
+;	 1400: Combo_y (combo)==> reiteracion de tecla.
+;	 1500:
+;      2000: Especial_a (combo)
+;      2050: Especial_b (multicombo)
+;	 2100: Especial_c (?¿)
+;	 2150: Especial_x (multicombo)
+;	 2500: Lanzamiento de Bola_energia (pequeña)
+
+;3000-4999: Ataques Super o Hiper
+;      3000: Bola_grande
+;      3050: Shunkanido Kame-Hame-Ha
+
+;5000-5999: Sistema (no utilizar) 
+
+
+;7000-7999: Efectos.
+;      7000: Aura gris
+;      7010: Efecto suelo (onda)
+;      7011: Efecto suelo (onda)doble velocidad
+;      7050: Impacto golpe fuerte
+;      7051: Impacto golpe medio
+;      7052: Impacto golpe flojo
+;	 7100: Polvo suelo1
+
+
+;8000-8999: Ataques de energia.
+;	 8000: Bola energia pequeña
+;      8005: Efecto lanzamiento bola energia
+:	 8010: Inpacto bola  energia
+;      8050: Bola energia grande
+;      8055: Acumulacion energia
+;      8060: Bola energia acumulada 1
+;	 8100: Rayo kame-hame-ha
+;	 8101: Rayo kame-hame-ha terminacion
+;      8105: Acumulacion energia kame
+;      8110: Efecto lanzamiento kame
+
+
+;===========================================================================
+
+[Data]
+life = 1500
+attack = 100
+defence = 100
+fall.defence_up = 50   ;Percentage to increase defense everytime player is knocked down
+liedown.time = 60      ;Time which player lies down for, before getting up
+airjuggle = 15         ;Number of points for juggling
+sparkno = 2            ;Default hit spark number for HitDefs
+guard.sparkno = 40     ;Default guard spark number
+KO.echo = 1            ;1 to enable echo on KO
+volume = 0             ;Volume offset (negative for softer)
+
+;Variables with this index and above will not have their values
+;reset to 0 between rounds or matches. There are 60 int variables,
+;indexed from 0 to 59, and 40 float variables, indexed from 0 to 39.
+;If omitted, then it defaults to 60 and 40 for integer and float
+;variables repectively, meaning that none are persistent, i.e. all
+;are reset. If you want your variables to persist between matches,
+;you need to override state 5900 from common1.cns.
+IntPersistIndex = 60
+FloatPersistIndex = 40
+
+[Size]
+xscale = 1             ;Horizontal scaling factor.
+yscale = 1             ;Vertical scaling factor.
+ground.back = 15       ;Player width (back, ground)
+ground.front = 16      ;Player width (front, ground)
+air.back = 12          ;Player width (back, air)
+air.front = 12         ;Player width (front, air)
+height = 50;60         ;Height of player (for opponent to jump over)
+attack.dist = 160      ;Default attack distance
+proj.attack.dist = 90  ;Default attack distance for projectiles
+proj.doscale = 0       ;Set to 1 to scale projectiles too
+head.pos = -5,-46 ;-90   ;Approximate position of head
+mid.pos = -5, -16;-60    ;Approximate position of midsection
+shadowoffset = 0       ;Number of pixels to vertically offset the shadow
+draw.offset = 0,0      ;Player drawing offset in pixels (x, y)
+
+[Velocity]
+walk.fwd  = 2.4      ;Walk forward
+walk.back = -2.2     ;Walk backward
+run.fwd  = 4.6,0     ;Run forward (x, y)
+run.back = -4.5 ,0   ;-3.8 ;Hop backward (x, y)
+jump.neu = 0,-8.4    ;Neutral jumping velocity (x, y)
+jump.back = -2.55    ;Jump back Speed (x, y)
+jump.fwd = 2.5       ;Jump forward Speed (x, y)
+runjump.back = -2.55,-8.1 ;Running jump speeds (opt)
+runjump.fwd = 4,-8.1      ;.
+airjump.neu = 0,-8.1      ;.
+airjump.back = -2.55      ;Air jump speeds (opt)
+airjump.fwd = 2.5         ;.
+
+[Movement]
+airjump.num = 1       ;Number of air jumps allowed (opt)
+airjump.height = 35   ;Minimum distance from ground before you can air jump (opt)
+yaccel = .44          ;Vertical acceleration
+stand.friction = .85  ;Friction coefficient when standing
+crouch.friction = .82 ;Friction coefficient when crouching
+
+;---------------------------------------------------------------------------
+; Format:
+; [Statedef STATENO]
+; type = ?      S/C/A/L  stand/crouch/air/liedown
+; movetype = ?  I/A/H    idle/attack/gethit
+; physics = ?   S/C/A/N  stand/crouch/air/none
+; juggle = ?             air juggle points move requires
+;
+; [State STATENO, ?]     ? - any number you choose
+; type = ?
+; ...
+
+;---------------------------------------------------------------------------
+; Lose by Time Over
+; CNS difficulty: basic
+; CNS ƒŒƒxƒ‹: Šî–{
+[Statedef 170]
+type = S
+ctrl = 0
+anim = 170
+velset = 0,0
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;---------------------------------------------------------------------------
+; Win state decider
+; CNS difficulty: basic
+; CNS ƒŒƒxƒ‹: Šî–{
+[Statedef 180]
+type = S
+
+[State 180, 1]
+type = ChangeState
+trigger1 = Time = 0
+value = 181
+
+;---------------------------------------------------------------------------
+; Win pose 1 - Bow
+; CNS difficulty: basic
+; salto hacia atras.
+[Statedef 181]
+type = S
+ctrl = 0
+anim = 181
+velset = 0,0
+
+[State 181, Salto]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = 40,1 
+volume = 200
+
+[State 181, Aterriza Salto]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = 40,0 
+volume = 200
+
+
+[State 181, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;---------------------------------------------------------------------------
+; Introduction
+; Intro al empezar combate
+; CNS difficulty: basic
+[Statedef 191]
+type = S
+ctrl = 0
+anim = 190
+velset = 0,0  ;velocidad
+
+[State 191, 1] ;Freeze animation until PreIntro is over
+type = ChangeAnim
+trigger1 = RoundState = 0
+value = 190
+
+[State 191, crujido]
+type = PlaySnd
+trigger1 = AnimElem = 9
+value = 60,2  
+volume = 255
+;channel = 1
+
+[State 191, estiramientos]
+type = PlaySnd
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 5
+trigger3 = AnimElem = 7
+value = 0,5 ; 0,6  
+volume = 255
+;channel = 1
+
+
+[State 191, 2] ;Assert this until you want "round 1, fight" to begin
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 191, 3] ;Change to stand state when done
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+
+
+;---------------------------------------------------------------------------
+; Taunt
+; CNS difficulty: easy
+[Statedef 195]
+type = S
+ctrl = 0
+anim = 195
+velset = 0,0
+movetype = I
+physics = S
+sprpriority = 2
+
+[State 195, palmada]
+type = PlaySnd
+trigger1 = AnimElem = 5
+trigger2 = AnimElem = 7
+;trigger3 = AnimElem = 7 
+;trigger4 = AnimElem = 9 
+value = 60,1  
+volume = 255
+;channel = 1
+
+
+[State 195, 1]
+type = CtrlSet
+trigger1 = Time = 40
+value = 1
+
+[State 195, 2]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;===========================================================================
+;GOLPES BASICOS
+;===========================================================================
+
+; Stand Light Punch
+; Puñetaza debil
+; CNS difficulty: easy
+[Statedef 200]
+type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
+movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
+physics = S                      ;Physics: S-stand, C-crouch, A-air
+juggle  = 1                      ;Number of air juggle points move takes
+;Commonly-used controllers:
+velset = 0,0                     ;Set velocity (x,y) (Def: no change)
+ctrl = 0                         ;Set ctrl (Def: no change)
+anim = 200                       ;Change animation (Def: no change)
+poweradd = 0                    ;Power to add (Def: 0)
+sprpriority = 2                  ;Set layering priority to 2 (in front)
+
+[State 200, 1]         ;Funcion de definicion de golpe(hitdef)
+type = HitDef
+trigger1 = AnimElem = 1;3   ;nº de la animacion en la cual se da el golpe(grupo200 nº1).
+attr = S, NA                     ;Attribute: Standing, Normal Attack
+damage = 23, 0                   ;Damage that move inflicts, guard damage
+animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = MA                   ;Flags on how move is to be guarded against
+hitflag = MAF                    ;Flags of conditions that move can hit
+priority = 3, Hit                ;Attack priority: 0 (least) to 7 (most), 4 default
+;Hit/Miss/Dodge type (Def: Hit)
+pausetime = 8, 8                 ;Time attacker pauses, time opponent shakes
+sparkno = S7052 ;0                      ;Spark anim no (Def: set above)
+sparkxy = -12, -43               ;X-offset for the "hit spark" rel. to p2,
+;Y-offset for the spark rel. to p1
+hitsound = s2,0 ;5, 0            ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = High               ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 0;5           ;Time that the opponent slides back
+				         ;le ponemos 0 para q p2 no se vaya para atras.
+
+ground.hittime  = 12             ;Time opponent is in hit state
+ground.velocity = -4             ;Velocity at which opponent is pushed
+airguard.velocity = -1.9,-.8     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
+air.type = High                  ;Type: High, Low, Trip (def: same as ground.type)
+air.velocity = -1.4,-3           ;X-velocity at which opponent is pushed,
+;Y-velocity at which opponent is pushed
+air.hittime = 12                 ;Time before opponent regains control in air
+
+[State 200, 1];sonido puñetazo
+type = PlaySnd
+trigger1 = Time = 1     ;lanza sonido grupo0 nº0 en el elemento 1 de la animacion 200.
+value = 0, 0
+volume = 255
+
+[State 200, 7] ;si esta en el aire,ve a modo fly.
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 900
+
+[State 200, 7]              ;Qndo la animacion 200 finalice ve al estado "0",es decir animacion 0 (stand).
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Standing strong punch
+; Puñetazo fuerte
+;
+; CNS difficulty: easy
+
+[Statedef 210]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 65
+ctrl = 0
+velset = 0,0
+anim = 210
+sprpriority = -1
+
+[State 210, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 5 ;4
+volume = 255
+
+[State 210, 2]
+type = HitDef
+trigger1 = AnimElem = 3
+attr = S, NA
+animtype  = Medium
+damage    = 57
+guardflag = MA
+pausetime = 12,12
+sparkno = S7051
+sparkxy = -10,-45
+hitsound   = s2,0 ;5,2
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 1 ;12
+ground.hittime  = 15
+ground.velocity = -5.5
+air.velocity = -2.5,-4
+
+[State 210, 3]
+type = null;ChangeAnim
+trigger1 = AnimElemTime(5) > 0 && AnimElemTime(6) <= 0
+trigger1 = movecontact
+ignorehitpause = 1
+persistent = 0
+value = 210
+elem = 6
+
+[State 210, 4]
+type = SprPriority
+trigger1 = AnimElem = 5
+value = 2
+
+[State 210, 5] ;si esta en el aire,ve a modo fly.
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 900
+
+[State 210, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Standing light kick
+; CNS difficulty: easy
+[Statedef 230]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 22
+ctrl = 0
+velset = 0,0
+anim = 230
+sprpriority = 2
+
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0,5    ;0, 1
+volume = 255
+
+[State 230, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NA
+animtype  = Medium
+damage    = 26
+guardflag = MA
+pausetime = 12,12
+sparkno = S7052
+sparkxy = -10,-37
+hitsound   = s2,1   ;5,1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 0 ;10
+ground.hittime  = 12
+ground.velocity = -5
+air.velocity = -2.5,-3.5
+
+[State 230, 3] ;si esta en el aire,ve a modo fly.
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 900
+
+[State 230, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Standing strong kick
+; CNS difficulty: easy
+[Statedef 240]
+type    = S
+movetype= A
+physics = S
+juggle  = 5
+poweradd= 65
+ctrl = 0
+velset = 0,0
+anim = 240
+sprpriority = 2
+
+[State 240, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 6
+;volume = 255
+
+[State 240, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NA
+animtype  = Medium
+damage    = 63
+guardflag = MA
+pausetime = 12,12
+sparkno = S7052
+sparkxy = -10,-60
+hitsound   = s2,2
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 1 ;12
+ground.hittime  = 15
+ground.velocity = -6
+air.velocity = -2.2,-3.2
+
+[State 240, 3]
+type = null;PosAdd
+trigger1 = AnimElem = 7
+x = 12
+
+[State 240, 4] ;si esta en el aire,ve a modo fly.
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 900
+
+[State 240, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------------------------------
+
+; Standing strong2 kick aka alejate enemigo.
+; CNS difficulty: easy
+[Statedef 250]
+type    = S
+movetype= A
+physics = S
+juggle  = 5
+poweradd= 65
+ctrl = 0
+velset = 0,0
+anim = 250
+sprpriority = 2
+
+[State 250, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 5
+volume = 255
+
+[State 250, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NA
+animtype  = Medium
+damage    = 63
+guardflag = MA
+pausetime = 12,12
+sparkno = S7051
+sparkxy = -10,-60
+hitsound   = s2,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -7,-3 ;-6
+;air.velocity = -2.2,-3.2
+airguard.velocity = -1.9,-.8
+air.type = High
+air.velocity = -7,-3 ;-2.2,-3.2
+air.hittime = 12
+envshake.time = 10
+envshake.freq = 170
+envshake.ampl = 2
+fall = 1
+;fall.recover = 0
+;fall.recovertime = 00
+
+[State 250, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4 && MoveHit 
+value = 0, 6
+;volume = 255
+
+
+[State 250, 3]
+type = ChangeState 
+trigger1 = !MoveHit && time = 30
+trigger1 = Pos Y < 0
+value = 900
+;ctrl = 1
+
+[State 250, 3]
+type = ChangeState 
+trigger1 = !MoveHit && time = 30
+;trigger1 = AnimElem = 3
+value = 0
+ctrl = 1
+
+
+[State 250, 4] ;si esta en el aire,ve a modo fly.
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 900
+
+[State 250, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;---------------------------------------------------------------------------
+;Crouching light punch
+; CNS difficulty: easy
+; Description: Simple crouching attack. The HitDef's guardflag parameter
+;     is set to "L", meaning that the move can only be guarded low
+;     (crouching), and not by standing or jumping opponents.
+;     Like for all light attacks, it's a good idea to keep the slidetime
+;     and hittime parameters at a smaller number, so the opponent isn't
+;     stunned for too long. For all crouching attacks you have to
+;     remember to set the attr parameter to indicate that it is crouching
+;     attack. In this case, "C, NA" stands for "crouching, normal attack".
+;     The HitDef's priority is set at 3, instead of the default of 4,
+;     so this attack has a lower priority than most others, meaning
+;     KFM will get hit instead of trading hits with his opponent if
+;     their attack collision boxes (Clsn1) intersect each other's Clsn2
+;     boxes at the same time.
+[Statedef 400]
+type    = C
+movetype= A
+physics = C
+juggle  = 5
+poweradd= 15
+ctrl = 0
+anim = 400
+sprpriority = 2
+
+[State 400, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 0
+volume = 255
+
+[State 400, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = C, NA
+damage    = 23
+priority  = 3
+animtype  = Light
+hitflag = MAF
+guardflag = L
+pausetime = 10,11
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = s2,0
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 4
+ground.hittime  = 12
+ground.velocity = -4
+air.velocity = -1.5,-3
+
+[State 400, 3]
+type = CtrlSet
+trigger1 = Time = 5
+value = 1
+
+[State 400, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+
+;---------------------------------------------------------------------------
+;Crouching strong punch
+; CNS difficulty: easy
+; Description: This is a 2-hit move. It is done by having two HitDefs
+;     triggered, one for each frame of animation that hits.
+;     Notice how the first hit cannot be guarded by an opponent in the
+;     air, because of the "M" in the guardflag, meaning it can only
+;     be guarded "middle". The second hit has an "MA" guardflag, so
+;     it can be guarded both on the ground and in the air.
+[Statedef 410]
+type    = C
+movetype= A
+physics = C
+juggle  = 6
+poweradd= 50
+ctrl = 0
+anim = 410
+sprpriority = 2
+
+[State 410, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 0
+
+;This is the first hit, triggered on the 3rd element of animation.
+[State 410, 2]
+type = HitDef
+trigger1 = AnimElem = 3
+attr = C, NA
+damage    = 37
+animtype  = Medium
+hitflag = MAF
+guardflag = M
+pausetime = 12,12
+sparkno = 1
+sparkxy = -10,-55
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4
+air.velocity = -3,-4
+
+;This is the second hit, triggered on the 4th element of animation.
+[State 410, 3]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = C, NA
+damage    = 36
+animtype  = Medium
+hitflag = MAF
+guardflag = MA
+pausetime = 12,12
+sparkxy = -10,-83
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -7
+air.velocity = -3,-4
+
+[State 410, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Crouching light kick
+; CNS difficulty: easy
+[Statedef 430]
+type    = C
+movetype= A
+physics = C
+juggle  = 5
+poweradd= 22
+ctrl = 0
+anim = 430
+sprpriority = 2
+
+[State 430, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 6
+volume = 255
+
+[State 430, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = C, NA
+damage    = 28
+animtype  = Light
+hitflag = MAFD
+guardflag = L
+pausetime = 12,12
+sparkno = 0
+sparkxy = -10,-8
+hitsound   = s2,1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 6
+ground.hittime  = 12
+ground.velocity = -5
+air.velocity = -2,-3
+down.velocity = -5,0
+down.hittime = 20
+
+[State 430, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Crouch Strong Kick
+; CNS difficulty: easy
+; Description: This move uses "Trip" for the "ground.type" parameter in
+;     its HitDef. It's a special type that puts the opponent in a tripped
+;     animation as he falls. Also, the hitflag parameter in the HitDef
+;     is set to "MAFD". The "D" indicates that a downed opponent can be
+;     hit by the attack.
+; CNS ƒŒƒxƒ‹: ˆÕ
+; Ú×:
+[Statedef 440]
+type    = C
+movetype= A
+physics = C
+juggle  = 7
+poweradd= 70
+ctrl = 0
+anim = 440
+sprpriority = 2
+
+[State 440, 2]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 2
+
+[State 440, 3]
+type = HitDef
+trigger1 = Time = 0
+attr = C, NA
+damage    = 72
+hitflag = MAFD
+guardflag = L
+pausetime = 12,12
+sparkno = 1
+sparkxy = -5,-10
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = Trip
+ground.slidetime = 10
+ground.hittime  = 15
+ground.velocity = -1.5,-2
+air.velocity = -1.2,-3
+guard.velocity = -5
+fall = 1
+
+[State 440, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Jump Light Punch
+; CNS difficulty: easy
+[Statedef 600]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+poweradd= 11
+ctrl = 0
+anim = 600
+sprpriority = 2
+
+[State 600, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 0
+volume = 255
+
+[State 600, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = A, NA
+damage    = 20
+guardflag = HA
+priority = 3
+pausetime = 7,8
+sparkno = 0
+sparkxy = -10,-58
+hitsound   = s2,0
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 5
+ground.velocity = -4
+air.velocity = -1.3,-3
+
+[State 600, 3];  nos da  el control del char
+type = CtrlSet
+trigger1 = Time = 17
+value = 1
+
+;---------------------------------------------------------------------------
+;Jump Strong Punch
+; CNS difficulty: easy
+[Statedef 610]
+type    = A
+movetype= A
+physics = A
+juggle  = 4
+poweradd= 65
+ctrl = 0
+anim = 610
+sprpriority = 2
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+[State 610, 3]
+type = HitDef
+trigger1 = Time = 0
+attr = A, NA
+damage = 72
+guardflag = HA
+priority = 4
+pausetime = 12,12
+sparkno = 1
+sparkxy = -10,-55
+hitsound   = 5,3
+guardsound = 6,0
+animtype = Med
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 17
+ground.velocity = -5
+air.velocity = -3,-4
+
+;---------------------------------------------------------------------------
+;Jump Light Kick
+; CNS difficulty: easy
+[Statedef 630]
+type    = A
+movetype= A
+physics = A
+juggle  = 3
+poweradd= 20
+ctrl = 0
+anim = 630
+sprpriority = 2
+
+[State 630, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 5
+volume = 255
+[State 630, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = A, NA
+damage = 26
+guardflag = HA
+priority = 3
+pausetime = 8,8
+sparkno = 1
+sparkxy = -5,-35
+hitsound   = s2,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 6
+ground.hittime  = 6
+ground.velocity = -4
+air.velocity = -2,-3
+
+;---------------------------------------------------------------------------
+;Jump Strong Kick
+; CNS difficulty: easy
+[Statedef 640]
+type    = A
+movetype= A
+physics = A
+juggle  = 4
+poweradd= 65
+ctrl = 0
+anim = 640
+sprpriority = 2
+
+[State 640, 2]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+[State 640, 3]
+type = HitDef
+trigger1 = Time = 0
+attr = A, NA
+damage    = 70
+guardflag = HA
+priority = 4
+pausetime = 12,12
+sparkno = 1
+sparkxy = -10,-40
+hitsound   = 5,3
+guardsound = 6,0
+animtype = Med
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -5
+air.velocity = -3,-4
+
+;---------------------------------------------------------------------------
+;Kung Fu Throw - Attempt
+; CNS difficulty: medium-advanced
+; Description: Throws are not difficult to make, although then can be
+;     tedious at times. Throw attempt states have a HitDef of a
+;     special format. The key parameters in a throw are p1stateno
+;     and p2stateno. If the HitDef successfully connects, then
+;     the attacker will change to the state number specified by
+;     p1stateno, and the opponent will be change to the state
+;     number assigned to p2stateno. The special thing about p2stateno
+;     is that the opponent will be temporarily brought into the
+;     attacker's state file. In this case, no matter who the
+;     opponent is, he will be taken to state 820 of this file (kfm.cns)
+;     and remain here until the end of the throw (look at his debug
+;     information when he is being thrown; the text changes to yellow
+;     to mean that he is in another player's state file).
+[Statedef 800]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 800
+sprpriority = 2
+
+; Notes: The '-' symbol in the hitflag field means that it only affects
+;   players who are not in a hit state. This prevents KFM from combo-ing
+;   into the throw. The priority should be set to a low number, such as
+;   1 or 2, so that the throw does not take precedence over normal attacks.
+;   The type of priority must always be set to "Miss" or "Dodge" for throws,
+;   otherwise strange behavior can result.
+[State 800, 1]
+type = HitDef
+Trigger1 = Time = 0
+attr = S, NT          ;Attributes: Standing, Normal Throw
+hitflag = M-          ;Affect only ground people who are not being hit
+priority = 1, Miss    ;Throw has low priority, must be miss or dodge type.
+sparkno = -1          ;No spark
+sprpriority = 1       ;Draw in front of p2
+p1facing = ifelse (command = "holdfwd", -1, 1) ;Turn if holding forwards
+p2facing = 1          ;Force p2 to face KFM
+p1stateno = 810       ;On success, KFM changes to state 810
+p2stateno = 820       ;If hit, p2 changes to state 820 in KFM's cns
+guard.dist = 0        ;This prevents p2 from going into a guard state if close
+fall = 1              ;Force p2 into falling down
+
+[State 800, 2]
+type = ChangeState
+Trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Kung Fu Throw - Throwing the opponent
+; Description: In this state, KFM throws the opponent by binding him to
+;     various offsets based on his current frame of animation. For
+;     example, [State 810, Bind 1] binds the opponent to an offset of
+;     28 pixels in front of KFM. That puts him around where KFM's hand
+;     is at. Is is important to keep the opponent bound using a
+;     TargetBind controller at all times, until you let him go. This
+;     is especially important if your player has a Clsn2 box that
+;     allows him to get hit while throwing someone. Each time a player
+;     gets hit, all his bound targets will be set to a fall state. If
+;     the opponent is not bound, then he might get stuck in his thrown
+;     state when his attacker is knocked out of the throw halfway.
+; Notes: There is a TargetLifeAdd controller to decrease the opponent's
+;     life, and a TargetState controller to change his state to a
+;     falling state when KFM lets go of him.
+[Statedef 810]
+type    = S
+movetype= A
+physics = N
+anim = 810
+poweradd = 60
+
+[State 810, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 1, 1
+
+[State 810, Throw Sound]
+type = PlaySnd
+trigger1 = AnimElem = 7
+value = 800, 0
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = AnimElemTime(2) < 0
+pos = 28, 0
+
+[State 810, Width 2-11]
+type = Width
+trigger1 = AnimElemTime(2) >= 0 && AnimElemTime(12) < 0
+edge = 60,0
+
+[State 810, Bind 2-4]
+type = TargetBind
+trigger1 = AnimElemTime(2) >= 0 && AnimElemTime(5) < 0
+pos = 58, 0
+
+[State 810, Bind 5]
+type = TargetBind
+trigger1 = AnimElemTime(5) >= 0 && AnimElemTime(6) < 0
+pos = 47, 0
+
+[State 810, Bind 6]
+type = TargetBind
+trigger1 = AnimElemTime(6) >= 0 && AnimElemTime(7) < 0
+pos = 41, -60
+
+[State 810, Bind 7]
+type = TargetBind
+trigger1 = AnimElemTime(7) >= 0 && AnimElemTime(8) < 0
+pos = 25, -75
+
+[State 810, Bind 8]
+type = TargetBind
+trigger1 = AnimElemTime(8) >= 0 && AnimElemTime(9) < 0
+pos = 15, -90
+
+[State 810, Bind 9]
+type = TargetBind
+trigger1 = AnimElemTime(9) >= 0 && AnimElemTime(10) < 0
+pos = -5, -96
+
+[State 810, Bind 10]
+type = TargetBind
+trigger1 = AnimElemTime(10) >= 0 && AnimElemTime(11) < 0
+pos = -14, -90
+
+[State 810, Bind 11]
+type = TargetBind
+trigger1 = AnimElem = 11
+pos = -50, -50
+
+[State 810, Hurt 11]
+type = TargetLifeAdd
+trigger1 = AnimElem = 11
+value = -78
+
+[State 810, Throw 11]
+type = TargetState
+trigger1 = AnimElem = 11
+value = 821
+
+[State 810, Turn 12]
+type = Turn
+trigger1 = AnimElem = 12
+
+[State 810, Pos 15]
+type = PosAdd
+trigger1 = AnimElem = 15
+x = -10
+
+[State 810, State End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Thrown by Kung Fu Throw
+; (a custom gethit state)
+; Description: This is the state that the opponent changes to after being
+;     hit by KFM's throw HitDef. The important thing here is to use a
+;     ChangeAnim2 controller. The difference between ChangeAnim2 and
+;     ChangeAnim is that ChangeAnim2 changes the player's animation to
+;     an action in the AIR file of the attacker (in this case, kfm.air),
+;     whereas ChangeAnim always changes the player to an action in his
+;     own AIR file. Look at Action 820 in kfm.air for some extra
+;     comments.
+[Statedef 820]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 820, 1]
+type = ChangeAnim2
+Trigger1 = Time = 0
+value = 820
+
+;---------------------------------------------------------------------------
+;Thrown by Kung Fu Throw - thrown into the air
+; (a custom gethit state)
+; Description: This state has the opponent flying through the air and
+;     falling down onto the ground. The SelfState controller sets the
+;     opponent back using to his own state file when he his the ground.
+;     Controllers 821,2 and 821,3 allow the opponent to recover by
+;     hitting his recovery command when he is falling.
+[Statedef 821]
+type    = A
+movetype= H
+physics = N
+velset = 2.8,-7
+poweradd = 40
+
+[State 821, 1] ;Gravity
+type = VelAdd
+Trigger1 = 1
+y = .4
+
+[State 821, 2] ; Recover near ground (use ChangeState)
+type = ChangeState
+triggerall = Vel Y > 0
+triggerall = Pos Y >= -20
+triggerall = alive
+triggerall = CanRecover
+trigger1 = Command = "recovery"
+value = 5200 ;HITFALL_RECOVER
+
+[State 821, 3] ; Recover in mid air (use SelfState)
+type = SelfState
+triggerall = Vel Y > 0
+triggerall = alive
+triggerall = CanRecover
+trigger1 = Command = "recovery"
+value = 5210 ;HITFALL_AIRRECOVER
+
+[State 821, 4] ;Hit ground
+type = SelfState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 5100 ;Hit ground
+
+
+;=========================================================================
+;=========================================================================
+
+;===================
+;ESTADOS ESPECIALES
+;===================
+
+;Carga de KI
+[Statedef 830]
+type    = S
+movetype= I
+physics = S
+juggle  = 9
+velset = 0,0
+ctrl = 0
+anim = 830 ;animacion del char
+poweradd = 0
+facep2 = 1
+
+[State 830, SND3];sonido grito
+type = PlaySnd
+trigger1 = animelem = 2
+value = 60,3
+volume = 255
+channel = 2
+;loop = 1
+
+
+[State 830, SND1];sonido estallido  de aura
+type = PlaySnd
+trigger1 = animelem = 4
+value = 50,6
+volume = 255
+channel = 0
+
+[State 830, sound2];sonido continuado
+type = PlaySnd
+trigger1 = (Time > 85) && ((GameTime%15) = 0) ;empieza qnd el tiempo sea 85 y luego reinica cada 15 tics.
+value = 50,7
+volume = 255
+;loop = 1
+channel = 1
+
+[State 830, Aura]
+type = Explod
+trigger1 = animelem = 4
+anim = 7000 ;831
+ID = 7000
+pos = 0, 5
+sprpriority = 3 ;-1
+supermovetime = 0 ; tiempo q la animacion no se congelara durante una superpausa
+removetime = -1
+bindtime = -1
+ownpal = 1
+shadow = 0,0,0 ; 0-255
+removeongethit = 1
+scale = 0.5,0.5
+ontop = 0
+
+[State 830, EFECTO SUELO]
+type = Explod
+trigger1 = animelem = 3
+anim = 7010 
+ID = 7010
+pos = 0, 0
+sprpriority = -1 ;-1
+supermovetime = 0 ; tiempo q la animacion no se congelara durante una superpausa
+removetime = -1
+bindtime = -1
+ownpal = 1
+shadow = 0,0,0 ; 0-255
+removeongethit = 1
+scale = 0.5,0.5
+ontop = 0
+
+
+[State 830, temblor]
+type = EnvShake
+trigger1 = (Time > 45) && ((GameTime%11) = 0)  ;TimeMod = 11, 0 
+time =  10;(int)
+freq = 60;(float)
+ampl = -3 ;(int)
+phase = 0;(float)
+
+[State 830, 1] 		;funcion q hace q la barra de ki se cargue.
+type = Poweradd
+triggerall = var(58) = 0 ;shankanido kame OFF
+trigger1 = Time >= 0
+value = 6;10     		;velocidad d carga,si value=0 ==> no carga
+
+[State 830, 1] 		
+type = Poweradd
+triggerall = var(58) = 1 ;shankanido kame OFF
+trigger1 = Time >= 0
+value = 1     		;velocidad d carga,si value=0 ==> no carga
+
+
+[State 830, removeAura]
+type = removeExplod
+ID  = 7000
+trigger1 = (command != "ki") || (command != "ki2") || (life = 0) || (stateno != 830)
+
+[State 830, removeEfectoSuelo]
+type = removeExplod
+ID  = 7010
+trigger1 = (command != "ki") || (command != "ki2") || (life = 0) || (stateno != 830)
+
+
+[State 830,	StopSnd]
+type			= StopSnd
+trigger1		= (command != "ki") || (command != "ki2") || (life = 0) || (stateno != 830)
+channel		= 2
+
+[State 830, 4]
+type = ChangeState
+trigger1 = command != "ki" || command != "ki2"
+value = 0
+ctrl = 1
+
+;------------------
+
+;Carga de KI en el aire
+[Statedef 831]
+type    = S
+movetype= I
+physics = N
+juggle  = 9
+velset = 0,0
+ctrl = 0
+anim = 830 ;animacion del char
+poweradd = 0
+facep2 = 1
+
+[State 830, SND3];sonido grito
+type = PlaySnd
+trigger1 = animelem = 2
+value = 60,3
+volume = 255
+channel = 2
+
+[State 830, SND1];sonido estallido  de aura
+type = PlaySnd
+trigger1 = animelem = 4
+value = 50,6
+volume = 255
+channel = 0
+
+[State 830, sound2];sonido continuado
+type = PlaySnd
+trigger1 = (Time > 85) && ((GameTime%15) = 0) ;empieza qnd el tiempo sea 85 y luego reinica cada 15 tics.
+value = 50,7
+volume = 255
+;loop = 1
+channel = 1
+
+
+[State 831, Aura]
+type = Explod
+trigger1 = animelem = 4
+anim = 7000 ;831
+ID = 7000
+pos = 0, 5
+sprpriority = 3 ;-1
+;supermovetime = 0 ; tiempo q la animacion no se congelara durante una superpausa
+removetime = -1
+bindtime = -1
+ownpal = 1
+;shadow = 0,0,0 ; 0-255
+removeongethit = 1
+scale = 0.5,0.5
+ontop = 0
+
+[State 830, temblor]
+type = EnvShake
+trigger1 = (Time > 45) && ((GameTime%11) = 0)  ;TimeMod = 11, 0 
+time =  10;(int)
+freq = 60;(float)
+ampl = -3 ;(int)
+phase = 0;(float)
+
+
+[State 830, 1] 		;funcion q hace q la barra de ki se cargue.
+type = Poweradd
+triggerall = var(58) = 0 ;shankanido kame OFF
+trigger1 = Time >= 0
+value = 6;10     		;velocidad d carga,si value=0 ==> no carga
+
+[State 830, 1] 		
+type = Poweradd
+triggerall = var(58) = 1 ;shankanido kame ON
+trigger1 = Time >= 0
+value = 1     		;velocidad d carga,si value=0 ==> no carga
+
+
+[State 830, removeAura]
+type = removeExplod
+ID  = 7000
+trigger1 = (command != "ki") || (command != "ki2") || (life = 0) || (stateno != 831)
+
+[State 830,	StopSnd]
+type			= StopSnd
+trigger1		= (command != "ki") || (command != "ki2") || (life = 0) || (stateno != 831)
+channel		= 2
+
+[State 830, 4]
+type = ChangeState
+trigger1 = command != "ki" || command != "ki2"
+value = 900
+ctrl = 0
+
+
+;----------------------------------------------------------------------
+;ESTADO DE CANSANCIO
+[Statedef 850]  
+type    = S                      
+movetype= I                      
+physics = C                      
+juggle  = 5                      
+poweradd= 0 ;100
+velset = 0,0                 
+ctrl = 0                     
+anim = 850  
+
+[State 850, 1];
+type = PosAdd
+trigger1 = Time = [0,5]
+x= -2
+y =0
+
+[State 2003, 9]
+type = null ;VelSet
+trigger1 = AnimElem = 2 
+x = -3
+y = -10
+
+[State 850, 2] 		;funcion q hace q la barra de ki se cargue.
+type = Poweradd
+triggerall = var(58) = 0 ;shankanido kame OFF
+trigger1 = Time >= 0
+value = 2
+
+[State 850, 2] 		;funcion q hace q la barra de ki se cargue.
+type = Poweradd
+triggerall = var(58) = 1 ;shankanido kame ON
+trigger1 = Time >= 0
+value = 1
+
+
+[State 850, 1];
+type = ChangeState
+trigger1 = Power >= 1000
+trigger2 = time = 500 ;300
+;trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------
+;ESTADO DE ATERRIZAJE
+
+;Aterrizaje.
+[Statedef 950] 
+type    = S                      
+movetype= I                      
+physics = S                      
+juggle  = 1                      
+;poweradd= -10
+velset = 0,2 ;0                 
+ctrl = 0                     
+anim = 950  
+
+[State 950, 1]
+type = PlaySnd
+trigger1 = Time = 0 ; 1
+;trigger1 = stateno = 40 ;inicio salto
+value = 50,0
+
+
+[State 950, 1];al aterrizar
+type = PlaySnd
+trigger1 = Pos Y >= 0
+trigger1 = Power <= 250
+value = 40,0
+
+
+[State 950, 2]; ve a stand
+type = ChangeState
+triggerall = Pos Y >= 0
+trigger1 = Power >= 250 ;30
+trigger2 = P2Life <= 0 || RoundState = 3
+value = 52 ;0
+ctrl = 1
+
+[State 950, 2]; ve al estado cansancio si power inferior a...
+type = ChangeState
+trigger1 = Pos Y >= 0        ;toca suelo
+trigger1 = Power <= 250 ;30
+value = 850                  ;estado cansancio 
+ctrl = 0
+
+
+
+
+
+;------------------------------------------------------------------
+
+;MODO FLY......(Modelo del creador "Bardock").
+
+;Empezar a volar  
+[Statedef 910] ;numero do state 
+type = A
+movetype = A
+physics = A
+velset = 0,-5.5 ; quanto ele sai do chao 
+anim = 910 ; imagem no air dele indo pro alto
+ctrl = 0
+
+[State 910, 3] ; vai pro state abaixo
+type = changestate
+trigger1 = animtime = 0
+value = 900 ; state abaixo
+ctrl = 1
+
+;-----------
+;Volando
+[Statedef 900] ;numero do state 
+type = S
+movetype = I
+physics = N
+ctrl = 0
+velset = 0,0
+
+[State 900, VarSet]
+type = VarSet
+Trigger1 = Time = 0
+var(3) = 1
+
+[State 900, Block1]
+type = ReversalDef
+Trigger1 = command = "holdback"
+reversal.attr = SCA, NA, SA, HA
+pausetime = 0,15
+hitsound = S20, 3
+p1stateno = 150
+
+[State 900, Stop1]
+type = VelSet
+Trigger1 = command != "holdfwd"
+Trigger1 = command != "holdback"
+Trigger1 = command != "holdup"
+Trigger1 = command != "holddown"
+Trigger1 = var(2) = 0
+Trigger2 = Pos Y < -405
+x = 0
+y = 0
+
+[State 910, Stop2]
+type = ChangeAnim
+Trigger1 = command != "holdup"
+Trigger1 = command != "holddown"
+Trigger1 = Anim != 900 ; imagem parada no ar
+value = 900 ; imagem parada no ar
+
+[State 900,fuwavar(1)]
+type = VarSet
+Trigger1 = command != "holdfwd"
+Trigger1 = command != "holdback"
+Trigger1 = command != "holdup"
+Trigger1 = command != "holddown"
+Trigger1 = var(2) != 2
+Trigger2 = var(2) = 2
+Trigger2 = Vel Y >= 1.3 ;2.4
+v = 2
+value = 1
+
+[State 900,fuwavar(2)]
+type = VarSet
+Triggerall = var(2) = 1
+Trigger1 = Vel Y <= -1.3 ; -2.4
+Trigger2 = P2BodyDist Y > 250
+Trigger2 = Vel Y < 0
+v = 2
+value = 2
+
+[State 900,fuwaUp]
+type = VelAdd
+Trigger1 = var(2) = 1
+y = -0.1  ;-0.3
+
+[State 900,fuwaDown]
+type = VelAdd
+Trigger1 = var(2) = 2
+y = 0.1  ;0.3
+
+[State 900,fuwaEnd]
+type = VelSet
+Triggerall = var(2) != 0
+Trigger1 = command = "holdfwd"
+Trigger2 = command = "holdback"
+Trigger3 = command = "holdup"
+Trigger4 = command = "holddown"
+y = 0
+
+[State 900,fuwaEndVar]
+type = VarSet
+Trigger1 = command = "holdfwd"
+Trigger2 = command = "holdback"
+Trigger3 = command = "holdup"
+Trigger4 = command = "holddown"
+v = 2
+value = 0
+
+[State 900, UpBorder1]
+type = PosSet
+Trigger1 = Pos Y < -400
+y = -400
+
+[State 900, UpBorder2a]
+type = PosAdd
+Trigger1 = P2BodyDist Y > 250
+Trigger1 = Vel Y < 0
+y = 1
+
+[State 900, UpBorder2b]
+type = VelSet
+Trigger1 = P2BodyDist Y > 250
+Trigger1 = Vel Y < 0
+y = 0
+
+[State 900, GoDown1]
+type = VelAdd
+Trigger1 = command = "holddown"
+y = 0.4
+
+[State 900,GoDown2]
+type = VelSet
+Trigger1 = command = "holddown"
+Trigger1 = Vel Y < 0 
+y = 0
+
+[State 900, GoUp1]
+type = VelAdd
+Trigger1 = command = "holdup"
+y = -0.3
+
+[State 900,GoUp2]
+type = VelSet
+Trigger1 = command = "holdup"
+Trigger1 = Vel Y > 0 
+y = 0
+
+[State 900, GoUpAnim]
+type = ChangeAnim
+Trigger1 = Anim != 904 ; imagem indo para cima 
+Trigger1 = command = "holdup"
+value = 904 ; imagem indo para cima 
+
+[State 900, GoBack1]
+type = VelAdd
+Trigger1 = command = "holdback"
+x = -0.3
+
+[State 900,GoBack2]
+type = VelSet
+Trigger1 = command = "holdback"
+Trigger1 = Vel X > 0 
+x = 0
+
+[State 900, GoBackAnim]
+type = ChangeAnim
+Triggerall = Anim != 902 ; imagem indo para traz
+Trigger1 = command = "holdback"
+Trigger2 = command = "holddown"
+value = 902 ; imagem indo para traz
+
+[State 900, GoFwd1]
+type = VelAdd
+Trigger1 = command = "holdfwd"
+x = 0.4
+
+[State 900,GoFwd2]
+type = VelSet
+Trigger1 = command = "holdfwd"
+Trigger1 = Vel X < 0 
+x = 0
+
+[State 900, GoFwdAnim]
+type = ChangeAnim
+Trigger1 = Anim != 901 ; imagem indo para frente
+Trigger1 = command = "holdfwd"
+value = 901 ; imagem indo para frente
+
+[State 900, GoDownAnim]
+type = ChangeAnim
+triggerall = Anim != 903 ; imagem indo para baixo
+trigger1 = command = "holddown"
+value = 903 ; imagem indo para baixo
+
+[State 900, Turn]
+type = Turn
+Trigger1 = P2Dist X < 0
+
+[State 900, Land1]
+type = ChangeState
+Trigger1 = Pos Y >= 0
+value = 52
+ctrl = 1
+
+[State 900, Land2]
+type = ChangeState
+Trigger1 = command = "fly" ; nome do comando no CMD
+Trigger1 = command = "holddown"
+value = 50
+ctrl = 1
+
+[State 900,WinALose] ; quando ganhar vai pro state de baixo 
+type = ChangeState
+trigger1 = Win = 1
+trigger2 = Lose = 1
+value = 912 ;1202
+
+;---------------------------------------------------------------------------
+
+[Statedef 912]
+type    = A
+movetype= A
+physics = A
+juggle  = 0
+poweradd= 0
+ctrl = 0
+anim = 912 ; imagens dele decendo 
+
+[State 912, 3]
+type = VelAdd
+trigger1 = AnimElem = 1
+trigger1 = AnimElem <= 2
+x = -0.3
+
+[State 912, 3]
+type = VelSet
+trigger1 = AnimElem = 3
+x = 0
+
+[State 912, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 900
+
+[State 210, 3]
+type = ChangeState
+trigger1 = time = 60
+value = 913 
+
+;---------------------------------------------------------------------------
+[Statedef 913]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+ctrl = 0
+velset = 0
+
+[State 1531, 5]
+type = PlaySnd
+trigger1 = Pos Y >= 0
+trigger1 = Vel Y > 0
+persistent = 0
+value = 21,4
+
+[State 52, 3]
+type = PosSet
+trigger1 = Vel Y = 0
+y = 0
+
+[State 209, 1]
+type = ChangeAnim
+trigger1 = Pos Y >= 0
+trigger1 = Vel Y > 0
+value = 913
+
+[State 209, 1]
+type = Velset
+trigger1 = Pos Y >= 0
+trigger1 = Vel Y > 0
+y = 0
+
+[State 3021, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 900
+
+[State 913, 3]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+
+;==============================================
+;ATAQUES ESPECIALES
+;==============================================
+
+
+;COMBO ESPECIAL_a
+;inicio(krillin  corre)
+[Statedef 2000] ;estado inicial
+type    = S                      
+movetype= A                      
+physics = S                      
+juggle  = 1                      
+poweradd= -10
+velset = 0,0                 
+ctrl = 0                     
+anim = 2000  ;animacion de correr adelante            
+
+
+[State 2000, 1]
+type = SuperPause
+trigger1 = AnimElem = 1
+pos = 15,-45
+anim = 102
+sound = s2000,0 ;20,0
+volume = 255
+
+[State 2000, Super Pause]
+type = null;PlaySnd
+trigger1 = AnimElem = 1
+value = 20,0 
+volume = 200
+
+[State 2000,Sombra]
+type = AfterImage
+trigger1 = AnimElem = 1
+time = 100
+trans = add
+TimeGap  = 2
+FrameGap = 2
+length = 15 ;6
+PalBright   =  0, 0, 0
+PalContrast = 120,120,120 ;128,128,128
+PalAdd      =  0,  0,  0
+PalMul      =   1,  1,  1
+
+[State 2000, 3] ;correr  hacia delante
+type = VelAdd
+trigger1 = AnimElem = 2
+y = 0
+x = 25;15
+
+[State 2000, invulnerable];
+type =  HitBy
+trigger1 = time = 1
+value = S, NP, HP ; stand, normal proyectil,hyper  proyec
+
+[State 2000,Hit] ;golpe si p1 se encuentra con p2 mientras corre.
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+hitflag = MAF
+priority = 7,hit ;99999, Miss    ;Throw has low priority, should be miss or dodge type.
+sprpriority = -2      ;detras  de p2
+sparkno = -1 ;S7050 ;-1
+forcestand = 1
+p2facing = 1
+p1stateno = 2001
+;p2stateno = 3052
+
+[State 2000, 5]; si p1 golpea a p2 ve a estado 2001.
+type = ChangeState
+trigger1 = MoveHit
+trigger1 = AnimTime = 0
+value = 2001
+
+[State 2000, 5bis];si p1 no golpea a p2 vuelve a posicion stand.
+type = ChangeState
+trigger1 = MoveHit != 1
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------
+;CONTINUACION1 COMBO "ESPECIAL_a"
+;secuencia de golpes
+[Statedef 2001]
+type    = S
+movetype= A
+poweradd= -990
+physics = N
+juggle  = 5
+velset = 0,0
+anim = 2001
+ctrl = 0
+
+[State 2001,1]
+type = HitDef
+trigger1 = AnimElem = 2 ; animacion puñetazo flojo.
+trigger2 = AnimElem = 4 ;     "           "       .
+attr = S, SA                     
+damage    = 10    ; lo q kita de vida a p2
+animtype = hard                
+;guardflag = MA                   
+hitflag = MAF                    
+priority = 7, Hit                                           
+pausetime = 1,100 ;8 ; tempo que seu char fica para e tempo do p2
+numhits = 2                      
+sparkno = S7052 
+sparkxy = -13,-45
+hitsound = s2,0   ; som do acerto 
+guardsound = 6,0                
+ground.type = High                 
+ground.slidetime = 5             
+ground.hittime  = 11             
+ground.velocity = -1             
+airguard.velocity = -1         
+air.velocity = -1,-2  
+
+[State 2001,2]
+type = HitDef
+trigger1 = AnimElem = 7; patadas
+trigger2 = AnimElem = 10; 
+attr = S, SA                     
+damage    = 15    ; 
+animtype = hard             
+;guardflag = MA                   
+hitflag = MAF                    
+priority = 7, Hit                                           
+pausetime = 1, 100 ; tempo que seu char fica para e tempo do p2
+numhits = 2                      
+sparkno = S7051 
+sparkxy = -13,-65
+hitsound = s2,2   ; som do acerto 
+guardsound = 6,0                
+ground.type = High                 
+ground.slidetime = 5             
+ground.hittime  = 11             
+ground.velocity = -1             
+airguard.velocity = -1.9        
+air.velocity = -1.3,-3      
+
+[State 2001,acercarse]
+type = PosAdd
+trigger1 = AnimElem = 12
+x = 20
+
+[State 2001,4]
+type = HitDef
+trigger1 = AnimElem = 14 ; patada fuerte.
+attr = S, SA                     
+damage    = 30,15    ; quanto tira de vida do p2 
+animtype = DiagUp ;Medium              
+;guardflag = MA                   
+hitflag = MAF                    
+priority = 7, Hit                                           
+pausetime = 1,30 ;8 ; tempo que seu char fica para e tempo do p2
+numhits = 1                      
+sparkno = S7050 
+sparkxy = -10,-45
+hitsound = s2,3   ; som do acerto 
+guardsound = 6,0                
+ground.type = High                 
+ground.slidetime = 60;5             
+ground.hittime  = 20 ;11             
+ground.velocity = -8.5,-7  ;x,y             
+guard.velocity = -7
+airguard.velocity = -5, -4         
+air.velocity = -8,-9 ;-7                           
+Fall = 1
+fall.recover = 0
+air.fall = 1
+;air.recover = 0
+Fall.recovertime = 100 
+;p2stateno = 5070
+
+
+[State 2001,5bis];si p1 golpea a p2 continua
+type = ChangeState
+trigger1 = MoveHit ;= 1
+trigger1 = AnimTime = 0
+value = 2002
+ctrl = 1
+
+[State 2001, 5];si p1 no golpea a p2 vuelve a posicion stand.
+type = ChangeState
+trigger1 = MoveHit != 1 && AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------
+;CONTINUACION2 COMBO "ESPECIAL_a"
+;golpe final con voltereta
+[Statedef 2002]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+;poweradd= 60
+ctrl = 0
+velset = 0,0,0
+anim = 2002
+
+[State 2002, Salto]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = S40,1 
+volume = 255
+
+[State 2002, Pausa]
+type =  null ;SuperPause
+trigger1 = p2stateNo = 5110
+trigger1 = p2stateNo != 5080
+time = 100 ;4; tiempo de pausa
+movetime = 100  ;si es igual a time p1 no  hace pausa.
+darken = 0 
+;pos = 15,-45
+anim = -1 ;kitar efecto
+;sound = S2000,0 ;20,0
+;volume = 255
+
+
+[State 2002, 1]
+type =  VelSet
+trigger1 = AnimElem = 4
+x = 12;const(velocity.jump.fwd.x)
+y = -10 ;const(velocity.jump.y)
+
+[State 2002, 2]
+type = VelSet
+trigger1 = AnimElem = 5
+x = 12
+y = -8
+
+[State 2002, 3]
+type = VelSet
+trigger1 = AnimElem = 6
+x = 14    
+y = -5    
+
+[State 2002, 4]
+type = VelSet
+trigger1 = AnimElem = 7
+x = 14 
+y = 0
+
+[State 2002, 5]
+type = VelSet
+trigger1 = AnimElem = 8
+x = 14 
+y = 5
+
+[State 2002, 6]
+type = VelSet
+trigger1 = AnimElem = 9
+trigger2 = AnimElem = 10
+trigger3 = AnimElem = 11
+x = 12 
+y = 5
+
+[State 2002, 7]
+type = VelSet
+trigger1 = AnimElem = 12
+x = 5
+y = 3
+
+[State 2002, 8]
+type = VelSet
+trigger1 = AnimElem = 13
+x = 3 ;4
+y = 0
+
+[State 2002,9];golpe final(pisoton a dos pies contra el suelo)
+type = HitDef
+trigger1 = AnimElem = 11; 
+trigger2 = AnimElem = 13; 
+attr = A, SA ; aire,especial ataque                    
+damage    = 70 ;100    ; 
+animtype = back ;Hard                 
+;guardflag = MA                   
+hitflag = MAFD ; D ==> para poder golpear en el suelo.                    
+priority = 7, Hit                                           
+pausetime = 1,8;50 ;100 ; tempo que seu char fica para e tempo do p2
+numhits = 1                      
+hitsound = S1000,0 ;5,0 ;sonido d acierto 
+volume = 255
+guardsound = 6,0                
+ground.type = Low           
+;ground.slidetime = 5             
+;ground.hittime  = 11             
+;ground.velocity = -1             
+;airguard.velocity = -1.9        
+;air.velocity = -1.3,-3      
+;fall.animtype = up
+fall = 1
+fall.recover = 1
+Fall.recovertime = 100 ;no funciona
+envshake.time = 50;(int)
+envshake.freq = 60;(float)
+envshake.ampl = -4 ;(int)
+envshake.phase = 0;(float)
+
+[State 2002, ajustar]
+type = PosAdd
+trigger1 = AnimElem = 13
+;x = 0
+y = 15
+
+
+[State 2002, PausA]; pausa xa q p2 tarde en levantarse
+type = null ; SuperPause
+trigger1 = AnimElem = 13, = 25 ; Elem13 de la animacion a los 25 tics.
+;trigger1 = p2stateNo = 5110
+time = 100
+movetime = 100
+darken = 0
+;pos = 15,-45
+anim = -1 ;kitar efecto
+;sound = S2000,0 ;20,0
+;volume = 255
+
+[State 2002, 12]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 2003
+ctrl = 1
+;-----------------------------
+;CONTINUACION3 COMBO "ESPECIAL_a"
+;Salto atras FINAL combo.
+[Statedef 2003]
+type    = C
+movetype= I
+physics = S
+juggle  = 4
+;poweradd= 60
+ctrl = 0
+velset = 0,0,0
+anim = 2003
+
+[State 2003, 1];ajustar pisoton sobre p2
+type = PosAdd
+trigger1 = AnimElem = 1
+x = 30
+;y = 10
+
+[State 2003, Salto]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = S40,2 ;S50,0 
+volume = 200
+
+
+[State 2003, 2]
+type = VelSet
+trigger1 = AnimElem = 1
+trigger2 = AnimElem = 2
+;trigger3 = AnimElem = 3
+x = -6 
+y = -5
+
+[State 2003, 3]
+type = VelSet
+trigger1 = AnimElem = 3
+x = -6 
+y = -4
+
+[State 2003, 4]
+type = VelSet
+trigger1 = AnimElem = 4
+x = -6 
+y = -2
+
+[State 2003, 5]
+type = VelSet
+trigger1 = AnimElem = 5
+;trigger1 = y < 0
+x = -5 
+y = 0
+
+[State 2003, 6]
+type = VelSet
+trigger1 = AnimElem = 6
+x = -5 
+y = 3
+
+[State 2003, 7]
+type = VelSet
+trigger1 = AnimElem = 7 
+x = -4
+y = 7
+
+[State 2003, 8]
+type = VelSet
+trigger1 = AnimElem = 8 
+x = -3
+y = 6
+
+[State 2003, 9]
+type = VelSet
+trigger1 = AnimElem = 9 
+x = -1
+y = 0
+
+[State 2003, Aterriza Salto]
+type = PlaySnd
+trigger1 = AnimElem = 9
+value = S40,0 
+volume = 255
+
+
+[State 2003, 10];ajustar nivel suelo
+type = PosAdd
+trigger1 = AnimElem = 10
+;x = 30
+y = 5
+
+[State 2003, 2]
+type = null;Gravity
+trigger1 = AnimElem = 7
+trigger = Y < 0
+;trigger3 = AnimElem = 3
+;x = -3 
+;y = 0
+
+[State 2003, 11]; vuelve al estado fly
+type = ChangeState
+trigger1 = command = "fly"
+value = 900
+ctrl = 1
+
+[State 2003, 11]; vuelve al estado STAND
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;==============================================
+;COMBO ESPECIAL_b (inicio) MULTICOMBO
+
+;inicio(krillin  corre)
+[Statedef 2050] ;estado inicial
+type    = S                      
+movetype= A                      
+physics = S                      
+juggle  = 1                      
+poweradd= -10
+velset = 0,0                 
+ctrl = 0                     
+anim = 2000  ;animacion de correr adelante            
+
+
+[State 2050, 1]
+type = SuperPause
+trigger1 = AnimElem = 1
+pos = 15,-45
+anim = 102
+sound = s2000,0 ;20,0
+volume = 255
+
+[State 2050,Sombra]
+type = AfterImage
+trigger1 = AnimElem = 1
+time = 100
+trans = add
+TimeGap  = 2
+FrameGap = 2
+length = 15 ;6
+PalBright   =  0, 0, 0
+PalContrast = 120,120,120 ;128,128,128
+PalAdd      =  0,  0,  0
+PalMul      =   1,  1,  1
+
+
+[State 2050, teletrans]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = S50,1 ;S50,0 
+volume = 255
+
+
+[State 2050, 3] ;correr  hacia delante
+type = VelAdd
+trigger1 = AnimElem = 2
+;trigger1 != P2dist X = 0
+y = 0
+x = 35;25
+
+
+[State 2050, invulnerable];
+type = null ;NotHitBy ;no puedo ser golpeado por...
+trigger1 = time = 1
+value = SCA ; stand,crouch,air posiciones de p2 
+
+[State 2050, invulnerable];
+type = HitBy ;no puedo ser golpeado por...
+trigger1 = time = 1
+value = S,HP ; stand,Hiper proyec 
+
+
+
+[State 2050,Hit] ;golpe si p1 se encuentra con p2 mientras corre.
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+hitflag = MAF
+guardflag = M                   
+pausetime = 1,200 ;8 
+priority = 7,hit ;99999, Miss    ;Throw has low priority, should be miss or dodge type.
+sprpriority = -2      ;detras  de p2
+sparkno = -1
+forcestand = 1
+p2facing = 1
+;p1stateno = 2051
+;p2stateno = 3052
+
+[State 2050, 6]; si acierto ve a estado "desaparece" .
+type = ChangeState
+triggerall = AnimTime = 0
+trigger1 = MoveHit ;= 1
+trigger2 = P2dist X = 0 ; si la distancia entre p1 y p2 = 0
+value = 2051
+ctrl = 0
+
+[State 2050, 6] ;si esta en el aire,ve a modo fly.
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 900
+
+[State 2050, 6bis];si p1 no golpea a p2 vuelve a posicion stand.
+type = ChangeState
+trigger1 = MoveHit != 1
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------
+
+; p1 desaparece
+[Statedef 2051] ;estado sin sprite
+type    = S                      
+movetype= I                      
+physics = S                      
+juggle  = 1                      
+;poweradd= -10
+velset = 0,0                 
+ctrl = 0                     
+anim = 840  
+
+
+[State 2050, 1]
+type = null ;SuperPause
+trigger1 = AnimElem = 1
+time = 100
+movetime = 100
+darken = 0
+;pos = 15,-45
+anim = -1 ;102
+;sound = s2000,0 ;20,0
+;volume = 255
+
+
+[State 2050, teletrans]
+type = PlaySnd
+trigger1 = Time = 100
+value = S50,3 
+volume = 255
+
+
+[State 840, 3] ;reposicionar p1
+type = PosAdd
+trigger1 = Time = 100
+;trigger1 != P2dist X = 0
+y = p2bodydist y + 0  ;y = 0
+x = -150
+
+
+[State 2000, 5bis];
+type = ChangeState
+trigger1 = Time = 100
+value = 2052
+ctrl = 0
+
+;------------------------------------------------------------
+;CONTINUACION1 COMBO ESPECIAL_b 
+;P1 reaparece y contrataca
+[Statedef 2052] 
+type    = S                      
+movetype= A                      
+physics = S                      
+juggle  = 1                      
+poweradd= -1000
+velset = 15,0                 
+ctrl = 0                     
+anim = 2000  
+
+[State 2052,Sombra]
+type = AfterImage
+trigger1 = AnimElem = 1
+time = 100
+trans = add
+TimeGap  = 2
+FrameGap = 2
+length = 15 ;6
+PalBright   =  0, 0, 0
+PalContrast = 120,120,120 ;128,128,128
+PalAdd      =  0,  0,  0
+PalMul      =   1,  1,  1
+
+[State 2050, 3] ;correr  hacia delante
+type = null ;VelAdd
+trigger1 = AnimElem = 2
+;trigger1 != P2dist X = 0
+y = 0
+x = 35;25
+
+[State 2052, invulnerable];
+type = NotHitBy ;no puedo ser golpeado por...
+trigger1 = time = 1
+value = SCA ; stand,crouch,air posiciones de p2 
+
+[State 2052,Hit] ;golpe si p1 se encuentra con p2 mientras corre.
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+hitflag = MAF
+priority = 7,hit ;99999, Miss    
+pausetime = 1,100
+sprpriority = 1 ;-2      ;delante de p2
+sparkno = -1
+forcestand = 1
+p2facing = 1
+;p1stateno = 2051
+;p2stateno = 3052
+
+[State 2052, 5]; si acierto ve a estado "rafaga de puñetazos".
+type = ChangeState
+triggerall = AnimTime = 0
+trigger1 = MoveHit
+;trigger1 = P2dist X = 5 ; si la distancia entre p1 y p2 = 0
+value = 2053 
+ctrl = 0
+
+[State 250, 4] ;si esta en el aire,ve a modo fly.
+type = ChangeState
+trigger1 = MoveHit
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 900
+
+[State 2052, 5bis];si p1 no golpea a p2 vuelve a posicion stand.
+type = ChangeState
+trigger1 = MoveHit !
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------------
+;CONTINUACION2 COMBO ESPECIAL_b 
+;rafaga de peñetazos.
+[Statedef 2053] ;2050 
+type    = S                      
+movetype= A                      
+physics = S                      
+juggle  = 5                      
+;poweradd= -10
+velset = 0,0                 
+ctrl = 0                     
+anim = 2053  
+
+[State 2053, 3] ;reposicionar p1
+type = PosAdd
+trigger1 = Time = 0
+;trigger1 != P2dist X = 0
+y = 0
+x = -9
+
+[State 2053, 8]
+type = null ;VelSet
+trigger1 = AnimElem = 3
+x = 2
+y = 0
+
+
+[State 2053, golpes]
+type = PlaySnd
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 5
+trigger3 = AnimElem = 7 
+trigger4 = AnimElem = 9 
+value = S60,0  
+volume = 255
+channel = 1
+
+[State 2053: StopSnd]
+type = StopSnd
+trigger1 = (command = "b") ||(command = "start") || (life = 0) || (power <= 0) || (RoundState = 3)
+channel = 1
+
+
+[State 2053,9];
+type = HitDef
+trigger1 = AnimElem = 3; 
+trigger2 = AnimElem = 5; 
+trigger3 = AnimElem = 7; 
+;trigger4 = AnimElem = 9; 
+attr = S, SA ; stand,especial ataque                    
+getpower = -60
+damage    = 10    ; 
+animtype = Hard                 
+;guardflag = MA                   
+hitflag = MAFD ; D ==> para poder golpear en el suelo.                    
+priority = 7, Hit                                           
+sprpriority = 1
+pausetime = 1,100 ;50  ; tempo que seu char fica para e tempo do p2
+sparkno = S7052
+guard.sparkno = -1
+sparkxy = 0,-36  ;15,-36
+numhits = 1                      
+hitsound = S1000,0 ;5,0 ;sonido d acierto 
+volume = 255
+guardsound = 6,0                
+ground.type = Low           
+ground.slidetime = 0             
+ground.hittime  = 1             
+;ground.velocity = -1             
+;airguard.velocity = -1.9        
+;air.velocity = -1.3,-3      
+;fall.animtype = up
+fall = 0
+
+
+[State 2053,9];
+type = HitDef
+trigger1 = AnimElem = 9    ; 
+;trigger2 = AnimElem = 5; 
+;trigger3 = AnimElem = 7; 
+;trigger4 = AnimElem = 9; 
+attr = S, SA ; stand,especial ataque                    
+getpower = -60
+damage    = 10    ; 
+animtype = Hard                 
+;guardflag = MA                   
+hitflag = MAFD ; D ==> para poder golpear en el suelo.                    
+priority = 7, Hit                                           
+sprpriority = 1
+pausetime = 1,100 ;50  ; tempo que seu char fica para e tempo do p2
+sparkno = S7052
+guard.sparkno = -1
+sparkxy = 0,-55  ;15,-36
+numhits = 1                      
+hitsound = S1000,0 ;5,0 ;sonido d acierto 
+volume = 255
+guardsound = 6,0                
+ground.type = Low           
+ground.slidetime = 0             
+ground.hittime  = 1             
+;ground.velocity = -1             
+;airguard.velocity = -1.9        
+;air.velocity = -1.3,-3      
+;fall.animtype = up
+fall = 0
+
+
+[State 2053, 5bis];si p1 apreta command "b" ve a remate especial_b.
+type = ChangeState
+trigger1 = command = "b"
+trigger1 = Time > 120
+value = 2054
+ctrl = 0
+;--
+[State 2053, 5] ;si esta en el aire,ve a modo fly.
+type = ChangeState
+trigger1 = command = "start"
+trigger1 = Time > 120
+trigger1 = Pos Y < 0
+value = 900
+
+[State 2053, 5bis];si p1 apreta command "start" cancela combo.
+type = ChangeState
+trigger1 = command = "start"
+trigger1 = Time > 120
+value = 0
+ctrl = 1
+;--
+
+[State 2053, 5bis]     ;si power=0
+type = ChangeState
+trigger1 = Power <= 0
+trigger1 = Pos Y < 0
+value = 950             ;estado aterrizaje.
+ctrl = 0
+
+[State 2053, 5bis]     ;si power=0
+type = ChangeState
+trigger1 = power <= 0
+value = 850             ;estado cansancio.
+ctrl = 1
+;--
+
+[State 2053, 5] ;si esta en el aire,ve a estado aterrizaje.
+type = ChangeState
+trigger1 = P2Life <= 0 || RoundState = 3
+trigger1 = Pos Y < 0
+value = 950 ;2055 
+
+[State 2053, 5bis];si p2life=0 o la round termina..
+type = ChangeState
+trigger1 = P2Life <= 0 || RoundState = 3
+value = 0
+ctrl = 1
+;--
+
+[State 2053, 5bis];si p1 no golpea a p2 vuelve a posicion stand.
+type = ChangeState
+trigger1 = MoveHit !
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;CONTINUACION3 COMBO ESPECIAL_b 
+; patadas
+[Statedef 2054] 
+type    = S                      
+movetype= A                      
+physics = S                      
+juggle  = 5                      
+;poweradd= -10
+velset = 0,0                 
+ctrl = 0                     
+anim = 2054  
+
+
+[State 2054, teletrans]
+type = PlaySnd
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 14
+value = S50,2 ;5 ;S50,0 
+volume = 255
+
+
+[State 2054, 1] ;reposicionar p1 para dar la 1ª patada
+type = PosAdd
+trigger1 = AnimElem = 13
+;trigger1 != P2dist X = 0
+y = -25
+x = p2bodydist x - 10   ;20
+
+[State 2054,2]; 1ª patada
+type = HitDef
+trigger1 = AnimElem = 20; 
+attr = A, SA ; air,especial ataque                    
+;getpower = -30
+damage    =  70 ;50    ; 
+animtype = Hard                 
+;guardflag = MA                   
+hitflag = MAFD ; D ==> para poder golpear en el suelo.                    
+priority = 7, Hit                                           
+sprpriority = 1
+pausetime = 1,0 ;100 ; tempo que seu char fica para e tempo do p2
+sparkno = S7051
+guard.sparkno = -1
+sparkxy = 0,-36  ;15,-36
+numhits = 1                      
+hitsound = S1000,0 ;5,0 ;sonido d acierto 
+volume = 255
+guardsound = 6,0                
+ground.type = Hight           
+ground.slidetime = 60             
+ground.hittime  = 20 ;1             
+ground.velocity = -13, -5  ;-8.5,-7  ;x,y             
+guard.velocity = -7
+airguard.velocity = -5, -4         
+air.velocity = -13,-5 ;-7                           
+;fall.animtype = up
+Fall = 1
+fall.recover = 0
+air.fall = 1
+air.recover = 0
+Fall.recovertime = 100 
+;p2stateno = 2055
+
+[State 2054, teletrans]
+type = PlaySnd
+trigger1 = AnimElem = 23
+trigger2 = AnimElem = 31
+value = S50,2 ;S50,0 
+volume = 255
+
+[State 2054, 3] ;teletransportacion p1
+type = PosAdd
+trigger1 = AnimElem = 23
+y = -20
+x = 0
+
+[State 2054, 4] ; para  poder desplazarme fuera de la pantalla.
+type = ScreenBound
+trigger1 = P2MoveType = H
+value	= 1
+movecamera = 80,0
+
+[State 2054, 5] ;teletransportacion p1
+type = null ;PosAdd
+trigger1 = AnimElem = 30, = 0
+;trigger1 != P2dist X = 0
+y = -30
+x = 320
+
+
+[State 2054, 6] ;teletransportacion p1 para  dar la 2ª patada
+type = PosAdd
+trigger1 = AnimElem = 30  ;, = 0  ;24
+;trigger1 != P2dist X = 0
+y = p2bodydist y - 40    ;-30
+x = p2bodydist x + 230 ;250   ;275 ;300
+
+[State 2054, 7]; necesario para q la pantalla siga a p1
+type = VelSet
+trigger1 = AnimElem = 30
+x = 20 ;15
+y = 0
+
+
+[State 2054, 8]
+type = Turn
+trigger1 = AnimElem = 31
+
+
+[State 2054,9]; 2ª golpe
+type = HitDef
+trigger1 = AnimElem = 39; 
+attr = A, SA ; air,especial ataque                    
+;getpower = -30
+animtype = Back                
+damage    = 70,35    ; 
+;guardflag = MA                   
+hitflag = MAFD ; D ==> para poder golpear en el suelo.                    
+priority = 7, Hit                                           
+sprpriority = -2 ;1
+pausetime = 1,1 ;100 ; tempo que seu char fica para e tempo do p2
+sparkno = S7050
+guard.sparkno = -1
+sparkxy = 0,-36  ;15,-36
+numhits = 1                      
+hitsound = S1000,1 ;5,0 ;sonido d acierto 
+volume = 255
+guardsound = 6,0                
+ground.type = Low       
+ground.slidetime = 5             
+ground.hittime  = 20 ;1             
+ground.velocity = 1,20  ;x,y             
+guard.velocity = -7
+airguard.velocity = -5, 4         
+air.velocity = -11,20   ;-8,9                            
+;fall.animtype = up
+Fall = 1
+fall.recover = 0
+air.fall = 1
+air.recover = 0
+Fall.recovertime = 280 
+envshake.time = 50;(int)
+envshake.freq = 60;(float)
+envshake.ampl = -5 ;(int)
+envshake.phase = 0;(float)
+
+
+[State 2054, 10];relentiza animacion p2.EN PRUEBAS.
+type = SuperPause
+trigger1 = AnimElem = 20, = 0
+trigger2 = AnimElem = 20, = 3
+trigger3 = AnimElem = 20, = 6
+trigger4 = AnimElem = 20, = 9
+trigger5 = AnimElem = 20, = 12
+trigger6 = AnimElem = 20, = 15
+trigger7 = AnimElem = 20, = 18
+trigger8 = AnimElem = 21, = 1
+trigger9 = AnimElem = 21, = 4
+trigger10 = AnimElem = 22, = 2
+trigger11 = AnimElem = 22, = 5
+trigger12 = AnimElem = 22, = 8
+trigger13 = AnimElem = 22, = 11
+trigger14 = AnimElem = 22, = 14
+trigger15 = AnimElem = 24, = 0
+trigger16 = AnimElem = 26, = 0
+trigger17 = AnimElem = 28, = 0
+trigger18 = AnimElem = 30, = 0
+trigger19 = AnimElem = 30, = 3
+trigger20 = AnimElem = 30, = 6
+trigger21 = AnimElem = 30, = 9
+trigger22 = AnimElem = 30, = 12
+trigger23 = AnimElem = 30, = 15
+trigger24 = AnimElem = 30, = 18
+trigger25 = AnimElem = 30, = 21
+trigger26 = AnimElem = 30, = 24
+trigger27 = AnimElem = 32, = 0
+trigger28 = AnimElem = 34, = 0
+trigger29 = AnimElem = 36, = 0
+trigger30 = AnimElem = 38, = 0
+trigger31 = AnimElem = 38, = 3
+trigger32 = AnimElem = 38, = 6
+trigger33 = AnimElem = 38, = 9
+trigger34 = AnimElem = 38, = 12
+trigger35 = AnimElem = 38, = 15
+trigger36 = AnimElem = 38, = 18
+trigger37 = AnimElem = 38, = 21
+trigger38 = AnimElem = 38, = 24
+trigger39 = AnimElem = 38, = 27
+time = 3 ;10
+movetime = 3 ;10
+darken = 0
+;pos = 15,-45
+anim = -1 ;102
+
+[State 2055, PausA]
+type = null ; SuperPause
+;trigger1 = Time = 0 ;AnimElem = 1    ; 
+trigger1 = p2stateNo = 5110
+time = 100
+movetime = 100
+darken = 0
+;pos = 15,-45
+anim = -1 ;kitar efecto
+;sound = S2000,0 ;20,0
+;volume = 255
+
+[State 2054, 11bis];si  termina ve a estado d  aterrizaje.
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 950 ;2055
+ctrl = 1
+
+
+[State 2054, 11bis];si p1 no golpea a p2 ve a posicion atrerrizaje.
+type = ChangeState
+trigger1 = MoveHit != 1
+trigger1 = AnimTime = 0
+value = 950
+ctrl = 1
+
+
+;---------------------------------------------------------------------------
+;CONTINUACION4 COMBO ESPECIAL_b 
+; Final aterrizaje.
+;Statedef no utilizado, antiguo estado de aterrizaje xa especial_b.
+;usamos el statedef 950 (stado de aterrizaje general) 
+[Statedef 2055] 
+type    = S                      
+movetype= I                      
+physics = S                      
+juggle  = 1                      
+;poweradd= -10
+velset = 0,2 ;0                 
+ctrl = 0                     
+anim = 2055  
+
+[State 2055, 1]
+type = PlaySnd
+trigger1 = Time = 0 ; 1
+;trigger1 = stateno = 40 ;inicio salto
+value = 50,0
+
+[State 2055, PausA]
+type = null ;SuperPause
+trigger1 = Time = 0 ;AnimElem = 1    ; 
+trigger1 = p2stateNo = 5110
+time = 100
+movetime = 100
+darken = 0
+;pos = 15,-45
+anim = -1 ;kitar efecto
+;sound = S2000,0 ;20,0
+;volume = 255
+
+
+[State 2054, 11bis];
+type = null ;VelMul
+trigger1 = Pos Y <= 5
+;trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+[State 2055, 2];
+type = ChangeState
+trigger1 = Pos Y >= 2
+;trigger1 = AnimTime = 0
+value = 52 ;0
+ctrl = 1
+
+
+
+
+;====================================================================
+;BOLA ENERGIA PEQUEÑA (inicio)
+
+;Lanzamiento 1ªbola
+[Statedef 2500]
+type    = S
+movetype= A
+physics = S
+velset = 0,0,0
+juggle = 4
+ctrl = 0
+poweradd= -100                     
+anim = 2500 ; animacion char 
+
+[State 830, sound];
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 2000,1
+volume = 255
+;loop = 1
+channel = 0
+
+[State 2500, efecto];efecto al lanzar la bola
+type = Explod
+trigger1 = animelem = 2
+anim = 8005
+ID = 8005
+postype = p1
+pos = 36, -37 ;34, -37
+sprpriority = 3 ;-1
+supermovetime = 0 ; tiempo q la animacion no se congelara durante una superpausa
+removetime = -2 ;30 
+bindtime = -1
+ownpal = 1
+shadow = 0,0,0 ; 0-255
+removeongethit = 1
+scale = 0.2,0.2
+ontop = 0
+
+[State 2500:	PalFX]
+type			= PalFX
+trigger1		= (!Time)
+time			= 10 ;40
+add			= 0,0,0 ;100,100,100
+mul			= 256,256,256
+sinadd		= -100,-100,-100, 10
+invertall		= 0
+color			= 256
+
+[State 2500:	BGPalFX]
+type			= BGPalFX
+trigger1		= ProjContact = 1 ;(MoveHit)
+time			= 5
+add			= 75,75,75
+mul			= 256,256,256
+sinadd		= 80,80,80,4
+invertall		= 0
+color			= 256
+persistent		= 0
+ignorehitpause	= 1
+
+
+[State 2500 , lanzado]
+type = Projectile
+trigger1 = AnimElem = 2 ; imagem que lançara o fire ball 
+projanim = 8000 ; numero do fire ball
+projhitanim = 8010 ; quando acerta o p2 ,efeito 
+projshadow = 0,0,0
+projpriority = 4 
+projremovetime = 100 ; tempo que o fire ball ficara ativo 
+projid = 8000
+velocity = 6, IfElse(Random <= 499,-0.8,0.8) ; velocidade do fire ball
+accel = .2, IfElse(Random <= 499,-0.1,0.1)
+offset = 23,-37 ; a posiçao onde o fire ball vai sair 
+attr = S, SP ; indica que é um SP , special Atack 
+damage   = 10,5 ; damage que tira , e damage defendendo
+animtype = hard
+guardflag = MA
+hitflag = MAFPDP
+pausetime = 1,3
+hitsound   = S1000,2 ;5,3 ; som quando acerta o fire ball 
+guardsound = S1000,2
+sparkno = -1
+ground.type = Low
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -5
+air.animtype = Low
+air.velocity = -1,-1
+air.juggle = 2
+projscale = 0.6, 0.6
+palfx.time		= 12
+palfx.mul		= 256,256,256
+palfx.add		= 100,100,100 ;200,50,10
+palfx.sinadd	= 175,25,5,4
+envshake.time 	= 12
+envshake.freq 	= 120
+envshake.ampl 	= -4
+persistent		= 0
+
+
+[State 2500, 3]
+type=ChangeState
+trigger1=AnimTime=0
+trigger1=Pos Y < 0
+value=900
+
+
+[State 1000, end]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1 
+
+;------------------------------------
+
+;Lanzamiento 2ªbola (encadenamiento)
+[Statedef 2501]
+type    = S
+movetype= A
+physics = S
+velset = 0,0,0
+juggle = 4
+ctrl = 0
+poweradd= -100                     
+anim = 2501 ; animacion char 
+
+[State 830, sound];
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 2000,1
+volume = 255
+channel = 1
+
+[State 2501:	PalFX]
+type			= PalFX
+trigger1		= (!Time)
+time			= 40
+add			= 0,0,0 ;100,100,100
+mul			= 256,256,256
+sinadd		= -100,-100,-100, 40
+invertall		= 0
+color			= 256
+
+[State 2501:	BGPalFX]
+type			= BGPalFX
+trigger1		= ProjContact = 1 ;(MoveHit)
+time			= 5
+add			= 75,75,75
+mul			= 256,256,256
+sinadd		= 80,80,80,4
+invertall		= 0
+color			= 256
+persistent		= 0
+ignorehitpause	= 1
+
+[State 2501, efecto];efecto al lanzar la bola
+type = Explod
+trigger1 = animelem = 2
+anim = 8005
+ID = 8006
+postype = p1
+pos = 32, -39
+sprpriority = 3 ;-1
+supermovetime = 0 ; tiempo q la animacion no se congelara durante una superpausa
+removetime = -2 ;30 
+bindtime = -1
+ownpal = 1
+shadow = 0,0,0 ; 0-255
+removeongethit = 1
+scale = 0.2,0.2
+ontop = 0
+
+
+[State 2500 , lanzado]
+type = Projectile
+trigger1 = AnimElem = 2 ; imagem que lançara o fire ball 
+projanim = 8000 ; numero do fire ball
+projhitanim = 8010 ; quando acerta o p2 ,efeito 
+projshadow = 0,0,0
+projpriority = 4 
+projremovetime = 100 ; tempo que o fire ball ficara ativo 
+projid = 8001
+velocity = 6, IfElse(Random <= 499,-0.8,0.8) ; velocidade do fire ball
+accel = .2, IfElse(Random <= 499,-0.1,0.1)
+offset = 23,-37 ; a posiçao onde o fire ball vai sair 
+attr = S, SP ; indica que é um SP , special Atack 
+damage   = 10,5 ; damage que tira , e damage defendendo
+animtype = hard
+guardflag = MA
+hitflag = MAFPDP
+pausetime = 1,3
+hitsound   = S1000,2 ; som quando acerta o fire ball 
+guardsound = S1000,2
+sparkno = -1
+ground.type = Low
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -5
+air.animtype = Low
+air.velocity = -1,-1
+air.juggle = 2
+projscale = 0.6, 0.6
+palfx.time		= 12
+palfx.mul		= 256,256,256
+palfx.add		= 100,100,100  ;200,50,10
+palfx.sinadd	= 175,25,5,4
+envshake.time 	= 12
+envshake.freq 	= 120
+envshake.ampl 	= -4
+persistent		= 0
+
+
+[State 2501, 3]
+type=ChangeState
+trigger1=AnimTime=0
+trigger1=Pos Y < 0
+value=900
+
+[State 2501, end]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1 
+
+
+;---------------------------------------------------------------------------
+;COMBO ESPECIAL_c (inicio)
+ ;Dragon ballZ style atack
+; Comienza teletrans.
+[Statedef 2100] 
+type    = S                      
+movetype= A                      
+physics = S                      
+juggle  = 5                      
+poweradd= -1000
+velset = 0,0                 
+ctrl = 0                     
+anim = 2100  
+
+
+[State 2054, teletrans]
+type = PlaySnd
+trigger1 = AnimElem = 1
+;trigger2 = AnimElem = 14
+value = 57,8  
+volume = 255
+
+[State 2055, PausA]
+type = SuperPause
+trigger1 = AnimElem = 50 ;45    ; 
+;trigger1 = p2stateNo = 5110
+time = 110 ;137 ; 122 
+movetime = 110 
+darken = 0
+;pos = 15,-45
+anim = -1 ;kitar efecto
+;sound = S2000,0 ;20,0
+;volume = 255
+
+
+[State 2054, 8]
+type = Turn
+trigger1 = p2Dist X <= -50 ;p2bodydist x <= -2   
+trigger1 = AnimElem = 41 ;46 ;51 
+
+
+[State 2052,Sombra]
+type = null ;AfterImage
+trigger1 = AnimElem = 1
+time = 240
+trans = add
+TimeGap  = 2
+FrameGap = 2
+length = 15 ;6
+PalBright   =  0, 0, 0
+PalContrast = 120,120,120 ;128,128,128
+PalAdd      =  0,  0,  0
+PalMul      =   1,  1,  1
+
+
+[State 2054, 1] ; 1ªteletr p1.  
+type = PosAdd
+trigger1 = AnimElem = 5
+;trigger1 != P2dist X = 0
+y = -15
+x = 10     ;p2bodydist x - 10   ;20
+
+[State 2054, 1] ;2ªteletr p1.  
+type = PosAdd
+trigger1 = AnimElem = 17;15
+;trigger1 != P2dist X = 0
+y = -20
+x = 30     ;p2bodydist x - 10   ;20
+
+[State 2054, 1] ;3ªteletr p1.  
+type = PosAdd
+trigger1 = AnimElem = 29 ;25
+;trigger1 != P2dist X = 0
+y = 25
+x = 50     ;p2bodydist x - 10   ;20
+
+[State 2054, 1] ;4ªteletr p1.  
+type = PosAdd
+trigger1 = AnimElem = 40
+;trigger1 != P2dist X = 0
+y = -10
+x = 50     ;p2bodydist x - 10   ;20
+
+
+
+[State 2100, end]; si esta en el aire ve a modo FLY
+type= null ;ChangeState
+trigger1=AnimTime=0
+trigger1=Pos Y < 0
+value=900
+
+[State 2100, end1]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 2101 ;0
+;ctrl = 1 
+
+
+;------------------------------------------------------------------------
+
+;CONTINUACION COMBO ESPECIAL_c (superpatada)
+
+ ;Dragon ballZ style atack
+; Comienza teletrans.
+[Statedef 2101] 
+type    = A                      
+movetype= A                      
+physics = S                      
+juggle  = 5                      
+;poweradd= -1000
+velset = 0,0                 
+ctrl = 0                     
+anim = 2101  
+
+
+[State 2101, teletrans]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 50,5  
+volume = 255
+
+
+[State 2101, 1] ;reposicionar p1 al lado de p2
+type = PosAdd
+trigger1 = AnimElem = 1
+;trigger1 != P2dist X = 0
+y = p2bodydist y - 35   ;20
+x = p2Dist x -20    ;p2bodydist x - 10   ;20
+
+
+[State 2054,2]; superpatada
+type = HitDef
+trigger1 = AnimElem = 19; 
+attr = A, SA ; air,especial ataque                    
+;getpower = -30
+damage    =  100 ;50    ; 
+animtype = Hard                 
+;guardflag = MA                   
+hitflag = MAFD ; D ==> para poder golpear en el suelo.                    
+priority = 7, Hit                                           
+sprpriority = 1
+pausetime = 1,0 ;100 ; tempo que seu char fica para e tempo do p2
+sparkno = S7050
+guard.sparkno = -1
+sparkxy = 0,-36  ;15,-36
+numhits = 1                      
+hitsound = S1000,1 ;5,0 ;sonido d acierto 
+volume = 255
+guardsound = 6,0                
+ground.type = Hight           
+ground.slidetime = 60             
+ground.hittime  = 20 ;1             
+ground.velocity = -13, -5  ;-8.5,-7  ;x,y             
+guard.velocity = -7
+airguard.velocity = -5, -4         
+air.velocity = -13,-5 ;-7                           
+;fall.animtype = up
+Fall = 1
+fall.recover = 0
+air.fall = 1
+air.recover = 0
+Fall.recovertime = 100 
+;p2stateno = 2055
+
+[State 2100, end]; si esta en el aire ve a modo FLY
+type=ChangeState
+trigger1=AnimTime=0
+trigger1=Pos Y < 0
+value=900
+
+[State 2100, end1]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1 
+
+
+
+
+
+
+
+
+
+;==============================================
+;COMBO ESPECIAL_x (inicio) MULTICOMBO
+
+
+;inicio(krillin  corre)
+[Statedef 2150] ;estado inicial
+type    = S                      
+movetype= A                      
+physics = S                      
+juggle  = 1                      
+poweradd= -10
+velset = 0,0                 
+ctrl = 0                     
+anim = 2150  ;animacion de correr adelante            
+
+
+[State 2050, 1]
+type = SuperPause
+trigger1 = AnimElem = 1
+pos = 15,-45
+anim = 102
+sound = s2000,0 ;20,0
+volume = 255
+
+[State 2050,Sombra]
+type = AfterImage
+trigger1 = AnimElem = 1
+time = 100
+trans = add
+TimeGap  = 2
+FrameGap = 2
+length = 15 ;6
+PalBright   =  0, 0, 0
+PalContrast = 120,120,120 ;128,128,128
+PalAdd      =  0,  0,  0
+PalMul      =   1,  1,  1
+
+
+[State 2050, teletrans]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = S50,1 ;S50,0 
+volume = 255
+
+
+[State 2050, 3] ;correr  hacia delante
+type = VelAdd
+trigger1 = AnimElem = 2
+;trigger1 != P2dist X = 0
+y = 0
+x = 35;25
+
+
+[State 2050, invulnerable];
+type = null ;NotHitBy ;no puedo ser golpeado por...
+trigger1 = time = 1
+value = SCA ; stand,crouch,air posiciones de p2 
+
+[State 2050, invulnerable];
+type = HitBy ;puedo ser golpeado por...
+trigger1 = time = 1
+value = S,HP ; stand,Hiper proyec 
+
+
+
+[State 2050,Hit] ;golpe si p1 se encuentra con p2 mientras corre.
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+hitflag = MAF
+guardflag = M                   
+pausetime = 1,200 ;8 
+priority = 7,hit ;99999, Miss    ;Throw has low priority, should be miss or dodge type.
+sprpriority = 2      ;delante  de p2
+hitsound = S2,0
+guardsound = S2,0
+sparkno = -1
+forcestand = 1
+p2facing = 1
+p1stateno = 2151
+;p2stateno = 3052
+
+[State 2050, 6]; si acierto ve a estado "combo" .
+type = null ;ChangeState
+triggerall = AnimTime = 0
+trigger1 = MoveHit 
+;trigger2 = P2dist X = 0 ; si la distancia entre p1 y p2 = 0
+value = 2151
+ctrl = 0
+
+
+[State 2101, 1] ;reposicionar p1 al lado de p2
+type = null ;PosAdd
+trigger1 = MoveHit
+;trigger1 != P2dist X = 0
+y = p2bodydist y - 0
+x = p2Dist x - 2    ;p2bodydist x - 10   ;20
+
+
+[State 2050, 6] ;si esta en el aire,ve a modo fly.
+type = null ;ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Pos Y < 0
+value = 900
+
+[State 2050, 6bis];si p1 no golpea a p2 vuelve a posicion stand.
+type = ChangeState
+trigger1 = MoveHit != 1
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------
+
+; posicion de puñetazo para iniciar combo 
+[Statedef 2151] ;
+type    = S                      
+movetype= I                      
+physics = S                      
+juggle  = 1                      
+;poweradd= -10
+velset = 0,0                 
+ctrl = 0                     
+anim = 2151
+
+
+[State 2050, teletrans]
+type = PlaySnd
+trigger1 = Time = 80; el mismo q el de changestate
+value = S50,5 
+volume = 255
+
+
+[State 840, 3] ;reposicionar p1
+type = PosAdd
+trigger1 = Time = 0
+;trigger1 != P2dist X = 0
+y = p2bodydist y + 0  ;y = 0
+x = p2bodydist x = 0   ;0
+
+
+[State 2000, 5bis];
+type = ChangeState
+trigger1 = Time = 80
+value = 2152
+ctrl = 0
+
+
+
+;---------------------------------------------------------------------
+
+
+; combo GOLPE VOLTERETA
+[Statedef 2152] ;
+type    = A                      
+movetype= A ;  I                      
+physics = S                      
+juggle  = 1                      
+poweradd= -490
+velset = 0,0                 
+ctrl = 0                     
+anim = 2152
+
+
+[State 2050, teletrans]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = S40,3 
+volume = 255
+
+
+[State 840, 3] ;reposicionar p1
+type = PosAdd
+trigger1 = Time = 0
+;trigger1 != P2dist X = 0
+y = p2bodydist y - 5  ;y = 0
+x = p2bodydist x = 0   ;modificar este valor a (+) qnd krillin se kede parado justo delante de p2.
+
+[State 2054, 10];relentiza animacion p2.EN PRUEBAS.
+type = SuperPause
+trigger1 = AnimElem = 1, = 0
+trigger2 = AnimElem = 1, = 3
+trigger3 = AnimElem = 1, = 6
+trigger4 = AnimElem = 1, = 9
+trigger5 = AnimElem = 2, = 2
+trigger6 = AnimElem = 2, = 5
+trigger7 = AnimElem = 2, = 8
+trigger8 = AnimElem = 3, = 1
+trigger9 = AnimElem = 3, = 4
+trigger10 = AnimElem = 3, = 7
+trigger11 = AnimElem = 4, = 0
+trigger12 = AnimElem = 4, = 3
+trigger13 = AnimElem = 4, = 6
+trigger14 = AnimElem = 4, = 9
+trigger15 = AnimElem = 5, = 2
+trigger16 = AnimElem = 5, = 5
+trigger17 = AnimElem = 5, = 8
+time = 3 ;10
+movetime = 3 ;10
+darken = 0
+;pos = 15,-45
+anim = -1 ;102
+
+
+
+[State 1152, 2]
+type = HitDef
+trigger1 = AnimElem = 1 ;
+attr = A, SA ;
+damage    = 20,10
+priority  = 3
+animtype  = up
+hitflag = MAF
+guardflag = L
+pausetime = 0,1 ;10,11
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = s2,2
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 0
+ground.hittime  = 12
+ground.velocity = 0, -17
+air.velocity = -1.5,-1
+fall = 1
+
+
+[State 840, 3] ;reposicionar p1
+type = PosAdd
+trigger1 = AnimElem = 5
+;trigger1 != P2dist X = 0
+y = 1
+;x = p2bodydist x = 0   
+
+
+[State 2000, 5bis];
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 2153
+ctrl = 1
+
+;---------------------------------
+
+;  Se prepara para golpe opcion
+[Statedef 2153] ;
+type    = A                      
+movetype= A ;  I                      
+physics = S                      
+juggle  = 1                      
+;poweradd= -10
+velset = 0,0                 
+ctrl = 0                     
+anim = 2153
+
+
+[State 2050, teletrans]
+type = PlaySnd
+trigger1 = Time = 1
+value = S40,2 
+volume = 255
+
+[State 2054, 10];relentiza animacion p2.EN PRUEBAS.
+type = SuperPause
+trigger1 = AnimElem = 1, = 0
+trigger2 = AnimElem = 1, = 3
+trigger3 = AnimElem = 1, = 6
+trigger4 = AnimElem = 1, = 9
+trigger5 = AnimElem = 1, = 12
+trigger6 = AnimElem = 1, = 15
+trigger7 = AnimElem = 1, = 18
+trigger8 = AnimElem = 1, = 21
+trigger9 = AnimElem = 1, = 24
+trigger10 = AnimElem = 1, = 27
+;trigger11 = AnimElem = 1, = 30
+;trigger12 = AnimElem = 1, = 33
+;trigger13 = AnimElem = 1, = 36
+;trigger14 = AnimElem = 1, = 39
+time = 2 ;10
+movetime = 2 ;10
+darken = 0
+;pos = 15,-45
+anim = -1 ;102
+
+
+
+[State 2050, 3] ;salto  hacia p2
+type = VelAdd
+trigger1 = time = 0
+;trigger1 != P2dist X = 0
+y = -9
+x = 0
+
+
+[State 840, 3] ;reposicionar p1
+type = null ;PosAdd
+trigger1 = Time = 10
+;trigger1 != P2dist X = 0
+y = p2bodydist y - 5  ;y = 0
+x = p2bodydist x = 0   ;modificar este valor a (+) qnd krillin se kede parado justo delante de p2.
+
+
+
+[State 2000, 5bis];
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1254  ;opcion 1
+;value = 1255 ;opcion 2
+ctrl = 0
+
+
+
+;----------------------------------------
+
+;fin del combo OPCION 1(golpe a dos manos)
+;
+[Statedef 1254]
+type    = S
+movetype= A
+physics = S
+juggle  = 5
+;poweradd= -100
+ctrl = 0
+anim = 1254
+sprpriority = 2
+
+[State 2054, teletrans]
+type = null ;PlaySnd
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 10
+value = S50,5 ;S50,0 
+volume = 255
+
+
+[State 2054, 1] ;reposicionar p1 
+type = null ;PosAdd
+trigger1 = AnimElem = 5, = 1
+;trigger1 != P2dist X = 0
+y = p2bodydist y - 20  ;-45
+x = p2bodydist x + 230
+
+[State 1403, 2]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = A, SA
+damage    = 80,30
+priority  = 7, hit
+animtype  = Back
+hitflag = MAFD
+guardflag = L
+pausetime = 2,0 ;10,11
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = S1000,1 ;s2,3
+guardsound = 6,0
+ground.type = Trip ;High
+ground.slidetime = 5
+ground.hittime  = 20
+ground.velocity = 1,20
+air.velocity = -11,40
+fall = 1
+envshake.time = 50;(int)
+envshake.freq = 60;(float)
+envshake.ampl = -5 ;(int)
+envshake.phase = 0;(float)
+
+[State 1403, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+
+
+
+;----------------------------------------
+
+;fin del combo OPCION 2(teleporte y patada)
+;
+[Statedef 1255]
+type    = S
+movetype= A
+physics = S
+juggle  = 5
+;poweradd= -100
+ctrl = 0
+anim = 1255
+sprpriority = 2
+
+[State 2054, teletrans]
+type = null ;PlaySnd
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 10
+value = S50,5 ;S50,0 
+volume = 255
+
+
+[State 900, Turn]
+type = Turn
+;Trigger1 = P2Dist X < 0
+trigger1 = AnimElem = 1 , = 1  
+
+
+[State 2054, 1] ;reposicionar p1 
+type = PosAdd
+trigger1 = AnimElem = 1 , = 0
+;trigger1 != P2dist X = 0
+y = p2bodydist y - 5
+x = p2bodydist x + 50
+
+[State 1403, 2]
+type = HitDef
+trigger1 = AnimElem = 3
+attr = A, SA
+damage    = 80,30
+priority  = 7, hit
+animtype  = Back
+hitflag = MAFD
+guardflag = L
+pausetime = 2,0 ;10,11
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = S1000,1 ;s2,3
+guardsound = 6,0
+ground.type = Trip ;High
+ground.slidetime = 5
+ground.hittime  = 20
+ground.velocity = 1,20
+air.velocity = -11,40
+fall = 1
+envshake.time = 50;(int)
+envshake.freq = 60;(float)
+envshake.ampl = -5 ;(int)
+envshake.phase = 0;(float)
+
+[State 1403, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+
+
+
+
+
+
+
+;=============================================================================
+;SUPER TECNICAS (Hiper motions)
+;=============================================================================
+
+
+
+;BOLA_GRANDE
+;inicio
+[Statedef 3000]
+type    = S
+movetype= A
+physics = S
+velset = 0,0,0
+juggle = 4
+ctrl = 0
+poweradd= -1000                     
+anim = 3000 ; animacion char 
+
+[State 830, carga];
+type = PlaySnd
+trigger1 = AnimElem = 3, = 40
+;trigger1 = AnimElem = 3
+value = 2000,4
+volume = 255
+channel = 1
+
+[State 830, lanzamiento];
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = 2000,5
+volume = 255
+channel = 2
+
+
+[State 2501:	PalFX]
+type			= null ;PalFX
+trigger1		= (!Time)
+time			= 40
+add			= 0,0,0 ;100,100,100
+mul			= 256,256,256
+sinadd		= -100,-100,-100, 40
+invertall		= 0
+color			= 256
+
+[State 2501:	BGPalFX]
+type			= BGPalFX
+trigger1		= ProjContact = 1 ;(MoveHit)
+time			= 5
+add			= 75,75,75
+mul			= 256,256,256
+sinadd		= 80,80,80,4
+invertall		= 0
+color			= 256
+persistent		= 0
+ignorehitpause	= 1
+
+
+[State 900, Turn]
+type = Turn
+Trigger1 = P2Dist X < 0
+
+
+[State 3000, acumulacion];efecto de acumulacion energia.
+type = Explod
+trigger1 = animelem = 2
+anim = 8055
+ID = 8055
+postype = p1
+pos = -15, -30
+sprpriority = 3 ;-1
+supermovetime = 0 ; tiempo q la animacion no se congelara durante una superpausa
+removetime = -2 ;30 
+bindtime = -1
+ownpal = 1
+shadow = 0,0,0 ; 0-255
+removeongethit = 1
+scale = 0.2, 0.2
+ontop = 0
+
+
+[State 300, efecto];efecto energia acumulada
+type = Explod
+trigger1 = animelem = 4
+anim = 8060
+ID = 8060
+postype = p1
+pos = -15, -30
+sprpriority = 3 ;-1
+supermovetime = 0 ; tiempo q la animacion no se congelara durante una superpausa
+removetime = -2 ;30 
+bindtime = -1
+ownpal = 1
+shadow = 0,0,0 ; 0-255
+removeongethit = 1
+scale = 1.0,1.0
+ontop = 0
+
+
+[State 3000 , lanzado]
+type = Projectile
+trigger1 = AnimElem = 6 ; imagem que lançara o fire ball 
+projanim = 8050 ; numero do fire ball
+projhitanim = 8010 ; quando acerta o p2 ,efeito 
+projshadow = 0,0,0
+projpriority = 4 
+projremovetime = 100 ; tempo que o fire ball ficara ativo 
+projid = 8001
+velocity = 6,0 ;IfElse(Random <= 499,-0.8,0.8) ; velocidade do fire ball
+accel = .2 ;IfElse(Random <= 499,-0.1,0.1)
+offset = 23,-37 ; a posiçao onde o fire ball vai sair 
+attr = S, SP ; indica que é um SP , special Atack 
+damage   = 10,5 ; damage que tira , e damage defendendo
+animtype = hard
+guardflag = MA
+hitflag = MAFPDP
+pausetime = 1,3
+hitsound   = S1000,2 ; som quando acerta o fire ball 
+guardsound = S1000,2
+sparkno = -1
+ground.type = Low
+ground.slidetime = 15
+ground.hittime  = 15
+ground.velocity = -5
+air.animtype = Low
+air.velocity = -1,-1
+air.juggle = 2
+projscale = 0.9, 0.9 
+palfx.time		= 12
+palfx.mul		= 256,256,256
+palfx.add		= 100,100,100  ;200,50,10
+palfx.sinadd	= 175,25,5,4
+envshake.time 	= 12
+envshake.freq 	= 120
+envshake.ampl 	= -4
+persistent		= 0
+
+[State 2053: StopSnd]
+type = StopSnd
+trigger1 = (life = 0) || (stateno != 3000)
+channel = 1
+
+
+[State 2501, 3]
+type=ChangeState
+trigger1=AnimTime=0
+trigger1=Pos Y < 0
+value=900
+
+[State 2501, end]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1 
+
+
+;-------------------------------
+
+
+
+
+;---------------------------------------------------------------------------
+; Override common states (use same number to override) :
+;---------------------------------------------------------------------------
+;
+;Mirar krillin_common1.cns para:
+;*run_back
+;*estados de modo fly
+;
+;---------------------------------------------------------------------------
+; States that are always executed (use statedef -2)
+;---------------------------------------------------------------------------
+
+;---------------------------------------------------------------------------
+; States that are executed when in self's state file (use statedef -3)
+;---------------------------------------------------------------------------
+
+[Statedef -3]
+
+;Sonido q sonara siempre q krillin aterrice en el suelo.
+[State -3, aterrizar salto]
+type = PlaySnd
+triggerall = Time = 1
+trigger1 = stateno = 52 ;caida al  suelo.
+;trigger2 = stateno = 5120 ;levantarse del suelo de un salto.
+value = 40, 0
+
+;-----------------
+;sonido del salto
+[State -3, salto]
+type = PlaySnd
+triggerall = Time = 4 ; 1
+trigger1 = stateno = 40 ;inicio salto
+value = 40,1
+
+; Sonido aleatorio cuando recive golpe
+[State -3, golpe]
+type = PlaySnd
+triggerall = (random < 200) && (time = 1) && (alive = 1)
+trigger1 = (stateno = 5000) || (stateno = 5010) || (stateno = 5020)
+value = 2000,14
+channel = 0
+

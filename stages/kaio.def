@@ -1,0 +1,77 @@
+;Dragon Ball Z M.U.G.E.N. Edition 2
+
+; BackGround - Temple of Kamisama - (HD) 
+; by EmuBoarding
+; E-Mail: snowlennon@zipmail.com.br
+; Mugen Eleven - http://www.mugen11.com
+; MugeNow - http://www.MugeNow.cjb.net
+; Riped: Dragon ball Z HYPER DIMENSION - SNES
+; Edição de Graficos: EmuBoarding
+
+;--------------------------------------------------------
+[Info]
+name = "Temple of Mr Kaio"
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -95
+boundright = 96
+boundhigh = -200
+boundlow = 0
+verticalfollow = 0.6
+tension = 110
+
+[PlayerInfo]
+p1startx = -50       
+p1starty = 0          
+p1startz = 0           
+p1facing = 1 
+         
+p2startx = 50
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+leftbound  = -1000 
+rightbound =  1000 
+topbound  =  0     
+botbound  =  0     
+
+[Scaling]
+topz     = 0       
+botz     = 50      
+topscale = 1      
+botscale = 1.2     
+
+[Bound]
+screenleft = 15    
+screenright = 15  
+
+[StageInfo]
+zoffset   = 210   
+autoturn  = 1   
+
+[Shadow]
+color = 128,128,128
+yscale = .3
+
+[Music]
+bgmusic = sound/northern.mp3
+bgvolume = 600
+[BGdef]
+spr = kaio.sff
+
+;principal
+[BG 0]
+type  = normal
+spriteno = 0, 0
+layerno = 0                
+start = 0, 0
+delta = 1, 1
+trans = none
+mask  = 1
+tile  = 0, 0
+
+
+

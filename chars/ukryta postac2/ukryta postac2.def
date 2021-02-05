@@ -1,0 +1,34 @@
+[info]
+name ="Gogeta"
+displayname ="Ultimate Gogeta"
+author ="YoungDragun"
+versiondate =3/11/2008
+mugenversion =;5.0
+pal.defaults =1,2,3,4,5,6,
+
+
+
+[files]
+cmd=gogetaai.cmd
+cns=gogeta.cns
+st=gogeta.cns
+st1=flight.cns
+st2=fusion.cns
+stcommon=common.cns
+sprite=gogeta.sff
+anim=gogeta.air
+sound=gogeta.snd
+pal1=gogeta.act
+pal2=gogeta1.act
+pal3=gogeta2.act
+pal4=gogeta3.act
+pal5=gogeta4.act
+pal6=gogeta5.act
+
+
+
+[arcade]
+intro.storyboard=
+ending.storyboard=
+
+

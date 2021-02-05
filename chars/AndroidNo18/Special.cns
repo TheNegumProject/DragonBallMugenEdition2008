@@ -1,0 +1,1030 @@
+;===========================================================================
+;-| special |-----------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+;slap attack: start
+[statedef 1000]
+type = s
+movetype = a
+physics = s
+ctrl = 0
+velset = 0, 0
+poweradd = ifelse(fvar(3) != 0,0,160)
+juggle  = 8
+
+[state 1500, changeanim]
+type = changeanim
+trigger1 = time = 0
+value = 1000
+
+[state 1500, changestate]
+type = changestate
+trigger1 = animtime = 0
+value = 1001
+ctrl = 0
+
+;-------------------------------------------------------------------------------
+;slap attack: Dash Forward
+[statedef 1001]
+type    = s
+movetype = a
+physics = n
+ctrl = 0
+
+[state 1090:	makedust]
+type 			= makedust
+trigger1 		= time > 0
+pos 			= -5, 0
+spacing 		= 4
+
+[state 100,1]
+type = playsnd
+trigger1 = time= 1
+value = 1, 14
+channel = 2
+persistent = 0
+
+[state 1501, changeanim]
+type = changeanim
+trigger1 = time = 0
+value = 1001
+
+[state 1501, velset]
+type = velset
+trigger1 = time = 0
+x = 7
+
+[state 1501, nowalk]
+type = assertspecial
+trigger1 = 1
+flag = nowalk
+
+[state 1501,changestate]
+type = changestate
+trigger1 = p2bodydist x < 10
+value = 1003
+
+[state 1501, end]
+type = changestate
+trigger1 = animtime = 0
+value = 1002
+
+;-------------------------------------------------------------------------------
+;slap attack: stop running
+[statedef 1002]
+type = s
+movetype = i
+physics = n
+anim = 1002
+
+[state 1502, velmul]
+type = velmul
+trigger1 = 1
+x = .80
+
+[state 1501, velset]
+type = velset
+trigger1 = animelem = 2
+x = 0
+
+[state 1502, end]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;-------------------------------------------------------------------------------
+;slap attack: success grab
+[statedef 1003]
+type = s
+movetype = a
+physics = s
+velset = 0, 0
+
+[state 1501, changeanim]
+type = changeanim
+trigger1 = time = 0
+value = 1003
+
+[state 800,hitdef]
+type = hitdef
+trigger1 = animelem = 2
+trigger1 = p2movetype != h
+trigger1 = p2stateno != [150,155]
+attr = s, nt
+priority = 3,miss
+getpower = 0
+hitflag = m-
+numhits = 0
+sparkno = -1
+p1facing = 1
+p2facing = 1
+p1stateno = 1004
+p2stateno = 1006
+p2getp1state = 1
+hitsound = -1
+
+[state 4150,0]
+type = nothitby
+trigger1 = animelem = 2
+value = sca
+
+[state 1502, end]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;-------------------------------------------------------------------------------
+;slap attack: slapping
+[statedef 1004]
+type = s
+movetype = a
+physics = n
+anim = 1004
+velset = 0, 0
+poweradd = 0
+sprpriority = 3
+
+[state 810,targetbind]
+type = targetstate
+trigger1 = time = 0
+value = 1005
+
+[state 4150,0]
+type = nothitby
+trigger1 = 1
+value = sca
+
+[state 810,assertspecial]
+type = assertspecial
+trigger1 = 1
+flag = noautoturn
+
+[state 810,explod]
+type = explod
+trigger1 = animelem = 1
+anim = 2150
+pos = 32,-80
+postype = p1
+sprpriority = 1
+bindtime = 1
+ownpal = 1
+
+[state 100,1]
+type = playsnd
+trigger1 = animelem = 3,=1
+value = 2, 11
+
+[state 100,1]
+type = playsnd
+trigger1 = animelem = 25,=1
+value = 2, 8
+
+[state 810,targetbind]
+type = targetbind
+trigger1 = animelem = 1
+pos = 32,0
+
+[state 810,targetbind]
+type = targetbind
+trigger1 = animelem = 23
+pos = 32,0
+
+[state 810,targetbind]
+type = targetbind
+trigger1 = animelem = 24
+pos = 32,0
+
+[state 810,targetbind]
+type = targetbind
+trigger1 = animelem = 26
+pos = 64,-15
+
+[state 1001, explod]
+type = explod
+trigger1 = animelem = 3 || animelem = 7 || animelem = 11 || animelem = 15 || animelem = 19
+anim = 2020
+id = 2020
+pos = 28,-94
+postype = p1
+sprpriority = 4
+facing = 1
+bindtime = 1
+ownpal = 1
+removeongethit = 1
+
+[state 1001, explod]
+type = explod
+trigger1 = animelem = 5 || animelem = 9 || animelem = 13 || animelem = 17 || animelem = 21
+anim = 2020
+id = 2020
+pos = 32,-84
+postype = p1
+sprpriority = 4
+facing = 1
+bindtime = 1
+ownpal = 1
+removeongethit = 1
+
+[state 1001, explod]
+type = explod
+trigger1 = animelem = 25
+anim = 9010
+id = 9010
+pos = -12,-52
+postype = p2
+sprpriority = 4
+facing = 1
+bindtime = 1
+ownpal = 1
+removeongethit = 1
+
+[state 810,targetlifeadd]
+type = targetlifeadd
+trigger1 = animelem = 3 || animelem = 5 || animelem = 7 || animelem = 9
+trigger2 = animelem = 11 || animelem = 13 || animelem = 15 || animelem = 17
+trigger3 = animelem = 19 || animelem = 21 || animelem = 25
+value = -9
+kill = ifelse((animelem = 25),1,0)
+
+[state 810,targetbind]
+type = targetstate
+trigger1 = animelem = 26
+value = 1007
+
+[state 810,changestate]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;-------------------------------------------------------------------------------
+;slap attack: p2 being slap
+[statedef 1005]
+type = s
+movetype = h
+physics = n
+ctrl = 0
+
+[state 5010, 1]
+type = changeanim2
+trigger1 = time = 0
+value = 1005
+
+[state 1006, screenbound]
+type = screenbound
+trigger1 = 1
+value = 1
+movecamera = 0,0
+
+[state 810,assertspecial]
+type = assertspecial
+trigger1 = 1
+flag = noautoturn
+
+;-------------------------------------------------------------------------------
+;slap attack: p2 being grab
+[statedef 1006]
+type = s
+movetype = h
+physics = n
+ctrl = 0
+
+[state 5010, 1]
+type = changeanim
+trigger1 = time = 0
+value = 5010
+
+[state 810,assertspecial]
+type = assertspecial
+trigger1 = 1
+flag = noautoturn
+
+[state 1006,changeanim2]
+type = selfstate
+trigger1 = animtime = 0
+value = 5001
+ctrl = 0
+
+;-------------------------------------------------------------------------------
+;slap attack: p2state hit
+[statedef 1007]
+type    = a
+movetype= h
+physics = n
+velset = -8, -6
+
+[state 810,nothitby]
+type = nothitby
+trigger1 = 1
+value = sca
+
+[state 5050, 1]
+type = changeanim
+trigger1 = time = 0
+value = 5050
+
+[state 105, velmul]
+type = velmul
+trigger1 = 1
+x = .95
+
+[state 5050, 2]
+type = changeanim
+trigger1 = vel y >= ifelse(anim = 5050, 1, -2)
+trigger1 = selfanimexist(anim+10)
+value = anim+10
+persistent = 0
+
+[state 5050, 3]
+type = veladd
+trigger1 = 1
+y = .50
+
+[state 5050, 6]
+type = selfstate
+trigger1 = vel y > 0
+trigger1 = pos y >= ifelse((anim = [5051,5059]) || (anim = [5061,5069]), 0, 25)
+value = 5100
+
+;---------------------------------------------------------------------------
+;flying butt attack
+[statedef 1010]
+type 			= s
+movetype		= i
+physics		= s
+anim			= 1010
+velset		= 0,0
+ctrl			= 0
+poweradd		= 0
+juggle		= 0
+facep2		= 2
+hitdefpersist	= 0
+movehitpersist	= 0
+hitcountpersist	= 0
+sprpriority		= 2
+
+[state 1090: 	varset]
+type 			= varset
+trigger1 		= (!time)
+var(5) 		= ifelse(command = "holda",1,2)
+
+[state 1090:	playsnd]
+type			= playsnd
+trigger1		= (!animtime)
+value			= s1,6
+
+[state 1090:	changestate]
+type 			= changestate
+trigger1 		= (!animtime)
+value 		= 1011
+
+;---------------------------------------------------------------------------
+;flying butt attack: attack
+[statedef 1011]
+type 			= a
+movetype		= a
+physics		= a
+anim			= 1011
+velset		= 0,0
+ctrl			= 0
+poweradd		= 0
+juggle		= 0
+facep2		= 0
+hitdefpersist	= 0
+movehitpersist	= 0
+hitcountpersist	= 0
+;sprpriority	= 0
+
+[state 3500:		explod]
+type			= explod
+trigger1		= (!time) && (pos y >= 0)
+anim			= 9025
+id			= 9025
+pos			= -5,0
+postype		= p1
+facing		= -1
+vfacing		= 1
+bindtime		= 1
+vel			= 0,0
+accel			= 0,0
+random		= 0,0
+removetime		= -2
+supermove		= 0
+supermovetime	= 0
+pausemovetime	= 0
+scale			= 1,1
+sprpriority		= 2
+ontop			= 0
+shadow		= 0,0,0
+ownpal		= 1
+removeongethit	= 0
+
+[state 1091:	velset]
+type 			= velset
+trigger1 		= (!time)
+x 			= ifelse(var(5) = 1,4,6.5)
+y			= -7
+
+[state 1091:	playsnd]
+type			= playsnd
+trigger1		= (animelem = 1, = 5)
+value			= s1,0
+channel		= 0
+
+[state 1091:	afterimage]
+type 			= afterimage
+trigger1 		= (!time)
+time 			= 15
+timegap		= 4
+framegap 		= 1
+length 		= 10
+paladd 		= 0, 0, 0
+palmul 		= .50, .50, .50
+palcontrast 	= 110,110,110
+trans 		= add
+persistent		= 0
+
+[state 1091:	hitdef]
+type			= hitdef
+trigger1		= (animelem = 3)
+attr			= a, sa
+hitflag		= maf
+guarDFlag		= h
+animtype		= hard
+air.animtype	= Diagup
+priority		= 5, hit
+damage		= 80,10
+pausetime		= 12,12
+guard.pausetime	= 12,12
+sparkno		= s9010
+guard.sparkno	= -1
+sparkxy		= -5,-31
+hitsound		= s2,3
+guardsound		= s0,9
+ground.type		= trip
+air.type		= trip
+ground.slidetime	= 15
+ground.hittime	= 15
+air.hittime		= 15
+yaccel		= 0.45
+ground.velocity	= -5.5,-6.2
+guard.velocity	= -5.5
+air.velocity	= -5.5,-6.2
+airguard.velocity	= -5.5,-6.2
+ground.cornerpush.veloff = -3
+fall			= 1
+fall.recover	= 0
+id			= 1011
+getpower		= 80
+givepower		= 80
+
+;---------------------------------------------------------------------------
+;heel kick
+[statedef 1020]
+type 			= s
+movetype		= a
+physics		= n
+anim			= 1020
+;velset		= 0,0
+ctrl			= 0
+poweradd		= 20
+juggle		= 5
+facep2		= 1
+hitdefpersist	= 0
+movehitpersist	= 0
+hitcountpersist	= 0
+sprpriority		= 2
+
+[state 3500:		explod]
+type			= explod
+trigger1		= (animelem = 3)
+anim			= 9601
+id			= 9601
+pos			= -20,-100
+postype		= p1
+facing		= 1
+vfacing		= 1
+bindtime		= -1
+vel			= 0,0
+accel			= 0,0
+random		= 0,0
+removetime		= -2
+supermove		= 0
+supermovetime	= 0
+pausemovetime	= 0
+scale			= 1,1
+sprpriority		= 2
+ontop			= 1
+shadow		= 0,0,0
+ownpal		= 1
+removeongethit	= 0
+
+[state 3500:		explod]
+type			= explod
+trigger1		= (animelem = 2) && (pos y >= 0)
+anim			= 9025
+id			= 9025
+pos			= -5,0
+postype		= p1
+facing		= -1
+vfacing		= 1
+bindtime		= 1
+vel			= 0,0
+accel			= 0,0
+random		= 0,0
+removetime		= -2
+supermove		= 0
+supermovetime	= 0
+pausemovetime	= 0
+scale			= 1,1
+sprpriority		= 2
+ontop			= 0
+shadow		= 0,0,0
+ownpal		= 1
+removeongethit	= 0
+
+[state 1020:	statetypeset]
+type			= statetypeset
+trigger1		= (animelem = 2)
+statetype		= a
+
+[state 1020:	velset]
+type			= velset
+trigger1		= (animelem = 2)
+x			= 2
+
+[state 700: 	playsnd]
+type 			= playsnd
+trigger1 		= (animelem = 2)
+value 			= s0,2
+
+[state 700: 	playsnd]
+type 			= playsnd
+trigger1 		= (animelem = 3)
+value 			= s1,1
+volume			= 255
+
+[state 1020:	velset]
+type			= velset
+trigger1		= (animelem = 3)
+x			= 2.5
+y			= -7
+
+[state 1020:	velset]
+type			= velset
+trigger1		= (animelem = 3)
+x			= 1.2
+
+[state 1020:	veladd]
+type			= veladd
+trigger1		= (animelem = 3, > 0)
+y			= 0.45
+
+[state 1020:	hitdef]
+type			= hitdef
+trigger1		= (animelem = 3)
+attr			= a, sa
+hitflag		= maf
+guarDFlag		= m
+animtype		= hard
+air.animtype	= Diagup
+priority		= 5, hit
+damage		= 60
+pausetime		= 12,12
+guard.pausetime	= 12,12
+sparkno		= s9010
+guard.sparkno	= -1
+sparkxy		= 0,-50
+hitsound		= s2,0
+guardsound		= s0,9
+ground.type		= high
+air.type		= trip
+ground.slidetime	= 15
+ground.hittime	= 15
+air.hittime		= 25
+yaccel		= 0.45
+ground.velocity	= -1.9,ifelse(var(10) = 1,-7.2,-8)
+guard.velocity	= -2
+air.velocity	= -1.9,ifelse(var(10) = 1,-7.2,-8)
+airguard.velocity	= -1.9,ifelse(var(10) = 1,-7.2,-8)
+ground.cornerpush.veloff = -2
+fall			= 1
+fall.recover	= 0
+id			= 1020
+getpower		= 35
+givepower		= 35
+
+[state 1020:	changestate]
+type			= changestate
+trigger1		= (animelem = 3, > 0) && (pos y >= 0)
+value			= 52
+
+;---------------------------------------------------------------------------
+;triangle kick
+[statedef 1030]
+type=a
+movetype=a
+physics=n
+sprpriority=0
+velset=0,0
+poweradd=0
+juggle=5
+anim=1030
+hitcountpersist=1
+ctrl=0
+
+[state 3500:		explod]
+type			= explod
+trigger1		= (animelem = 2)
+anim			= 9600
+id			= 9600
+pos			= -50,13
+postype		= p1
+facing		= 1
+vfacing		= 1
+bindtime		= -1
+vel			= 0,0
+accel			= 0,0
+random		= 0,0
+removetime		= -2
+supermove		= 0
+supermovetime	= 0
+pausemovetime	= 0
+scale			= 1,1
+sprpriority		= 2
+ontop			= 0
+shadow		= 0,0,0
+ownpal		= 1
+removeongethit	= 0
+
+[state 0]
+type=playsnd
+trigger1=animelem=2
+value=1,0
+
+[state 0]
+type=velset
+trigger1=animelem=2
+x=12
+y=6
+
+[state 0]
+type=statetypeset
+trigger1=animelem=3
+trigger2=pos y>-5
+physics=a
+ignorehitpause=1
+
+[state 0, ]
+type=explod
+trigger1=(movecontact)
+anim=9010+(moveguarded)
+id=9010
+pos=19,-9
+postype=p1
+facing=1
+bindtime=1
+removetime=-2
+scale=0.5,0.5
+sprpriority=1
+ontop=1
+ownpal=1
+ignorehitpause=1
+persistent=0
+
+[state 0]
+type=hitdef
+trigger1=!time
+attr=s,na
+hitflag=maf
+guarDFlag=ma
+affectteam=e
+animtype=light
+priority=4,hit
+damage=36,13
+pausetime=15,15
+sparkno=-1
+guard.sparkno=-1
+sparkxy=10,-2
+hitsound=s2,3
+guardsound=s0,9
+ground.type=high
+ground.slidetime=13
+ground.hittime=13
+ground.velocity=-4,4
+guard.velocity=-6
+air.velocity=-4,4
+fall=1
+persistent=0
+
+[state 0]
+type=changestate
+trigger1=(movecontact)
+value=1031
+
+[state 0]
+type=changestate
+trigger1=(!animtime)
+trigger2=(time>20)&&((screenpos x<=30)||(screenpos x>=290))
+value=50
+ctrl=1
+
+;---------------------------------------------------------------------------
+;triangle kick: contact
+[statedef 1031]
+type=a
+movetype=i
+physics=a
+sprpriority=0
+velset=-6,-2,0
+anim=1031
+hitcountpersist=1
+ctrl=0
+
+[state 0]
+type=changestate
+trigger1=!animtime
+value=50
+ctrl=1
+
+;---------------------------------------------------------------------------
+;kienzan
+[statedef 1100]
+type 			= s
+movetype		= a
+physics		= s
+anim			= 1100
+;velset		= 0,0
+ctrl			= 0
+poweradd		= 0
+juggle		= 0
+facep2		= 1
+hitdefpersist	= 0
+movehitpersist	= 0
+hitcountpersist	= 0
+sprpriority		= 2
+
+[state 1070: 	poweradd]
+type 			= poweradd
+trigger1 		= (animelem = 2)
+value 		= -200
+
+[state 1070: 	playsnd]
+type 			= playsnd
+trigger1 		= (animelem = 3)
+value 		= s1,1
+channel		= 0
+
+[state 1070: 	playsnd]
+type 			= playsnd
+trigger1 		= (animelem = 2, = 10)
+value 		= s0,4
+
+[state 1070:	helper]
+type			= helper
+trigger1 		= (animelem = 2, = 10)
+helpertype		= normal
+name			= "kienzan"
+id			= 9150
+pos			= -23,-69
+postype		= p1
+facing		= 1
+stateno		= 9150
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale		= 1.25
+size.yscale		= 0.65
+
+[state 1070:	changestate]
+type			= changestate
+trigger1		= (!animtime)
+value			= ifelse(power > 50,0,5300)
+ctrl			= 1
+
+;---------------------------------------------------------------------------
+;energy shield
+[statedef 1200]
+type 			= s
+movetype		= a
+physics		= s
+anim			= 1200
+velset		= 0,0
+ctrl			= 0
+juggle		= 2
+facep2		= 1
+hitdefpersist	= 0
+movehitpersist	= 0
+hitcountpersist	= 0
+sprpriority		= 2
+
+[state 1070: 	poweradd]
+type 			= poweradd
+trigger1 		= (animelem = 2)
+value 		= -80
+
+[state 1000:	nothitby]
+type			= nothitby
+trigger1		= (animelem = 2, < 0)
+time			= 1
+value			= sca, na
+
+[state 1000:	playsnd]
+type			= playsnd
+trigger1		= (animelem = 2)
+value			= s1,0
+
+[state 1000:	playsnd]
+type			= playsnd
+trigger1		= (animelem = 2)
+value			= s3,3
+
+[state 1000:	velset]
+type			= velset
+trigger1		= (var(4) = 1) && (animelem = 2, > 0) && (animelem = 3, < 0)
+x			= -4
+persistent		= 0
+
+[state 1000:	varset]
+type			= varset
+trigger1		= (!time)
+var(4)		= 0
+
+[state 1000:	palfx]
+type			= palfx
+trigger1		= (!time)
+time			= 40
+add			= 100,100,100
+mul			= 256,256,256
+sinadd		= -100,-100,-100,40
+invertall		= 0
+color			= 256
+
+[state 1000:	bgpalfx]
+type			= bgpalfx
+trigger1		= (animelem = 2)
+time			= 12
+add			= 20,20,20
+mul			= 256,256,256
+sinadd		= 200,200,200,4
+invertall		= 1
+color			= 256
+
+[state 1000:	envshake]
+type			= envshake
+trigger1 		= (animelem = 2)
+time			= 12
+freq			= 120
+ampl			= -7
+phase			= 90
+
+[state 1000:	explod]
+type			= explod
+trigger1		= (animelem = 2)
+anim			= 9050
+id			= 9050
+pos			= 0,0
+postype		= p1
+facing		= 1
+vfacing		= 1
+bindtime		= 1
+vel			= 0,0
+accel			= 0,0
+random		= 0,0
+removetime		= -2
+supermove		= 0
+supermovetime	= 0
+pausemovetime	= 0
+scale			= 1,1
+sprpriority		= 0
+ontop			= 0
+shadow		= 0,0,0
+ownpal		= 1
+removeongethit	= 1
+
+[state 1000:	helper]
+type			= helper
+trigger1		= (animelem = 2)
+helpertype		= normal
+name			= "energy shield"
+id			= 9060
+pos			= 0,0
+postype		= p1
+facing		= 1
+stateno		= 9060
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+persistent		= 0
+ignorehitpause	= 1
+
+[state 1000:	changestate]
+type			= changestate
+trigger1		= (!animtime)
+value			= ifelse(power < 50,5300,0)
+ctrl			= 1
+
+;---------------------------------------------------------------------------
+;energy ball
+[statedef 1300]
+type 			= s
+movetype		= a
+physics		= s
+anim			= 1300
+;velset		= 0,0
+ctrl			= 0
+poweradd		= 0
+juggle		= 0
+facep2		= 1
+hitdefpersist	= 0
+movehitpersist	= 0
+hitcountpersist	= 0
+sprpriority		= 2
+
+[state 1080:	poweradd]
+type 			= poweradd
+trigger1 		= (animelem = 2, = 5)
+value 		= -200
+
+[state 1080: 	playsnd]
+type 			= playsnd
+trigger1 		= (animelem = 2, = 5)
+value 		= s0,7
+
+[state 1080: 	playsnd]
+type 			= playsnd
+trigger1 		= (animelem = 2, = 5)
+value 		= s1,4
+
+[state 1080:	playsnd]
+type 			= playsnd
+trigger1 		= (animelem = 2, = 5)
+value 		= s3,9
+
+[state 1080:	posadd]
+type			= posadd
+trigger1		= (animelem = 2, = 4) || (animelem = 2, = 6) || (animelem = 2, = 8) || (animelem = 2, = 10)
+trigger2		= (animelem = 2, = 12) || (animelem = 2, = 14) || (animelem = 2, = 16) || (animelem = 2, = 18) || (animelem = 2, = 20)
+x			= 0.85
+
+[state 1080:	posadd]
+type			= posadd
+trigger1		= (animelem = 2, = 5) || (animelem = 2, = 7) || (animelem = 2, = 9) || (animelem = 2, = 11)
+trigger2		= (animelem = 2, = 13) || (animelem = 2, = 15) || (animelem = 2, = 17) || (animelem = 2, = 19)
+x			= -0.85
+
+[state 1080:	helper]
+type			= helper
+trigger1 		= (animelem = 2, = 5)
+helpertype		= normal
+name			= "ki blast effect"
+id			= 9040
+pos			= 42,-53
+postype		= p1
+facing		= 1
+stateno		= 9040
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+
+[state 1080:	helper]
+type			= helper
+trigger1 		= (animelem = 2, = 5)
+helpertype		= normal
+name			= "energy ball"
+id			= 9170
+pos			= 42,-53
+postype		= p1
+facing		= 1
+stateno		= 9170
+keyctrl		= 0
+ownpal		= 1
+supermovetime	= 0
+pausemovetime	= 0
+size.xscale		= 0.7
+size.yscale		= 0.45
+
+[state 1080:	changestate]
+type			= changestate
+trigger1		= (!animtime)
+value			= ifelse(power > 25,0,5300)
+ctrl			= 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+

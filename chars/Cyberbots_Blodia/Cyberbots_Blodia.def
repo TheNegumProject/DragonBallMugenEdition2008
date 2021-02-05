@@ -1,0 +1,40 @@
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name ="Blodia"
+displayname ="Blodia"
+pal.defaults =1,2,3,4,5,6,7,8
+versiondate=04/03/2007
+mugenversion=06,14,2003
+author="Cyberbots"
+
+; Files for the player
+[Files]
+;cmd     =Cyberbots_Blodia_Hard.cmd
+cmd     =Cyberbots_Blodia_Medium.cmd
+;cmd     =Cyberbots_Blodia_Easy.cmd
+cns     =Cyberbots_Blodia.cns
+st      =Cyberbots_Blodia.cns
+stcommon =common1.cns
+sprite  =Cyberbots_Blodia.sff
+anim    =Cyberbots_Blodia.air
+sound   =Cyberbots_Blodia.snd
+pal1=1.act
+pal2=2.act
+pal3=3.act
+pal4=4.act
+pal5=5.act
+pal6=6.act
+pal7=7.act
+pal8=8.act
+st1=Cyberbots_Blodia_-2.cns
+st2=Cyberbots_Blodia_-3.cns
+st3=Cyberbots_Blodia_overide.cns
+
+; Arcade mode
+[Arcade]
+intro.storyboard=
+ending.storyboard=
+;intro.storyboard =intro.def
+;ending.storyboard =ending.def

@@ -1,0 +1,62 @@
+;Character Information
+[Info]
+
+;------------------------------------------------------
+name = "Li-sheron ver0.70 based on Broli Remix ver1.2 of Kuzu-bei and The Necromancer"             ;Name of character
+displayname = "Li-Sheron"                   ;Name of character to display
+versiondate = 19.01.2002                ;Version date of character
+mugenversion = 06.27.2000               ;Version of M.U.G.E.N character works on
+author = "Pierz" ;Character author name
+;------------------------------------------------------
+
+;------------------------------------------------------
+;Pallette Orders: AI Difficulty (Uncomment to enable)
+;pal.defaults = 2,3,4,5,6,1             ;Novice (No Custom AI)
+;pal.defaults = 7,8,9,10,11,12          ;Easy
+pal.defaults = 0,10,11,12,7,8          ;Normal
+;pal.defaults = 11,12,7,8,9,10           ;Hard
+;------------------------------------------------------
+
+;Files for Broli
+[Files]
+
+;-------------------------
+;Character Behaviour Files
+;-------------------------
+
+cmd     = li-sheron.cmd                                    
+cns     = li-sheron.cns 
+stcommon= common.cns                               
+st      = li-sheron.cns  
+st1     = custom.cns       
+st2     = normal.cns 
+st3     = hyper.cns
+st4     = special.cns
+st5     = nandato.cns
+st6     = ai.cns
+
+;-------------------------
+;Graphics/Sounds for Broli
+;-------------------------
+
+sprite  = li-sheron.sff                      
+anim    = li-sheron.air         
+sound   = li-sheron.snd         
+
+;-------------------
+;Pallettes for Broli
+;-------------------
+
+pal1    = li-sheron1.act         
+pal2    = li-sheron2.act        
+pal3    = li-sheron3.act        
+pal4    = li-sheron4.act        
+pal5    = li-sheron5.act         
+pal6    = li-sheron6.act        
+pal7    = li-sheron7.act        
+pal8    = li-sheron8.act        
+pal9    = li-sheron9.act         
+pal10   = li-sheron10.act        
+pal11   = li-sheron11.act        
+pal12   = li-sheron12.act        
+pal13   = li-sheron13.act.pal

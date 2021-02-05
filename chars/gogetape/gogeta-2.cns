@@ -1,0 +1,1329 @@
+; INTRO STORY LINES
+[Statedef 190]
+type = S
+ctrl = 0
+anim = 190
+velset = 0,0,0
+
+[State 198, electricity]
+type = Explod
+trigger1 = Time <= 150
+trigger1 = timemod = 10,1
+anim = 3393
+pos = 0,0
+random = 32,-62
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State 198, electricity]
+type = Explod
+trigger1 = Time <= 150
+trigger1 = timemod = 8,1
+anim = 3392
+pos = 0,0
+random = 32,-62
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State 198, electricity]
+type = Explod
+trigger1 = Time <= 150
+trigger1 = timemod = 10,1
+anim = 3391
+pos = 0,0
+random = 32,32
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State 198, electricity]
+type = Explod
+trigger1 = Time <= 150
+trigger1 = timemod = 9,1
+anim = 3388
+pos = 0,0
+random = 32,-32
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State 198, electricity]
+type = Explod
+trigger1 = Time <= 150
+trigger1 = timemod = 10,1
+anim = 3389
+pos = 0,0
+random = 32,-32
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State 198, electricity]
+type = Explod
+trigger1 = Time <= 150
+trigger1 = timemod = 8,1
+anim = 3390
+pos = 0,0
+random = 32,32
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+
+
+
+[State 190, begin]
+type = AssertSpecial
+trigger1 = time = [0,400]
+flag = intro
+
+[State 2999, 4]
+type = explod
+trigger1 = time = 199
+ID = 9992
+anim = 9992
+facing = 1
+pos = -35,0
+supermovetime = 340
+sprpriority = 6
+removetime = 340
+
+[State 2999, 4]
+type = explod
+trigger1 = time = 199
+ID = 9992
+anim = 9992
+facing = 1
+pos = 265,0
+supermovetime = 340
+sprpriority = 6
+removetime = 340
+
+[State 2999, 4]
+type = explod
+trigger1 = time = 199
+ID = 9992
+anim = 9992
+facing = 1
+pos = 425,0
+supermovetime = 340
+sprpriority = 6
+removetime = 340
+
+[State 2999, 4]
+type = explod
+trigger1 = time = 199
+ID = 9992
+anim = 9992
+facing = 1
+pos = -685,0
+supermovetime = 340
+sprpriority = 6
+removetime = 340
+
+[State 2999, 4]
+type = explod
+trigger1 = time = 199
+ID = 9992
+anim = 9992
+facing = 1
+pos = 850,0
+supermovetime = 340
+sprpriority = 6
+removetime = 340
+
+[State 2999, 4]
+type = explod
+trigger1 = time = 0
+ID = 190
+anim = 190
+facing = 1
+pos = 0,0
+supermovetime = 175
+sprpriority = 5
+removetime = 175
+
+[State 2999, 4]
+type = explod
+trigger1 = time = 135
+ID = 12000
+anim = 12000
+facing = 1
+pos = 0,0
+supermovetime = 45
+sprpriority = 5
+removetime = 45
+
+[State 2999, 4]
+type = explod
+trigger1 = time = 190
+ID = 12001
+anim = 12001
+facing = 1
+pos = 0,0
+supermovetime = 340
+sprpriority = 5
+removetime = 340
+
+[State 2999, 4]
+type = explod
+trigger1 = time = 530
+ID = 12002
+anim = 12002
+facing = 1
+pos = 0,0
+supermovetime = 21
+sprpriority = 5
+removetime = 21
+
+[State 2999, 4]
+type = explod
+trigger1 = time = 200
+ID = 12003
+anim = 12003
+facing = 1
+pos = 0,0
+supermovetime = 340
+sprpriority = 5
+removetime = 340
+
+[State 3000,MBS]
+type = explod
+trigger1 = AnimElem = 1
+anim = 191
+facing = 1
+pos = 10,67
+postype = left
+sprpriority = 7
+bindtime = 800
+ownpal = 1
+supermove = 1
+removetime = 800
+
+[State 400, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 511,512
+
+[State 190, 3]
+type = changestate
+trigger1 = animtime = 200
+value = 0
+ctrl = 0
+;---------------------------------------------------------------------------
+[Statedef -2]
+
+;---------------------------------------------------------------------------
+[State -2, Kaio]
+type = Poweradd
+trigger1 = P1Name = "Gogeta"
+trigger1 = TimeMod = 1,0
+trigger1 = stateno != 191
+trigger1 = Var(11) != 0
+value = 4
+
+;---------------------------------------------------------------------------
+
+
+[State -2, Força]
+type = AttackMulSet
+trigger1 = var(11) != 0
+value = 1.2
+
+[State -2, Defesa]
+type = DefenceMulSet
+trigger1 = var(11) != 0
+value = 1.2
+
+[State -2, SparkSnd]
+type = PlaySnd
+trigger1 = Alive = 1
+trigger1 = var(11) != 0
+trigger1 = timemod = 100,15
+time = 20
+value = 21, 1
+
+[State -2, Aura]
+type = Explod
+trigger1 = Alive = 1
+trigger1 = Var(11) != 0
+trigger1 = timemod = 10,5
+trigger1 = stateno != 5110
+trigger1 = stateno != 5150
+trigger1 = stateno != 5101
+trigger1 = stateno != 2001
+trigger1 = stateno != 1080
+time = 10
+anim = 2005       
+bindtime = 10
+removetime = 10
+sprpriority = 4
+ownpal = 1
+id = 2005
+
+[State -2, Spark]
+type = Explod
+trigger1 = Alive = 1
+trigger1 = var(5) != 0
+trigger1 = timemod = 50,15
+time = 20
+anim = 3023       
+bindtime = 10
+removetime = 10
+sprpriority = 4
+ownpal = 1
+id = 555
+
+;---------------------------------------------------------------------------
+
+[State -2, Aura]
+type = Explod
+trigger1 = Alive = 1
+trigger1 = Var(10) != 0
+trigger1 = timemod = 10,5
+trigger1 = stateno != 5110
+trigger1 = stateno != 5150
+trigger1 = stateno != 5101
+trigger1 = stateno != 2001
+trigger1 = stateno != 1080
+time = 10
+anim = 2005       
+bindtime = 10
+removetime = 10
+sprpriority = 4
+ownpal = 1
+id = 2005
+
+[State -2, Land]
+type = PlaySnd
+triggerall = time = 1
+triggerall = Var(10) >= 1 || Var(11) >= 1 || Var(12) >= 1
+trigger1 = stateno = 52
+trigger2 = stateno = 106
+value = 2, 9
+
+[State -2, Land]
+type = EnvShake
+triggerall = time = 1
+triggerall = Var(10) >= 1 || Var(11) >= 1 || Var(12) >= 1
+trigger1 = stateno = 52
+trigger2 = stateno = 106
+time = 16
+ampl = -2	;U•
+freq =  90	;Žü”g” H‰ñ/•b
+phase = 90	;H
+
+[State -2, Land]
+type = GameMakeAnim
+triggerall = Var(10) >= 1 || Var(11) >= 1 || Var(12) >= 1
+triggerall = time = 1
+trigger1 = stateno = 52
+trigger2 = stateno = 106
+value = 61
+
+; ŽógŽž‚Ìº
+[State -2, recover]
+type = PlaySnd
+triggerall = time = 1
+trigger1 = stateno = 5200
+trigger2 = stateno = 5210
+value = 7, 2
+
+[State -2, 50];
+type = ChangeState
+triggerall = alive = 0
+trigger1 = stateno = 240
+trigger2 = stateno = 241
+trigger3 = stateno = 242
+trigger4 = stateno = 243
+value = 5000
+
+[State -2, 50];
+type = ChangeState
+triggerall = alive = 0
+trigger1 = stateno = 1405
+trigger2 = stateno = 1406
+trigger3 = stateno = 1505
+trigger4 = stateno = 1506
+trigger5 = stateno = 1605
+trigger6 = stateno = 1606
+value = 5000
+
+[State -2, 50]
+type = VelSet
+triggerall = alive = 0
+trigger1 = stateno = 240
+trigger2 = stateno = 241
+trigger3 = stateno = 242
+trigger4 = stateno = 243
+x = -4
+y = -6
+
+[State -2, 50]
+type = VelSet
+triggerall = alive = 0
+trigger1 = stateno = 1405
+trigger2 = stateno = 1406
+trigger3 = stateno = 1505
+trigger4 = stateno = 1506
+trigger5 = stateno = 1605
+trigger6 = stateno = 1606
+x = -4
+y = -6
+
+;-----------------------------------
+;Time Mod By Var(11)
+[State -2, 47]
+type = LifeAdd
+trigger1 = TimeMod = 2,1
+trigger1 = Var(11) > 1
+trigger1 = alive = 1
+;trigger1 = (win = 0) && (lose = 0)
+value = 1
+
+[State -2, Timecount]
+type = VarAdd
+trigger1 = var(10) > 0
+ignorehitpause = 1
+var(10) = -2
+
+[State -2, Timecount]
+type = VarAdd
+trigger1 = var(11) > 0
+ignorehitpause = 1
+var(11) = -1
+
+[State -2, Timecount]
+type = VarAdd
+trigger1 = var(12) > 0
+ignorehitpause = 1
+var(12) = -1
+
+;-----------------------------------
+[State 190, TimeBar_facing]
+type = VarSet
+trigger1 = Var(7) = 0
+trigger1 = facing = 1
+var(7) = 1
+
+[State 190, TimeBar_facing]
+type = VarSet
+trigger1 = Var(7) = 0
+trigger1 = facing = -1
+var(7) = 2
+
+[State -2, TimeBar]
+type = Explod
+trigger1 = var(11)
+trigger1 = facing = 1 
+trigger1 = Var(7) = 1 
+ignorehitpause = 1
+anim = 6600
+id = 6600
+pos = 30,30
+postype = back
+bindtime = -1
+ontop = 1
+ownpal = 1
+removetime = 1
+pausemovetime = 1
+supermovetime = 1
+scale = var(11)/300.0, 1
+
+[State -2, TimeBar]
+type = Explod
+trigger1 = var(11)
+trigger1 = facing = -1 
+trigger1 = Var(7) = 1 
+ignorehitpause = 1
+anim = 6600
+id = 6600
+pos = 290,30
+postype = back
+bindtime = -1
+facing = facing
+ontop = 1
+ownpal = 1
+removetime = 1
+pausemovetime = 1
+supermovetime = 1
+scale = var(11)/300.0, 1
+
+[State -2, TimeBar]
+type = Explod
+trigger1 = var(11)
+trigger1 = facing = 1 
+trigger1 = Var(7) = 2 
+ignorehitpause = 1
+anim = 6600
+id = 6600
+pos = 290,30
+postype = back
+bindtime = -1
+facing = -1
+ontop = 1
+ownpal = 1
+removetime = 1
+pausemovetime = 1
+supermovetime = 1
+scale = var(11)/300.0, 1
+
+[State -2, TimeBar]
+type = Explod
+trigger1 = var(11)
+trigger1 = facing = -1 
+trigger1 = Var(7) = 2 
+ignorehitpause = 1
+anim = 6600
+id = 6600
+pos = 30,30
+postype = back
+bindtime = -1
+facing = 1
+ontop = 1
+ownpal = 1
+removetime = 1
+pausemovetime = 1
+supermovetime = 1
+scale = var(11)/300.0, 1
+
+[State 190, TimeBar_facing]
+type = VarSet
+trigger1 = Var(5) = 0
+trigger1 = facing = 1
+var(5) = 1
+
+[State 190, TimeBar_facing]
+type = VarSet
+trigger1 = Var(5) = 0
+trigger1 = facing = -1
+var(5) = 2
+
+[State -2, TimeBar]
+type = Explod
+trigger1 = var(10+Var(20)) >= 1
+trigger1 = facing = 1 
+trigger1 = Var(5) = 1 
+ignorehitpause = 1
+anim = 6500+Var(20)*100
+id = 6500
+pos = 30,30
+postype = back
+bindtime = -1
+ontop = 1
+ownpal = 1
+removetime = 1
+pausemovetime = 1
+supermovetime = 1
+scale = var(10+Var(20))/300.0, 1
+
+[State -2, TimeBar]
+type = Explod
+trigger1 = var(10+Var(20)) >= 1
+trigger1 = facing = -1 
+trigger1 = Var(5) = 1 
+ignorehitpause = 1
+anim = 6500+Var(20)*100
+id = 6500
+pos = 290,30
+postype = back
+bindtime = -1
+facing = facing
+ontop = 1
+ownpal = 1
+removetime = 1
+pausemovetime = 1
+supermovetime = 1
+scale = var(10+Var(20))/300.0, 1
+
+[State -2, TimeBar]
+type = Explod
+trigger1 = var(10+Var(20)) >= 1
+trigger1 = facing = 1 
+trigger1 = Var(5) = 2 
+ignorehitpause = 1
+anim = 6500+Var(20)*100
+id = 6500
+pos = 290,30
+postype = back
+bindtime = -1
+facing = -1
+ontop = 1
+ownpal = 1
+removetime = 1
+pausemovetime = 1
+supermovetime = 1
+scale = var(10+Var(20))/300.0, 1
+
+[State -2, TimeBar]
+type = Explod
+trigger1 = var(10+Var(20)) >= 1
+trigger1 = facing = -1 
+trigger1 = Var(5) = 2 
+ignorehitpause = 1
+anim = 6500+Var(20)*100
+id = 6500
+pos = 30,30
+postype = back
+bindtime = -1
+facing = 1
+ontop = 1
+ownpal = 1
+removetime = 1
+pausemovetime = 1
+supermovetime = 1
+scale = var(10+Var(20))/300.0, 1
+
+;-----------------------------------
+[State 9080, 3]
+type = VarSet
+trigger1 = Var(10) > 1
+trigger1 = Var(11) = 0
+fvar(30) = 1.2
+
+[State 9080, 3]
+type = VarSet
+trigger1 = Var(10) < 1
+trigger1 = Var(11) = 0
+fvar(30) = 1.0
+
+[State 9080, 3]
+type = AttackMulSet
+trigger1 = 1
+value = fvar(30)
+
+[State 9080, 3]
+type = VarSet
+trigger1 = Var(10) > 1
+trigger1 = Var(11) = 0
+fvar(31) = 0.8
+
+[State 9080, 3]
+type = VarSet
+trigger1 = Var(10) = 0
+trigger1 = Var(12) > 1
+fvar(31) = 0.5
+
+[State 9080, 3]
+type = VarSet
+trigger1 = Var(10) = 0
+trigger1 = Var(11) = 0
+trigger1 = Var(12) = 0
+fvar(31) = 1.0
+
+[State 9080, 3]
+type = DefenceMulSet
+trigger1 = 1
+value = fvar(31)
+
+[State -2, Display]
+type = DisplayToClipboard
+trigger1 = 1
+text = "Var(10) = %d, Var(11) = %d, Var(12) = %d, Var(20) = %d"
+params = Var(10), Var(11), Var(12), Var(20)
+
+[State -2, Display]
+type = AppendToClipboard
+trigger1 = 1
+text = "AtcMul = %f, DefMul = %f"
+params = fvar(30),fvar(31)
+
+
+[state -2, MAX] 
+type = PalFX
+triggerall = var(10) > 0
+trigger1 = alive = 1
+trigger1 = (win = 0) && (lose = 0)
+trigger1 = TimeMod = 3, 0
+trigger1 = IsHelper = 0
+time = 1
+add = 180,32,180
+ignorehitpause = 1
+
+[State -2, Força]
+type = AttackMulSet
+trigger1 = var(10) != 0
+value = 2.5
+
+[State -2, Defesa]
+type = DefenceMulSet
+trigger1 = var(10) != 0
+value = 2.5
+
+[State -2, SparkSnd]
+type = PlaySnd
+trigger1 = Alive = 1
+trigger1 = var(10) != 0
+trigger1 = timemod = 100,15
+time = 20
+value = 21, 1
+
+;---------------------------------------------------------------------------
+; A.I - Artificial Inteligent
+;---------------------------------------------------------------------------
+[State -2, Fly]
+type = ChangeState
+triggerall = Var(6)= 1
+triggerall = ctrl = 1
+triggerall = P2Life > 0
+triggerall = MoveType != H
+triggerall = Pos Y < 0
+triggerall = Stateno != 3001
+triggerall = PrevStateno != 3001
+trigger1 = P2Name = "Goku-n-hd by EmuBoarding"
+trigger1 = P2StateNo = 1500
+trigger2 = P2Name = "Mystic Gohan by Zero_X"
+trigger2 = P2StateNo = 2000
+trigger3 = P2Name = "Freeza by OverMind"
+trigger3 = P2StateNo = 3001
+trigger4 = P2Name = "Kurilin by EmuBoarding"
+trigger4 = P2StateNo = 1500
+trigger5 = P2Name = "Trunks por ssonic"
+trigger5 = P2StateNo = 1900
+trigger6 = P2Name = "Vegeta Super Sayjin 4 by EB and BS"
+trigger6 = P2StateNo = 1500
+trigger7 = P2Name = "N-Trunks by EmuBoarding"
+trigger7 = P2StateNo = 1500
+trigger8 = P2Name = "Mr.Boo by OverMind"
+trigger8 = P2StateNo = 3001
+trigger9 = P2Name = "Vegeta by OverMind"
+trigger9 = P2StateNo = 3001
+trigger10 = P2Name = "Broli Remix ver1.2"
+trigger10 = P2StateNo = 2000
+trigger11 = P2Name = "Vegetto by Pocket_Danyell"
+trigger11 = P2StateNo = 3001
+trigger12 = P2Name = "Raditz"
+trigger12 = P2StateNo = 1510
+trigger13 = P2Name = "C-Trunks by EmuBoarding"
+trigger13 = P2StateNo = 1500
+trigger14 = P2Name = "Piccolo por Ssonic"
+trigger14 = P2StateNo = 1900
+trigger15 = P2Name = "Andróide 16 por Pocket_Danyell"
+trigger15 = P2StateNo = 3001
+trigger16 = P2Name = "Cell por Ssonic"
+trigger16 = P2StateNo = 1900
+trigger17 = P2Name = "Recoom by Lucifer"
+trigger17 = P2StateNo = 1500
+trigger18 = P2Name = "Vegetto EX by Shishi-Ryu"
+trigger18 = P2StateNo = 2000
+trigger19 = P2Name = "Saiyaman by OverMind and Lucifer"
+trigger19 = P2StateNo = 3001
+trigger20 = P2Name = "Tenshin-ham by Pocket_Danyell and Daniel_Wheres"
+trigger20 = P2StateNo = 3001
+trigger21 = P2Name = "Majin Boo by Pocket_Danyell"
+trigger21 = P2StateNo = 3001
+trigger22 = P2Name = "Son Goku by T-Max"
+trigger22 = P2StateNo = 3001
+trigger23 = P2Name = "Kakaroto"
+trigger23 = P2StateNo = 1510
+value = 3001
+
+[State -2, Fly]
+type = ChangeState
+triggerall = Var(6)= 1
+triggerall = ctrl = 1
+triggerall = P2Life > 0
+triggerall = MoveType != H
+triggerall = Pos Y >= 0
+triggerall = Stateno != 3115
+triggerall = PrevStateno != 3115
+trigger1 = P2Name = "Goku-n-hd by EmuBoarding"
+trigger1 = P2StateNo = 1500
+trigger2 = P2Name = "Mystic Gohan by Zero_X"
+trigger2 = P2StateNo = 2000
+trigger3 = P2Name = "Freeza by OverMind"
+trigger3 = P2StateNo = 3001
+trigger4 = P2Name = "Kurilin by EmuBoarding"
+trigger4 = P2StateNo = 1500
+trigger5 = P2Name = "Trunks por ssonic"
+trigger5 = P2StateNo = 1900
+trigger6 = P2Name = "Vegeta Super Sayjin 4 by EB and BS"
+trigger6 = P2StateNo = 1500
+trigger7 = P2Name = "N-Trunks by EmuBoarding"
+trigger7 = P2StateNo = 1500
+trigger8 = P2Name = "Mr.Boo by OverMind"
+trigger8 = P2StateNo = 3001
+trigger9 = P2Name = "Vegeta by OverMind"
+trigger9 = P2StateNo = 3001
+trigger10 = P2Name = "Broli Remix ver1.2"
+trigger10 = P2StateNo = 2000
+trigger11 = P2Name = "Vegetto by Pocket_Danyell"
+trigger11 = P2StateNo = 3001
+trigger12 = P2Name = "Raditz"
+trigger12 = P2StateNo = 1510
+trigger13 = P2Name = "C-Trunks by EmuBoarding"
+trigger13 = P2StateNo = 1500
+trigger14 = P2Name = "Piccolo por Ssonic"
+trigger14 = P2StateNo = 1900
+trigger15 = P2Name = "Andróide 16 por Pocket_Danyell"
+trigger15 = P2StateNo = 3001
+trigger16 = P2Name = "Cell por Ssonic"
+trigger16 = P2StateNo = 1900
+trigger17 = P2Name = "Recoom by Lucifer"
+trigger17 = P2StateNo = 1500
+trigger18 = P2Name = "Vegetto EX by Shishi-Ryu"
+trigger18 = P2StateNo = 2000
+trigger19 = P2Name = "Saiyaman by OverMind and Lucifer"
+trigger19 = P2StateNo = 3001
+trigger20 = P2Name = "Tenshin-ham by Pocket_Danyell and Daniel_Wheres"
+trigger20 = P2StateNo = 3001
+trigger21 = P2Name = "Majin Boo by Pocket_Danyell"
+trigger21 = P2StateNo = 3001
+trigger22 = P2Name = "Son Goku by T-Max"
+trigger22 = P2StateNo = 3001
+trigger23 = P2Name = "Kakaroto"
+trigger23 = P2StateNo = 1510
+trigger20 = P2StateType = S
+trigger20 = P2MoveType != H
+trigger20 = P2BodyDist Y < 0
+value = 3115
+
+[State -2,AI.Fly End]
+type = ChangeState
+triggerall = Var(6)= 1
+triggerall = stateno = 3001
+trigger1 = p2statetype = S
+trigger1 = p2bodydist Y > 40
+value = 50
+
+[State -2,AI.Power Up]
+type = ChangeState
+triggerall = Var(6)= 1 && Life != 0 && P2Life != 0 && power < 3000 && stateno != 730 && Var(9) = 0
+triggerall = statetype = S
+triggerall = movetype = I
+trigger1 = p2movetype = H
+trigger1 = random < 300
+trigger2 = p2stateno = 5150
+value = 730
+
+[State -2,AI.End Power Up]
+type = ChangeState
+triggerall = Var(6)= 1
+triggerall = stateno = 730
+trigger1 = p2movetype != H
+value = 0
+ctrl = 1
+
+[State -2, Big Bang Kamehameha]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = P2BodyDist X > 120
+triggerall = P2BodyDist Y > -50 && P2BodyDist Y < 20
+triggerall = StateNo != 1060
+triggerall = StateNo != 5300
+trigger1 = P2MoveType = A
+trigger1 = MoveType != H
+value = 2000
+
+[State -2, Flash Kick]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = StateNo != 1015
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 1015
+
+[State -2, combo]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = StateNo != 10200
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 10200
+
+[State -2, combo2]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = StateNo != 1050
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 1050
+
+[State -2, BigBangAttack]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 1000
+triggerall = StateNo != 7300
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 7300
+
+[State -2,AI.ZanzokenVar]
+type = VarSet
+triggerall = Var(9)= 1 && Life != 0 && P2Life != 0 && ctrl = 1 && stateno = 7000 && Var(9) = 0
+trigger1 = p2bodydist x > 200 && p2movetype = A 
+trigger2 = p2bodydist x < 30 && p2bodydist y < -30 && p2movetype = A
+v = 4
+value = 0
+
+[State -2, Final Flash]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 1000
+triggerall = StateNo != 2040
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 2040
+
+[State -2, Final Flash]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = StateNo != 7990
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 7990
+
+[State -2, Final Flash]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = StateNo != 1010
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 1010
+
+[State -2, Kamehamehas]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 1000
+triggerall = StateNo != 3002
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 3002
+
+[State -2, Final Kamehameha]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 3000
+triggerall = StateNo != 4100
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 4100
+
+[State -2, Final Kamehameha]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 3000
+triggerall = StateNo != 4100
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 4100
+
+[State -2, X-Bai 10x Kamehameha]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 6000
+triggerall = StateNo != 4100
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 4100
+
+[State -2, Kamehameha]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = StateNo != 2100
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 2100
+
+[State -2, X-Bai 10x Kamehameha]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 5000
+triggerall = StateNo != 4100
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 4100
+
+[State -2, Cho Kamehameha]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 4000
+triggerall = StateNo != 4000
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2Name != "Gogeta-SSJ4 by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 4000
+
+[State -2, Meteor Attack 1]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 3000
+triggerall = StateNo != 6000
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2Name != "Gogeta-SSJ4 by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 6000
+
+[State -2,AI.Meteor]
+type = ChangeState
+triggerall = Var(6)= 1 && Life != 0 && P2Life != 0 && Power >= 2500 && Pos Y = 0 && Var(5) = 0
+trigger1 = p2movetype = I && statetype != A && ctrl = 1 
+value = 6000
+
+[State -2, Meteor Attack 2]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 4000
+triggerall = StateNo != 8000
+triggerall = P2Name != "Vegetto by Pocket_Danyell"
+triggerall = P2Name != "Gogeta-SSJ4 by Pocket_Danyell"
+triggerall = P2BodyDist X = 100
+triggerall = P2BodyDist Y > -70 && P2BodyDist Y < 20
+trigger1 = P2StateNo = 20
+trigger2 = P2StateNo = 100
+trigger3 = P2StateNo = 50
+value = 8000
+
+[State -2, Dash]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = RoundState = 2
+triggerall = MoveType = I
+triggerall = StateNo != 100
+triggerall = StateNo != 5300
+triggerall = P2Life > 0
+triggerall = Pos Y >= 0
+triggerall = Power < 500
+trigger1 = P2MoveType = I
+trigger1 = P2BodyDist X > 60
+value = 100
+
+[State -2, StandGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Pos Y >= 0
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 7777
+trigger4 = StateNo = 100
+trigger5 = StateNo = 105
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+trigger8 = MoveType = A
+trigger8 = PrevStateNo != [130, 154]
+trigger8 = StateNo != [3000, 4100]
+value = 130
+
+[State -2, CrouchGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 7777
+trigger4 = StateNo = 100
+trigger5 = StateNo = 105
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+trigger8 = MoveType = A
+trigger8 = PrevStateNo != [130, 154]
+trigger8 = StateNo != [3000, 4100]
+value = 131
+
+[State -2, AirGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = P2BodyDist X <= 120
+triggerall = StateNo != 2001
+triggerall = P2MoveType = A
+triggerall = StateType = A
+triggerall = MoveType = I
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+trigger5 = MoveType = A
+trigger5 = PrevStateNo != [130, 154]
+trigger5 = StateNo != [3000, 4100]
+value = 132
+
+[State -2, FlyGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Var(3) = 1
+triggerall = StateType = S
+triggerall = P2BodyDist X <= 120
+triggerall = P2BodyDist X > 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 3001
+triggerall = StateNo != 132
+triggerall = StateNo != [154, 155]
+triggerall = P2MoveType = A
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+trigger4 = StateNo != [3000, 4100]
+trigger5 = MoveType = A
+trigger5 = PrevStateNo != [130, 154]
+trigger5 = StateNo != [3000, 4100]
+value = 130
+
+[State -2, StandGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Pos Y >= 0
+triggerall = Var(9) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -120
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = P2StateType != C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 7777
+trigger4 = StateNo = 100
+trigger5 = StateNo = 105
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+trigger8 = MoveType = A
+trigger8 = PrevStateNo != [130, 154]
+trigger8 = StateNo != [3000, 4100]
+value = 130
+
+[State -2, CrouchGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Var(9) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 0
+triggerall = P2BodyDist Y >= -75
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = P2Dist Y >= -20
+triggerall = P2Dist Y <= 20
+triggerall = P2StateType = C
+triggerall = P2MoveType = A
+trigger1 = MoveType = I
+trigger2 = StateNo = 3030
+trigger2 = StateNo = 3030
+trigger3 = StateNo = 7777
+trigger4 = StateNo = 100
+trigger5 = StateNo = 105
+trigger6 = StateNo = 52
+trigger7 = P2BodyDist X < 0
+trigger7 = StateNo != [3000, 4100]
+trigger8 = MoveType = A
+trigger8 = PrevStateNo != [130, 154]
+trigger8 = StateNo != [3000, 4100]
+value = 131
+
+[State -2, FlyGuard]
+type = ChangeState
+triggerall = PalNo = [11, 12]
+triggerall = Var(3) = 1
+triggerall = StateType = S
+triggerall = Var(9) = [0, 50]
+triggerall = P2BodyDist X <= 40
+triggerall = P2BodyDist Y <= 70
+triggerall = StateNo != 5700
+triggerall = StateNo != 2001
+triggerall = StateNo != 132
+triggerall = StateNo != [154, 155]
+triggerall = P2MoveType = A
+trigger1 = P2StateType = S
+trigger2 = P2StateType = C
+trigger3 = P2StateType = A
+trigger4 = P2BodyDist X < 0
+trigger4 = StateNo != [3000, 4100]
+trigger5 = MoveType = A
+trigger5 = PrevStateNo != [130, 154]
+trigger5 = StateNo != [3000, 4100]
+value = 130
+
+;AI - Auto Defesa
+[State -2,AIGuard]
+type = ChangeState
+triggerall = Var(6)= 1 && Life != 0 && P2Life != 0 && Var(5) = 0
+triggerall = statetype = S
+triggerall = ctrl = 1
+trigger1 = p2movetype = A
+;trigger1 = p2bodydist x <= 50
+value = 130
+
+[State -2,AIGuard]
+type = ChangeState
+triggerall = Var(6)= 1 && Life != 0 && P2Life != 0 
+triggerall = statetype = C
+triggerall = ctrl = 1
+trigger1 = p2movetype = A
+;trigger1 = p2bodydist x <= 50
+value = 131
+
+[State -2,AIGuard]
+type = ChangeState
+triggerall = Var(6)= 1 && Life != 0 && P2Life != 0
+triggerall = statetype = A
+triggerall = ctrl = 1
+trigger1 = p2movetype = A
+;trigger1 = p2bodydist x <= 50
+value = 132
+
+[State -2,Counter]
+type = ChangeState
+triggerall = Var(6)= 1 && life != 0 && P2BodyDist X < 20 && P2BodyDist Y = 0 && P2MoveType = A && Pos Y != 0 && Random > 300
+trigger1 = stateno = [130,155]
+value = 2701
+
+[State -2,Counter]
+type = ChangeState
+triggerall = Var(6)= 1 && life != 0 && P2BodyDist X < 20 && P2BodyDist Y = 0 && P2MoveType = A && Pos Y != 0 && Random > 300
+trigger1 = stateno = [130,155]
+value = 6101
+
+;-------------------------
+[state -2,defesa.no.voa]
+type = null;changestate
+triggerall = time >= 0
+triggerall = pos Y < 0
+triggerall = stateno = 0
+trigger1 = command != "holdback"
+trigger1 = p2movetype != A
+trigger2 = command = "holdback"
+trigger2 = p2movetype != A
+trigger3 = command = "holdfwd"
+trigger4 = command = "holdup"
+trigger5 = command = "holddown"
+value = 3001
+
+[state -2,defesa.no.voa]
+type = null;changestate
+triggerall = time >= 0
+triggerall = pos Y < 0
+triggerall = stateno = 20
+trigger1 = command != "holdback"
+trigger1 = p2movetype != A
+trigger2 = command = "holdback"
+trigger2 = p2movetype != A
+trigger3 = command = "holdfwd"
+trigger4 = command = "holdup"
+trigger5 = command = "holddown"
+value = 3001
+;---------------------------------------------------------------------------

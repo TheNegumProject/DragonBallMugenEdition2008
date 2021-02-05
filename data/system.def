@@ -1,0 +1,477 @@
+;==============================================
+;Dragon Ball M.U.G.E.N Edition 2008
+;==============================================
+;----------------------------
+[Info]
+name =Dragon Ball M.U.G.E.N Edition 2008          
+author =DB-POWER Team  
+versiondate=2008-04-25
+pal.defaults=1,2,3,4,5
+;email = nienic@o2.pl
+;website = www.dbme2k8.xt.pl  
+;----------------------------
+[Files]
+spr =system.sff         
+snd =system.snd         
+;logo.storyboard =     
+intro.storyboard =title.def  
+select =select.def       
+fight =fight.def         
+font1 =font/font2.fnt
+font2 =font/font2.fnt
+font3 =font/font2.fnt      
+logo.storyboard=
+
+;----------------------------
+[Music]
+title.bgm =sound/title.mp3
+title.bgm.loop =1       
+select.bgm =sound/select.mp3
+select.bgm.loop =1      
+vs.bgm =sound/vs.mp3
+vs.bgm.loop =1          
+
+;-------------------------------------------------------------------
+[Title Info]
+menu.pos =85,160
+menu.item.font =1,0,0
+menu.item.active.font =1,1,0
+menu.item.spacing =0, 15
+menu.itemname.arcade ="Turniej"
+menu.itemname.versus ="Versus"
+menu.itemname.teamarcade ="Turniej Druzyny"
+menu.itemname.teamversus ="Versus Druzyny"
+menu.itemname.teamcoop ="Team CO-OP"
+menu.itemname.training ="Trening"
+menu.itemname.watch ="Ogladaj"
+menu.itemname.options ="Opcje"
+menu.itemname.exit ="Wyjscie"
+menu.window.margins.y =18, 20
+menu.window.visibleitems =4
+menu.boxcursor.visible =0     
+menu.boxcursor.coords =-60,-16,59,1
+cursor.move.snd =100,0
+cursor.done.snd =100,1
+cancel.snd =100,2
+fadein.time=
+fadeout.time=
+menu.itemname.survival="Survival"
+menu.itemname.survivalcoop="Survival CO-OP"
+
+;----------------------------
+[TitleBGdef]
+bgclearcolor = 0,0,0
+
+[TitleBG 0]
+type  = anim
+actionno = 0
+start = -160, 0
+
+[Begin Action 0]
+loopstart
+0,0,0,0,300
+;-------------------------------------------------------------------
+;Character select definition
+[Select Info]
+rows =9
+columns =11
+wrapping =1             
+pos =3,10              
+showemptyboxes =0        
+moveoveremptyboxes =0
+   
+cell.size =29,29       
+cell.spacing =0        
+cell.bg.spr =15,0      
+cell.random.spr =16,0   
+cell.random.switchtime =4
+
+p1.cursor.startcell =3,5
+p1.cursor.active.anim = 10
+p1.cursor.done.anim = 14
+p1.cursor.move.snd =100,0
+p1.cursor.done.snd =100,1
+p1.random.move.snd =100,0
+
+p2.cursor.startcell =4,5
+p2.cursor.active.anim = 11
+p2.cursor.done.anim = 15
+p2.cursor.blink =0       
+p2.cursor.move.snd =100,0
+p2.cursor.done.snd =100,1
+p2.random.move.snd =100,0
+
+random.move.snd.cancel =0
+stage.move.snd =100,0    
+stage.done.snd =100,1   
+cancel.snd =100,2
+
+portrait.offset =0,0
+portrait.scale =1,1
+title.offset =159,7     
+title.font =-1,0,0  
+     
+p1.face.offset =0,68    
+p1.face.scale =0.75,0.75
+p1.face.facing =1      
+  
+p2.face.offset =320,68
+p2.face.scale =0.75,0.75
+p2.face.facing =-1   
+    
+p1.name.offset =40,180   
+p1.name.font =2,0,0  
+   
+p2.name.offset =280,180
+p2.name.font =2,0,0
+
+stage.pos =160,238
+stage.active.font =3,0,0
+stage.active2.font =3,0,0 
+stage.done.font =3,1,0
+
+teammenu.move.wrapping =1
+
+p1.teammenu.pos =8, 75
+p1.teammenu.bg.spr =17,0
+p1.teammenu.move.snd =100,0
+p1.teammenu.value.snd =100,0
+p1.teammenu.done.snd =100,1
+p1.teammenu.item.offset =-60,12
+p1.teammenu.item.spacing =0,35
+p1.teammenu.item.cursor.offset =60, 34
+p1.teammenu.item.cursor.anim =12
+p1.teammenu.value.icon.offset =60,1
+p1.teammenu.value.icon.spr =18,0
+p1.teammenu.value.empty.icon.offset =60,1
+p1.teammenu.value.empty.icon.spr =18,1
+p1.teammenu.value.spacing =25,0
+
+p2.teammenu.pos =249, 75
+p2.teammenu.bg.spr =17,1
+p2.teammenu.move.snd =100,0
+p2.teammenu.value.snd =100,0
+p2.teammenu.done.snd =100,1
+p2.teammenu.item.offset =92,12
+p2.teammenu.item.spacing =0,35
+p2.teammenu.item.cursor.offset =-135, 34
+p2.teammenu.item.cursor.anim =13
+p2.teammenu.value.icon.offset =-60,1
+p2.teammenu.value.icon.spr =18,0
+p2.teammenu.value.empty.icon.spr =18,1
+p2.teammenu.value.empty.icon.offset =-60,1
+p2.teammenu.value.spacing =-25,0
+fadein.time=
+fadeout.time=
+p1.cursor.active.spr=
+p1.cursor.done.spr=
+p2.cursor.active.spr=
+p2.cursor.done.spr=
+p1.teammenu.selftitle.font=
+p1.teammenu.selftitle.text=
+p1.teammenu.enemytitle.font=
+p1.teammenu.enemytitle.text=
+p1.teammenu.item.font=
+p1.teammenu.item.active.font=
+p1.teammenu.item.active2.font=
+p2.teammenu.selftitle.font=
+p2.teammenu.selftitle.text=
+p2.teammenu.enemytitle.font=
+p2.teammenu.enemytitle.text=
+p2.teammenu.item.font=
+p2.teammenu.item.active.font=
+p2.teammenu.item.active2.font=
+
+[Begin Action 10]
+10,0, 0,0, 4
+10,1, 0,0, 4
+10,0, 0,0, 4
+15,2, 0,0, 4
+
+[Begin Action 11]
+11,0, 0,0, 4
+11,1, 0,0, 4
+11,0, 0,0, 4
+11,2, 0,0, 4
+
+[Begin Action 12]
+12,0, 0,0, 4
+12,1, 0,0, 4
+12,0, 0,0, 4
+12,2, 0,0, 4
+
+[Begin Action 13]
+13,0, 0,0, 4
+13,1, 0,0, 4
+13,0, 0,0, 4
+13,2, 0,0, 4
+
+[Begin Action 14]
+10,3, 0,0, 4
+10,4, 0,0, 4
+
+[Begin Action 15]
+11,3, 0,0, 4
+11,4, 0,0, 4
+
+;-----------------------
+[SelectBGdef]
+
+[SelectBG 0] 
+type  = normal
+spriteno = 0,2
+layerno = 0
+start = -160,0
+
+;-------------------------------------------------------------------
+[VS Screen]
+time =370              
+p1.pos =-1,128
+p1.facing =1            
+p1.scale =0.75,0.75         
+p2.pos =319,128
+p2.facing =-1          
+p2.scale =0.75,0.75          
+p1.name.pos  =10,128
+p1.name.font =2,1,1
+p2.name.pos  =310,128
+p2.name.font =2,1,-1
+fadein.time=
+fadeout.time=
+
+
+;-----------------------
+[VersusBGdef] 
+
+[VersusBG 0] 
+type  = anim
+actionno = 25
+start = -160,0
+layerno = 0
+mask = 1
+
+[VersusBG 1] 
+type  = anim
+actionno = 26
+start = -160,0
+layerno = 0
+mask = 1
+
+[VersusBG 2] 
+type  = anim
+actionno = 26
+start = -480,0
+layerno = 0
+mask = 1
+
+[VersusBG 3] 
+type  = anim
+actionno = 20
+start = -160,0
+;layerno = 1
+
+[Begin Action 21]
+;26,0, 0,0, 90
+21,0, 0,0, 3
+21,1, 0,0, 3
+21,2, 0,0, 3
+21,3, 0,0, 3
+21,4, 0,0, 3
+21,5, 0,0, 3
+21,6, 0,0, 3
+21,7, 0,0, 3
+21,8, 0,0, 3
+21,9, 0,0, 3
+21,10, 0,0, 3
+21,11, 0,0, 3
+21,12, 0,0, 3
+21,13, 0,0, 3
+21,14, 0,0, 3
+21,15, 0,0, 3
+21,16, 0,0, 3
+21,17, 0,0, 3
+21,18, 0,0, 3
+21,19, 0,0, 3
+21,20, 0,0, 3
+21,21, 0,0, 3
+21,22, 0,0, 3
+21,23, 0,0, 3
+21,24, 0,0, 3
+21,25, 0,0, 3
+21,26, 0,0, 3
+21,27, 0,0, 3
+21,28, 0,0, 3
+21,29, 0,0, 2
+21,30, 0,0, 2
+21,31, 0,0, 2
+21,32, 0,0, 3
+21,33, 0,0, 2
+21,34, 0,0, 2
+21,35, 0,0, 2
+21,36, 0,0, 2
+21,37, 0,0, 2
+21,38, 0,0, 2
+21,39, 0,0, 2
+21,40, 0,0, 2
+21,41, 0,0, 2
+21,42, 0,0, 2
+21,43, 0,0, 2
+21,44, 0,0, 2
+21,45, 0,0, 2
+21,46, 0,0, 1
+21,47, 0,0, 1
+21,48, 0,0, 1
+21,49, 0,0, 1
+21,50, 0,0, 1
+21,51, 0,0, 1
+21,52, 0,0, 1
+21,53, 0,0, 1
+21,54, 0,0, 1
+21,55, 0,0, 1
+21,56, 0,0, 1
+21,57, 0,0, 1
+21,58, 0,0, 1
+21,59, 0,0, 1
+21,60, 0,0, 1
+21,61, 0,0, 1
+21,62, 0,0, 2
+21,63, 0,0, 2
+-1,0, 0,0, -1
+
+[Begin Action 20]
+;26,0, 0,0, 90
+20,0,   0,0, -1
+
+
+[Begin Action 25]
+;26,0, 0,0, 90
+25,0, 0,0, -1
+
+
+[Begin Action 26]
+;26,0, 0,0, 90
+;25,0, 0,0, -1
+;25,0, 0,0, -1
+27,0, 0,0, 1,, A
+27,0, 10,0, 1,, A
+27,0, 20,0, 1,, A
+27,0, 30,0, 1,, A
+27,0, 40,0, 1,, A
+27,0, 50,0, 1,, A
+27,0, 60,0, 1,, A
+27,0, 70,0, 1,, A
+27,0, 80,0, 1,, A
+27,0, 90,0, 1,, A
+27,0, 100,0, 1,, A
+27,0, 110,0, 1,, A
+27,0, 120,0, 1,, A
+27,0, 130,0, 1,, A
+27,0, 140,0, 1,, A
+27,0, 150,0, 1,, A
+27,0, 160,0, 1,, A
+27,0, 170,0, 1,, A
+27,0, 180,0, 1,, A
+27,0, 190,0, 1,, A
+27,0, 200,0, 1,, A
+27,0, 210,0, 1,, A
+27,0, 220,0, 1,, A
+27,0, 230,0, 1,, A
+27,0, 240,0, 1,, A
+27,0, 250,0, 1,, A
+27,0, 260,0, 1,, A
+27,0, 270,0, 1,, A
+27,0, 280,0, 1,, A
+27,0, 290,0, 1,, A
+27,0, 300,0, 1,, A
+27,0, 310,0, 1,, A
+27,0, 320,0, 1,, A
+
+;-------------------------------------------------------------------
+;Demo mode definition
+;Whole group is *2001.04.01 NEW*
+[Demo Mode]
+enabled =1;Set to 1 to enable demo mode, 0 to disable
+select.enabled =0;Set to 1 to display select screen, 0 to disable
+vsscreen.enabled =0;Set to 1 to display versus screen, 0 to disable
+title.waittime =2000;Time to wait at title before starting demo mode
+fight.endtime =1500;Time to display the fight before returning to title
+fight.playbgm =0;Set to 1 to enable in-fight BGM, 0 to disable
+fight.bars.display =0;Set to 1 to display lifebar, 0 to disable
+intro.waitcycles =1;Cycles to wait before intro cutscene is played again
+debuginfo =0;Set to 0 to hide debugging info (debug mode only)
+
+;-------------------------------------------------------------------
+;Continue screen definition
+;Whole group is *2001.04.01 NEW*
+[Continue Screen]
+enabled =0;Set to 1 to show continue screen, 0 to disable
+
+;-------------------------------------------------------------------
+;Game over screen definition
+;Whole group is *2001.04.01 NEW*
+[Game Over Screen]
+enabled =1;Set to 1 to show game over screen, 0 to disable
+storyboard =gameover.def;Game over storyboard filename
+
+;-------------------------------------------------------------------
+;Win screen definition
+;This is the screen that is shown when you win in arcade mode.
+;It will not be displayed if the winning character has an ending.
+[Win Screen]
+enabled =1;Set to 1 to show win screen, 0 to disable *2001.04.01 NEW*
+wintext.text =Gratulacje! Wygrales Turniej.
+wintext.font =2,1,0
+wintext.offset =159,70
+wintext.displaytime =-1
+wintext.layerno =2
+fadein.time =32
+pose.time =300
+fadeout.time =64
+
+;-------------------------------------------------------------------
+;Game ending screen definition
+;This screen shows up after the Win Screen.
+;It will not be displayed if the winning character has an ending.
+;Whole group is *2001.04.01 NEW*
+[Default Ending]
+enabled =0              
+storyboard =             
+
+;-------------------------------------------------------------------
+;Ending credits screen definition
+;This screen shows up after the Win Screen and Ending
+;Whole group is *2001.04.01 NEW*
+[End Credits]
+enabled =1              
+storyboard =credits.def             
+
+;-------------------------------------------------------------------
+;Options screen definition
+[Option Info]
+cursor.move.snd =100,0
+cursor.done.snd =100,1
+cancel.snd =100,2
+
+;-------------------
+;Options screen background
+[OptionBGdef] 
+
+[OptionBG 1]
+type  = normal
+spriteno = 0,1
+start = -160,0
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=
+[Survival Results Screen]
+enabled=1
+wintext.text=
+wintext.font=
+wintext.offset=
+wintext.displaytime=
+wintext.layerno=
+fadein.time=32
+show.time=300
+fadeout.time=64
+roundstowin=10

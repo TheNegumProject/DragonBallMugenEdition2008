@@ -1,0 +1,73 @@
+;================================
+;Gohan-Kun -- The M10 Project
+;================================
+
+;------------------------------------------------------
+;Author:	ZGTE
+;	http://www.zgtm.tk
+;------------------------------------------------------
+
+;=============================================================
+
+;---------------------
+;Character Information
+;---------------------
+[Info]
+name = "Gohan by [Roken] And [Insydious]"        ;Name of character
+displayname = "Gohan SSj2" ;Name of character to display
+versiondate = 04,14,2002    ;Version date of character
+mugenversion = 04,14,2001   ;Version of M.U.G.E.N character works on
+author = "ZGTE"         ;Character author name
+pal.defaults = 1,1,5,2,6,3      ;Default palettes in order of preference
+
+
+;---------------------
+;Character Files
+;---------------------
+
+;=====================
+[Files]
+;=====================
+
+;---------------------
+;Command Set
+;---------------------
+cmd     = Gohan.cmd
+
+;---------------------
+;State Files
+;---------------------
+cns     = Gohan.cns     ;Constants
+st      = Gohan.cns     ;States
+st1     = basic.cns    ;Basics
+st2     = helpers.cns   ;Helpers
+st3     = specials.cns  ;Special Moves
+st4     = features.cns  ;Special Features
+stcommon = common1.cns
+
+;---------------------
+;Sprite/Sound
+;---------------------
+sprite  = Gohan.sff   ;Sprite
+anim    = Gohan.air   ;Animation
+sound   = Gohan.snd   ;Sound
+
+;---------------------
+;Palletes
+;---------------------
+pal1    = Gohan.act  ;Palettes (can have up to 12)
+pal2    = Gohan.act
+pal3    = Gohan.act
+pal4    = Gohan.act     ;Mystic
+pal5    = Gohan.act
+pal6    = Gohan.act
+
+;Arcade mode
+[Arcade]
+;intro.storyboard = intro.def
+;ending.storyboard = ending.def
+
+;----------------------------------
+;||||||http://zgteam.cjb.net|||||||
+;|||||http://insydious.n2v.net|||||
+;----------------------------------

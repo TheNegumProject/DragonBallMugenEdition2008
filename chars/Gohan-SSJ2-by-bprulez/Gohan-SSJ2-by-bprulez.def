@@ -1,0 +1,26 @@
+[Info]
+name ="Gohan Super Sayajin 2 by bprulez"
+displayname ="Gohan SSJ2"
+versiondate = 10,04,2006
+mugenversion =11,01,2001
+author ="bpruleZ"
+pal.defaults =1
+
+[Files]
+cmd      =gohanssj2.cmd
+cns      =gohanssj2.cns
+st       =gohanssj2.cns
+st2      =specjalne.cns
+st3      =superki.cns
+st4      =ki.cns
+st5      =WstepGohanvsCell.cns
+st6      =wstep.cns
+stcommon =common.cns
+sprite   =gohanssj2.sff
+anim     =gohanssj2.air
+sound    =gohanssj2.snd
+st1=Basic.cns
+
+;[Arcade]
+;intro.storyboard=
+;ending.storyboard=

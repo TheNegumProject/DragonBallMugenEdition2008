@@ -1,0 +1,27 @@
+[Info]
+
+name="Jeice"
+displayname ="Jeice"
+versiondate=06/12/2007
+mugenversion=11,01,2001
+author="SaWWeN"
+pal.defaults=1,2,3,4,5
+
+[Files]
+cns =Jeice.cns
+cmd =Jeice.cmd
+stcommon =common1.cns
+sprite  =jeice.sff
+anim    =Jeice.air
+sound =jeice.snd
+st =jeice.cns
+pal1=jeice.act
+pal2=jeice2.act
+pal3=jeice3.act
+pal4=jeice4.act
+pal5=jeice5.act
+pal6=jeice6.act
+pal7=jeice7.act
+[Arcade]
+intro.storyboard=
+ending.storyboard=

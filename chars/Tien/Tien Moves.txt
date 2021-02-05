@@ -1,0 +1,91 @@
+|-Tien's Moves------------------------------------------------------------------
+Version 1.0
+Character made by 
+Goten88 a.k.a Pextin
+http://goten88.shorturl.com/
+|-Basics---------------------------------------------------------------------------
+
+a     = Low Kick
+(P2 Must be close)
+
+a     = Light Kick
+b     = Knee Attack
+(P2 Must be close)
+
+b     = High Kick
+x     = Light Punch
+y     = Strong Punch
+z     = Ki Blast
+
+D, a  = Toe Kick
+D, b  = Shin Kick
+D, b  = Sliding Kick
+(After Hit, press U to jump UP)(Chains from Shin Kick)(Hold a or b to do while dashing)
+
+D, x  = Light Punch
+D, y  = Med Punch
+D, y  = Uppercut
+(After Hit, press U to jump UP)(Chains from Med Punch)
+
+U, a  = Downward Kick
+U, b  = Forward Kick
+U, x  = Light Punch
+U, y  = Med Punch
+U, y  = Strong Punch
+(Chains from Med Punch) 
+
+|-Specials-------------------------------------------------------------------------
+Super Jump              - D, U
+Super Jump FWD          - D, UF
+Super Jump BACK         - D, UB
+Throw                   - F, y or B, y
+Driving Kick            - B, b 
+(Combo Finisher)(Chains from any Standing Basic)
+
+Smashing Downward Kick  - D, b 
+(Chains from Forward Kick)(Must be in Air)
+
+Power up                - hold c 
+(Power < 3000)(Can't Be in Split Form!) 
+
+Double Palm-Light       - D,DF,F, a
+Double Palm-Hard        - D,DF,F, b
+Ram Dash-Light          - D,DB,B, a 
+(Must Be in Air)
+
+Ram Dash-Hard           - D,DB,B, b 
+(Must Be in Air)
+
+Taioken-Light           - D,DF,F, x
+Taioken-Hard            - D,DF,F, y
+
+|-Supers Moves---------------------------------------------------------------------
+Tri Beam Ha             - D,DF,F,D,DF,F, a 
+(Power >= 1000)(Can't Be in Split Form!)
+
+Dodonpa                 - D,DB,B,D,DB,B, x 
+(Power >= 2000)(Can't Be in Split Form!)
+
+Split Form              - B,DB,D,DF,F, y 
+(Power >= 2000)(Life <= 500)(ONCE per Round)
+
+Combo Chain Ability     - More Basics & Specials gain chainability! 
+(Power > 2000)(Can't Be in Split Form!)
+
+Special thanks to:
+
+Akira Toriyama - For creating Dragonball Z
+Bandai - For anything I may have used from their games such as fx,sounds, or sprites.
+Elecbyte - For making Mugen
+Lonewolf - For editing the Piccolo sprites from super butoden 2.
+Dark Roken - For advice & sounds & for being MR. MeNtOr :P.
+Toad - For some sweet effects.
+Neocide - For ripping the sweet sounds from Budoukai.
+Thrawn - For suggestions and explanations.
+Dizzy - For suggestions and beta testing.
+Redspider - For help on some technical stuff
+Annubis - For things that I may have or haven't used.
+Redneck - For testing and givin ideas.
+Capcom Vs Snk - For some fx I used.
+
+and anyone else I can't think of who helped me.

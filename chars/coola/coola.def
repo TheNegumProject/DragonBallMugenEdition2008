@@ -1,0 +1,35 @@
+;.............................................................................................
+[Info]
+name ="coola by Franciynaldo"
+displayname ="coola"
+versiondate =15,11,2007
+mugenversion =06,14,2003
+author ="FRS GAMES"
+pal.defaults =1,2,3,4,5,6
+
+; Files for the player
+[Files]
+cmd     =coola.cmd
+cns     =coola.cns
+st      =coola.cns
+stcommon =common1.cns
+sprite  =coola.sff
+anim    =coola.air
+sound   =coola.snd
+pal1=coola.act
+pal2=coola2.act
+pal3=coola3.act
+pal4=coola4.act
+pal5=coola5.act
+pal6=coola6.act
+
+; Arcade mode
+[Arcade]
+intro.storyboard =intro/intro.def
+;...........................................................................................
+
+                                ; Feito no Brasil           
+;                              Autor: equipe FRS GAMES
+
+;[[[[[[[[[[[[[[[[[[[[[[E-mail& msn: superkakarotto@hotmail.com]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+

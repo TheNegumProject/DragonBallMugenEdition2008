@@ -1,0 +1,401 @@
+
+; Charge Power
+[Statedef 730]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 730
+sprpriority = 2
+poweradd = 5
+hitdefpersist	= 0
+movehitpersist	= 0
+hitcountpersist	= 0
+facep2 = 1
+
+[State 730,PowerAdd]
+type = PowerAdd
+trigger1 = (Time = [18,40])
+value = 4
+
+[State 730,PowerAdd]
+type = PowerAdd
+trigger1 = (Time > 40)
+value = 8
+
+[State 730, PalFX]
+type = PalFX
+trigger1 = ((Time > 18) && ((GameTime%5) = 0))
+time = 5
+trigger1 = (Time > 55) && ((GameTime%35) = 0)
+time = 75
+add = 15,20,0
+sinadd = 40,35,5,4
+
+[State 730, EnvShake]
+type = EnvShake
+trigger1 = ((Time > 18) && ((GameTime%5) = 0))
+time = 5
+freq = 140
+ampl = -2
+phase = 90
+
+;Aura
+[State 730,4]
+type = Explod
+trigger1 = AnimElem = 2
+Anim = 731
+ID = 731
+pos = 5,0
+sprpriority = 3
+removetime = -1
+bindtime = -1
+ownpal = 1
+Postype = p1
+removeongethit = 1
+scale = 0.4,0.4
+ontop = 1
+SuperMove = 1
+
+;Wave
+[State 730,6 ]
+type = Explod
+trigger1 = AnimElem = 2
+Anim = 733
+ID = 733
+pos = -2,0
+postype	= p1
+sprpriority = 5
+removetime = -1
+removeongethit = 1
+ownpal = 1
+bindtime = -1
+SuperMove = 1
+scale = 0.7, 0.7
+
+;Circle
+[State 730,6]
+type = Explod
+trigger1 = AnimElem = 2
+Anim = 734
+Id = 734
+Pos = 3,-30
+sprpriority = 5
+removeongethit = 1
+removetime = -2
+bindtime = -1
+Postype = p1
+SuperMove = 1
+ownpal = 1
+scale = 0.8, 0.8
+
+[State 730,!]
+type = ChangeState
+triggerall = AnimTime = 0
+trigger1 = command != "holda" && command != "holdx"
+value = 735
+ctrl = 0
+
+[State 730, PlaySND]
+type = PlaySnd
+trigger1 = Time = 0
+value = 730,0
+volume = 255
+
+[State 730, PlaySND]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 720,0
+channel = 4
+volume = 255
+
+[State 730, PlaySND]
+type = PlaySnd
+trigger1 = (Time > 0) && ((GameTime%95) = 0)
+value	= S730,1
+volume = 10
+channel = 2
+
+;---------------------------------------------------------------------------
+; Charge end
+
+[Statedef 735]
+type = S
+movetype = I
+physics	= S
+anim = 735
+;velset		= 0,0
+ctrl = 0
+poweradd = 0
+juggle = 0
+facep2 = 0
+hitdefpersist = 0
+movehitpersist = 0
+hitcountpersist = 0
+sprpriority = 2
+
+[State 735,RemoveExplod]
+type = RemoveExplod
+ID = 731
+trigger1 = (!Time)
+
+[State 735,RemoveExplod]
+type = RemoveExplod
+ID = 733
+trigger1 = (!Time)
+
+[State 735,End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 735, PlaySND]
+type = PlaySnd
+trigger1 = Time = 1
+value = s730,2
+
+[State 735, StopSnd]
+type = StopSnd
+trigger1 = (AnimElem = 1)
+channel = 2
+
+;---------------------------------------------------------------------------
+;Kame Hame Ha
+[Statedef 2500]
+type = S
+movetype = A
+physics = S
+ctrl = 0
+velset = 0,0,0
+
+[State 2500, 2]
+type = changeanim
+trigger1 = time = 0
+value = 2500
+
+;Aura
+[State 730,4]
+type = Explod
+trigger1 = AnimElem = 2
+Anim = 731
+ID = 731
+sprpriority = 3
+removetime = -1
+bindtime = -1
+ownpal = 1
+Postype = p1
+removeongethit = 1
+scale = 0.4,0.4
+ontop = 1
+SuperMove = 1
+
+;Wave
+[State 730,6 ]
+type = Explod
+trigger1 = AnimElem = 2
+Anim = 733
+ID = 733
+pos = -2,0
+postype	= p1
+sprpriority = 5
+removetime = -1
+removeongethit = 1
+ownpal = 1
+bindtime = -1
+SuperMove = 1
+scale = 0.7, 0.7
+
+[State 2500: Cicle]
+type = Explod
+trigger1 = (Time = 10)
+anim = 2610
+ID = 2610
+pos = -12,-45
+postype = p1
+facing = 1
+bindtime = -1
+removetime = 90
+supermove = -1
+removeongethit = 1
+sprpriority = 3
+
+[State 2500: waves]
+type = Explod
+trigger1 = (Time = 30)
+anim = 2605
+ID = 2605
+pos = -12,-45
+postype = p1
+facing = 1
+bindtime = -1
+removetime = 70
+supermove = -1
+removeongethit = 1
+sprpriority = 2
+
+[State 3050,2]
+type = AfterImage
+trigger1 = Time = 10
+time = 200
+length = 20
+palbright = 10,10,-40
+palcontrast = 190,190,210
+palpostbright = -5,-5,-10
+timegap = 2
+flamegap = 1
+trans = add1
+
+[State 2500,1]
+type = playsnd
+trigger1 = AnimElem = 1
+value = 2500,0
+volume = 255
+channel		= 1
+
+[State 2500;  Snd]
+type			= StopSnd
+trigger1 = (life = 0) || stateno != 2500
+channel		= 1
+
+
+[State 2500, 5]
+type = changestate
+triggerall = var(1) != 3
+trigger1 = p2bodydist Y > -60
+trigger1 = p2bodydist Y < 60
+trigger1 = animtime = 0
+value = 2501
+ctrl = 0
+
+[State 2500, 6]
+type = changestate
+triggerall = var(1) != 3
+trigger1 = p2bodydist Y > 60
+trigger1 = animtime = 0
+value = 2503
+ctrl = 0
+
+[State 2500, 6]
+type = changestate
+triggerall = var(1) != 3
+trigger1 = p2bodydist Y < -60
+trigger1 = animtime = 0
+value = 2502
+ctrl = 0
+
+[State 2500, 1]
+type = assertspecial
+trigger1 = time = 0
+flag = nomusic
+
+[State 2500, 2]
+type = playsnd
+trigger1 = time = 0
+value = 1900,0
+
+[State 2500, 0]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 0
+
+;Shoot
+[Statedef 2501]
+type = S
+movetype = A
+physics = S
+velset = 0,0,0
+ctrl = 0
+
+[State 2501, 2]
+type = changeanim
+trigger1 = time = 0
+value = 2501
+
+[State 2501,9]
+type = playsnd
+trigger1 = AnimElem = 1
+value = 2500,1
+volume = 255
+
+[State 1900, 4]
+type = poweradd
+trigger1 = time > 0
+value = -10
+
+[State 2501, Beam]
+type = Projectile
+trigger1 = AnimElem = 1
+getpower  = 0
+scale = 0.60,0.60
+projanim = 2515
+projhitanim = -1
+projpriority = 5
+projremovetime = 80
+projid = 2515
+projhits = 120
+projmisstime = 2
+numhits = 4
+velocity = 0
+accel = 0
+offset = 27,-53
+attr = S, NA
+damage   = 10,8
+animtype = Hard
+guardflag = MA
+hitflag = MAFP
+pausetime = 1,1
+hitsound   = S15,0
+sparkno = -1
+guard.sparkno = -1
+guardsound = S16,0
+ground.type = High
+ground.slidetime = 25
+ground.hittime  = 15
+ground.velocity = -8
+air.animtype = High
+air.velocity = -2
+air.juggle = 2
+down.velocity = -4,-6
+down.hittime = 30
+down.bounce = 0
+palfx.time = 23
+palfx.add = 0,128,255
+
+[State 2501]
+type = explod
+trigger1 = projcontact(9878) = 1
+anim = 9879
+pos = -24,-52
+postype = p2
+sprpriority = 1
+bindtime = 1
+
+[State 2500, 6]
+type = changestate
+trigger1 = animtime = 0
+trigger1 = power > 0
+value = 0
+ctrl = 1
+
+[State 2500, 6]
+type = changestate
+trigger1 = animtime = 0
+trigger1 = power = 0
+value = 5300
+ctrl = 0
+
+[State 735,RemoveExplod]
+type = RemoveExplod
+ID = 731
+trigger1 = (!Time)
+
+[State 735,RemoveExplod]
+type = RemoveExplod
+ID = 733
+trigger1 = (!Time)
+
+

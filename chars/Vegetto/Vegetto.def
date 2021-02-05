@@ -1,0 +1,27 @@
+; Player information
+[Info]
+name = "Vegetto"        ;Name of character
+displayname = "Vegetto" ;Name of character to display
+versiondate = 04,14,2002    ;Version date of character (MM-DD-YYYY)
+mugenversion = 04,14,2002   ;Version of M.U.G.E.N character works on
+author = "aZCal"         ;Character author name
+pal.defaults = 6,3,4,2      ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd     = vegetto.cmd   ;Command set
+cns     = vegetto.cns   ;Constants
+st      = vegetto.cns   ;States
+stcommon = common1.cns ;Common states
+st1 = NormalAttacks.cns
+st2 = SpecialAttacks.cns
+st3 = SuperAttacks.cns
+sprite  = vegetto.sff   ;Sprite
+anim    = vegetto.air   ;Animation
+sound   = vegetto.snd   ;Sound
+pal1    = v1.act 
+
+; Arcade mode
+[Arcade]
+intro.storyboard =
+ending.storyboard =

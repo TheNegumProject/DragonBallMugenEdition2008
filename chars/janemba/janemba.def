@@ -1,0 +1,27 @@
+;..........................................................................................
+[Info]
+name ="janemba by Franciynaldo"
+displayname ="Janemba"
+versiondate =25,10,2007
+mugenversion =06,14,2003
+author ="D-GENERACIONZ - Team"
+pal.defaults =1,2,3,4,5,6
+[Files]
+cmd=janemba.cmd
+cns=janemba.cns
+st=janemba.cns
+stcommon=common1.cns
+sprite=janemba.sff
+anim=janemba.air
+sound=janemba.snd
+pal1=janemba3.act
+pal2=janemba2.act
+pal3=janemba.act
+pal4=janemba4.act
+pal5=janemba5.act
+pal6=janemba6.act
+
+;...........................................................................................
+
+                                        
+;                              Autor: equipe DZGTEAM

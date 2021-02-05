@@ -1,0 +1,41 @@
+Creator=SSJ4GOKU
+
+[Info]
+name ="Bebi Vegeta"  
+displayname ="Bebi Vegeta"
+versiondate =2,04,2001 
+mugenversion =04,01,2000   
+author ="ssj4goku"   
+pal.defaults=1,2,3,4,5
+
+
+[Files]
+cmd     =Bebi.cmd    
+cns     =Bebi.cns    
+st      =Bebi.cns    
+st2     =specials.cns
+st3     =Super.cns
+stcommon=common1.cns   
+sprite  =Bebi.sff     
+anim    =Bebi.air    
+sound   =Bebi.snd
+pal1=
+pal2=
+pal3=
+pal4=
+pal5=
+pal6=
+pal7=
+pal8=
+pal9=
+pal10=
+pal11=
+pal12=
+
+; Arcade mode
+[Arcade]
+intro.storyboard  =
+ending.storyboard =
+
+[Made in Z-CharCAD]
+

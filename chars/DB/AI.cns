@@ -1,0 +1,644 @@
+;Programming by Goten88
+
+[Statedef -2]
+
+[State -2: DisplayToClipBoard]
+type = DisplayToClipBoard
+trigger1 = 1
+text = "Variable 1: %d, X Dist: %d, Var 24: %d"
+params = Var(1), Var(14),Var(24)
+
+[state -2]
+type = poweradd
+trigger1 = roundno = 1
+trigger1 = roundstate = 0
+trigger1 = power < 1500
+value = 1500
+
+[state -2]
+type = varset
+trigger1 = 1
+v= 14
+value = floor(p2bodydist x)
+
+[state -2]
+type = removeexplod
+trigger1 = numexplod(1903) > 0
+trigger1 = stateno != 250
+value = 1903
+
+[state -2]
+type = removeexplod
+trigger1 = numexplod(1904) > 0
+trigger1 = stateno != 250
+value = 1904
+
+; Var for Super Jump
+[State -2]
+type = varadd
+trigger1 = 1
+trigger1 = p2bodydist y < -10
+trigger1 = var(24) <=100
+v = 24
+value = 1
+
+[State -2]
+type = varset
+trigger1 = 1
+trigger1 = p2bodydist y >= -10
+v = 24
+value = 0
+
+; Tornado
+[Statedef 1250]
+type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
+movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
+physics = S                      ;Physics: S-stand, C-crouch, A-air
+juggle  = 1                      ;Number of air juggle points move takes
+velset = 0,0                     ;Set velocity (x,y) (Def: no change)
+ctrl = 0                         ;Set ctrl (Def: no change)
+anim = 250                     
+sprpriority = 2
+poweradd = -1000 
+
+[State 1250]
+type = Varadd
+trigger1 = Time = 0
+trigger1 = Var(1) = 1
+v = 23
+value = 1 
+
+[State 1250]
+type = velset
+trigger1 = time > 60
+trigger1 = time < 300
+trigger1 = p2bodydist x >= -30
+x = 6   
+
+[State 1250]
+type = velset
+trigger1 = p2bodydist x < -30
+trigger1 = time > 60
+trigger1 = time < 300
+x= -6
+
+[State 1250]
+type = velset
+trigger1 = time =300
+x = 0
+    
+[state 1250]
+type = explod
+trigger1 = time = 73
+anim = 1903
+pos = -23,0
+postype = p1
+bindtime = -1
+removetime = 227
+scale = 1.2,.5
+ownpal = 1
+sprpriority=999
+
+[state 1250]
+type = explod
+trigger1 = time = 300
+anim = 1904
+pos = -23,0
+postype = p1
+bindtime = -1
+removetime = -2
+scale = 1.2,.5
+ownpal = 1
+sprpriority=999
+
+[State 1250, 1]
+type = HitDef
+trigger1 = AnimElem = 9
+trigger2 = AnimElem = 11
+attr = S, NA                     ;Attribute: Standing, Normal Attack
+damage = 9                     ;Damage that move inflicts, guard damage
+animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = MA                   ;Flags on how move is to be guarded against
+hitflag = MAF                    ;Flags of conditions that move can hit
+priority = 3, Hit                ;Attack priority: 0 (least) to 7 (most), 4 default
+pausetime = 0, 0                 ;Time attacker pauses, time opponent shakes
+sparkno = S1905                      ;Spark anim no (Def: set above)
+guard.sparkno = S1906
+sparkxy = 0, -32               
+hitsound = S3, 0                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = High               ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 5             ;Time that the opponent slides back
+ground.hittime  = 12             ;Time opponent is in hit state
+ground.velocity = -13             ;Velocity at which opponent is pushed
+airguard.velocity = -1.9,-.8     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
+air.type = High                  ;Type: High, Low, Trip (def: same as ground.type)
+air.velocity = -1.4,-3           ;X-velocity at which opponent is pushed,
+air.hittime = 12                 ;Time before opponent regains control in air
+
+[State 1250, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 9, 0
+
+[State 1250, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 26, 6
+volume = 500
+
+[state 1250]
+type = changeanim
+trigger1 = time = 300
+value = 251
+
+[State 1250, 7]
+type = ChangeState
+trigger1 = Time = 324
+value = 1251
+ctrl = 1
+
+[Statedef 1251]
+type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
+movetype= I                      ;Move-type: A-attack, I-idle, H-gethit
+physics = S                      ;Physics: S-stand, C-crouch, A-air
+juggle  = 1                      ;Number of air juggle points move takes
+velset = 0,0                     ;Set velocity (x,y) (Def: no change)
+ctrl = 0                         ;Set ctrl (Def: no change)
+anim = 5300                   
+sprpriority = 2
+
+[State 1250, 7]
+type = ChangeState
+trigger1 = Time = 250
+value = 0
+ctrl = 1
+;------Air Combo-----------------------------------------------------
+;Double Palm after combo
+[State -2]
+type = changestate
+value = 2400
+triggerall = (command = "x") || (command = "a") || (command = "b") || (command = "c")
+triggerall = random <= 250
+triggerall = Var(8) = 3
+triggerall = !win
+trigger1 = stateno = 600 && movecontact 
+trigger2 = stateno = 610 && movecontact 
+trigger3 = stateno = 611 && MoveContact 
+
+;Power Kick after combo
+[State -2]
+type = changestate
+value = 1300
+triggerall = (command = "x") || (command = "a") || (command = "b") || (command = "c")
+triggerall = random > 250 && random <= 500 
+triggerall = Var(8) = 3
+triggerall = !win
+trigger1 = stateno = 600 && movecontact 
+trigger2 = stateno = 610 && movecontact 
+trigger3 = stateno = 611 && MoveContact 
+
+;Power Pole after combo
+[State -2]
+type = changestate
+value = 640
+triggerall = (command = "x") || (command = "a") || (command = "b") || (command = "c")
+triggerall = random > 500 && random <= 750 
+triggerall = Var(8) = 3
+triggerall = !win
+trigger1 = stateno = 600 && movecontact 
+trigger2 = stateno = 610 && movecontact 
+trigger3 = stateno = 611 && MoveContact 
+
+;Super Kick after combo
+[State -2]
+type = changestate
+value = 612
+triggerall = (command = "x") || (command = "a") || (command = "b") || (command = "c")
+triggerall = random > 750
+triggerall = Var(8) = 3
+triggerall = !win
+trigger1 = stateno = 600 && movecontact 
+trigger2 = stateno = 610 && movecontact 
+trigger3 = stateno = 611 && MoveContact
+
+;Power Kick after double palm
+[State -2]
+type = changestate
+value = 1300
+triggerall = Var(8) = 6
+triggerall = !win
+triggerall = stateno = 2400 && movecontact
+trigger1 = command = "c"
+trigger2 = command = "b"
+trigger3 = command = "a"
+trigger4 = command = "x"
+;---------------------------------------------------------------------
+
+[state -2, Kamehameha]
+type = explod
+trigger1 = ProjContact2050 = 1
+anim = 1900
+ID = 1900
+pos = -10,-35
+scale = 1,1
+postype = P2
+ownpal = 1
+sprpriority = 2
+removetime = 66
+
+[State -2]
+type = SuperPause
+trigger1 = P1name != "Goku DB"
+time = 100000000000000000000
+
+;Run Fwd
+[State -2, Run Fwd]
+type = ChangeState
+value = 100
+triggerall = !win
+trigger1 = Var(1) = 1
+trigger1 = Random <= 309
+trigger1 = P2bodydist X > 10
+trigger1 = statetype = S
+trigger1 = ctrl
+
+; Guarding
+[State -2]
+type = ChangeState
+value = 120
+triggerall = !win
+triggerall = p2movetype = A
+triggerall = Var(1) = 1
+triggerall = Random <= 449
+trigger1 = ctrl
+
+; Jump
+[State -2]
+type = ChangeState
+value = 10040
+triggerall = !win
+triggerall = Var(1) = 1
+trigger1 = P2bodydist X > 50
+trigger1 = Random <= 249
+trigger1 = statetype = S
+trigger1 = ctrl
+
+; Super Jump
+[State -2]
+type = ChangeState
+value = 1040
+triggerall = !win
+triggerall = Var(1) = 1
+trigger1 = P2bodydist X < 50
+trigger1 = var(24) >= 200
+trigger1 = statetype = S
+trigger1 = ctrl
+
+;---MOVES--------------------------------------------------------------------
+;Special
+[State -2]
+type = ChangeState
+value = ifelse(random < 449,2000,(ifelse(random <449,1250,1100)))
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = power >= 2000
+trigger1 = (statetype = S) && (ctrl = 1)
+
+;Kamehameha
+[State -2]
+type = ChangeState
+value = 2000
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = random <= 800
+triggerall = power >= 2000
+trigger1 = (statetype = S) && (ctrl = 1)
+trigger2 = ((stateno = 202) || (stateno = 412)) && MoveContact 
+trigger3 = ((stateno = 810) && (p2stateno = 821))
+trigger4 = (stateno = 401) && MoveContact 
+
+;Power Pole Extend 1
+[State -2]
+type = ChangeState
+value = 1100
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = Var(5) < 1
+triggerall = random <= 300
+triggerall = power >= 1000
+trigger1 = (statetype = S) && (ctrl = 1)
+trigger1 = p2statetype = S
+trigger2 = ((stateno = 202) || (stateno = 412)) && MoveContact 
+trigger3 = ((stateno = 810) && (p2stateno = 821))
+trigger4 = (stateno = 401) && MoveContact 
+
+;Tornado
+[State -2]
+type = ChangeState
+value = 1250
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = Var(23) < 2
+triggerall = random <= 400
+triggerall = power >= 1000
+trigger1 = (statetype = S) && (ctrl = 1)
+
+; Throw
+[State -2]
+type = ChangeState
+value = 800
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X <= 10
+triggerall = (p2statetype = S) || (p2statetype = C)
+trigger1 = stateno = 200 && MoveHit
+trigger1 = Random <= 59
+
+; 1st Punch
+[State -2]
+type = ChangeState
+value = 200
+triggerall = !win
+triggerall = P2bodydist X < 30
+triggerall = Var(1) = 1
+trigger1 = Random <= 400
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = Random <= 549
+trigger2 = stateno = 201 && MoveHit 
+
+; 2nd Punch
+[State -2]
+type = ChangeState
+value = 201
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X < 30
+trigger1 = Random <= 349
+trigger1 = statetype = S
+trigger1 = ctrl
+
+; Power Pole
+[State -2]
+type = ChangeState
+value = 240
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X < 30
+trigger1 = Random <= 300
+trigger1 = statetype = S
+trigger1 = ctrl
+
+;Super Uppercut
+[State -2]
+type = ChangeState
+value = 203
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X < 30
+trigger1 = Random <= 259
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = stateno = 200 && MoveContact 
+trigger2 = Random <= 349
+
+; Upper Cut
+[State -2]
+type = ChangeState
+value = 202
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = Random < 49
+triggerall = P2bodydist X < 30
+trigger1 = stateno = 201 && MoveHit
+trigger2 = statetype = S
+trigger2 = ctrl
+
+; Kick 1
+[State -2]
+type = ChangeState
+value = 210
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X < 30
+trigger1 = (stateno = 201) && MoveHit
+trigger1 = Random <= 549
+trigger2 = statetype = S
+trigger2 = Random <= 349
+trigger2 = ctrl
+
+; Kick 2
+[State -2]
+type = ChangeState
+value = 211
+triggerall = !win
+triggerall = P2bodydist X < 30
+triggerall = Var(1) = 1
+trigger1 = Random <= 349
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = stateno = 210 && MoveHit
+trigger2 = Random <= 549
+
+; Kick 3
+[State -2]
+type = ChangeState
+value = 212
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X < 30
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger1 = Random <= 349
+
+;Crouching Punch
+[State -1]
+type = ChangeState
+value = 400
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X < 30
+triggerall = Random <= 349
+trigger1 = ctrl
+trigger1 = statetype = S
+trigger2 = stateno = 201 && movecontact
+trigger3 = stateno = 200 && MoveContact 
+
+;Crouching Power Pole
+[State -1]
+type = ChangeState
+value = 401
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X < 30
+triggerall = Random <= 349
+trigger1 = ctrl
+trigger1 = statetype = S
+
+;Crouching Kick
+[State -1]
+type = ChangeState
+value = 410
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X < 30
+triggerall = Random <= 349
+trigger1 = ctrl
+trigger1 = statetype = S
+
+;Crouching Kick
+[State -1]
+type = ChangeState
+value = 411
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X < 30
+triggerall = Random <= 349
+trigger1 = ctrl
+trigger1 = statetype = S
+trigger2 = stateno = 410 && MoveContact
+
+; Double Palm
+[STate -2]
+type = changestate
+value = 2400
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = P2bodydist X <= 10
+trigger1 = random <= 449
+trigger1 = stateno = 600
+trigger1 = movecontact 
+trigger2 = random <= 49
+trigger2 = stateno = 200
+trigger2 = movecontact 
+trigger3 = random <= 49
+trigger3 = stateno = 201
+trigger3 = movecontact 
+trigger4 = random <= 49
+trigger4 = stateno = 610
+trigger4 = movecontact 
+trigger5 = random <= 49
+trigger5 = stateno = 400 && MoveContact 
+trigger6 = random <= 49
+trigger6 = stateno = 611 && MoveContact 
+
+; KameBlast
+[STate -2]
+type = changestate
+value = 2300
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = random <= 249
+trigger1 = statetype = S
+trigger1 = ctrl = 1
+trigger1 = P2bodydist X > 30
+trigger2 = stateno = 200
+trigger2 = movecontact 
+trigger3 = stateno = 201
+trigger3 = movecontact 
+
+; Power Kick
+[STate -2]
+type = changestate
+value = 1400
+triggerall = !win
+triggerall = Var(1) = 1
+trigger1 = random <= 80
+trigger1 = ctrl = 1
+trigger2 = random <= 49
+trigger2 = stateno = 600
+trigger2 = movecontact 
+trigger3 = random <= 49
+trigger3 = stateno = 610
+trigger3 = movecontact 
+trigger4 = random <= 49
+trigger4 = stateno = 611 && MoveContact 
+trigger5 = stateno = 2200 && MoveContact
+trigger5 = random <= 149
+trigger6 = stateno = 2400 && MoveContact
+trigger6 = random <= 149
+
+; Jump Punch
+[State -2]
+type = ChangeState
+value = 600
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 610
+trigger2 = movecontact
+trigger3 = (stateno = 611) && (movecontact)
+
+; Jump Kick
+[State -2]
+type = ChangeState
+value = 610
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600
+trigger2 = movecontact
+trigger3 = (stateno = 611) && (movecontact)
+
+; Jump Kick
+[State -2]
+type = ChangeState
+value = 611
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600
+trigger2 = movecontact
+trigger3 = (stateno = 610) && (movecontact)
+
+;Jump Kick
+[State -1]
+type = ChangeState
+value = 612
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600
+trigger2 = movecontact 
+trigger3 = stateno = 611 && movecontact 
+trigger4 = stateno = 610 && movecontact 
+
+;Power Pole
+[State -2]
+type = ChangeState
+value = 630
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600
+trigger2 = movecontact 
+trigger3 = stateno = 610
+trigger3 = movecontact 
+
+;Power Pole
+[State -2]
+type = ChangeState
+value = 640
+triggerall = !win
+triggerall = Var(1) = 1
+triggerall = Random <= 349
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600
+trigger2 = movecontact 
+trigger3 = stateno = 610
+trigger3 = movecontact 
+trigger4 = stateno = 630
+trigger4 = movecontact
+;------------------------------------------------------------

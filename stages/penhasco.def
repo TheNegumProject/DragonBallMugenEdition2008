@@ -1,0 +1,106 @@
+[Info]
+name = "DBZ"
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -280
+boundright = 295
+boundhigh = -258
+boundlow = 0
+verticalfollow = .6
+tension = 50
+
+[PlayerInfo]
+;--- Player 1 ---
+p1startx = -56          ;Starting x coordinates
+p1starty = 0            ;Starting y coordinates
+p1startz = 0            ;Starting z coordinates
+p1facing = 1            ;Direction player faces: 1=right, -1=left
+
+;--- Player 2 ---
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+;--- Common ---
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+[Scaling]
+topz     = 0       ;Top z-coordinate for scaling
+botz     = 50      ;Bottom z-coordinate for scaling
+topscale = 1       ;Scale to use at top
+botscale = 1.2     ;Scale to use at bottom
+
+[Bound]
+screenleft = 15
+screenright = 15
+
+[StageInfo]
+zoffset   = 210
+autoturn  = 1
+
+[Shadow]
+color = 128,128,128
+yscale = .3
+
+[Music]
+bgmusic = sound/dandan.mp3
+bgvolume = 600
+
+[BGdef]
+spr = penhasco-d.sff
+
+[BG 0]
+type  = normal
+spriteno = 0, 1
+layerno = 0
+start = 0, -60
+delta = 1, 1
+trans = none
+mask  = 1
+tile  = 1
+
+[BG 1]
+type  = normal
+spriteno = 0, 0
+layerno = 0
+start = 0, 152
+delta = 1.2, 1
+trans = none
+mask  = 1
+tile  = 1
+
+[BG 2]
+type  = normal
+spriteno = 0, 4
+layerno = 0
+start = 0, -151
+delta = 0.1, 1
+trans = none
+mask  = 1
+tile  = 1
+
+[BG 3]
+type  = normal
+spriteno = 0, 2
+layerno = 0
+start = 0, -151
+delta = 1, 1
+trans = none
+mask  = 1
+tile  = 1
+
+[BG 4]
+type  = normal
+spriteno = 0, 3
+layerno = 0
+start = -200, -250
+delta = 0.2 ,1
+trans = none
+mask  = 1
+tile  = 0

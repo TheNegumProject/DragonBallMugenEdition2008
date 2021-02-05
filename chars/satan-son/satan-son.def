@@ -1,0 +1,20 @@
+; Definition file for Satan-Son
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Mr.Satan"
+displayname = "Mr.Satan"
+;versiondate = 
+mugenversion = 06,27,2000   ;Version of M.U.G.E.N character works on
+
+; Files for the player
+[Files]
+cmd     = satan-son.cmd
+cns     = satan-son.cns      
+st      = satan-son.cns      
+stcommon = misc.cns       
+sprite  = satan-son.sff     
+anim    = satan-son.air     
+sound   = satan-son.snd         
+pal1    = 1.act     

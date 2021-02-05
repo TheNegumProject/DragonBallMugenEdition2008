@@ -1,0 +1,237 @@
+;---------------------------------------------------------------------------
+; States that are always executed (use statedef -2)
+;---------------------------------------------------------------------------
+
+[Statedef -2]
+
+[State Debug Display]
+type = DisplayToClipboard
+text = "%f %f %f %f "
+params = pos x,pos y,P2BodyDist X, P2BodyDist Y;Pos X,Pos Y
+trigger1 = 1
+
+[State Append]
+type = AppendToClipboard
+text = "%d %d %d %d %d"
+params = prevstateno,var(40),var(54),var(45),var(56)
+trigger1 = 1
+
+
+[State -2]
+type = ScreenBound
+trigger1 = StateType = A || Pos Y < 0
+value = 1
+movecamera = 1,0
+
+[State -2]
+type = null;SelfState
+triggerall = lose
+triggerall = stateno != 30000 && stateno != 171
+triggerall = HitShakeOver
+trigger1 = Pos Y < -50
+value = 30000
+
+
+[State -2]
+type = SelfState
+trigger1 = lose
+triggerall = stateno != 30000 && stateno != 171
+;triggerall = HitShakeOver
+;trigger1 = StateType != A
+value = 171
+
+
+[State -2]
+type = SelfState
+trigger1 = matchover
+triggerall = stateno != 30000 && stateno != 171
+;triggerall = HitShakeOver
+;trigger1 = StateType != A
+value = 30000
+
+
+[State -2]
+type = Helper
+helpertype = normal
+trigger1 = NumHelper(10000) = 0
+name = "Stand Arm"
+stateno = 10000
+id = 10000
+
+
+[State -2]
+type = Helper
+helpertype = normal
+trigger1 = NumHelper(20000) = 0
+name = "Bit Weapon"
+stateno = 20000
+id = 20000
+
+
+;-----------------------------------------------------
+
+[State -2,v]
+type = varadd
+trigger1 = roundstate = 2
+trigger1 = 1
+var(7) = 1
+
+
+
+[State -2]
+type = VarAdd
+trigger1 = var(7) > 0
+trigger1 = var(32) < 30
+trigger1 = Var(7)%3600 = 1
+var(32) = 1
+
+
+[State -2,r]
+type = SelfState
+triggerall = stateno != 7777
+triggerall = var(56) = 4
+trigger1 = gethitvar(damage) >= life
+trigger2 = Life < 10
+value = 7777
+
+
+[State -2, Life]
+type = LifeAdd
+triggerall = Lose = 0
+triggerall = var(56) = 4
+trigger1 = Life < 70*Var(31)
+value = 30*Var(31)
+
+
+[State -2, Life]
+type = PowerAdd
+triggerall = Lose = 0
+trigger1 = Life < 70*Var(31)
+trigger1 = var(56) = 4
+value = 30*Var(31)
+
+
+
+
+
+
+;---------------------------------------------------------------
+;Detached arm when throwned, cant bind arm to custom anim
+
+
+
+[State -2,t]
+type = varset
+trigger1 = var(57) != 4
+trigger1 = gethitvar(isbound) 
+var(57) = 4
+
+
+[State -2,t]
+type = varset
+trigger1 = var(57) = 4
+trigger1 = !gethitvar(isbound) 
+var(57) = 1
+;---------------------------------------------------------------
+
+
+[State -2,t]
+type = varset
+trigger1 = Time = 0
+trigger2 = !gethitvar(isbound) 
+v = 11
+value = 12
+
+
+
+
+[State -2,t]
+type = varset
+trigger1 = gethitvar(isbound)
+v = var(11)
+value = enemynear,prevstateno
+
+
+
+[State -2,t]
+type = varadd
+trigger1 = gethitvar(isbound)
+trigger1 = var(11) < 14
+v = 11
+value = 1
+
+
+[State -2,t]
+type = varset
+trigger1 = !gethitvar(isbound)
+trigger1 = !var(43)
+var(43) = var(12)
+
+
+
+[State -2,t]
+type = varset
+trigger1 = !gethitvar(isbound)
+trigger1 = !var(44)
+trigger1 = var(12) != var(43)
+var(44) = var(12)
+
+
+
+[State -2,t]
+type = varset
+trigger1 = !gethitvar(isbound)
+trigger1 = !var(45)
+trigger1 = var(12) != var(43)
+trigger1 = var(12) != var(44)
+var(45) = var(12)
+
+
+
+[State -2,t]
+type = varset
+trigger1 = !gethitvar(isbound)
+trigger1 = !var(46)
+trigger1 = var(12) != var(43)
+trigger1 = var(12) != var(44)
+trigger1 = var(12) != var(45)
+var(46) = var(12)
+
+
+[State -2,t]
+type = varset
+trigger1 = !gethitvar(isbound)
+trigger1 = !var(47)
+trigger1 = var(12) != var(43)
+trigger1 = var(12) != var(44)
+trigger1 = var(12) != var(45)
+trigger1 = var(12) != var(46)
+var(47) = var(12)
+
+
+[State -2,t]
+type = varset
+trigger1 = !gethitvar(isbound)
+trigger1 = !var(48)
+trigger1 = var(12) != var(43)
+trigger1 = var(12) != var(44)
+trigger1 = var(12) != var(45)
+trigger1 = var(12) != var(46)
+trigger1 = var(12) != var(47)
+var(48) = var(12)
+
+
+
+[State -2,t]
+type = varset
+trigger1 = !gethitvar(isbound)
+trigger1 = !var(49)
+trigger1 = var(12) != var(43)
+trigger1 = var(12) != var(44)
+trigger1 = var(12) != var(45)
+trigger1 = var(12) != var(46)
+trigger1 = var(12) != var(47)
+trigger1 = var(12) != var(48)
+var(49) = var(12)
+
+

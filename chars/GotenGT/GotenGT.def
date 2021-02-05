@@ -1,0 +1,37 @@
+
+[Info]
+name    ="PexGotenGT"
+displayname ="Goten GT"
+versiondate =11,06,2006
+pal.defaults =1,2
+mugenversion=11,01,2001
+author="Pextin"
+
+[Files]
+cmd     =GotenGT.cmd
+cns     =GotenGT.cns
+st      =GotenGT.cns
+stcommon =common1.cns
+sprite  =GotenGT.sff
+anim    =GotenGT.air
+sound   =GotenGT.snd
+pal1=GotenGT.act
+pal2=GotenGT2.act
+pal3=Lovely.act
+pal4=Mario.act
+pal5=Trunks.act
+pal6=Orange.act
+pal7=Pex.act
+pal8=Rushuna.act
+pal9=FlashBack.act
+pal10=FlashBack2.act
+pal11=Retro.act
+pal12=Retro2.act
+st1=Specials.cns
+st2=AI.cns
+st3=Supers.cns
+st4=Supers.cns
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=

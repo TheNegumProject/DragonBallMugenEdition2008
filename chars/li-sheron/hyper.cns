@@ -1,0 +1,3484 @@
+;----------- 
+;超必殺技
+;Hyper Moves
+;----------- 
+
+;Contains 5 super moves: (Nandato: Separate file)
+;-Triple KFPalm - Broli Style (K.F.M.S.W.A)
+;-Eraser Cannon
+;-Shyougeki Ha
+;-USSJ Transform
+;-Meteor Smash
+
+;---------------------------------------------------------------------------
+;K.F.M.S.W.A
+[Statedef 3000]
+Type = A
+movetype = A
+physics = S
+juggle  = 2
+ctrl = 0
+facep2 = !(prevstateno = 9010)
+
+[State 3000, ChangeAnim]
+type = ChangeAnim
+trigger1 = Time = 0 && Anim != 3000
+value = 3000
+
+[State 3000, Turn]
+Type = Turn
+trigger1 = P2Dist X < 0
+
+;-------------------------------
+;SuperEffectさんのパクリ演出開始
+;Begin SuperEffect
+;-------------------------------
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9000
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -2
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -20,53
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,106
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,158
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,210
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9000
+Pos = 0, 0
+PosType = right
+SprPriority = -3
+Facing = -1
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,0
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -20,53
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,106
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,158
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3000, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,210
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3000, SuperEffect]
+Type = SuperPause
+trigger1 = Time = 0
+movetime = 50
+Time = 50
+Pos = 11, -80
+Darken = 0
+
+[State 3000, NoBar]
+type = AssertSpecial
+trigger1 = Time = [0,50]
+flag = NoBarDisplay
+flag2 = NoFG
+
+;-------------------------------
+;SuperEffectさんのパクリ演出終-ｹ
+;End SuperEffect
+;-------------------------------
+
+[State 3000, PlaySnd]
+Type = PlaySnd
+trigger1 = Time = 2
+Value = F20, 0 
+
+[State 3000, PowerAdd]
+Type = PowerAdd
+trigger1 = Time = 2
+Value = -2000
+
+[State 3000, AfterImage]
+Type = AfterImage
+trigger1 = Time = 46
+Length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+Time = 10
+
+[State 3000, AfterImageTime]
+Type = AfterImageTime
+trigger1 = Time = [46,112]
+Time = 2
+
+[State 3000, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = 0
+Value = SCA
+Time = 50
+
+[State 3000, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = [46,74]
+Value2 = C, NA
+Time = 1
+
+[State 3000, VelSetY]
+Type = VelSet
+trigger1 = Time = 0 
+Y = 0
+
+[State 3000, PunchSwingSnd]
+Type = PlaySnd
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 10
+trigger3 = AnimElem = 17
+Value = 0, 1
+
+[State 3000, PosAddX]
+Type = PosAdd
+trigger1 = Time = 0
+X = 20
+
+[State 3000, PosAddX2]
+Type = PosAdd
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 9
+trigger3 = AnimElem = 11
+trigger4 = AnimElem = 16
+trigger4 = AnimTime = 0
+trigger5 = AnimElem = 18
+X = 10
+
+[State 3000, VelSetX]
+Type = VelSet
+trigger1 = AnimElem = 4
+trigger2 = AnimElem = 11
+trigger3 = AnimElem = 18
+X = 6
+
+[State 3000, PosAddX3]
+Type = PosAdd
+trigger1 = AnimElem = 4
+X = 5
+
+[State 3000, HitDef]
+Type = HitDef
+trigger1 = AnimElem = 4
+trigger2 = AnimElem = 11
+Attr = S, HA
+AnimType  = Hard
+Damage    = 50,30
+priority  = 6
+guardflag = M
+pausetime = 15,25
+sparkxy = -10,-60
+hitsound = S20, 0
+getpower = 0
+guardsound = S20, 3
+ground.Type = Low
+ground.slidetime = 22
+ground.hittime  = 22
+ground.velocity = -3
+air.velocity = -1,-1
+fall.AnimType = Hard
+p2stateno = 6001
+
+[State 3000, HitDef]
+Type = HitDef
+trigger1 = AnimElem = 18
+Attr = S, HA
+AnimType  = Hard
+Damage    = 50,30
+priority  = 6
+pausetime = 70,15
+sparkxy = -10,-60
+hitsound = S20, 0
+guardsound = S20, 3
+getpower = 0
+ground.Type = Trip
+ground.slidetime = 25
+ground.hittime  = 25
+ground.velocity = -500, -5
+guard.velocity = -9
+air.velocity = -500,-5
+airguard.velocity = -9,-3
+fall.AnimType = Hard
+p2stateno = 3001
+fall = 1
+fall.recover = 0
+
+[State 3000, ScreenBound]
+type = ScreenBound
+trigger1 = Time >= 0
+value = 0
+movecamera = 0,0
+
+[State 3000, End]
+Type = ChangeState
+trigger1 = AnimTime = 0
+Value = 0
+ctrl = 1
+
+;------------------
+;Hit by Fast Kung Fu Palm - shaking from the hit
+;(a custom gethit state)
+[Statedef 3001]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 3001, Anim] ;Custom animation
+type = ChangeAnim2
+trigger1 = Time >= 0
+value = 1012
+
+[State 3001, State]
+type = ChangeState
+trigger1 = HitShakeOver = 1
+value = 3002
+
+;------------------
+;Hit by Fast Kung Fu Palm - flying through the air
+;(a custom gethit state)
+[Statedef 3002]
+type    = A
+movetype= A
+physics = N
+velset = -20,0
+
+[State 3002, Anim] ;Custom animation
+type = ChangeAnim2
+trigger1 = Time >= 0
+value = 1012
+
+[State 3002, HitDef]
+type = HitDef
+trigger1 = Time >= 0
+attr = S, HA
+AanimType  = Hard
+affectteam = F
+damage    = 50,30
+priority  = 6
+pausetime = 10,0
+sparkxy = -10,-60
+getpower = 0
+ground.Type = Trip
+ground.slidetime = 25
+ground.hittime  = 25
+ground.velocity = -500, -5
+guard.velocity = -9
+air.velocity = -500,-5
+airguard.velocity = -9,-3
+fall.AnimType = Hard
+p2stateno = 3001
+fall = 1
+fall.recover = 0
+
+[State 3002, PlayerPush]
+type = PlayerPush
+trigger1 = Time >= 0
+value = 0
+
+[State 3002, Hit wall]
+type = ChangeState
+trigger1 = BackEdgeBodyDist <= 0
+trigger2 = FrontEdgeBodyDist <= 0
+trigger3 = P2MoveType != A
+value = 1014
+
+[State 3002, Hit ground]
+type = SelfState
+trigger1 = (Vel y > 0) && (Pos y >= 0)
+value = 5100
+
+;---------------------------------------------------------------------------
+;イレイザーキャノン
+;Eraser Cannon
+[Statedef 3010]
+Type    = S
+movetype= A
+physics = S
+juggle  = 2
+velset = 0,0
+ctrl = 0
+facep2 = !(prevstateno = 9010)
+
+[State 3010, ChangeAnim]
+type = ChangeAnim
+trigger1 = Time = 0 && Anim != 3010
+value = 3010
+
+[State 3010, Turn]
+Type = Turn
+trigger1 = P2Dist X < 0
+
+;-------------------------------
+;SuperEffectさんのパクリ演出開始
+;Begin SuperEffect
+;-------------------------------
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9000
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -2
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -20,53
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,106
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,158
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+trigger2 = WinKO = 1
+Anim = 9001
+Facing = 1
+Pos = 0,210
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9000
+Pos = 0, 0
+PosType = right
+SprPriority = -3
+Facing = -1
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,0
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -20,53
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,106
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,158
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,210
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3010, SuperEffect]
+Type = SuperPause
+trigger1 = Time = 0
+movetime = 50
+Time = 50
+Pos = 11, -80
+Darken = 0
+
+[State 3010, NoBar]
+type = AssertSpecial
+trigger1 = Time = [0,50]
+flag = NoBarDisplay
+flag2 = NoFG
+
+;-------------------------------
+;SuperEffectさんのパクリ演出終-ｹ
+;End SuperEffect
+;-------------------------------
+
+[State 3010, BlastSnd]
+Type = PlaySnd
+trigger1 = Time = 138
+Value = 21, 5 
+
+[State 3010, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = 0
+Value = SCA
+Time = 50
+
+[State 3010, Blink] 
+Type = PalFX
+trigger1 = Time = (48,136)
+trigger1 = TimeMod = 2,0
+Time = 2
+Add = 64,64,64
+
+[State 3010, Flash1]
+Type = Explod
+trigger1 = Time = [49,72]
+trigger1 = TimeMod = 2,0
+trigger2 = Time = [73,104]
+trigger2 = TimeMod = 4,0
+Anim = 9002
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 3010, Flash2]
+Type = Explod
+trigger1 = Time = [73,104]
+trigger1 = TimeMod = 4,2
+trigger2 = Time = [105,136]
+Anim = 9003
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 3010, PlaySnd]
+Type = PlaySnd
+trigger1 = Time = 2
+Value = F20, 0 
+
+[State 3010, PowerAdd]
+Type = PowerAdd
+trigger1 = Time = 2
+Value = -2000
+
+[State 3010, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = 46
+Value = , NA, SA, AT
+Time = 12
+
+[State 3010, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = [46,74]
+value2 = C, NA
+Time = 1
+
+;This plays the projectile throw sound.
+[State 3010, PlaySnd]
+Type = PlaySnd
+trigger1 = AnimElem = 8
+Value = 0,1
+
+;This plays the "Power Up" sound effect.
+[State 3010, PowerUpSnd]
+Type = PlaySnd
+trigger1 = AnimElem = 2
+Value = 0,5
+
+;This plays Broli's voice while in this action.
+[State 3010, PlaySnd]
+Type = PlaySnd
+trigger1 = AnimElem = 4
+Value = 0,6
+
+;弾のアニメ
+[State 3010, 2]
+Type = Explod
+trigger1 = Time = 49
+Anim = 3015         
+RemoveTime = 88    
+Pos = 35, -75        
+SprPriority = 3
+BindTime = -1
+OwnPal = 1
+ID = 555
+
+;気のアニメ
+[State 3010,3]
+Type = Explod
+trigger1 = Time = 49
+Anim = 3011         
+RemoveTime = 88    
+SprPriority = -1
+BindTime = -1
+OwnPal = 1
+ID = 555
+
+[State 3010, HitDef]
+Type = HitDef
+trigger1 = Time = 49
+trigger2 = Time = 65
+trigger3 = Time = 73
+trigger4 = Time = 81
+trigger5 = Time = 97
+trigger6 = Time = 105
+trigger7 = Time = 120
+trigger8 = Time = 135
+trigger9 = Time = 150
+trigger10 = Time = 165
+Attr = S, HA
+AnimType  = Medium
+Damage    = 15,7
+priority  = 6
+guardflag = MA
+hitflag = MAFDP
+pausetime = 0,35
+sparkxy = -10,-60
+hitsound = S20,5
+getpower = 0
+givepower = 10
+guardsound = S20, 3
+ground.Type = High
+ground.slidetime = 22
+ground.hittime  = 22
+ground.velocity = -1,-3
+groundguard.velocity = -1,-1
+guard.velocity = -1
+air.velocity = -1,-2
+airguard.velocity = -1,-1
+p2stateno = 6001
+
+;弾（上）
+[State 3010,ProjUp]
+Type = Projectile
+trigger1 = PalNo = [1, 6]
+trigger1 = Time = 138
+trigger1 = Command = "holdup"
+trigger2 = PalNo = [7, 12]
+trigger2 = Time = 138
+trigger2 = P2BodyDist Y <= -120
+ProjAnim = 3016
+ProjHitAnim = 3018
+ProjRemAnim = 1037
+ProjID = 555
+offset = 35, -75
+velocity = 30, -20
+remvelocity = 0 , 0
+velmul = 1.005, 1
+accel = 0, 0
+Projpriority = 5
+;HitDef part
+Attr = S, HP
+Damage    = 150,75
+AnimType  = Hard
+getpower = 0
+givepower = 100
+guardflag = MA
+pausetime = 0,12
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 4
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -20,-15
+guard.velocity = -3
+airguard.velocity = -3.5,-4.75
+air.Type = Low
+air.velocity = -20,-12
+fall = 1
+
+;弾（中、地上）
+[State 3010,GroundProjStraight]
+Type = Projectile
+trigger1 = PalNo = [1, 6]
+trigger1 = Time = 138
+trigger1 = Pos Y >= 0
+trigger1 = Command != "holdup"
+trigger2 = PalNo = [7, 12]
+trigger2 = Time = 138
+trigger2 = Pos Y >= 0
+trigger2 = P2BodyDist Y > -120
+ProjAnim = 3016
+ProjHitAnim = 3017
+ProjRemAnim = 1037
+ProjID = 555
+offset = 35, -75
+velocity = 30, 0
+remvelocity = 0 , 0
+velmul = 1.005, 1
+accel = 0, 0
+Projpriority = 5
+;HitDef part
+Attr = S, HP
+Damage    = 150,75
+AnimType  = Hard
+getpower = 0
+givepower = 100
+guardflag = MA
+pausetime = 0,12
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 4
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -20,-10
+guard.velocity = -3
+airguard.velocity = -3.5,-2.75
+air.Type = Low
+air.velocity = -20,-8
+fall = 1
+
+;弾（中、空中）
+[State 3010,AirProjStraight]
+Type = Projectile
+trigger1 = PalNo = [1, 6]
+trigger1 = Time = 138
+trigger1 = Pos Y < 0
+trigger1 = Command != "holdup"
+trigger1 = Command != "holddown"
+trigger2 = PalNo = [7, 12]
+trigger2 = Time = 138
+trigger2 = Pos Y < 0
+trigger2 = P2BodyDist Y > -120
+trigger2 = P2BodyDist Y < 40
+ProjAnim = 3016
+ProjHitAnim = 3018
+ProjRemAnim = 1037
+ProjID = 555
+offset = 35, -75
+velocity = 30, 0
+remvelocity = 0 , 0
+velmul = 1.005, 1
+accel = 0, 0
+Projpriority = 5
+;HitDef part
+Attr = S, HP
+Damage    = 150,75
+AnimType  = Hard
+getpower = 0
+givepower = 100
+guardflag = MA
+pausetime = 0,12
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 4
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -20,-10
+guard.velocity = -3
+airguard.velocity = -3.5,-2.75
+air.Type = Low
+air.velocity = -20,-8
+fall = 1
+
+;弾（下）
+[State 3010,ProjDown]
+Type = Projectile
+trigger1 = PalNo = [1, 6]
+trigger1 = Time = 138
+trigger1 = Command != "holdup"
+trigger1 = Command = "holddown"
+trigger1 = Pos Y < 0
+trigger2 = PalNo = [7, 12]
+trigger2 = Time = 138
+trigger2 = Pos Y < 0
+trigger2 = P2BodyDist Y >= 40
+ProjAnim = 3016
+ProjHitAnim = 3017
+ProjRemAnim = 1037
+ProjID = 555
+offset = 35, -75
+velocity = 30,20
+remvelocity = 0 , 0
+velmul = 1.005, 1
+accel = 0, 0
+Projpriority = 5
+;HitDef part
+Attr = S, HP
+Damage    = 150,75
+AnimType  = Hard
+getpower = 0
+givepower = 100
+hitflag = MAFD
+guardflag = MA
+pausetime = 0,12
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 4
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -20, 8
+guard.velocity = -3
+airguard.velocity = -3.5,2.75
+air.Type = Low
+air.velocity = -20,15
+fall = 1
+fall.Damage = 25
+
+;This will makes the screen change colour whenever the projectile hits the opponent.
+[State 3010, ProjColour]
+type = BGPalFX
+trigger1 = ProjHit555 = 1
+time = 10
+add = 25, 200, 25
+mul = 255, 255, 255
+
+[State 3010, ExplodSnd]
+type = PlaySnd
+trigger1 = ProjHit555 = 1
+value = 22,1
+
+;フワフワ
+[State 3010,fuwaVar1]
+Type = VarSet
+triggerAll = Time > 50
+triggerAll = Pos Y < 0
+trigger1 = Var(2) = 2
+trigger1 = Vel Y >= 2.4
+trigger2 = Time = 51
+v = 2
+Value = 1
+
+[State 3010,fuwaVar2]
+Type = VarSet
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 1
+trigger1 = Vel Y <= -2.4
+v = 2
+Value = 2
+
+[State 3010,fuwaUp]
+Type = VelAdd
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 1
+y = -0.3
+
+[State 3010,fuwaDown]
+Type = VelAdd
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 2
+y = 0.3
+
+[State 3010,fuwaEndVar]
+Type = VarSet
+trigger1 = Pos Y < 0
+trigger1 = AnimTime = 0
+v = 2
+Value = 0
+
+;ゴゴゴゴゴ…
+[State 3010,shake1] 
+Type = EnvShake
+trigger1 = Time > 50
+trigger1 = Pos Y >= 0
+trigger1 = TimeMod = 4,0
+Time = 4
+
+[State 3010,shake2] 
+Type = EnvShake
+trigger1 = ProjHit555 = 1
+Time = 20
+ampl = 10
+freq = 127
+
+;息切れへ
+[State 3010,breath1]
+Type = VarSet
+trigger1 = power = 0
+v = 1
+Value = 4
+
+[State 3010, breath2]
+Type = ChangeState
+trigger1 = Var(1) = 4
+trigger1 = AnimTime = 0
+Value = 5300
+
+[State 3010, 6]
+Type = ChangeState
+trigger1 = AnimTime = 0
+Value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;スローイングブラスター（投げる前）
+;Shyougeki Ha - Projectile Begin
+[Statedef 3020]
+Type    = A
+movetype= A
+physics = S
+juggle  = 2
+velset = 0,0
+ctrl = 0
+facep2 = !(prevstateno = 9010)
+
+[State 3020, ChangeAnim]
+type = ChangeAnim
+trigger1 = Time = 0 && Anim != 3020
+value = 3020
+
+[State 3010, Turn]
+Type = Turn
+trigger1 = P2Dist X < 0
+
+;-------------------------------
+;SuperEffectさんのパクリ演出開始
+;Begin SuperEffect
+;-------------------------------
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9000
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -2
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -20,53
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,106
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,158
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,210
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9000
+Pos = 0, 0
+PosType = right
+SprPriority = -3
+Facing = -1
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,0
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -20,53
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,106
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,158
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3020, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,210
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3020, SuperEffect]
+Type = SuperPause
+trigger1 = Time = 0
+movetime = 50
+Time = 50
+Pos = 11, -80
+Darken = 0
+
+[State 3020, NoBar]
+type = AssertSpecial
+trigger1 = Time = [0,50]
+flag = NoBarDisplay
+flag2 = NoFG
+
+;-------------------------------
+;SuperEffectさんのパクリ演出終-ｹ
+;End SuperEffect
+;-------------------------------
+
+[State 3020, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = 0
+Value = SCA
+Time = 50
+
+[State 3020,blink] 
+Type = PalFX
+trigger1 = Time > 48
+trigger1 = TimeMod = 2,0
+Time = 2
+Add = 64,64,64
+
+[State 3020, Flash1]
+Type = Explod
+trigger1 = Time = [49,58]
+trigger1 = TimeMod = 2,0
+trigger2 = Time = [59,72]
+trigger2 = TimeMod = 4,0
+Anim = 9002
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 3020, Flash2]
+Type = Explod
+trigger1 = Time = [59,72]
+trigger1 = TimeMod = 4,2
+trigger2 = Time = [73,92]
+trigger3 = Time = [93,113]
+trigger3 = TimeMod = 4,0
+Anim = 9003
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 3020, Flash3]
+Type = Explod
+trigger1 = Time = [93,113]
+trigger1 = TimeMod = 4,2
+trigger2 = Time >= 114
+Anim = 9004
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 3020, PlaySnd]
+Type = PlaySnd
+trigger1 = Time = 2
+Value = F20, 0 
+
+[State 3020, PowerAdd]
+Type = PowerAdd
+trigger1 = Time = 2
+Value = -1000
+
+[State 3020, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = 46
+Value = , NA, SA, AT
+Time = 12
+
+[State 3020, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = [46,74]
+value2 = C, NA
+Time = 1
+
+[State 3020, PlaySnd]
+Type = PlaySnd
+trigger1 = AnimElem = 2
+Value = 0, 5
+
+[State 3020, PlaySnd]
+Type = PlaySnd
+trigger1 = Time = 74
+Value = 0, 7
+
+[State 3020, 5]
+Type = HitDef
+trigger1 = AnimElem = 2
+Attr = S, HA
+AnimType  = Hard
+Damage    = 150,75
+hitflag = MAFDP
+guardflag = MA
+priority = 7
+pausetime = 0,80
+sparkxy = -10,-60
+hitsound = S20, 5
+guardsound = S20, 3
+getpower = 0
+givepower = 10
+ground.Type = Trip
+ground.slidetime = 25
+ground.hittime  = 25
+ground.velocity = -3,-12
+guard.velocity = -1
+air.velocity = -3,-12
+airguard.velocity = -1,-2
+p2stateno = 6002
+fall = 1
+fall.recover = 0
+
+;気
+[State 3020, 3]
+Type = Explod
+trigger1 = Time = 49
+Anim = 3011         
+RemoveTime = -1    
+SprPriority = -1
+BindTime = -1
+OwnPal = 1
+ID = 555
+
+;弾のアニメ
+[State 3020, 3]
+Type = Explod
+trigger1 = Time = 73
+Pos = -30,-65
+Anim = 3022         
+RemoveTime = -1    
+SprPriority = 3
+BindTime = -1
+OwnPal = 1
+ID = 555
+
+;光
+[State 3020, 3]
+Type = Explod
+trigger1 = Time = 49
+Anim = 3023         
+RemoveTime = 24    
+SprPriority = 3
+BindTime = -1
+OwnPal = 1
+ID = 555
+
+;フワフワ
+[State 3020,fuwaVar1]
+Type = VarSet
+triggerAll = Time > 50
+triggerAll = Pos Y < 0
+trigger1 = Var(2) = 2
+trigger1 = Vel Y >= 2.4
+trigger2 = Time = 51
+v = 2
+Value = 1
+
+[State 3020,fuwaVar2]
+Type = VarSet
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 1
+trigger1 = Vel Y <= -2.4
+v = 2
+Value = 2
+
+[State 3020,fuwaUp]
+Type = VelAdd
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 1
+y = -0.3
+
+[State 3020,fuwaDown]
+Type = VelAdd
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 2
+y = 0.3
+
+[State 3020,fuwaEndVar]
+Type = VarSet
+triggerAll = Pos Y < 0
+trigger1 = power = 0
+trigger1 = Time >= 73
+trigger2 = Time >= 164
+trigger2 = command = "b"
+v = 2
+Value = 0
+
+;ゴゴゴゴゴ…
+[State 3020,shake] 
+Type = EnvShake
+trigger1 = Time > 50
+trigger1 = Pos Y >= 0
+trigger1 = TimeMod = 4,0
+Time = 4
+
+[State 3020, 2]
+Type = StateTypeSet
+trigger1 = Pos Y >= 0 
+trigger1 = Time > 73 
+Value = S
+
+;終-ｹ
+[State 3020,end]
+Type = RemoveExplod
+trigger1 = Var(1) = 4
+trigger1 = Time >= 73
+trigger2 = Time >= 164
+trigger2 = command = "b"
+trigger3 = Time >= 164
+trigger3 = Win = 1
+
+[State 3020, 6]
+Type = ChangeState
+trigger1 = PalNo = [1, 6]
+trigger1 = Time >= 164
+trigger1 = command = "b"
+trigger2 = PalNo = [7, 12]
+trigger2 = Time = 164
+trigger3 = Win = 1
+Value = 3021
+
+;---------------------------------------------------------------------------
+;スローイングブラスター（投げ）
+;Shyougeki Ha - Projectile Throw
+[Statedef 3021]
+Type    = S
+movetype= A
+physics = S
+juggle  = 2
+velset = 0,0
+ctrl = 0
+facep2 = !(prevstateno = 9010)
+
+[State 3021, ChangeAnim]
+type = ChangeAnim
+trigger1 = Time = 0 && Anim != 3021
+value = 3021
+
+[State 3021, BlastSnd]
+Type = PlaySnd
+trigger1 = Time = 0
+Value = 21, 5 
+
+[State 3021, PowerAdd]
+Type = PowerAdd
+trigger1 = Time = 0
+Value = -1000
+
+;大玉
+[State 3021, 3]
+Type = Explod
+trigger1 = Time = 0
+Pos = -30,-90
+Anim = 3027         
+RemoveTime = 5    
+SprPriority = 3
+BindTime = -1
+ID = 555
+
+;弾（上）
+[State 3021,ProjUp]
+Type = Projectile
+trigger1 = PalNo = [1, 6]
+trigger1 = AnimElem = 3
+trigger1 = Command = "holdup"
+trigger2 = PalNo = [7, 12]
+trigger2 = AnimElem = 3
+trigger2 = P2BodyDist Y <= -120
+ProjAnim = 3028
+ProjHitAnim = 3018
+ProjRemAnim = 1037
+ProjID = 555
+offset = 50, -100
+velocity = 30,-20
+remvelocity = 0,0
+velmul = 1.005, 1
+accel = 0, 0
+ProjPriority = 6
+;HitDef part
+Attr = S, HP
+Damage    = 210,105
+AnimType  = Hard
+getpower = 0
+givepower = 200
+guardflag = MA
+pausetime = 0,12
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 4
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -20,-15
+guard.velocity = -3.5
+airguard.velocity = -3.5,-3.75
+air.Type = Low
+air.velocity = -20,-12
+fall = 1
+
+;弾（中、地上）
+[State 3021,GroundProjStraight]
+Type = Projectile
+trigger1 = AnimElem = 3
+trigger1 = Pos Y >= 0
+trigger1 = Command != "holdup"
+trigger2 = PalNo = [7, 12]
+trigger2 = AnimElem = 3
+trigger2 = P2BodyDist Y > -120
+ProjAnim = 3026
+ProjHitAnim = 3017
+ProjRemAnim = 1037
+ProjID = 555
+offset = 50, -75
+velocity = 30, 0
+remvelocity = 0,0
+velmul = 1.005, 1
+accel = 0, 0
+ProjPriority = 6
+;HitDef part
+Attr = S, HP
+Damage    = 210,105
+AnimType  = Hard
+getpower = 0
+givepower = 200
+guardflag = MA
+pausetime = 0,12
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 4
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -20,-10
+guard.velocity = -3.5
+airguard.velocity = -3.5,-2.75
+air.Type = Low
+air.velocity = -20,-8
+fall = 1
+
+;弾（中、空中）
+[State 3021,AirProjStraight]
+Type = Projectile
+trigger1 = AnimElem = 3
+trigger1 = Pos Y < 0
+trigger1 = Command != "holdup"
+trigger1 = Command != "holddown"
+trigger2 = PalNo = [7, 12]
+trigger2 = AnimElem = 3
+trigger2 = Pos Y < 0
+trigger2 = P2BodyDist Y < 120 && P2BodyDist Y > -120
+ProjAnim = 3026
+ProjHitAnim = 3018
+ProjRemAnim = 1037
+ProjID = 555
+offset = 50, -75
+velocity = 30, 0
+remvelocity = 0,0
+velmul = 1.005, 1
+accel = 0, 0
+ProjPriority = 6
+;HitDef part
+Attr = S, HP
+Damage    = 210,105
+AnimType  = Hard
+getpower = 0
+givepower = 200
+guardflag = MA
+pausetime = 0,12
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 4
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -20,-10
+guard.velocity = -3.5
+airguard.velocity = -3.5,-2.75
+air.Type = Low
+air.velocity = -20,-8
+fall = 1
+
+;弾（下）
+[State 3021,ProjDown]
+Type = Projectile
+trigger1 = AnimElem = 3
+trigger1 = Command != "holdup"
+trigger1 = Command = "holddown"
+trigger1 = Pos Y < 0
+trigger2 = PalNo = [7, 12]
+trigger2 = AnimElem = 3
+trigger2 = Pos Y < 0
+trigger2 = P2BodyDist Y >= 120
+ProjAnim = 3029
+ProjHitAnim = 3017
+ProjRemAnim = 1037
+ProjID = 555
+offset = 50, -70
+velocity = 30,20
+remvelocity = 0,0
+velmul = 1.005, 1
+accel = 0, 0
+ProjPriority = 6
+;HitDef part
+Attr = S, HP
+Damage    = 210,105
+AnimType  = Hard
+getpower = 0
+givepower = 200
+hitflag = MAFD
+guardflag = MA
+pausetime = 0,12
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 4
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -20,8
+guard.velocity = -3.5
+airguard.velocity = -3.5,2.75
+air.Type = Low
+air.velocity = -20,15
+fall = 1
+fall.Damage = 25
+
+;This will makes the screen change colour whenever the projectile hits the opponent.
+[State 3020, ProjColour]
+type = BGPalFX
+trigger1 = ProjHit555 = 1
+time = 10
+add = 25, 200, 25
+mul = 255, 255, 255
+
+[State 3020, ExplodSnd]
+type = PlaySnd
+trigger1 = ProjHit555 = 1
+value = 22,1
+
+;ゴゴゴゴゴ…
+[State 3020,shake] 
+Type = EnvShake
+trigger1 = ProjHit555 = 1
+Time = 20
+ampl = 10
+freq = 127
+
+;息切れへ
+[State 3021,breath1]
+Type = VarSet
+trigger1 = power = 0
+v = 1
+Value = 4
+
+[State 3021, breath2]
+Type = ChangeState
+trigger1 = Var(1) = 4
+trigger1 = AnimTime = 0
+Value = 5300
+
+[State 3021, 3]
+Type = ChangeState
+trigger1 = AnimTime = 0
+Value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;USSJ Transform
+[Statedef 3030]
+Type    = S
+movetype= A
+physics = S
+juggle  = 2
+velset = 0,0
+ctrl = 0
+facep2 = !(prevstateno = 9010)
+
+[State 3030, ChangeAnim]
+type = ChangeAnim
+trigger1 = Time = 0 && Anim != 3030
+value = 3030
+
+[State 3030, ChangeMode]
+Type = VarSet
+trigger1 = AnimElem = 3
+trigger1 = Var(5) = 0
+var(5) = 1
+
+[State 3030, PowerAdd1]
+Type = PowerAdd
+trigger1 = AnimElem = 1
+Value = -500
+
+[State 3030, PowerAdd2]
+Type = PowerAdd
+trigger1 = AnimElem = 3
+Value = -2500
+ 
+[State 3030, ScreenShake]
+Type = EnvShake
+trigger1 = AnimElem = 3
+trigger2 = AnimTime = 0
+Time = 20
+freq = 127
+ampl = 4
+
+[State 3030, BGPalFX1]
+type = BGPalFX
+trigger1 = AnimElem = 2
+mul = 170,170,256
+invertall = 1
+time = 100
+persistent = 0
+
+[State 3030, BGPalFX2]
+type = BGPalFX
+trigger1 = AnimElem = 3
+mul = 50,50,80
+invertall = 1
+time = 40
+persistent = 0
+
+[State 3030, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 22, 6
+
+;-------------------------------
+;SuperEffectさんのパクリ演出開始
+;Begin SuperEffect
+;-------------------------------
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9000
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -2
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -20,53
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,106
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,158
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,210
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9000
+Pos = 0, 0
+PosType = right
+SprPriority = -3
+Facing = -1
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,0
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -20,53
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,106
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,158
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3030, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,210
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3030, SuperEffect]
+Type = SuperPause
+trigger1 = Time = 0
+movetime = 50
+Time = 50
+Pos = 11, -80
+Darken = 0
+
+[State 3030, NoBar]
+type = AssertSpecial
+trigger1 = Time = [0,50]
+flag = NoBarDisplay
+flag2 = NoFG
+flag3 = NoMusic
+
+;-------------------------------
+;SuperEffectさんのパクリ演出終-ｹ
+;End SuperEffect
+;-------------------------------
+
+[State 3030, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = 0
+Value = SCA
+Time = 50
+
+[State 3030,blink] 
+Type = PalFX
+trigger1 = Time > 48
+trigger1 = TimeMod = 2,0
+Time = 2
+Add = 64,64,64
+
+[State 3030,flash1]
+Type = Explod
+trigger1 = Time = [49,58]
+trigger1 = TimeMod = 2,0
+trigger2 = Time = [59,72]
+trigger2 = TimeMod = 4,0
+Anim = 9002
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 3030,flash2]
+Type = Explod
+trigger1 = Time = [59,72]
+trigger1 = TimeMod = 4,2
+trigger2 = Time = [73,92]
+trigger3 = Time = [93,113]
+trigger3 = TimeMod = 4,0
+Anim = 9003
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 3030,flash3]
+Type = Explod
+trigger1 = Time = [93,113]
+trigger1 = TimeMod = 4,2
+trigger2 = Time >= 114
+Anim = 9004
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 3030, PlaySnd]
+Type = PlaySnd
+trigger1 = Time = 2
+Value = F20, 0 
+
+[State 3030, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = 46
+Value = , NA, SA, AT
+Time = 12
+
+[State 3030, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = [46,74]
+value2 = C, NA
+Time = 1
+
+[State 3030, 2]
+Type = PlaySnd
+trigger1 = AnimElem = 2
+Value = 0, 5
+
+;Ka-ka-ro...to!
+[State 3030, PlaySnd]
+Type = PlaySnd
+trigger1 = AnimElem = 3
+Value = 0, 8
+
+[State 3030, 5]
+Type = HitDef
+trigger1 = AnimElem = 3
+trigger1 = TimeMod = 4,0
+Attr = S, HA
+AnimType  = Hard
+Damage    = 130,65
+hitflag = MAFP
+guardflag = MA
+priority = 7
+affectteam = B
+pausetime = 10,10
+sparkxy = -10,-60
+hitsound = S20, 5
+guardsound = S20, 3
+getpower = 0
+givepower = 10
+ground.Type = Trip
+ground.slidetime = 25
+ground.hittime  = 25
+ground.velocity = -50,-2.5
+guard.velocity = -50
+air.velocity = -50,-2.5
+airguard.velocity = -50,-2.5
+p2stateno = 6301
+fall = 1
+fall.recover = 0
+
+[State 3030, Proj1]
+Type = Projectile
+trigger1 = AnimElem = 3
+ProjAnim = 1065
+ProjHitAnim = 1036
+ProjRemAnim = 1037
+offset = 0,-54
+velocity = 100,0
+remvelocity = 0,0
+velmul = 1,1
+accel = 0,0
+; HitDef part
+Attr = S, HP
+Damage    = 60,20
+AnimType  = Hard
+getpower = 0
+givepower = 35
+guardflag = MA
+affectteam = B
+pausetime = 0,10
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 1
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -50,-2.5
+airguard.velocity = -50,-2.5
+air.Type = Trip
+air.velocity = -50,-2.5
+p2stateno = 6301
+fall = 1
+
+[State 3030, Proj2]
+Type = Projectile
+trigger1 = AnimElem = 3
+ProjAnim = 1065
+ProjHitAnim = 1036
+ProjRemAnim = 1037
+offset = 0,-54
+velocity = -100,0
+remvelocity = 0,0
+velmul = 1,1
+accel = 0,0
+; HitDef part
+Attr = S, SP
+Damage    = 60,20
+AnimType  = Hard
+getpower = 0
+givepower = 35
+guardflag = MA
+affectteam = B
+pausetime = 0,10
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 1
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -50,-2.5
+airguard.velocity = -50,-2.5
+air.Type = Trip
+air.velocity = -50,-2.5
+p2stateno = 6301
+fall = 1
+
+;光
+[State 3030, 3]
+Type = Explod
+trigger1 = Time = 49
+Anim = 3023         
+RemoveTime = 24    
+SprPriority = 3
+BindTime = -1
+OwnPal = 1
+ID = 555
+
+;フワフワ
+[State 3030,fuwaVar1]
+Type = VarSet
+triggerAll = Time > 50
+triggerAll = Pos Y < 0
+trigger1 = Var(2) = 2
+trigger1 = Vel Y >= 2.4
+trigger2 = Time = 51
+v = 2
+Value = 1
+
+[State 3030,fuwaVar2]
+Type = VarSet
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 1
+trigger1 = Vel Y <= -2.4
+v = 2
+Value = 2
+
+[State 3030,fuwaUp]
+Type = VelAdd
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 1
+y = -0.3
+
+[State 3030,fuwaDown]
+Type = VelAdd
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 2
+y = 0.3
+
+[State 3030,fuwaEndVar]
+Type = VarSet
+triggerAll = Pos Y < 0
+trigger1 = power = 0
+trigger1 = Time >= 73
+trigger2 = Time >= 164
+trigger2 = command = "b"
+v = 2
+Value = 0
+
+;ゴゴゴゴゴ…
+[State 3030,shake] 
+Type = EnvShake
+trigger1 = Time > 50
+trigger1 = Pos Y >= 0
+trigger1 = TimeMod = 4,0
+Time = 4
+
+[State 3030, 2]
+Type = StateTypeSet
+trigger1 = Pos Y >= 0 
+trigger1 = Time > 73 
+Value = S
+
+;終-ｹ
+[State 3030,end]
+Type = RemoveExplod
+trigger1 = Var(1) = 4
+trigger1 = Time >= 73
+trigger2 = Time >= 164
+trigger2 = command = "b"
+trigger3 = Time >= 164
+trigger3 = Win = 1
+
+[State 3030, 6]
+Type = ChangeState
+trigger1 = AnimTime = 0
+trigger2 = Win = 1
+Value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Meteor Smash
+[Statedef 3040]
+Type    = S
+movetype= A
+physics = S
+juggle  = 2
+ctrl = 0
+facep2 = !(prevstateno = 9010)
+
+[State 3040, ChangeAnim]
+type = ChangeAnim
+trigger1 = Time = 0 && Anim != 3040
+value = 3040
+
+[State 3040, Turn]
+Type = Turn
+trigger1 = P2Dist X < 0
+
+;-------------------------------
+;SuperEffectさんのパクリ演出開始
+;Begin SuperEffect
+;-------------------------------
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9000
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -2
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -20,53
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,106
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,158
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,210
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9000
+Pos = 0, 0
+PosType = right
+SprPriority = -3
+Facing = -1
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,0
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -20,53
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,106
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,158
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3040, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,210
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3040, SuperEffect]
+Type = SuperPause
+trigger1 = Time = 0
+movetime = 50
+Time = 50
+Pos = 11, -80
+Darken = 0
+
+[State 3040, NoBar]
+type = AssertSpecial
+trigger1 = Time = [0,50]
+flag = NoBarDisplay
+flag2 = NoFG
+
+;-------------------------------
+;SuperEffectさんのパクリ演出終-ｹ
+;End SuperEffect
+;-------------------------------
+
+[State 3040, PlaySnd]
+Type = PlaySnd
+trigger1 = Time = 2
+Value = F20, 0 
+
+[State 3040, PowerAdd]
+Type = PowerAdd
+trigger1 = Time = 2
+Value = -2000
+
+[State 3040, AfterImage]
+Type = AfterImage
+trigger1 = Time = 46
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+Time = 10
+
+[State 3040, AfterImageTime]
+Type = AfterImageTime
+trigger1 = Time = [46,112]
+Time = 2
+
+[State 3040, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = 0
+Value = SCA
+Time = 50
+
+[State 3040, VelSet]
+Type = VelSet
+trigger1 = Time = 0 
+y = 0
+
+[State 3040, 0]
+Type = VelAdd
+trigger1 = AnimElem = 2 
+x = 15
+
+[State 3040, 1]
+Type = PlaySnd
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 3
+trigger3 = AnimElem = 5
+trigger4 = AnimElem = 7
+trigger5 = AnimElem = 9
+trigger6 = AnimElem = 10
+trigger7 = AnimElem = 11
+trigger8 = AnimElem = 12
+trigger9 = AnimElem = 13
+trigger10 = AnimElem = 15
+trigger11 = AnimElem = 17
+trigger12 = AnimElem = 19
+trigger13 = AnimElem = 21
+Value = 0, 1
+
+[State 3040, 3]
+Type = PosAdd
+trigger1 = AnimElem = 1
+trigger2 = AnimElem = 2
+trigger3 = AnimElem = 3
+trigger4 = AnimElem = 4
+trigger5 = AnimElem = 5
+trigger6 = AnimElem = 6
+trigger7 = AnimElem = 7
+trigger8 = AnimElem = 8
+trigger9 = AnimElem = 9
+trigger10 = AnimElem = 10
+trigger11 = AnimElem = 11
+trigger12 = AnimElem = 12
+trigger13 = AnimElem = 13
+trigger14 = AnimElem = 14
+trigger15 = AnimElem = 15
+trigger16 = AnimElem = 16
+trigger17 = AnimElem = 17
+trigger18 = AnimElem = 18
+x = 10
+
+[State 3040, 5]
+Type = HitDef
+trigger1 = AnimElem = 1
+trigger2 = AnimElem = 2
+trigger3 = AnimElem = 3
+trigger4 = AnimElem = 4
+trigger5 = AnimElem = 5
+trigger6 = AnimElem = 6
+trigger7 = AnimElem = 7
+trigger8 = AnimElem = 8
+trigger9 = AnimElem = 9
+trigger10 = AnimElem = 10
+trigger11 = AnimElem = 11
+trigger12 = AnimElem = 12
+trigger13 = AnimElem = 13
+trigger14 = AnimElem = 14
+trigger15 = AnimElem = 15
+trigger16 = AnimElem = 16
+trigger17 = AnimElem = 17
+trigger18 = AnimElem = 18
+trigger19 = AnimElem = 19
+trigger20 = AnimElem = 20
+trigger21 = AnimElem = 21
+trigger22 = AnimElem = 22
+Attr = S, HA
+AnimType  = Hard
+Damage    = 15,10
+priority  = 9
+guardflag = MA
+pausetime = 3,20
+sparkxy = -10,-60
+hitsound = S20, 0
+getpower = 10
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 0
+ground.hittime  = 22
+ground.velocity = -1
+air.velocity = -3,-3
+fall.AnimType = Hard
+p2stateno = 6200
+
+[State 3040, MoveHit]
+Type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = MoveHit = 1
+Value = 1090
+ctrl = 1
+
+[State 3040, MoveGuarded]
+Type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = MoveGuarded = 1
+Value = 2001
+ctrl = 1
+
+[State 3040, NoContact]
+Type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = MoveContact = 0
+Value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Hyper Dash
+[Statedef 3050]
+Type    = S
+movetype= A
+physics = N
+velset = 0,0
+ctrl = 0
+facep2 = !(prevstateno = 9010)
+
+[State 3050, ChangeAnim]
+type = ChangeAnim
+trigger1 = Time = 0 && Anim != 3050
+value = 3050
+
+;-------------------------------
+;SuperEffectさんのパクリ演出開始
+;Begin SuperEffect
+;-------------------------------
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9000
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -2
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -20,53
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,106
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,158
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,210
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9000
+Pos = 0, 0
+PosType = right
+SprPriority = -3
+Facing = -1
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,0
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -20,53
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,106
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,158
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3050, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,210
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3050, SuperEffect]
+Type = SuperPause
+trigger1 = Time = 0
+movetime = 50
+Time = 50
+Pos = 11, -80
+Darken = 0
+
+[State 3050, NoBar]
+type = AssertSpecial
+trigger1 = Time = [0,50]
+flag = NoBarDisplay
+flag2 = NoFG
+
+;-------------------------------
+;SuperEffectさんのパクリ演出終-ｹ
+;End SuperEffect
+;-------------------------------
+
+[State 3050, SuperSnd]
+Type = PlaySnd
+trigger1 = Time = 2
+Value = F20, 0 
+
+[State 3050, DashSnd]
+Type = PlaySnd
+trigger1 = AnimElem = 2
+Value = 21, 7 
+
+[State 3050, MakeDust]
+type = MakeDust
+trigger1 = AnimElem = 2
+pos = -5, 0
+spacing = 3
+
+[State 3050, PowerAdd]
+Type = PowerAdd
+trigger1 = Time = 2
+Value = -500
+
+[State 3050, AfterImage]
+Type = AfterImage
+trigger1 = Time = 46
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+Time = 10
+
+[State 3050, AfterImageTime]
+Type = AfterImageTime
+trigger1 = Time = [46,112]
+Time = 2
+
+[State 3050, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = 0
+Value = SCA
+Time = 50
+
+[State 3050, 0]
+Type = VelSet
+trigger1 = Time = 0 
+y = 0
+
+[State 3050, VelSetX]
+type = VelSet
+trigger1 = AnimElem = 1
+x = 0
+
+[State 3050, 0]
+Type = VelSet
+trigger1 = AnimElem = 2 
+x = 70
+
+[State 3050, HitDef]
+type = HitDef
+trigger1 = AnimElem = 2
+Attr = S, HA   
+Damage = 100,50   
+AnimType = Hard   
+getpower = 0                                             
+givepower = 25 
+guardflag = M    
+hitflag = MAFD      
+priority = 1, Hit 
+pausetime = 10,20
+sparkxy = -10,-70    
+hitsound = S20, 0 
+guardsound = S20, 3    
+ground.type = High
+ground.slidetime = 12 
+ground.hittime  = 15
+ground.velocity = -3        
+air.velocity = -1.3,-3
+p2facing = 1
+p1stateno = 3055 
+p2stateno = 6001
+
+[State 3050, MoveGuarded]
+type = ChangeState
+trigger1 = MoveGuarded = 1
+trigger1 = AnimTime = 0
+value = 2001
+
+[State 3050, NoContact]
+type = ChangeState
+trigger1 = MoveContact = 0
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 3050, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger2 = FrontEdgeBodyDist < 10
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Hyper Dash
+[Statedef 3055]
+Type    = S
+movetype= A
+physics = S
+velset = 0,0
+ctrl = 0
+
+[State 3055, VarRandom]
+type = VarRandom
+trigger1 = Time = 0
+v = 6
+range = 5
+
+[State 3055, MoveHit0]
+type = ChangeState
+trigger1 = MoveHit = 1
+trigger1 = Var(6) = 0
+value = 2001
+
+[State 3055, MoveHit1]
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = Var(6) = 1
+value = 3010
+
+[State 3055, MoveHit2]
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = Var(6) = 2
+value = 3020
+
+[State 3055, MoveHit3]
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = Var(6) = 3
+value = 3040
+
+[State 3055, MoveHit4]
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = Var(6) = 4
+value = 1011
+
+[State 3055, MoveHit5]
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = Var(6) = 5
+value = 1021
+
+[State 3055, NoContact]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 3000
+
+;---------------------------------------------------------------------------
+;Speed Up
+[Statedef 4010]
+Type    = S
+movetype= A
+physics = S
+juggle  = 2
+velset = 0,0
+ctrl = 0
+facep2 = !(prevstateno = 9010)
+
+[State 4010, ChangeAnim]
+type = ChangeAnim
+trigger1 = Time = 0 && Anim != 4010
+value = 4010
+
+[State 4010, ChangeMode]
+Type = VarSet
+trigger1 = AnimElem = 2
+trigger1 = Alive = 1
+trigger1 = Var(9) = 0
+var(9) = 1
+
+[State 4010, PowerAdd1]
+Type = PowerAdd
+trigger1 = AnimElem = 1
+Value = -2000
+
+[State 4010, EnvColor]
+Type = EnvColor
+trigger1 = AnimElem = 2
+Value = 255,255,255
+Time = 20
+under = 1
+
+;-------------------------------
+;SuperEffectさんのパクリ演出開始
+;Begin SuperEffect
+;-------------------------------
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9000
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -2
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -20,53
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,106
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,158
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,210
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9000
+Pos = 0, 0
+PosType = right
+SprPriority = -3
+Facing = -1
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,0
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -20,53
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,106
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,158
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 4010, SuperEffect]
+Type = Explod
+trigger1 = Time = 0
+trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,210
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 4010, SuperEffect]
+Type = SuperPause
+trigger1 = Time = 0
+movetime = 50
+Time = 50
+Pos = 11, -80
+Darken = 0
+
+[State 4010, NoBar]
+type = AssertSpecial
+trigger1 = Time = [0,50]
+flag = NoBarDisplay
+flag2 = NoFG
+
+;-------------------------------
+;SuperEffectさんのパクリ演出終-ｹ
+;End SuperEffect
+;-------------------------------
+
+[State 4010, NotHitBy]
+Type = NotHitBy
+trigger1 = Time = 0
+Value = SCA
+Time = 50
+
+[State 4010,blink] 
+Type = PalFX
+trigger1 = Time > 48
+trigger1 = TimeMod = 2,0
+Time = 2
+Add = 64,64,64
+
+[State 4010,flash1]
+Type = Explod
+trigger1 = Time = [49,58]
+trigger1 = TimeMod = 2,0
+trigger2 = Time = [59,72]
+trigger2 = TimeMod = 4,0
+Anim = 9002
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 4010,flash2]
+Type = Explod
+trigger1 = Time = [59,72]
+trigger1 = TimeMod = 4,2
+trigger2 = Time = [73,92]
+trigger3 = Time = [93,113]
+trigger3 = TimeMod = 4,0
+Anim = 9003
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 4010,flash3]
+Type = Explod
+trigger1 = Time = [93,113]
+trigger1 = TimeMod = 4,2
+trigger2 = Time >= 114
+Anim = 9004
+PosType = left
+OwnPal = 1
+RemoveTime = 1
+ontop = 1
+
+[State 4010, PlaySnd]
+Type = PlaySnd
+trigger1 = Time = 2
+Value = F20, 0 
+
+[State 4010, 2]
+Type = PlaySnd
+trigger1 = AnimElem = 2
+Value = 0, 5
+
+;Ka-ka-ro...to!
+[State 4010, PlaySnd]
+Type = PlaySnd
+trigger1 = AnimElem = 2
+Value = 0, 8
+
+;フワフワ
+[State 4010,fuwaVar1]
+Type = VarSet
+triggerAll = Time > 50
+triggerAll = Pos Y < 0
+trigger1 = Var(2) = 2
+trigger1 = Vel Y >= 2.4
+trigger2 = Time = 51
+v = 2
+Value = 1
+
+[State 4010,fuwaVar2]
+Type = VarSet
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 1
+trigger1 = Vel Y <= -2.4
+v = 2
+Value = 2
+
+[State 4010,fuwaUp]
+Type = VelAdd
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 1
+y = -0.3
+
+[State 4010,fuwaDown]
+Type = VelAdd
+trigger1 = Time > 50
+trigger1 = Pos Y < 0
+trigger1 = Var(2) = 2
+y = 0.3
+
+[State 4010,fuwaEndVar]
+Type = VarSet
+triggerAll = Pos Y < 0
+trigger1 = power = 0
+trigger1 = Time >= 73
+trigger2 = Time >= 164
+trigger2 = command = "b"
+v = 2
+Value = 0
+
+;ゴゴゴゴゴ…
+[State 4010,shake] 
+Type = EnvShake
+trigger1 = Time > 50
+trigger1 = Pos Y >= 0
+trigger1 = TimeMod = 4,0
+Time = 4
+
+[State 4010, 2]
+Type = StateTypeSet
+trigger1 = Pos Y >= 0 
+trigger1 = Time > 73 
+Value = S
+
+;終-ｹ
+[State 4010,end]
+Type = RemoveExplod
+trigger1 = Var(1) = 4
+trigger1 = Time >= 73
+trigger2 = Time >= 164
+trigger2 = command = "b"
+trigger3 = Time >= 164
+trigger3 = Win = 1
+
+;息切れへ
+[State 4010,breath1]
+Type = VarSet
+trigger1 = power = 0
+v = 1
+Value = 4
+
+[State 4010, breath2]
+Type = ChangeState
+trigger1 = Var(1) = 4
+trigger1 = Time >= 73
+Value = 5300
+
+[State 4010, 6]
+Type = ChangeState
+trigger1 = AnimTime = 0
+trigger2 = Win = 1
+Value = 0
+ctrl = 1

@@ -1,0 +1,23 @@
+; Definition file for Player
+; Contains all the filenames needed for the character
+; Template player 9X-09-12
+
+; Character information
+[Info]
+name    = "Raditz";<-- Replace with a real name
+displayname = "Raditz";<-- Replace with name to display
+
+; Files for the character
+[Files]
+cmd     = Raditz.cmd     ;Command set
+cmd1     = ssjcommand.cmd     ;Command set
+cns     = Raditz.cns     ;Constants
+st      = Raditz.cns     ;States
+stcommon = common1.cns   ;Common states
+sprite  = Raditz.sff     ;Sprite
+anim    = Raditz.air     ;Animation
+sound   = Raditz.snd     ;Sound
+pal1    = Raditz.act
+pal2    = Raditz-2.act
+pal3    = Raditz-3.act
+pal4    = Raditz-4.act

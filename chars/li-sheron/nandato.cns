@@ -1,0 +1,2012 @@
+
+;----------- 
+;超必殺技
+;Hyper Moves
+;----------- 
+
+;This is a super move that has infinite possibilities in how it's done.
+
+;---------------------------------------------------------------------------
+;Nandato - Dashing
+;Broli begins the assault by dashing right at the opponent.
+[Statedef 3060]
+Type = S
+MoveType = A
+Physics = N
+Anim = 3060
+VelSet = 0,0
+ctrl = 0
+
+;-------------------------------
+;SuperEffectさんのパクリ演出開始
+;Begin SuperEffect
+;-------------------------------
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = 1
+Anim = 9000
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -2
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,0
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -20,53
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,106
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = -10,158
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = 1
+Anim = 9001
+Facing = 1
+Pos = 0,210
+PosType = left
+SprPriority = -3
+BindTime = 1
+Vel = -14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = -1
+Anim = 9000
+Pos = 0, 0
+PosType = right
+SprPriority = -3
+Facing = -1
+BindTime = 50
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,0
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -20,53
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,106
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = -10,158
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 13
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3060, SuperEffect]
+Type = Explod
+Trigger1 = Time = 0
+Trigger1 = Facing = -1
+Anim = 9001
+Facing = -1
+Pos = 0,210
+PosType = right
+SprPriority = -3
+BindTime = 1
+Vel = 14.0
+OwnPal = 1
+SuperMove = 1
+RemoveTime = 50
+Scale = 1,1.1
+
+[State 3060, SuperEffect]
+Type = SuperPause
+Trigger1 = Time = 0
+movetime = 50
+Time = 50
+Pos = 11, -80
+Darken = 0
+
+[State 3060, NoBar]
+type = AssertSpecial
+trigger1 = Time = [0,50]
+flag = NoBarDisplay
+flag2 = NoFG
+
+;-------------------------------
+;SuperEffectさんのパクリ演出終-ｹ
+;End SuperEffect
+;-------------------------------
+
+;Plays the "Super" sound effect for Broli.
+[State 3060, PlaySnd]
+Type = PlaySnd
+Trigger1 = Time = 2
+Value = F20, 0 
+
+;The sound effect when Broli dashes.
+[State 3060, DashSnd]
+Type = PlaySnd
+Trigger1 = AnimElem = 2
+Value = 21, 7 
+
+[State 3060, MakeDust]
+type = MakeDust
+trigger1 = AnimElem = 2
+pos = -5, 0
+spacing = 3
+
+;When this move is executed, Broli uses 3000 power, or level 3.
+[State 3060, PowerAdd]
+Type = PowerAdd
+Trigger1 = Time = 2
+Value = -3000
+
+;Creates the shadow images after Broli.
+[State 3060, AfterImage]
+Type = AfterImage
+Trigger1 = Time = 46
+Length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+Time = 10
+
+;Adjusts the shadow image display.
+[State 3060, AfterImageTime]
+Type = AfterImageTime
+Trigger1 = Time = [46,112]
+Time = 2
+
+;Specifies what attacks Broli is invulnerable to.
+[State 3060, NotHitBy]
+Type = NotHitBy
+Trigger1 = Time = 0
+Value = SCA
+Time = 50
+
+;Makes sure Broli will not move up or down during the attack.
+[State 3060, VelSetY]
+Type = VelSet
+Trigger1 = Time = 0 
+Y = 0
+
+;This moves Broli forward, to an X value of 35.
+[State 3060, VelSetX]
+Type = VelSet
+Trigger1 = AnimElem = 2
+X = 70
+
+;The Dash Attack. Specifies the attributes and properties of this move.
+[State 3060, HitDef]
+Type = HitDef
+Trigger1 = AnimElem = 1
+Attr = S, HA
+AnimType  = Hard
+Damage    = 100,50
+priority  = 9
+guardflag = MA
+pausetime = 10,20
+sparkxy = -10,-60
+hitsound = S20, 0
+getpower = 10
+guardsound = S20, 3
+ground.Type = High
+ground.slidetime = 0
+ground.hittime  = 100
+air.hittime = 100
+ground.velocity = -1
+air.velocity = -3,-3
+fall.AnimType = Hard
+p2stateno = 6001
+
+;The game will choose a random number, from 0 to 3
+[State 3060, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 7
+range = 3
+
+;If the game chooses 0, Broli will go to action 3065.
+[State 3060, MoveHit1]
+type = ChangeState
+Trigger1 = MoveHit = 1
+Trigger1 = Var(7) = 0
+value = 3065
+
+;If the game chooses 1, Broli will go to action 3066.
+[State 3060, MoveHit2]
+type = ChangeState
+Trigger1 = MoveHit = 1
+Trigger1 = Var(7) = 1
+value = 3066
+
+;If the game chooses 2, Broli will go to action 3067.
+[State 3060, MoveHit3]
+type = ChangeState
+Trigger1 = MoveHit = 1
+Trigger1 = Var(7) = 2
+value = 3067
+
+;If the game chooses 3, Broli will go to action 3068.
+[State 3060, MoveHit4]
+type = ChangeState
+Trigger1 = MoveHit = 1
+Trigger1 = Var(7) = 3
+value = 3068
+
+;If the attack was guarded, Broli will pass through the opponent.
+[State 3060, MoveGuarded]
+Type = PlayerPush
+Trigger1 = MoveGuarded = 1
+value = 0
+
+;If Broli goes to the end of the screen, he'll stop immediately.
+[State 3060, End]
+Type = ChangeState
+Trigger1 = AnimTime = 0
+Trigger2 = FrontEdgeBodyDist < 10
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Nandato - Ground Attack
+;Type 1: Smash Attack
+;In this attack, Broli will attack in a hard-hitting style.
+[Statedef 3065]
+Type = S
+MoveType = A
+Physics = S
+Anim = 3065
+VelSet = 0,0
+ctrl = 0
+
+;This makes Broli turn around if the opponent happened to go behind him.
+[State 3065, Turn]
+Type = Turn
+Trigger1 = P2Dist X < 0
+
+;Whenever Broli hits the opponent in this attack, the screen will shake.
+[State 3065, EnvShake] 
+type = EnvShake
+Trigger1 = MoveContact = 1
+time = 10
+ampl = 4
+freq = 127
+
+;This will play Broli's punch swing sound effects.
+[State 3065, PunchSwingSnd]
+Type = PlaySnd
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 4
+Trigger4 = AnimElem = 6
+Trigger5 = AnimElem = 8
+Trigger6 = AnimElem = 9
+Trigger7 = AnimElem = 10
+Trigger8 = AnimElem = 11
+Trigger9 = AnimElem = 12
+Trigger10 = AnimElem = 14
+Trigger11 = AnimElem = 16
+Trigger12 = AnimElem = 18
+Trigger13 = AnimElem = 20
+Value = 0, 1
+
+;This move Broli forward as he attacks.
+[State 3065, PosAddX]
+Type = PosAdd
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 3
+Trigger4 = AnimElem = 4
+Trigger5 = AnimElem = 5
+Trigger6 = AnimElem = 6
+Trigger7 = AnimElem = 7
+Trigger8 = AnimElem = 8
+Trigger9 = AnimElem = 9
+Trigger10 = AnimElem = 10
+Trigger11 = AnimElem = 11
+Trigger12 = AnimElem = 12
+Trigger13 = AnimElem = 13
+Trigger14 = AnimElem = 14
+Trigger15 = AnimElem = 15
+Trigger16 = AnimElem = 16
+Trigger17 = AnimElem = 17
+Trigger18 = AnimElem = 18
+x = 10
+
+;This is the Smash Attack.
+[State 3065, HitDef]
+Type = HitDef
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 3
+Trigger4 = AnimElem = 4
+Trigger5 = AnimElem = 5
+Trigger6 = AnimElem = 6
+Trigger7 = AnimElem = 7
+Trigger8 = AnimElem = 8
+Trigger9 = AnimElem = 9
+Trigger10 = AnimElem = 10
+Trigger11 = AnimElem = 11
+Trigger12 = AnimElem = 12
+Trigger13 = AnimElem = 13
+Trigger14 = AnimElem = 14
+Trigger15 = AnimElem = 15
+Trigger16 = AnimElem = 16
+Trigger17 = AnimElem = 17
+Trigger18 = AnimElem = 18
+Trigger19 = AnimElem = 19
+Trigger20 = AnimElem = 20
+Trigger21 = AnimElem = 21
+Attr = S, HA
+AnimType  = Hard
+affectteam = B
+Damage    = 15,7
+priority  = 9
+guardflag = MA
+pausetime = 10,20
+sparkxy = -10,-60
+hitsound = S20, 0
+getpower = 10
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 0
+ground.hittime  = 22
+ground.velocity = -1
+air.velocity = -3,-3
+fall.AnimType = Hard
+p2stateno = 6001
+
+;Broli will knock the opponent up into the air after the combo has finished.
+[State 3065, HitDef]
+type = HitDef
+Trigger1 = AnimElem = 23
+attr = S, HA
+affectteam = B
+damage = 15,7
+hitflag = MAF
+guardflag = MA
+priority  = 2
+sparkxy = -10,-70
+hitsound = S20, 0
+guardsound = S20, 3
+ground.slidetime = 12
+ground.hittime = 15
+ground.type = High
+snap = 40,-60,40,-60
+p1stateno = 3070 
+p2stateno = 6300 
+
+;The game will choose a random number, from 0 to 8.
+[State 3065, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 7
+range = 8
+
+;If the game chooses 0, Broli will go to action 3065 in random, to continue the assault.
+[State 3065, MoveHit1]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 0
+value = 3065
+
+;If the game chooses 2, Broli will go to action 3066 in random, to continue the assault.
+[State 3060, MoveHit2]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 2
+value = 3066
+
+;If the game chooses 4, Broli will go to action 3067 in random, to continue the assault.
+[State 3065, MoveHit3]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 4
+value = 3067
+
+;If the game chooses 6, Broli will go to action 3068 in random, to continue the assault.
+[State 3065, MoveHit4]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 6
+value = 3068
+
+;If the game chooses 8, Broli will go to action 3080 in random, to continue the assault.
+[State 3065, MoveHit5]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 8
+value = 2014
+
+;If Broli missed the opponent, or the opponent has escaped, Broli will return to his
+;standing state after the move is over.
+[State 3065, End]
+Type = ChangeState
+Trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Nandato - Ground Attack
+;Type 2: Push Attack
+[Statedef 3066]
+Type = S
+MoveType = A
+Physics = S
+Anim = 3066
+VelSet = 0,0
+ctrl = 0
+
+;This makes Broli turn around if the opponent went behind him.
+[State 3066, Turn]
+Type = Turn
+Trigger1 = P2Dist X < 0
+
+;Broli will move forward as he attacks.
+[State 3066, PosAddX]
+Type = PosAdd
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 3
+Trigger4 = AnimElem = 4
+Trigger5 = AnimElem = 5
+Trigger6 = AnimElem = 6
+Trigger7 = AnimElem = 7
+Trigger8 = AnimElem = 8
+Trigger9 = AnimElem = 9
+Trigger10 = AnimElem = 10
+Trigger11 = AnimElem = 11
+Trigger12 = AnimElem = 12
+Trigger13 = AnimElem = 13
+Trigger14 = AnimElem = 14
+Trigger15 = AnimElem = 15
+Trigger16 = AnimElem = 16
+Trigger17 = AnimElem = 17
+Trigger18 = AnimElem = 18
+Trigger19 = AnimElem = 19
+Trigger20 = AnimElem = 20
+Trigger21 = AnimElem = 21
+Trigger22 = AnimElem = 22
+Trigger23 = AnimElem = 23
+x = 30
+
+;The Push Attack.
+[State 3066, 5]
+Type = HitDef
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 3
+Trigger4 = AnimElem = 4
+Trigger5 = AnimElem = 5
+Trigger6 = AnimElem = 6
+Trigger7 = AnimElem = 7
+Trigger8 = AnimElem = 8
+Trigger9 = AnimElem = 9
+Trigger10 = AnimElem = 10
+Trigger11 = AnimElem = 11
+Trigger12 = AnimElem = 12
+Trigger13 = AnimElem = 13
+Trigger14 = AnimElem = 14
+Trigger15 = AnimElem = 15
+Trigger16 = AnimElem = 16
+Trigger17 = AnimElem = 17
+Trigger18 = AnimElem = 18
+Trigger19 = AnimElem = 19
+Trigger20 = AnimElem = 20
+Trigger21 = AnimElem = 21
+Attr = S, HA
+AnimType  = Hard
+affectteam = B
+Damage    = 10,5
+priority  = 9
+guardflag = MA
+pausetime = 8,20
+sparkxy = -10,-60
+hitsound = S20, 0
+getpower = 10
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 0
+ground.hittime  = 22
+ground.velocity = -1
+air.velocity = -3,-3
+fall.AnimType = Hard
+p2stateno = 6001
+
+;After the attack, Broli will knock the opponent up into the air.
+[State 3066, HitDef]
+type = HitDef
+Trigger1 = AnimElem = 23
+attr = S, HA
+affectteam = B
+damage = 10,5
+hitflag = MAF
+guardflag = MA
+priority  = 2
+sparkxy = -10,-70
+hitsound = S20, 0
+guardsound = S20, 3
+ground.slidetime = 12
+ground.hittime = 15
+ground.type = High
+snap = 40,-60,40,-60
+p1stateno = 3070 
+p2stateno = 6300 
+
+;The game will choose a random number, from 0 to 8.
+[State 3066, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 7
+range = 8
+
+;If the game chooses 0, Broli will go to action 3065 in random, to continue the assault.
+[State 3066, MoveHit1]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 0
+value = 3065
+
+;If the game chooses 2, Broli will go to action 3066 in random, to continue the assault.
+[State 3066, MoveHit2]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 2
+value = 3066
+
+;If the game chooses 4, Broli will go to action 3067 in random, to continue the assault.
+[State 3066, MoveHit3]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 4
+value = 3067
+
+;If the game chooses 6, Broli will go to action 3068 in random, to continue the assault.
+[State 3066, MoveHit4]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 6
+value = 3068
+
+;If the game chooses 8, Broli will go to action 3080 in random, to continue the assault.
+[State 3066, MoveHit5]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 8
+value = 2014
+
+;This will end the move, if Broli did not make any contact.
+[State 3066, End]
+Type = ChangeState
+Trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Nandato - Ground Attack
+;Type 3: Quick Attack
+;In this move, Broli will attack at a fast speed.
+[Statedef 3067]
+Type = S
+MoveType = A
+Physics = S
+Anim = 3067
+VelSet = 0,0
+ctrl = 0
+
+;This turns Broli around, if the opponent happened to go behind him.
+[State 3067, Turn]
+Type = Turn
+Trigger1 = P2Dist X < 0
+
+;The Quick Attack.
+[State 3067, 5]
+Type = HitDef
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 3
+Trigger4 = AnimElem = 4
+Trigger5 = AnimElem = 5
+Trigger6 = AnimElem = 6
+Trigger7 = AnimElem = 7
+Trigger8 = AnimElem = 8
+Trigger9 = AnimElem = 9
+Trigger10 = AnimElem = 10
+Trigger11 = AnimElem = 11
+Trigger12 = AnimElem = 12
+Trigger13 = AnimElem = 13
+Trigger14 = AnimElem = 14
+Trigger15 = AnimElem = 15
+Trigger16 = AnimElem = 16
+Trigger17 = AnimElem = 17
+Trigger18 = AnimElem = 18
+Trigger19 = AnimElem = 19
+Trigger20 = AnimElem = 20
+Trigger21 = AnimElem = 21
+Attr = S, HA
+AnimType  = Light
+affectteam = B
+Damage    = 10,5
+priority  = 9
+guardflag = MA
+pausetime = 6,20
+sparkxy = -10,-60
+hitsound = S20, 0
+getpower = 10
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 0
+ground.hittime  = 22
+ground.velocity = -1
+air.velocity = -3,-3
+fall.AnimType = Hard
+p2stateno = 6001
+
+;After the assault, the opponent will be knocked into the air.
+[State 3067, HitDef]
+type = HitDef
+Trigger1 = AnimElem = 23
+attr = S, HA
+affectteam = B
+damage = 10,5
+hitflag = MAF
+guardflag = MA
+priority  = 2
+sparkxy = -10,-70
+hitsound = S20, 0
+guardsound = S20, 3
+ground.slidetime = 12
+ground.hittime = 15
+ground.type = High
+snap = 40,-60,40,-60
+p1stateno = 3070 
+p2stateno = 6300 
+
+;The game will choose a random number, from 0 to 8.
+[State 3067, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 7
+range = 8
+
+;If the game chooses 0, Broli will go to action 3065 in random, to continue the assault.
+[State 3067, MoveHit1]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 0
+value = 3065
+
+;If the game chooses 2, Broli will go to action 3066 in random, to continue the assault.
+[State 3067, MoveHit2]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 2
+value = 3066
+
+;If the game chooses 4, Broli will go to action 3067 in random, to continue the assault.
+[State 3067, MoveHit3]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 4
+value = 3067
+
+;If the game chooses 6, Broli will go to action 3068 in random, to continue the assault.
+[State 3067, MoveHit4]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 6
+value = 3068
+
+;If the game chooses 8, Broli will go to action 3080 in random, to continue the assault.
+[State 3067, MoveHit5]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 8
+value = 2014
+
+;The move will end if no contact has been made.
+[State 3067, End]
+Type = ChangeState
+Trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Nandato - Ground Attack
+;Type 4: Projectile Attack
+;In this move, Broli will attack with projectiles as he pulverizes the opponent.
+[Statedef 3068]
+Type = S
+MoveType = A
+Physics = S
+Anim = 3068
+VelSet = 0,0
+ctrl = 0
+
+;Broli will turn around if the opponent happened to go behind him.
+[State 3068, Turn]
+Type = Turn
+Trigger1 = P2Dist X < 0
+
+;This plays Broli's punch swing sound effects.
+[State 3068, 1]
+Type = PlaySnd
+Trigger1 = AnimElem = 2
+Trigger2 = AnimElem = 5
+Trigger3 = AnimElem = 7
+Trigger4 = AnimElem = 13
+Trigger5 = AnimElem = 15
+Trigger6 = AnimElem = 17
+Trigger7 = AnimElem = 21
+Trigger8 = AnimElem = 22
+Trigger9 = AnimElem = 25
+Value = 0, 1
+
+;Broli will move at these particular situations.
+[State 3068, 3]
+Type = PosAdd
+Trigger1 = AnimElem = 12
+Trigger2 = AnimElem = 13
+Trigger3 = AnimElem = 21
+Trigger4 = AnimElem = 22
+x = 25
+
+;The attack for this move.
+[State 3068, 5]
+Type = HitDef
+Trigger1 = AnimElem = 2
+Trigger2 = AnimElem = 5
+Trigger3 = AnimElem = 7
+Trigger4 = AnimElem = 13
+Trigger5 = AnimElem = 15
+Trigger6 = AnimElem = 17
+Trigger7 = AnimElem = 21
+Trigger8 = AnimElem = 22
+Trigger9 = AnimElem = 25
+Attr = S, HA
+AnimType  = Medium
+affectteam = B
+Damage    = 10,5
+priority  = 9
+guardflag = MA
+pausetime = 8,60
+sparkxy = -10,-60
+hitsound = S20, 0
+getpower = 10
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 0
+ground.hittime  = 22
+ground.velocity = -1
+air.velocity = -3,-3
+fall.AnimType = Hard
+p2stateno = 6001
+
+;This plays a sound when Broli shoots his projectile.
+[State 3068, PlaySnd]
+type = PlaySnd
+Trigger1 = AnimElem = 10
+Trigger2 = AnimElem = 19
+value = 0, 2
+
+;弾（中）
+;The 2 projectiles that Broli throws during this move.
+[State 3068, Projectile]
+type = Projectile
+Trigger1 = AnimElem = 10
+Trigger2 = AnimElem = 19
+ProjAnim = 1057
+ProjHitAnim = 1036
+ProjRemAnim = 1037
+offset = 45, -85
+velocity = 10, 9.999999
+remvelocity = 0,0
+velmul = 1.005, 1
+accel = 0, 0
+;HitDef part
+attr = S, HP
+affectteam = B
+damage    = 10,5
+animtype  = Medium
+getpower = 0
+givepower = 30
+guardflag = MA
+pausetime = 20,60
+sparkno = -1
+guard.sparkno = -1
+hitsound = S20, 1
+guardsound = S20, 3
+ground.type = High
+ground.slidetime = 40
+ground.hittime  = 40
+ground.velocity = -8
+airguard.velocity = -3.5,-2.75
+air.type = Low
+air.velocity = -2.5,-5.5
+air.juggle = 3
+
+;After the attack, Broli will knock the opponent up into the air.
+[State 3068, HitDef]
+type = HitDef
+Trigger1 = AnimElem = 27
+attr = S, HA
+affectteam = B
+damage = 10,5
+hitflag = MAF
+guardflag = MA
+priority  = 2
+sparkxy = -10,-70
+hitsound = S20, 0
+guardsound = S20, 3
+ground.slidetime = 12
+ground.hittime = 15
+ground.type = High
+snap = 40,-60,40,-60
+p1stateno = 3070 
+p2stateno = 6300 
+
+;The game will choose a random number, from 0 to 8.
+[State 3068, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 7
+range = 8
+
+;If the game chooses 0, Broli will go to action 3065 in random, to continue the assault.
+[State 3068, MoveHit1]
+type = ChangeState
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 0
+value = 3065
+
+;If the game chooses 2, Broli will go to action 3066 in random, to continue the assault.
+[State 3068, MoveHit2]
+type = ChangeState
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 2
+value = 3066
+
+;If the game chooses 4, Broli will go to action 3067 in random, to continue the assault.
+[State 3068, MoveHit3]
+type = ChangeState
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 4
+value = 3067
+
+;If the game chooses 6, Broli will go to action 3068 in random, to continue the assault.
+[State 3068, MoveHit4]
+type = ChangeState
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 6
+value = 3068
+
+;If the game chooses 8, Broli will go to action 3080 in random, to continue the assault.
+[State 3068, MoveHit5]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 8
+value = 2014
+
+;This ends the move if no contact has been made.
+[State 3068, End]
+Type = ChangeState
+Trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Nandato - Going Up
+;After any one of the ground attacks has been made, Broli will jump up.
+[Statedef 3070]
+Type = A
+MoveType = A
+Physics = N
+Anim = 3070
+VelSet = 0,-150
+ctrl = 0
+
+;This makes the jump sound for Broli.
+[State 3070, JumpSnd]
+type = Playsnd
+Trigger1 = Time = 1
+value = 20,9
+
+;This is required to move Broli up. 
+[State 3070, VelAddY]
+type = VelAdd
+Trigger1 = Time >= 0
+y = 0.40
+
+;This sets the jumping speed.
+[State 3070, VelMul] 
+type = VelMul
+Trigger1 = Time = 0
+Y = 0.10
+
+;This makes sure that Broli will not move left or right.
+[State 3070, VelSetX]
+type = VelSet
+Trigger1 = time >= 0
+X = 0
+
+;A shadow image will be displayed behind Broli.
+[State 3070, AfterImage]
+type = AfterImage
+Trigger1 = time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 10
+
+;The game will choose a random number from 0 to 2.
+[State 3060, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 8
+range = 1
+
+;If the game chosed 0, Broli will go to action 3075.
+[State 3070, AirCombo1]
+type = ChangeState
+Trigger1 = Time = 40
+Trigger1 = Var(8) = 0
+Trigger1 = P2BodyDist X < 20
+Trigger1 = P2BodyDist Y < 20
+value = 3075
+
+;If the game chosed 1, Broli will go to action 3076.
+[State 3070, AirCombo2]
+type = ChangeState
+Trigger1 = Time = 40
+Trigger1 = Var(8) = 1
+Trigger1 = P2BodyDist X < 20
+Trigger1 = P2BodyDist Y < 20
+value = 3076
+
+;If the game chooses 2, Broli will go to action 3085.
+[State 3070, MoveHit5]
+type = ChangeState
+TriggerAll = MoveHit = 1
+Trigger1 = AnimElem = 21
+Trigger1 = Var(7) = 8
+value = 3085
+
+;If Broli missed the opponent, he'll land as normal.
+[State 3070, End]
+type = ChangeState
+Trigger1 = Pos Y >= .1
+value = 2000
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Nandato - Air Combo Attack 
+;Type 1: Smashing Attack
+[Statedef 3075]
+Type = S
+MoveType = A
+Physics = S
+Anim = 3075
+VelSet = 0,0
+ctrl = 0
+
+;This makes the shadow images behind Broli.
+[State 3075, AfterImage]
+Type = AfterImage
+Trigger1 = Time = 46
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+Time = 10
+
+;This adjusts the after image display.
+[State 3075, AfterImageTime]
+Type = AfterImageTime
+Trigger1 = Time = [46,112]
+Time = 2
+
+;This makes sure that Broli will not move up or down.
+[State 3075, VelSetY]
+Type = VelSet
+Trigger1 = Time = 0 
+Y = 0
+
+;This moves Broli at the beginning of the move.
+[State 3075, VelAddX]
+Type = VelAdd
+Trigger1 = AnimElem = 2 
+X = 15
+
+;During various points of this move, Broli will move forward.
+[State 3075, PosAddX]
+Type = PosAdd
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 3
+Trigger4 = AnimElem = 4
+Trigger5 = AnimElem = 5
+Trigger6 = AnimElem = 6
+Trigger7 = AnimElem = 7
+Trigger8 = AnimElem = 8
+Trigger9 = AnimElem = 9
+Trigger10 = AnimElem = 10
+x = 15
+
+;This is the Smashing Attack.
+[State 3075, HitDef]
+Type = HitDef
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 3
+Trigger4 = AnimElem = 4
+Trigger5 = AnimElem = 5
+Trigger6 = AnimElem = 6
+Trigger7 = AnimElem = 7
+Trigger8 = AnimElem = 8
+Trigger9 = AnimElem = 9
+Trigger10 = AnimElem = 10
+Attr = A, HA
+AnimType  = Hard
+affectteam = B
+Damage    = 15,7
+priority  = 9
+guardflag = A
+pausetime = 10,60
+sparkxy = -10,-60
+hitsound = S20, 0
+getpower = 10
+guardsound = S20, 3
+ground.Type = High
+ground.slidetime = 0
+ground.hittime  = 22
+ground.velocity = -1
+air.type = Trip
+air.velocity = -3,-3
+p2stateno = 6002
+
+;With each hit, the screen shakes.
+[State 3075, EnvShake] 
+type = EnvShake
+Trigger1 = MoveContact = 1
+time = 10
+ampl = 4
+freq = 127
+
+;The game will choose a random number from 0 to 7.
+[State 3075, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 8
+range = 7
+
+;If the game chosed 0, Broli will go to action 3000.
+[State 3075, MoveHit1]
+type = ChangeState
+Trigger1 = Var(8) = 0
+Trigger1 = AnimTime = 0
+value = 3000
+
+;If the game chosed 1, Broli will go to action 3010.
+[State 3075, MoveHit2]
+type = ChangeState
+Trigger1 = Var(8) = 1
+Trigger1 = AnimTime = 0
+value = 3010
+
+;If the game chosed 2, Broli will go to action 3040.
+[State 3075, MoveHit3]
+type = ChangeState
+Trigger1 = Var(8) = 2
+Trigger1 = AnimTime = 0
+value = 3040
+
+;If the game chosed 3, Broli will go to action 3066.
+[State 3075, MoveHit4]
+type = ChangeState
+Trigger1 = Var(8) = 3
+Trigger1 = AnimTime = 0
+value = 3066
+
+;If the game chosed 4, Broli will go to action 3081.
+[State 3075, MoveHit5]
+type = ChangeState
+Trigger1 = Var(8) = 4
+Trigger1 = AnimTime = 0
+value = 3081
+
+;If the game chosed 5, Broli will go to action 3076.
+[State 3075, MoveHit6]
+type = ChangeState
+Trigger1 = Var(8) = 5
+Trigger1 = AnimTime = 0
+value = 3076
+
+;If the game chosed 6, Broli will go to action 3085.
+[State 3075, MoveHit7]
+type = ChangeState
+Trigger1 = Var(8) = 6
+Trigger1 = AnimTime = 0
+value = 3085
+
+;If the game chosed 7, Broli will go to action 3080.
+[State 3075, MoveHit8]
+type = ChangeState
+Trigger1 = Var(8) = 7
+Trigger1 = AnimTime = 0
+value = 2014
+
+;If the game chosed 8, Broli will go to action 3077.
+[State 3075, Movehit9]
+type = ChangeState
+Trigger1 = Var(8) = 8
+Trigger1 = AnimTime = 0
+value = 3077
+
+;This makes Broli land immediately if the round ends.
+[State 3075, End1]
+type = ChangeState
+Trigger1 = Win = 1
+Trigger2 = Lose = 1
+value = 50
+
+;This ends the move, if the opponent happened to escaped.
+[State 3075, End2]
+Type = ChangeState
+Trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Nandato - Air Attack
+;Type 2: Push Attack
+[Statedef 3076]
+Type = S
+MoveType = A
+Physics = S
+Anim = 3076
+VelSet = 0,0
+ctrl = 0
+
+;This turns Broli around if the opponent went behind him.
+[State 3076, Turn]
+Type = Turn
+Trigger1 = P2Dist X < 0
+
+;This moves Broli forward, to an X value of 30 at various points of this move.
+[State 3076, 3]
+Type = PosAdd
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 3
+Trigger4 = AnimElem = 4
+Trigger5 = AnimElem = 5
+Trigger6 = AnimElem = 6
+Trigger7 = AnimElem = 7
+Trigger8 = AnimElem = 8
+Trigger9 = AnimElem = 9
+Trigger10 = AnimElem = 10
+Trigger11 = AnimElem = 11
+Trigger12 = AnimElem = 12
+Trigger13 = AnimElem = 13
+Trigger14 = AnimElem = 14
+Trigger15 = AnimElem = 15
+Trigger16 = AnimElem = 16
+Trigger17 = AnimElem = 17
+Trigger18 = AnimElem = 18
+Trigger19 = AnimElem = 19
+Trigger20 = AnimElem = 20
+Trigger21 = AnimElem = 21
+Trigger22 = AnimElem = 22
+Trigger23 = AnimElem = 23
+x = 30
+
+;This is the Push Attack.
+[State 3076, 5]
+Type = HitDef
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 3
+Trigger4 = AnimElem = 4
+Trigger5 = AnimElem = 5
+Trigger6 = AnimElem = 6
+Trigger7 = AnimElem = 7
+Trigger8 = AnimElem = 8
+Trigger9 = AnimElem = 9
+Trigger10 = AnimElem = 10
+Trigger11 = AnimElem = 11
+Trigger12 = AnimElem = 12
+Trigger13 = AnimElem = 13
+Trigger14 = AnimElem = 14
+Trigger15 = AnimElem = 15
+Trigger16 = AnimElem = 16
+Trigger17 = AnimElem = 17
+Trigger18 = AnimElem = 18
+Trigger19 = AnimElem = 19
+Trigger20 = AnimElem = 20
+Trigger21 = AnimElem = 21
+Trigger22 = AnimElem = 22
+Trigger23 = AnimElem = 23
+Attr = A, HA
+AnimType  = Medium
+affectteam = B
+Damage    = 10,5
+priority  = 9
+guardflag = A
+pausetime = 8,40
+sparkxy = -10,-60
+hitsound = S20, 0
+getpower = 10
+guardsound = S20, 3
+ground.type = Trip
+ground.slidetime = 0
+ground.hittime  = 22
+ground.velocity = -7
+air.type = Trip
+air.velocity = -7,-0
+fall.AnimType = Hard
+p2stateno = 6001
+fall = 1
+fall.recover = 0
+
+;Broli will go to action 3081 after the attack.
+[State 3076, End1]
+Type = ChangeState
+Trigger1 = MoveHit = 1
+Trigger1 = AnimTime = 0
+value = 3081
+ctrl = 1
+
+;This makes Broli land immediately if the round ends.
+[State 3076, End2]
+type = ChangeState
+Trigger1 = Win = 1
+Trigger2 = Lose = 1
+value = 50
+
+;This ends the move, if for some reason the opponent has escaped.
+[State 3076, End3]
+Type = ChangeState
+Trigger1 = MoveHit = 0
+Trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Nandato - Air Attack
+;Type 3: Quick Attack
+[Statedef 3077]
+Type = S
+MoveType = A
+Physics = S
+Anim = 3077
+VelSet = 0,0
+ctrl = 0
+
+;This makes Broli turn around if the opponent went behind him.
+[State 3077, Turn]
+Type = Turn
+Trigger1 = P2Dist X < 0
+
+;This is the Quick Attack.
+[State 3077, 5]
+Type = HitDef
+Trigger1 = AnimElem = 1
+Trigger2 = AnimElem = 2
+Trigger3 = AnimElem = 3
+Trigger4 = AnimElem = 4
+Trigger5 = AnimElem = 5
+Trigger6 = AnimElem = 6
+Trigger7 = AnimElem = 7
+Trigger8 = AnimElem = 8
+Trigger9 = AnimElem = 9
+Trigger10 = AnimElem = 10
+Trigger11 = AnimElem = 11
+Trigger12 = AnimElem = 12
+Trigger13 = AnimElem = 13
+Trigger14 = AnimElem = 14
+Trigger15 = AnimElem = 15
+Trigger16 = AnimElem = 16
+Trigger17 = AnimElem = 17
+Trigger18 = AnimElem = 18
+Trigger19 = AnimElem = 19
+Trigger20 = AnimElem = 20
+Trigger21 = AnimElem = 21
+Attr = S, HA
+AnimType  = Light
+Damage    = 10,5
+priority  = 9
+guardflag = MA
+pausetime = 8,40
+sparkxy = -10,-60
+hitsound = S20, 0
+getpower = 10
+guardsound = S20, 3
+ground.Type = Trip
+ground.slidetime = 0
+ground.hittime  = 22
+ground.velocity = -1
+air.velocity = -3,-3
+fall.AnimType = Hard
+p2stateno = 6001
+
+;The game will choose a random number from 0 to 7.
+[State 3077, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 8
+range = 7
+
+;If the game chosed 0, Broli will go to action 3000.
+[State 3077, MoveHit1]
+type = ChangeState
+Trigger1 = Var(8) = 0
+Trigger1 = AnimTime = 0
+value = 3000
+
+;If the game chosed 1, Broli will go to action 3010.
+[State 3077, MoveHit2]
+type = ChangeState
+Trigger1 = Var(8) = 1
+Trigger1 = AnimTime = 0
+value = 3010
+
+;If the game chosed 2, Broli will go to action 3040.
+[State 3077, MoveHit3]
+type = ChangeState
+Trigger1 = Var(8) = 2
+Trigger1 = AnimTime = 0
+value = 3040
+
+;If the game chosed 3, Broli will go to action 3066.
+[State 3077, MoveHit4]
+type = ChangeState
+Trigger1 = Var(8) = 3
+Trigger1 = AnimTime = 0
+value = 3066
+
+;If the game chosed 4, Broli will go to action 3081.
+[State 3077, MoveHit5]
+type = ChangeState
+Trigger1 = Var(8) = 4
+Trigger1 = AnimTime = 0
+value = 3081
+
+;If the game chosed 5, Broli will go to action 3076.
+[State 3077, MoveHit6]
+type = ChangeState
+Trigger1 = Var(8) = 5
+Trigger1 = AnimTime = 0
+value = 3076
+
+;If the game chosed 6, Broli will go to action 3085.
+[State 3077, MoveHit7]
+type = ChangeState
+Trigger1 = Var(8) = 6
+Trigger1 = AnimTime = 0
+value = 3085
+
+;If the game chosed 7, Broli will go to action 3080.
+[State 3077, MoveHit8]
+type = ChangeState
+Trigger1 = Var(8) = 7
+Trigger1 = AnimTime = 0
+value = 2014
+
+;If the game chosed 8, Broli will go to action 3077.
+[State 3077, Movehit9]
+type = ChangeState
+Trigger1 = Var(8) = 8
+Trigger1 = AnimTime = 0
+value = 3077
+
+;This makes Broli land immediately if the round ends.
+[State 3077, End1]
+type = ChangeState
+Trigger1 = Win = 1
+Trigger2 = Lose = 1
+value = 50
+
+;This ends the move, if for some reason the opponent has escaped.
+[State 3077, End2]
+Type = ChangeState
+Trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Zanzouken
+[Statedef 3080]
+type    = S
+movetype= I
+physics = S
+velset = 0,0
+anim = 2001
+ctrl = 0
+
+;This makes Broli invincible at the beginning of this move, for 25 game ticks.
+[State 3080, NotHitBy]
+type = NotHitBy
+Trigger1 = Time = 0
+value = SCA
+time = 25
+
+;This creates the shadow images after Broli.
+[State 3080, AfterImage]
+type = AfterImage
+Trigger1 = AnimElem = 1
+time = 20
+trans = add
+palfx = 200,200,200
+
+;This moves Broli forward to an X value of 75.
+[State 3080, TeleportFwd]
+type = PosAdd
+Trigger1 = AnimElem = 2
+x = 75
+y = 0
+
+;This makes Broli turn around if he has teleported through the opponent.
+[State 3080, Turn]
+type = Turn
+Trigger1 = P2Dist X < 0
+
+;This creates an after image, like the original Zanzouken.
+[State 3080, Image]
+type = Projectile
+Trigger1 = AnimElem = 1
+projanim = 2002
+projremovetime = 40
+velocity = 0
+offset = 0
+
+;This makes sure that Broli can move throught the opponent.
+[State 3080, PlayerPush]
+type = PlayerPush
+Trigger1 = time >= 0
+value = 0
+
+;This moves the screen if Broli has met its boundaries.
+[State 3080, ScreenBound]
+type = ScreenBound
+Trigger1 = Time = 0
+Trigger2 = Time >= 10
+Trigger3 = AnimElem = 2
+Trigger4 = AnimElem = 3
+Trigger5 = AnimElem = 4
+Trigger6 = AnimTime = 0
+value = 0
+movecamera = 1,1
+
+;This plays the Zanzouken sound effect.
+[State 3080, PlaySnd]
+type = PlaySnd
+Trigger1 = AnimElem = 2
+Trigger2 = AnimTime = 0
+value = 20,8
+
+;The game will choose a random number from 0 to 7.
+[State 3080, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 8
+range = 7
+
+;If the game chosed 0, Broli will go to action 3000.
+[State 3080, MoveHit1]
+type = ChangeState
+Trigger1 = Var(8) = 0
+Trigger1 = AnimTime = 0
+value = 3000
+
+;If the game chosed 1, Broli will go to action 3010.
+[State 3080, MoveHit2]
+type = ChangeState
+Trigger1 = Var(8) = 1
+Trigger1 = AnimTime = 0
+value = 3010
+
+;If the game chosed 2, Broli will go to action 3040.
+[State 3080, MoveHit3]
+type = ChangeState
+Trigger1 = Var(8) = 2
+Trigger1 = AnimTime = 0
+value = 3040
+
+;If the game chosed 3, Broli will go to action 3066.
+[State 3080, MoveHit4]
+type = ChangeState
+Trigger1 = Var(8) = 3
+Trigger1 = AnimTime = 0
+value = 3066
+
+;If the game chosed 4, Broli will go to action 3081.
+[State 3080, MoveHit5]
+type = ChangeState
+Trigger1 = AnimTime = 0
+Trigger1 = Var(8) = 4
+value = 3081
+
+;If the game chosed 5, Broli will go to action 3076.
+[State 3080, MoveHit6]
+type = ChangeState
+Trigger1 = Var(8) = 5
+Trigger1 = AnimTime = 0
+value = 3076
+
+If the game chosed 6, Broli will go to action 3085.
+[State 3080, MoveHit7]
+type = ChangeState
+Trigger1 = AnimTime = 0
+Trigger1 = Var(8) = 6
+value = 3085
+
+;If the game chosed 7, Broli will go to action 3077.
+[State 3080, MoveHit8]
+type = ChangeState
+Trigger1 = Var(8) = 7
+Trigger1 = AnimTime = 0
+value = 3077
+
+;---------------------------------------------------------------------------
+;カウンター
+;Aerial Kick
+[Statedef 3081]
+type = A
+ctrl = 0
+movetype= A
+anim = 2100
+velset = 0,0
+
+;The after image effect.
+[State 3081, AfterImage]
+type = AfterImage
+trigger1 = time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 10
+
+;Broli's voice sound.
+[State 3081, PalySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 0, 2
+
+;The direction and speed Broli is moving.
+[State 3081, VelSetXY]
+type = VelSet
+trigger1 = AnimElem = 2
+x = 5
+y = 2.5
+
+;This also affects speed.
+[State 3081, VelAddXY]
+type = VelAdd
+trigger1 = Time > 3
+trigger1 = Vel X < 15
+trigger1 = Vel Y < 7.5
+x = 1
+y = 0.5
+
+;This makes the flame on Broli's foot.
+[State 3081, Explod]
+type = Explod
+trigger1 = AnimElem = 2
+anim = 2110         
+Pos = 52,-18
+removetime = -1    
+sprpriority = 3
+bindtime = -1
+id = 555
+
+;This is the attack.
+[State 3081, HitDef]
+type = HitDef
+trigger1 = AnimElem = 2
+attr = A, HA
+affectteam = B
+damage    = 30,15
+getpower  = 0
+givepower = 20
+guardflag = HA
+animtype = Medium
+pausetime = 20,40
+sparkxy = -10,-51
+hitsound = S20, 0
+guardsound = S20, 3
+ground.type = Trip
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -3,-4
+air.velocity = -1.3,-3
+fall = 1
+fall.recover = 0
+
+;着地
+[State 3081, Land1]
+type = RemoveExplod
+trigger1 = Pos Y >= 0
+id = 555
+
+[State 3081, Land2]
+type = ChangeState
+trigger1 = Pos Y >= 0
+value = 52
+ctrl = 1
+
+;方向転換
+[State 2000, Turn]
+type = Turn
+Trigger1 = P2Dist X < 0
+trigger1 = Time = 0
+
+[State 3081, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 8
+range = 9
+
+[State 3081, MoveHit1]
+type = ChangeState
+Trigger1 = MoveContact = 1
+Trigger1 = Var(8) = 0
+Trigger2 = Var(8) = 9
+value = 2014
+
+[State 3081, MoveHit2]
+type = ChangeState
+Trigger1 = Var(8) = 1
+Trigger1 = MoveContact = 1
+value = 3010
+
+[State 3081, MoveHit3]
+type = ChangeState
+Trigger1 = Var(8) = 2
+Trigger1 = MoveContact = 1
+value = 3040
+
+[State 3081, MoveHit4]
+type = ChangeState
+Trigger1 = Var(8) = 3
+Trigger1 = MoveContact = 1
+value = 3066
+
+[State 3081, MoveHit5]
+type = ChangeState
+Trigger1 = Var(8) = 4
+Trigger1 = MoveContact = 1
+value = 2014
+
+[State 3081, MoveHit6]
+type = ChangeState
+Trigger1 = Var(8) = 5
+Trigger1 = MoveContact = 1
+value = 3076
+
+[State 3081, MoveHit7]
+type = ChangeState
+Trigger1 = Var(8) = 6
+Trigger1 = MoveContact = 1
+value = 3085
+
+[State 3081, MoveHit8]
+type = ChangeState
+Trigger1 = Var(8) = 7
+Trigger1 = MoveContact = 1
+value = 2014
+
+[State 3081, MoveHit9]
+type = ChangeState
+Trigger1 = Var(8) = 8
+Trigger1 = MoveContact = 1
+value = 3077
+
+;---------------------------------------------------------------------------
+;Zanzouken Down
+[Statedef 3082]
+type    = S
+movetype= I
+physics = S
+velset = 0,0
+anim = 2001
+ctrl = 0
+
+[State 3082, NotHitBy]
+type = NotHitBy
+Trigger1 = Time = 0
+value = SCA
+time = 25
+
+[State 3082, AfterImage]
+type = AfterImage
+Trigger1 = AnimElem = 1
+time = 20
+trans = add
+palfx = 200,200,200
+
+[State 3082, TeleportFwdDown]
+type = PosAdd
+Trigger1 = AnimElem = 2
+x = 380
+y = 100
+
+[State 3082, Turn]
+type = Turn
+Trigger1 = P2Dist X < 0
+
+[State 3082, ZanzoukenImage]
+type = Projectile
+Trigger1 = AnimElem = 1
+projanim = 2002
+projremovetime = 40
+velocity = 0
+offset = 0
+
+[State 3082, PlayerPush]
+type = PlayerPush
+Trigger1 = time >= 0
+value = 0
+
+[State 3082, ScreenBound]
+type = ScreenBound
+Trigger1 = Time = 0
+Trigger2 = Time >= 10
+Trigger3 = AnimElem = 2
+Trigger4 = AnimElem = 3
+Trigger5 = AnimElem = 4
+Trigger6 = AnimTime = 0
+value = 0
+movecamera = 1,1
+
+[State 3082, PlaySnd]
+type = PlaySnd
+Trigger1 = AnimElem = 2
+Trigger2 = AnimTime = 0
+value = 20,8
+
+[State 3082, VarRandom]
+type = VarRandom
+Trigger1 = Time = 0
+v = 8
+range = 5
+
+[State 3082, MoveHit1]
+type = ChangeState
+Trigger1 = Var(8) = 0
+Trigger1 = AnimTime = 0
+value = 3085
+
+[State 3082, MoveHit2]
+type = ChangeState
+Trigger1 = Var(8) = 1
+Trigger1 = AnimTime = 0
+value = 3075
+
+[State 3082, MoveHit3]
+type = ChangeState
+Trigger1 = Var(8) = 2
+Trigger1 = AnimTime = 0
+value = 3065
+
+[State 3082, MoveHit4]
+type = ChangeState
+Trigger1 = Var(8) = 3
+Trigger1 = AnimTime = 0
+value = 3066
+
+[State 3082, MoveHit5]
+type = ChangeState
+Trigger1 = Var(8) = 4
+Trigger1 = AnimTime = 0
+value = 3067
+
+[State 3082, MoveHit6]
+type = ChangeState
+Trigger1 = Var(8) = 5
+Trigger1 = AnimTime = 0
+value = 3068
+
+;---------------------------------------------------------------------------
+;Nandato - Smash Down
+[Statedef 3085]
+type    = S                      
+movetype= A                      
+physics = S                    
+velset = 0,0                     
+ctrl = 0                         
+anim = 3085                 
+
+[State 3085, Turn]
+type = Turn
+Trigger1 = P2Dist X < 0
+
+[State 3085, VelSetY]
+Type = VelSet
+Trigger1 = Time = 0 
+y = 0
+
+[State 3085, HitDef]
+type = HitDef
+Trigger1 = AnimElem = 3
+attr = A, HA         
+affectteam = B            
+damage    = 125                  
+animtype = Hard                 
+getpower = 0                                               
+givepower = 10                                                 
+hitflag = MAFD
+priority = 1, Hit                
+pausetime = 10,0                  
+sparkxy = -10,-70                
+hitsound = S20, 0                   
+guardsound = S20, 3                 
+ground.type = Trip       
+ground.slidetime = 12             
+ground.hittime  = 15             
+ground.velocity = -5,9
+air.type = Trip    
+airguard.velocity = -5,9     
+air.velocity = -5,9                   
+fall = 1                         
+fall.recover = 0
+
+[State 3085, EnvShake] 
+type = EnvShake
+Trigger1 = MoveContact = 1
+time = 10
+ampl = 4
+freq = 127
+
+[State 3085, End]
+type = ChangeState
+Trigger1 = AnimTime = 0
+Trigger2 = Win = 1
+Trigger3 = Lose = 1
+value = 50

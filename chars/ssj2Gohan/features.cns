@@ -1,0 +1,451 @@
+;================================
+;Gohan-Kun -- The M10 Project
+;================================
+
+;------------------------------------------------------
+;Author:	ZGTE
+;	http://www.zgtm.tk
+;------------------------------------------------------
+
+;-Statedef 9050-9999-
+
+;=============================================================
+;---------------------------------------------------------------------------
+;Flash Battle
+[Statedef 9050]
+type = S
+movetype = A
+physics	= N
+anim = IfElse(SelfAnimExist(200),200,(IfElse(SelfAnimExist(201),201,(IfElse(SelfAnimExist(202),202,(IfElse(SelfAnimExist(203),203,(IfElse(SelfAnimExist(204),204,205)))))))))
+velset = 0,0
+ctrl = 0
+sprpriority	= 2
+
+[State 9050: ForceFeedBack]
+type = ForceFeedback
+trigger1 = ((GameTime%5) = 0) && (Random <= 499)
+waveform = Square
+time = 3
+
+[State -3: 9050]
+type = ChangeAnim
+triggerall = (RoundState = 2) && (MoveType != H)
+trigger1 = AnimElemTime(AnimElemNo(0) + 1) < 0
+trigger1 = AnimElemTime(AnimElemNo(0)) > floor ((AnimElemTime(AnimElemNo(0)) - AnimElemTime(AnimElemNo(0) + 1))/5)
+ignorehitpause = 1
+value = anim
+elem = AnimElemNo(0) + 1
+
+[State 8250: Add Pow]
+type = VarAdd
+trigger1 = (Command = "x") || (Command = "y") || (Command = "z") || (Command = "a") || (Command = "b") || (Command = "c")
+v = 40
+value = (56+Var(54))
+
+[State 8250: ChangeAnim]
+type = ChangeAnim
+trigger1 = ((Time = 0) || (AnimTime = 0)) && (Random = [0,166])
+value = 200+(10000*var(1))
+
+[State 8250: ChangeAnim]
+type = ChangeAnim
+trigger1 = ((Time = 0) || (AnimTime = 0)) && (Random = [167,333])
+value = 201+(10000*var(1))
+
+[State 8250: ChangeAnim]
+type = ChangeAnim
+trigger1 = ((Time = 0) || (AnimTime = 0)) && (Random = [334,500])
+value = 203+(10000*var(1))
+
+[State 8250: ChangeAnim]
+type = ChangeAnim
+trigger1 = ((Time = 0) || (AnimTime = 0)) && (Random = [501,667])
+value = 204+(10000*var(1))
+
+[State 8250: ChangeAnim]
+type = ChangeAnim
+trigger1 = ((Time = 0) || (AnimTime = 0)) && (Random = [668,999])
+value = 5000+(10000*var(1))
+
+[State 8250: 	AssertSpecial] 
+type = AssertSpecial
+trigger1 = (Time < 400) && (Pos Y < 0)
+flag = NoShadow
+
+[State 8250: PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 8250: MakeDust]
+type = MakeDust
+trigger1 = ((GameTime%10) = 0) && (Random <= 499) && (Pos Y >= 0)
+pos = -5,0
+spacing = 4
+
+[State 8250: VarSet]
+type = VarSet
+trigger1 = Time = 0
+v = 11
+value = 0
+
+[State 8250: VarAdd]
+type = VarAdd
+triggerall = Time > 0
+trigger1 = (Command = "x") || (Command = "y") || (Command = "z") || (Command = "a") || (Command = "b") || (Command = "c")
+v = 11
+value = 1
+
+[State 8250: VarAdd]
+type = VarAdd
+triggerall = Time > 0
+trigger1 = (Target, Command = "x") || (Target, Command = "y") || (Target, Command = "z")
+trigger2 = (Target, Command = "a") || (Target, Command = "b") || (Target, Command = "c")
+v = 11
+value = -1
+
+[State 8250: TargetLifeAdd]
+type = TargetLifeAdd
+triggerall = Time > 0
+trigger1 = (Command = "x") || (Command = "y") || (Command = "z") || (Command = "a") || (Command = "b") || (Command = "c")
+value = -2
+kill = 0
+
+[State 8250: Hit Count]
+type = HitAdd
+trigger1 = (Command = "x") || (Command = "y") || (Command = "z") || (Command = "a") || (Command = "b") || (Command = "c")
+value = 1
+
+[State 8250: LifeAdd]
+type = LifeAdd
+triggerall = Time > 0
+trigger1 = (Target, Command = "x") || (Target, Command = "y") || (Target, Command = "z")
+trigger2 = (Target, Command = "a") || (Target, Command = "b") || (Target, Command = "c")
+value = -2
+kill = 0
+
+[State 8250: Hit Count]
+type = HitAdd
+trigger1 = (Target, Command = "x") || (Target, Command = "y") || (Target, Command = "z")
+trigger2 = (Target, Command = "a") || (Target, Command = "b") || (Target, Command = "c")
+value = -1
+
+[State 8250: PlaySnd]
+type = PlaySnd
+trigger1 = ((Anim = 200) || (Anim = 201)) && (AnimElem = 2)
+value = S200,1
+
+[State 8250: PlaySnd]
+type = PlaySnd
+trigger1 = ((Anim = 203) || (Anim = 204)) && (AnimElem = 2)
+value = S203,2
+
+[State 8250: PlaySnd]
+type = PlaySnd
+trigger1 = (Anim = 205) && (AnimElem = 2)
+value = S203,2
+
+[state 8250: x teleport chooser] 
+type = varrandom 
+trigger1 = (time%4 = 2)
+v = 13 
+range = -100,150 
+
+[State 8250: y teleport chooser] 
+type = varrandom 
+trigger1 = (time%4 = 2) 
+v = 12
+range = -150,100 
+
+[State 8250: Teleporting P1] 
+type = posadd
+trigger1 = (TimeMod = 32,0)
+x = var(13) 
+y = ifelse(Pos Y < var(12), 0, var(12))
+
+[State 8250: EvnColor]
+type = EnvColor
+trigger1 = (GameTime%15) = 0 && (Random <= 499)
+value = 200,255,255
+time = 5
+under = 0
+
+[State 8250: BGPalFX]
+type = BGPalFX
+trigger1 = (GameTime%30) = 0 && (Random <= 499)
+time = 15
+add	= 100,100,100
+mul	= 200,200,200
+sinadd = -100,-100,-100,15
+invertall = 1
+color = 256
+
+[State 8250: Auto Turn]
+type = Turn
+trigger1 = (P2BodyDist X < 0)
+
+[State 8270: ground waves]
+type = Explod
+trigger1 = (TimeMod = 25,0) && (Pos Y >= 0)
+anim = 7010
+ID = 7010
+pos = 0,0
+postype = p1
+facing = 1
+scale = 1, 1
+sprpriority = -3
+
+[State 8250: PosSet]
+type = PosSet
+trigger1 = Pos Y > 0
+y = 0
+
+[State 8250: TargetState]
+type = TargetState
+trigger1 = (Var(11) = [30,40])
+value = 5300
+
+[State 8250: ChangeState]
+type = ChangeState
+trigger1 = (Var(11) < -35)
+value = 9051
+
+[State 8250: Idle]
+type = ChangeState
+trigger1 = (Time > 445) && (Var(11) = 0)
+value = 130
+ctrl = 1
+
+[State 8250: ChangeState]
+type = ChangeState
+trigger1 = (Var(11) = [30,40])
+value = 0
+ctrl = 1
+;---------------------------------------------------
+;Throw Back
+[Statedef 9051]
+type = S
+movetype = H
+physics = N
+juggle = 0
+velset = 0,0
+ctrl = 0
+anim = 5030+(10000*var(1))
+
+[State 9051: ]
+type = VelSet
+trigger1 = (Time >= 0)
+x = -10
+y = 0
+
+[State 9051: Over]
+type = SelfState
+trigger1 = (BackEdgeBodyDist <= 10)
+value = 5100
+;---------------------------------------------------------------------------
+;Flash Battle - Opponent fighting
+[Statedef 9060]
+type = S
+movetype = H
+physics = N
+velset = 0,0
+ctrl = 0
+poweradd = 0
+juggle = 0
+sprpriority	= 2
+
+[State 9060: ForceFeedBack]
+type = ForceFeedback
+trigger1 = ((GameTime%5) = 0) && (Random <= 499)
+waveform = Square
+time = 3
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+trigger1 = Anim = [130,160]
+value = IfElse(SelfAnimExist(200),200,(IfElse(SelfAnimExist(201),201,(IfElse(SelfAnimExist(202),202,(IfElse(SelfAnimExist(203),203,(IfElse(SelfAnimExist(204),204,205)))))))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [0,166])
+trigger1 = (SelfAnimExist(200)) || (SelfAnimExist(201)) || (SelfAnimExist(202)) || (SelfAnimExist(203)) || (SelfAnimExist(204)) || (SelfAnimExist(205))
+value = IfElse(SelfAnimExist(200),200,(IfElse(SelfAnimExist(201),201,(IfElse(SelfAnimExist(202),202,(IfElse(SelfAnimExist(203),203,(IfElse(SelfAnimExist(204),204,205)))))))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [0,166])
+trigger1 = (!SelfAnimExist(200)) && (!SelfAnimExist(201)) && (!SelfAnimExist(202)) && (!SelfAnimExist(203)) && (!SelfAnimExist(204)) && (!SelfAnimExist(205))
+value = IfElse(SelfAnimExist(206),206,(IfElse(SelfAnimExist(207),207,(IfElse(SelfAnimExist(208),208,209)))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [167,333])
+trigger1 = (SelfAnimExist(210)) || (SelfAnimExist(211)) || (SelfAnimExist(212)) || (SelfAnimExist(213)) || (SelfAnimExist(214)) || (SelfAnimExist(215))
+value = IfElse(SelfAnimExist(210),210,(IfElse(SelfAnimExist(211),211,(IfElse(SelfAnimExist(212),212,(IfElse(SelfAnimExist(213),213,(IfElse(SelfAnimExist(214),214,215)))))))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [167,333])
+trigger1 = (!SelfAnimExist(210)) && (!SelfAnimExist(211)) && (!SelfAnimExist(212)) && (!SelfAnimExist(213)) && (!SelfAnimExist(214)) && (!SelfAnimExist(215))
+value = IfElse(SelfAnimExist(216),216,(IfElse(SelfAnimExist(217),217,(IfElse(SelfAnimExist(218),218,219)))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [334,499])
+trigger1 = (SelfAnimExist(220)) || (SelfAnimExist(221)) || (SelfAnimExist(222)) || (SelfAnimExist(223)) || (SelfAnimExist(224)) || (SelfAnimExist(225))
+value = IfElse(SelfAnimExist(220),220,(IfElse(SelfAnimExist(221),221,(IfElse(SelfAnimExist(222),222,(IfElse(SelfAnimExist(223),223,(IfElse(SelfAnimExist(224),224,225)))))))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [334,499])
+trigger1 = (!SelfAnimExist(220)) && (!SelfAnimExist(221)) && (!SelfAnimExist(222)) && (!SelfAnimExist(223)) && (!SelfAnimExist(224)) && (!SelfAnimExist(225))
+value = IfElse(SelfAnimExist(226),226,(IfElse(SelfAnimExist(227),227,(IfElse(SelfAnimExist(228),228,229)))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = (Time = 0) && (Random = [500,665])
+trigger1 = (SelfAnimExist(230)) || (SelfAnimExist(231)) || (SelfAnimExist(232)) || (SelfAnimExist(233)) || (SelfAnimExist(234)) || (SelfAnimExist(235))
+value = IfElse(SelfAnimExist(230),230,(IfElse(SelfAnimExist(231),231,(IfElse(SelfAnimExist(232),232,(IfElse(SelfAnimExist(233),233,(IfElse(SelfAnimExist(234),234,235)))))))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [500,665])
+trigger1 = (!SelfAnimExist(230)) && (!SelfAnimExist(231)) && (!SelfAnimExist(232)) && (!SelfAnimExist(233)) && (!SelfAnimExist(234)) && (!SelfAnimExist(235))
+value = IfElse(SelfAnimExist(236),236,(IfElse(SelfAnimExist(237),237,(IfElse(SelfAnimExist(238),238,239)))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [666,830])
+trigger1 = (SelfAnimExist(240)) || (SelfAnimExist(241)) || (SelfAnimExist(242)) || (SelfAnimExist(243)) || (SelfAnimExist(244)) || (SelfAnimExist(245))
+value = IfElse(SelfAnimExist(240),240,(IfElse(SelfAnimExist(241),241,(IfElse(SelfAnimExist(242),242,(IfElse(SelfAnimExist(243),243,(IfElse(SelfAnimExist(244),244,245)))))))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [666,830])
+trigger1 = (!SelfAnimExist(240)) && (!SelfAnimExist(241)) && (!SelfAnimExist(242)) && (!SelfAnimExist(243)) && (!SelfAnimExist(244)) && (!SelfAnimExist(245))
+value = IfElse(SelfAnimExist(246),246,(IfElse(SelfAnimExist(247),247,(IfElse(SelfAnimExist(248),248,249)))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [831,999])
+trigger1 = (SelfAnimExist(250)) || (SelfAnimExist(251)) || (SelfAnimExist(252)) || (SelfAnimExist(253)) || (SelfAnimExist(254)) || (SelfAnimExist(255))
+value = IfElse(SelfAnimExist(250),250,(IfElse(SelfAnimExist(251),251,(IfElse(SelfAnimExist(252),252,(IfElse(SelfAnimExist(253),253,(IfElse(SelfAnimExist(254),254,255)))))))))
+
+[State 9060: ChangeAnim]
+type = ChangeAnim
+triggerall = ((Time = 0) || (AnimTime = 0)) && (Random = [831,999])
+trigger1 = (SelfAnimExist(!250)) && (SelfAnimExist(!251)) && (!SelfAnimExist(252)) && (!SelfAnimExist(253)) && (!SelfAnimExist(254)) && (!SelfAnimExist(255))
+value = IfElse(SelfAnimExist(256),256,(IfElse(SelfAnimExist(257),257,(IfElse(SelfAnimExist(258),258,259)))))
+
+[State 9060: ChangeAnim]
+type = SelfState
+trigger1 = (P2Stateno = 130)
+value = 130
+
+[State 9060: DestroySelf]
+type = DestroySelf
+trigger1 = IsHelper
+
+[State 9060: AssertSpecial] 
+type = AssertSpecial
+trigger1 = (Time < 400) && (Pos Y < 0)
+flag = NoShadow
+
+[State 9060: ScreenBound]
+type = ScreenBound
+trigger1 = 1
+movecamera 	= 0,0
+value = 1
+
+[State 9060: PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 9060: MakeDust]
+type = MakeDust
+trigger1 = ((GameTime%10) = 0) && (Random <= 499) && (Pos Y >= 0)
+pos = -5,0
+spacing = 4
+
+[State 9060: PlaySnd]
+type = PlaySnd
+trigger1 = (Random = [0,249]) && (Anim != 130) && ((GameTime%15) = 0)
+value = F5,1
+
+[State 9060: PlaySnd]
+type = PlaySnd
+trigger1 = (Random = [250,499]) && (Anim != 130) && ((GameTime%15) = 0)
+value = F5,2
+
+[State 9060: PlaySnd]
+type = PlaySnd
+trigger1 = (Random = [500,748]) && (Anim != 130) && ((GameTime%15) = 0)
+value = F5,3
+
+[State 9060: PlaySnd]
+type = PlaySnd
+trigger1 = (Random = [749,999]) && (Anim != 130) && ((GameTime%15) = 0)
+value = F5,4
+
+[State 8250: Teleport P2] 
+type = posadd 
+trigger1 = (Stateno = 9060)
+x = IfElse(P2Name = "Goten by Insydious",floor(p2bodydist X - 7),floor(p2bodydist X - 20))
+y = floor(p2dist Y)
+
+[State 9060: Control]
+type = CtrlSet
+trigger1 = (P2Stateno != 9050)
+value = 1
+
+[State 9060: SelfState]
+type = SelfState
+trigger1 = (P2Stateno = 9051) && (Pos Y >= 0)
+value = 0
+ctrl = 1
+
+[State 9060: SelfState]
+type = SelfState
+trigger1 = (P2Stateno != 9050) && (Pos Y < 0)
+value = 50
+ctrl = 1
+;---------------------------------------------------------------------
+;Compatibility 1 
+[Statedef 9070]
+type = S
+
+[State 9070: Done]
+type = ChangeState
+trigger1 = (1)
+value = 9070
+
+;---------------------------------------------------------------------
+;Compatibility 2
+[Statedef 9071]
+type = S
+
+[State 9070: Done]
+type = ChangeState
+trigger1 = (1)
+value = 9071
+
+;---------------------------------------------------------------------
+;Compatibility 3
+[Statedef 9072]
+type = S
+
+[State 9072: Done]
+type = ChangeState
+trigger1 = (1)
+value = 9072
+
+;---------------------------------------------------------------------
+;Compatibility 4
+[Statedef 9073]
+type = S
+
+[State 9073: Done]
+type = ChangeState
+trigger1 = (1)
+value = 9073

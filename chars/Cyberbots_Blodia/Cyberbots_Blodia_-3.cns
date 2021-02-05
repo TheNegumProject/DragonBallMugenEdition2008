@@ -1,0 +1,72 @@
+;---------------------------------------------------------------------------
+; States that are executed when in self's state file (use statedef -3)
+;---------------------------------------------------------------------------
+
+
+[Statedef -3]
+
+
+
+
+[State -3]
+type = EnvShake
+triggerall = stateno = 20
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 8
+time = 3
+
+
+;walk
+[State -3,]
+type = PlaySnd
+triggerall = stateno = 20
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 8
+value = 20,0
+
+
+
+[State -3, hit ground Sound]
+type = PlaySnd
+triggerall = Time = 1
+trigger1 = stateno = 5100
+value = 5100,0
+
+
+[State 130]
+type = AssertSpecial
+trigger1 = 1
+trigger1 = Stateno = [120,155]
+flag = NoWalk
+
+[State -3]
+type = AttackMulSet
+trigger1 = var(56) = 4
+trigger1 = roundstate = 2
+value = ifelse( var(32) >= 1, var(32), 1)
+
+
+[State -3]
+type = DefenceMulSet
+trigger1 = var(56) = 4
+trigger1 = roundstate = 2
+value = ifelse( var(32) >= 1, var(32), 1)
+
+[State -3,r]
+type = SelfState
+triggerall = stateno != 7777
+triggerall = var(56) = 4
+trigger1 = gethitvar(damage) >= life
+trigger2 = Life < 10
+value = 7777
+
+
+
+
+[State -3,ai]
+type = varset
+trigger1 = !var(58)
+trigger1 = var(59)
+var(58) = 1
+
+

@@ -1,0 +1,393 @@
+
+;---------------------------------------------------------------------------
+;p2Hit  
+[Statedef 523]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6001, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 523
+
+[State 6062, 1]
+type = veladd
+trigger1 = time = 0
+x = 0
+y = -2.5
+
+[State 6062, 2]
+type = velmul
+trigger1 = time = 0
+x = 0
+y = 2
+
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 26
+value = 5030
+
+;---------------------------------------------------------------------------
+;p2Hit  
+[Statedef 5231]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6001, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 5231
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 180
+value = 5030
+
+
+
+;-------------------------------|p2 M.T.O.|-----------------------------------
+;.............................................................................
+;P2 Go fd
+[Statedef 5656]
+type = S
+physics = S
+ctrl = 0
+
+[State 6069, 1]
+type = changeanim2
+trigger1 = time = 0
+value = 1518
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 60
+value = 0
+ctrl = 1
+
+
+[State 6069, 3]
+type = veladd
+trigger1 = time = 4
+x = -3
+y = 0
+
+[State 6069, 4]
+type = velmul
+trigger1 = time = 4
+x = 3
+y = 0
+
+;P2 Go Up
+[Statedef 1518]
+type = S
+physics = S
+ctrl = 0
+
+[State 6069, 1]
+type = changeanim2
+trigger1 = time = 0
+value = 1518
+
+
+[State 6069, 2]
+type = velset
+trigger1 = time = 5
+x = 0
+y = -3
+
+[State 6069, 3]
+type = veladd
+trigger1 = time = 4
+x = 0
+y = 3
+
+[State 6069, 4]
+type = velmul
+trigger1 = time = 4
+x = 0
+y = 1
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 160
+value = 0
+ctrl = 1
+
+
+;P2 Go Down
+[Statedef 1528]
+type = S
+physics = S
+ctrl = 0
+
+[State 6069, 1]
+type = changeanim2
+trigger1 = time = 0
+value = 1518
+
+
+[State 6069, 2]
+type = velset
+trigger1 = time = 5
+x = 0
+y = 3
+
+[State 6069, 3]
+type = veladd
+trigger1 = time = 4
+x = 0
+y = 3
+
+[State 6069, 4]
+type = velmul
+trigger1 = time = 4
+x = 0
+y = 1
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 160
+value = 0
+ctrl = 1
+
+
+
+;---------------------------------------------------------------------------
+;p2Hit big bankhamha  
+[Statedef 840]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6001, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 840
+
+[State 6000,PosAdd]
+type = PosAdd
+trigger1 = Time = 23
+trigger1 = Var(4) = [0,1]
+x = p2bodydist x - 80  
+y = p2bodydist y + 0 
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 500
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;p2Hit  
+[Statedef 5232]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6001, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 5231
+
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 280
+value = 5000
+
+;---------------------------------------------------------------------------
+;p2Hit  
+[Statedef 5233]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6001, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 5231
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 280
+value = 5000
+
+
+[State 6069, 3]
+type = veladd
+trigger1 = time = 1
+x = 10
+
+[State 6069, 4]
+type = velmul
+trigger1 = time = 1
+x = 3
+
+[State 1020, 1]
+type = turn
+trigger1 = time = 30
+
+
+;---------------------------------------------------------------------------
+;p2Hit  
+[Statedef 5234]
+type = S
+movetype = H
+SprPriority = 4
+velset = 0
+ctrl = 0
+
+[State 6001, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 5231
+
+[state 7050,life]
+type = posset
+trigger1 = time = 1
+y = 9999
+
+[state 7050,life]
+type = lifeadd
+trigger1 = time = 1
+value = -9999
+
+[state 7050,some]
+type = SprPriority
+trigger1 = time >= 1
+value = -5
+
+[state 7050,some]
+type = null;velset
+trigger1 = time > 2
+x = 5
+y = 7
+
+[state 7050,some]
+type = changeanim
+trigger1 = time = 60
+value = 5050
+
+[State 1098, 2]
+type = SelfState
+trigger1 = life = 0
+trigger2 = time = 3
+value = 5150
+
+[state 7050,some]
+type = selfstate
+trigger1 = time = 4
+value = 50
+
+;---------------------------------------------------------------------------
+;p2Hit  
+[Statedef 5235]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6001, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 5231
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 280
+value = 5000
+
+[State 6069, 3]
+type = veladd
+trigger1 = time = 8
+trigger2 = time = 10
+x = 10
+y = -2
+
+[State 6069, 4]
+type = velmul
+trigger1 = time = 8
+trigger2 = time = 10
+x = 2
+y = 1
+
+[State 1020, 1]
+type = turn
+trigger1 = time = 10
+
+;---------------------------------------------------------------------------
+;p2Hit  
+[Statedef 5236]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6001, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 523
+
+[State 6001, 2]
+type = SelfState
+trigger1 = Time = 280
+value = 5030
+
+[State 6069, 3]
+type = veladd
+trigger1 = time = 0
+trigger2 = time = 5
+x = 6
+y = -2
+
+[State 6069, 4]
+type = velmul
+trigger1 = time = 0
+trigger2 = time = 5
+x = 2
+y = 2
+
+[State 6069, 4]
+type = changestate
+trigger1 = time = 43
+value = 5237
+
+
+;---------------------------------------------------------------------------
+;p2Hit  
+[Statedef 5237]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+
+[State 6001, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 523
+
+[State 6001, 2]
+type = SelfState
+trigger1 = time = 45
+value = 5050
+
+[State 6069, 3]
+type = veladd
+trigger1 = time = 0
+trigger2 = time = 5
+y = 2
+
+[State 6069, 4]
+type = velmul
+trigger1 = time = 0
+trigger2 = time = 5
+y = 2
+

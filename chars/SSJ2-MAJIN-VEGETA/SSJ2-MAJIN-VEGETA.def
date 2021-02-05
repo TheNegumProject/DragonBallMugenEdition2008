@@ -1,0 +1,27 @@
+; Definition file for MAJIN-VEGETA
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "MAJIN-VEGETA by BARDOCK"        
+displayname = "MAGIN-VEGETA" 
+versiondate = 04,14,2001    
+mugenversion = 04,14,2001   
+author = "BARDOCK"         
+pal.defaults =       
+
+; Files for the player
+[Files]
+cmd     = SSJ2-MAJIN-VEGETA.cmd   ;Command set
+cns     = SSJ2-MAJIN-VEGETA.cns   ;Constants
+st      = SSJ2-MAJIN-VEGETA.cns   ;States
+stcommon = SSJ2-MAJIN-VEGETA1.cns ;Common states
+sprite  = SSJ2-MAJIN-VEGETA.sff   ;Sprite
+anim    = SSJ2-MAJIN-VEGETA.air   ;Animation
+sound   = SSJ2-MAJIN-VEGETA.snd   ;Sound
+pal1    = MAJIN-VEGETA.act
+
+; Arcade mode
+[Arcade]
+intro.storyboard = intro.def
+ending.storyboard = ending.def

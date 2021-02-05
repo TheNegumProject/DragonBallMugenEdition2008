@@ -1,0 +1,26 @@
+;-| SHIN BUU by dragonballfury (aka mugenfury) |------------------------------------------------------
+
+; Player information
+[Info]
+name = "Shin Buu"        ;Name of character
+displayname = "Shin Buu" ;Name of character to display
+versiondate = 12,02,2005    ;Version date of character
+mugenversion = 04,14,2001   ;Version of M.U.G.E.N character works on
+author = "dragonballfury (aka mugenfury)"         ;Character author name
+pal.defaults = 1     ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd     = shinbuu.cmd  ;Command set
+cns     = shinbuu.cns   ;Constants
+st      = shinbuu.cns   ;States
+stcommon = common1.cns  ;Common states
+sprite  = shinbuu.sff   ;Sprite
+anim    = shinbuu.air   ;Animation
+sound   = shinbuu.snd   ;Sound
+pal1    = shinbuu.act 
+
+; Arcade mode
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

@@ -1,0 +1,32 @@
+;=======================================;
+;        Character Def File for:        ;
+;Trunkz by Toad, Redneck and maybe Pextin;
+;     for MUGEN v. (version number)     ;
+;       www.toad.zgteam.com             ;
+;                                       ;
+;   Made with MUGEN Editing Ensemble    ;
+;     (http://ragnaroknemo.cjb.net)     ;
+;=======================================;
+
+[Info]
+name = "Trunkz"
+displayname = "Trunks"
+authorname = "Toad, Redneck and maybe Pextin"
+pal.defaults = 1
+
+[Files]
+cns = Trunkz.cns
+cmd = Trunkz.cmd
+stcommon = common1.cns
+sprite = Trunkz.sff
+anim = Trunkz.air
+st = Trunkz.st
+st1 = AI.st
+sound = Trunkz.snd
+pal1 = Trunkz01.act
+pal2 = Trunkz02.act
+pal3 = Trunkz03.act
+pal4 = Trunkz04.act
+pal5 = Trunkz05.act
+pal6 = Trunkz06.act
+pal7 = Goten.act

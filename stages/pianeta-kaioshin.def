@@ -1,0 +1,81 @@
+"Pianeta dei Kaioshin" by Sniper85
+
+; Base -- Terra di giorno - (Super Butoden 3 -- SNES) 
+; E-Mail: thesniper_85@hotmail.com
+; visita il sito: www.freewebs.com/sniper85
+
+;--------------------------------------------------------
+[Info]
+name = "Pianeta dei Kaioshin"
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -130
+boundright = 210
+boundhigh = -153
+boundlow = 0
+verticalfollow = 1
+tension = 50
+
+[PlayerInfo]
+p1startx = -56
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+[Scaling]
+topz     = 0
+botz     = 50
+topscale = 1
+botscale = 1.2
+
+[Bound]
+screenleft = 15
+screenright = 15
+
+[StageInfo]
+zoffset = 200
+autoturn = 1
+
+resetBG = 1
+
+[Shadow]
+color = 128,128,128
+yscale = .5
+
+reflect = 0
+
+[Music]
+bgmusic = sound/title.mp3
+bgvolume = 600
+
+[BGdef]
+spr = pianeta-kaioshin.sff
+
+debugbg = 0
+
+[BG 1]
+type = anim
+actionno = 0
+spriteno = 0, 0
+layerno = 0       
+start = -290,-153
+delta = 1,1
+trans = none
+mask = 0
+ 
+[Begin action 0]
+
+0,0, 0,0, 7
+0,1, 0,0, 7

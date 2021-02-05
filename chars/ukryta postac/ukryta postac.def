@@ -1,0 +1,27 @@
+;.............................................................................................
+[Info]
+name="Goku super saiyajin 9"
+displayname="Kakarotto transf. ssj9"
+mugenversion=03.04.14
+author="FRS GAMES > Franciynaldo"
+versiondate=2/3/2007
+pal.defaults=1,2
+[Files]
+cns=programaçao0/CNS2.cns
+st=programaçao0/CNS2.cns
+cmd=comandos0/CMD.cmd
+stcommon=programaçao0/common1.cns
+sprite=imagems0/Sprite.sff
+anim=animaçao0/Air.air
+sound=som0/Sound.snd
+st=programaçao0/st.cns
+pal1=GokuTssj81.act
+pal2=gokuTssj81.act
+
+pal8=gokuTssj81.act
+
+;...........................................................................................
+
+                                ; Feito no Brasil (Brasilia)                
+;                              Autor: FRS GAMES >Franciynaldo
+;[[[[[[[[[[[[[[[[[[[[[[[[[[[[E-mail: superkakarotto@hotmail.com]]]]]]]]]]]]]]]]]]]]]]]]]]]]]

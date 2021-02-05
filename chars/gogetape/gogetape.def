@@ -1,0 +1,32 @@
+[Info]
+name    ="Super Gogeta"
+displayname ="Hyper Gogeta PE"
+author ="base supermystery edit megafreak111"
+versiondate=13.08.2007
+mugenversion=
+pal.defaults=1,2,3,4,5
+;mugenversion = 4.01.2001 & 4.14.2001
+
+[Files]
+cmd=gogetaAI.cmd
+cns=gogeta2.cns
+st=gogeta2.cns
+stcommon=common2.cns
+sprite=gogeta2.sff
+anim=gogeta2.air
+sound=gogeta.snd
+pal1=gogetaA.act
+pal2=OR.act
+pal3=gogetaRD1.act
+pal4=gogetaGR1.act
+pal5=gogetaPU1.act
+pal6=TQ.act
+st1=flycom.cns
+st2=fusionmeteor.cns
+st3=fusionmeteor.cns
+
+
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=

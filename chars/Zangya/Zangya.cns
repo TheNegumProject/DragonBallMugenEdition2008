@@ -1,0 +1,59 @@
+;---------------------------------------------------------------------------
+;---------------------| Constants for Super Zangya |------------------------
+;---------------------------| By SSj3 Vejita |------------------------------
+;------------------------/Remake by SaiKyo y SaWWeN/------------------------------
+[Data]
+life = 1000
+power = 3000
+attack = 100
+defence = 100
+fall.defence_up = 80
+liedown.time = 60
+airjuggle = 18
+sparkno = -1
+guard.sparkno = -1
+KO.echo = 1
+volume = 255
+IntPersistIndex = 59
+FloatPersistIndex = 40
+
+[Size]
+xscale = 1
+yscale = 1
+ground.back = 11
+ground.front = 13
+air.back = 8
+air.front = 8
+z.width = 3
+height = 64
+attack.width = 4,4
+attack.dist = 90
+proj.attack.dist = 80
+proj.doscale = 1
+head.pos = 2,-47
+mid.pos = -2,-37
+shadowoffset = 0
+draw.offset = 0,0
+
+[Velocity]
+walk.fwd  = 2.1
+walk.back = -1.9
+run.fwd = 6,0
+run.back = -5.8
+run.up = -11
+run.down = 3.8
+jump.neu = 0,-8.4
+jump.back = -3.55
+jump.fwd = 4.0
+runjump.back = -5.0,-8.4
+runjump.fwd = 5.2,-8.4
+airjump.neu = 0,-8.1
+airjump.back = -4.8,-8.1
+airjump.fwd = 5.0,-8.1
+
+[Movement]
+airjump.num = 1
+airjump.height = 5
+yaccel = .43
+stand.friction = .85
+crouch.friction = .82

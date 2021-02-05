@@ -1,0 +1,18 @@
+[Info]
+name = "Vegeta GT by HyperionX"  
+displayname = "Vegeta GT"
+versiondate = 2,04,2001 
+mugenversion = 04,01,2000   
+author = "HyperionX"   
+pal.defaults = 1
+
+; Todos Arquivos 
+[Files]
+cmd     = VGT.cmd    ;
+cns     = VGT.cns    ;
+st      = VGT.cns    ;
+stcommon= VGT1.cns   ;
+sprite  = VGT.sff    ;
+anim    = VGT.air    ;
+sound   = VGT.snd    ;
+pal1    = VGT.act

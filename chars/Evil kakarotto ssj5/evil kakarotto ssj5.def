@@ -1,0 +1,33 @@
+;.............................................................................................
+[Info]
+name="son Goku by FRS GAMES"
+displayname="Evil Goku ssj5"
+mugenversion=03.04.14
+author="FRS GAMES"
+versiondate=1/6/2007
+pal.defaults=1,2,3,4,5,6
+[Files]
+cns=programaçao0/CNS.cns
+st=programaçao0/CNS.cns
+cmd=comandos0/CMD.cmd
+stcommon=programaçao0/common1.cns
+sprite=imagems0/Sprite.sff
+anim=animaçao0/Air.air
+sound=som0/Sound.snd
+st=programaçao0/st.cns
+pal1=paleta0/Goku4.act
+pal2=paleta0/Goku7.act
+pal3=paleta0/Goku2.act
+pal4=paleta0/Goku5.act
+pal5=paleta0/Goku3.act
+pal6=paleta0/Goku6.act
+
+
+[Arcade]
+
+;...........................................................................................
+
+                                ; Feito no Brasil           
+;                              Autor: equipe FRS GAMES
+
+;[[[[[[[[[[[[[[[[[[[[[[E-mail& msn: superkakarotto@hotmail.com]]]]]]]]]]]]]]]]]]]]]]]]]]]]]

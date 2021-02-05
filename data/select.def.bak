@@ -1,0 +1,139 @@
+[Characters]
+goku normal,,order=1,music=,includestage=1;Goku Normal
+Vegeta Saiyan By DGZ Team/vegeta saiyan.def,,order=1,includestage=0;Vegeta Saiyan
+reivegeta\reivegeta.def,,order=1,includestage=0;Rei Vegeta
+Raditz\Raditz.def,,order=1,includestage=0;Raditz
+DB\DB.def,,order=1,includestage=0;Goku DB
+Bardock\Bardock.def,,order=2,includestage=0;Bardock
+Jeice\Jeice.def,,order=2,includestage=0;Jeice
+Guldo\Guldo.def,,order=2,includestage=0;Guldo
+Recoome\Recoome.def,,order=2,includestage=0;Recoome
+krillin_jb\krillin_jb.def,,order=2,includestage=0;Krillin
+yamcha3sb3\yamcha3sb3.def,,order=2,includestage=0;Yamcha
+Tien\Tien.def,,order=2,includestage=0;Tien
+Chiaotzu\Chiaotzu.def,,order=2,includestage=0;Chiaotzu
+Taopaipai\Taopaipai.def,,order=2,includestage=0;Taopaipai
+PiccoloSB\PiccoloSB.def,,order=3,includestage=0;Piccolo
+Garlicjr\Garlicjr.def,,order=3,includestage=0;Garlic Junior
+Frezaa\Frezaa.def,,order=3,includestage=0;Frezaa
+ftrunks-b\ftrunks-b.def,,order=3,includestage=0;Future Trunks
+janemba\janemba.def,,order=4,includestage=0;Janemba
+drgero\drgero.def,,order=4,includestage=0;Dr Gero
+and17\And17.def,,order=4,includestage=0;Android 17
+AndroidNo18\AndroidNo18.def,,order=4,includestage=0;Android 18
+____________________________________________________________
+|                            NIE EDYTUJ TEGO MIEJSCA!!! 	|
+|___________________________________________________________|
+piccolo/piccolo.def,,order=4,includestage=0;Piccolo
+Ultra\Ultra.def,,order=4,includestage=0;Trunks USSJ
+cell\Cell.def,,order=4,includestage=0;Cell
+Mini_Cell\Mini_Cell.def,,order=4,includestage=0;Mini Cell
+Zangya\Zangya.def,,order=4,includestage=0;Zangya
+____________________________________________________________
+|															|
+|															|
+|                            NIE EDYTUJ TEGO MIEJSCA!!!		|
+|															|
+|___________________________________________________________|
+Gohan-SSJ2-by-bprulez\Gohan-SSJ2-by-bprulez.def,,order=4,includestage=0;Mini Cell
+ginew/Ginew.def,,order=5,includestage=0;Ginew
+RandomSelect;
+coola\coola.def,,order=5,includestage=0;Coola
+ssj2Gohan\ssj2Gohan.def,,order=4,includestage=0;Gohan SSJ2
+____________________________________________________________
+|															|
+|															|
+|                            NIE EDYTUJ TEGO MIEJSCA!!!		|
+|															|
+|___________________________________________________________|
+BroliT/BroliT.def,includestage=0;Brolly
+great saiyaman\great saiyaman.def,,order=6,includestage=0;Great Saiyaman
+dabura\Dabura.def,,order=6,includestage=0;Dabura
+Goten\Goten.def,,order=6,includestage=0;Goten
+Trunkz\Trunkz.def,,order=6,includestage=0;Trunkz
+____________________________________________________________
+|															|
+|															|
+|                            NIE EDYTUJ TEGO MIEJSCA!!!		|
+|															|
+|___________________________________________________________|
+Gotenks-SSJ\Gotenks-SSJ.def,,order=6,includestage=0;Gotenks-SSJ
+satan-son\satan-son.def,,order=6,includestage=0;Satan-Son
+ssj2-goku\SSJ2-GOKU.def,,order=6,includestage=0;SSJ2-GOKU
+SSJ2-MAJIN-VEGETA\SSJ2-MAJIN-VEGETA.def,,order=6,includestage=0;SSJ2-MAJIN-VEGETA
+dende\dende.def,,order=5,includestage=0;Dende
+____________________________________________________________
+|                            NIE EDYTUJ TEGO MIEJSCA!!! 	|
+|___________________________________________________________|
+MajinBuu2005\MajinBuu2005.def,,order=6,includestage=0;MajinBuu2005
+Mystic-Gohan\Mystic-Gohan.def,,order=6,includestage=0;Mystic-Gohan
+Vegetto JSS\Vegetto JSS.def,,order=6,includestage=0;Vegetto JSS
+shinbuu\shinbuu.def,,order=6,includestage=7;ShinBuu
+Vegetto/Vegetto.def,,order=7,includestage=0;Vegetto
+mystic_gohan\mystic_gohan.def,,order=7,includestage=0;Mystic_Gohan
+Bojack\Bojack.def,,order=7,includestage=0;Bojack
+gogetape\gogetape.def,,order=7,includestage=0;Gogeta
+chibipan\chibipan.def,,order=8,includestage=0;Pan
+VegetaGT\VegetaGT.def,,order=8,includestage=0;Vegeta-GT
+GotenGT\GotenGT.def,,order=8,includestage=0;GotenGT
+Vegeta-GT-SSJ2\Vegeta-GT-SSJ2.def,,order=8,includestage=0;Vegeta-GT-SSJ2
+bebi\bebi.def,,order=8,includestage=0;Bebi Vegeta
+Goku San\Goku San.def,,order=8,includestage=0;Soku SSJ4
+li-sheron\li-sheron.def,,order=9,includestage=0;Li Sheron
+ultimatgoku\ultimatgoku.def,,order=9,includestage=0;Ultimat Goku
+VegetaSSJ4\VegetaSSJ4.def,,order=9,includestage=0;VegetaSSJ4
+Evil kakarotto ssj5/evil kakarotto ssj5.def,,order=9,includestage=0;Evil kakarotto ssj5
+brolylssj\brolylssj.def,,order=9,includestage=0;Brolly LSSJ
+Cyberbots_Blodia/Cyberbots_Blodia.def,,order=5,includestage=0;Cyberbots_Blodia
+giro/giro.def,,order=5,includestage=0;Giro
+bonuskun\bonuskun.def,,order=5,includestage=0;bonuskun
+[ExtraStages]
+stages/Baba Arena.def
+stages/beach-md.def
+stages/Budokai-sunset.def
+stages/budoukai-hd.def
+stages/budoukai-r-hd.def
+stages/cataract.def
+stages/cellarena.def
+stages/CellGameUB.def
+stages/dbaa_piccolo.def
+stages/Destruction.def
+stages/estrada-dbz1.def
+stages/Future.def
+stages/GravityRoom.def
+stages/Jogocell.def
+stages/kaio.def
+stages/Kamehause Night.def
+stages/kamisama-n.def
+stages/korin.def
+stages/localdetreino-dbz1.def
+stages/Namek.def
+stages/namekdes-md.def
+stages/Namek-Destruido.def
+stages/new-budoukai-hd.def
+stages/nuvem.def
+stages/penhasco.def
+stages/pianeta-kaioshin.def
+stages/Planet Gods.def
+stages/plant.def
+stages/power.def
+stages/praia.def
+stages/ruins.def
+stages/saladotempo-md.def
+stages/satan.def
+stages/sb2snowfield.def
+stages/sb3dcloud.def
+stages/skyhd2.def
+stages/skyhd3.def
+stages/skyhd.def
+stages/SnakewayN.def
+stages/tenkaichi.def
+stages/The Rocks.def
+stages/Time_Chamber.def
+stages/torre-de-karin.def
+stages/tufflep.def
+stages/vegettobudoukai.def
+stages/Videlbg.def
+[Options]
+arcade.maxmatches=1,1,1,1,1,1,1,1,1,1,0
+team.maxmatches=1,1,1,1,1,1,1,1,1,1,0

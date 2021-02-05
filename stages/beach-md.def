@@ -1,0 +1,111 @@
+; BackGround - Beach (MD)
+; by Billy_Brother
+; E-Mail: billy_brother@bol.com.br
+; MugeNow - http://www.MugeNow.cjb.net
+; Riped: Dragon Ball Z - Mega Drive
+; Edição de Graficos: Billy_Brother
+; Edição de Imagens: Billy_Brother
+; Alterações: Billy_Brother
+; Riper: Billy_Brother
+; Animações: Billy_Brother
+; Agradecimentos: Ao Sssonic que me indicou um bom emulador de Mega Drive (gecyst) para 
+; poder ripar as imagens!!!
+; Obs.: Primeiro cenário que eu faço primeiro o arquivo .def ... to ficando craque!! :)
+
+[Info]
+name = "Beach (MD)"
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -300
+boundright = 300
+boundhigh = -255
+boundlow = 0
+verticalfollow = .7
+tension = 50
+
+[PlayerInfo]
+p1startx = -70
+p1starty = 0
+p1startz = 0
+p1facing = 1
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+[Scaling]
+topz     = 0
+botz     = 50
+topscale = 1
+botscale = 1.2
+
+[Bound]
+screenleft = 15
+screenright = 15
+
+[StageInfo]
+zoffset   = 200
+autoturn  = 1
+
+[Shadow]
+color = 128,128,128
+yscale = .3
+
+[Music]
+bgmusic = sound/pop.mp3
+bgvolume = 600
+[BGdef]
+spr = beach-md.sff
+
+[BG fundo]
+type  = normal
+spriteno = 0,0 
+tile = 1, 1
+start = 0, 0
+
+[BG mar]
+type  = anim
+start = 0, 16
+actionno = 0
+
+[BG mar]
+type  = anim
+start = 512, 16
+actionno = 0
+
+[BG mar]
+type  = anim
+start = -512, 16
+actionno = 0
+
+[BG mar]
+type  = anim
+start = -1024, 16
+actionno = 0
+
+[Begin Action 0]
+1,0, 0,0, 30
+1,1, 0,0, 30
+1,2, 0,0, 30
+1,1, 0,0, 30
+
+[BG nuvem]
+type  = normal
+spriteno = 0, 1
+tile = 1
+mask = 1
+start = -256, -255
+velocity = 0.2, 0
+
+[BG chao]
+type  = normal
+spriteno = 0, 2
+tile = 1
+start = 0, 48
+mask = 1

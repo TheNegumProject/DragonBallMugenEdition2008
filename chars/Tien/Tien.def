@@ -1,0 +1,26 @@
+
+[Info]
+name = "Goten88's Tien"        
+displayname = "Tien" 
+author = "Goten88"
+versiondate = 11,15,2004  
+pal.defaults = 1
+
+[Files]
+cmd     = Tien.cmd  
+cns     = Tien.cns  
+st      = Tien.cns
+st2      = AI.cns
+st3      = Clone.cns
+stcommon = common1.cns 
+sprite  = Tien.sff   
+anim    = Tien.air   
+sound   = Tien.snd 
+pal1    = TienNew.act
+pal2    = TienB.act
+pal3    = TienT.act
+pal4    = TienW.act
+pal5    = TienTQ.act
+pal6    = TienJB.act
+pal7    = TienBL.act
+pal8    = Tien.act

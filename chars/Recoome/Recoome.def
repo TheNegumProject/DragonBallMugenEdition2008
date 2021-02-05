@@ -1,0 +1,27 @@
+; Definition file for Recoome by Chrono_Strife
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Recoome"                       ;Name of character
+displayname = "Recoome"                ;Name of character to display
+versiondate = 19,08,2006               ;Version date of character
+mugenversion = 14,06,2003              ;Version of M.U.G.E.N character works on
+author = "Chrono_Strife"               ;Character author name
+pal.defaults = 1,2,3,4,5,6             ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd      = RecoomeCMD.cmd              ;Command set
+cns      = RecoomeCNS.cns              ;Constants
+st       = RecoomeCNS.cns              ;States
+stcommon = commonCNS.cns               ;Common states
+sprite   = RecoomeSFF.sff              ;Sprite
+anim     = RecoomeAIR.air              ;Animation
+sound    = RecoomeSND.snd              ;Sound
+pal1     = RecoomeACT.act              ;Palettes (can have up to 12)
+pal2     = DarkACT.act
+pal3     = BlackACT.act
+pal4     = SunsetACT.act
+pal5     = HulkACT.act
+pal6     = MetalACT.act

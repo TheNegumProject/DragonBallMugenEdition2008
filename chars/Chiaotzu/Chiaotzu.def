@@ -1,0 +1,33 @@
+
+[Info]
+name = "PexChiaotzu"
+displayname = "Chiaotzu"
+versiondate = 09,16,2007
+author = "Pextin" 
+pal.defaults = 10   
+
+[Files]
+cmd     = chiaotzu.cmd   ;Command set
+cns     = chiaotzu.cns   ;Constants
+st      = chiaotzu.cns   ;States
+st1     = AI.cns   ;States
+stcommon = common1.cns ;Common states
+sprite  = chiaotzunew.sff   ;Sprite
+anim    = chiaotzu.air   ;Animation
+sound   = chiaotzu.snd   ;Sound
+pal1    = ChiaotzuNew.act
+pal2    = ChiaotzuNewG.act
+pal3    = ChiaotzuNewP.act
+pal4    = ChiaotzuNewT.act
+pal5    = ChiaotzuNewPicc.act
+pal6    = ChiaotzuNewK.act
+pal7    = ChiaotzuNewSp.act
+pal8    = ChiaotzuNewV.act
+pal9    = ChiaotzuNewB.act
+pal10   = ChiaotzuNewGGT.act
+
+
+; Arcade mode
+[Arcade]
+intro.storyboard =     ;Set to blank
+ending.storyboard =    ;Set to blank

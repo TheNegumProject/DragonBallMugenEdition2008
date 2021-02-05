@@ -1,0 +1,35 @@
+; Definition file for Piccolo SB by supermystery
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Piccolo"        ;Name of character
+displayname = "Piccolo" ;Name of character to display
+versiondate = 07,12,2007    ;Version date of character (DD-MM-YYYY)
+mugenversion = 04,14,2002   ;Version of M.U.G.E.N character works on
+;Also works with Mugen 04,14,2001 and intermediate versions.
+author = "supermystery"         ;Character author name
+
+; Files for the player
+[Files]
+cmd     = PiccoloSB.cmd   ;Command set
+cns     = PiccoloSB.cns   ;Constants
+st      = PiccoloSB.cns   ;States
+st2     = piccolocommon.cns
+stcommon = common1.cns ;Common states
+sprite  = PiccoloSB.sff   ;Sprite
+anim    = PiccoloSB.air   ;Animation
+sound   = PiccoloSB.snd   ;Sound
+pal1    = PiccoloSB.act  ;Palettes (can have up to 12)
+pal2    = magneta.act
+pal3    = grey.act
+pal4    = PiccoloSBreda.act  
+pal5    = dullgreen.act
+pal6    = brown.act
+pal7    = kingpiccoloSBc2.act
+pal8    = kingpiccoloSBblack.act
+pal9    = brown.act
+pal10    = piccoloSBLB.act
+
+
+

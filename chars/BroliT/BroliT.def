@@ -1,0 +1,30 @@
+; Definition file for Broli
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Broli The Legendary SSJ"
+displayname = "Broli"
+versiondate = 04,14,2001
+mugenversion = 04,14,2001
+author = "Toad"
+pal.defaults = 6,3,4,2
+
+[Files]
+cmd     = broli.cmd
+cns     = broli.cns
+st      = basics.st
+st1      = specials.st
+st2      = supers.st
+st3      = Ki.st
+stcommon = common1.cns
+sprite  = broli.sff
+anim    = broli.air
+sound   = broli.snd
+pal1    = broli.act
+pal2    = broli2.act
+
+; Arcade mode
+[Arcade]
+intro.storyboard  = Intro.def
+ending.storyboard =

@@ -1,0 +1,330 @@
+;---------------------------------------------------------------------------
+; Fly-Lift off
+[Statedef 3000]
+type = A
+movetype = I
+physics = A
+juggle  = 7
+velset = 0, -8, 0
+poweradd= -25
+ctrl = 0
+anim = 3000
+
+[State 3000, AfterImage]
+type = AfterImage
+trigger1 = time = 0
+time = 15
+length = 10
+palinvertall = 0
+palbright = 0,0,0
+palcontrast = 256,256,256
+paladd = 0,0,0
+timegap = 1
+framegap = 1
+trans = Add
+
+[State 3000, PlaySND]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 3100, 0
+volume = -200
+
+[State 3000, Next]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 3100
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;-=This is what you get after launching the U.S.A. out of a cannon...(Get It!? Flying States!)=-
+;Flying States
+[Statedef 3100]
+type = S
+movetype = I
+physics = N
+ctrl = 0
+velset = 0,0
+
+[State 3100, FlightVarSet]
+type = VarSet
+trigger1 = 1
+v = 20
+value = 1
+
+[State 3100, Normal anim]
+type = ChangeAnim
+trigger1 = time = 0
+value = 3100
+
+[State 3100, VelSet]
+type = VelSet
+trigger1 = command != "holdfwd"
+trigger1 = command != "holdback"
+trigger1 = command != "holdup"
+trigger1 = command != "holddown"
+trigger1 = Var(3) = 0
+trigger2 = Pos Y < -405
+x = 0
+y = 0
+
+[State 3100, StillAnim]
+type = ChangeAnim
+trigger1 = command != "holdup"
+trigger1 = command != "holddown"
+trigger1 = Anim != 3100
+value = 3100
+
+[State 3100, VarSet]
+type = VarSet
+trigger1 = command != "holdfwd"
+trigger1 = command != "holdback"
+trigger1 = command != "holdup"
+trigger1 = command != "holddown"
+trigger1 = var(3) != 2
+trigger2 = var(3) = 2
+trigger2 = Vel Y >= 1.4
+v = 3
+value = 1
+
+[State 3100, VarSet]
+type = VarSet
+trigger1 = Var(3) = 1
+trigger1 = Vel Y <= -1.4
+trigger2 = P2BodyDist Y > 405
+trigger2 = Vel Y < 0
+v = 3
+value = 2
+
+[State 3100, Up Velocity]
+type = VelAdd
+trigger1 = Var(3) = 1
+y = -0.050
+
+[State 3100, Down Velocity]
+type = VelAdd
+trigger1 = Var(3) = 2
+y = 0.050
+
+[State 3100,Stop Velocity]
+type = VelSet
+triggerall = Var(3) != 0
+trigger1 = command = "holdfwd"
+trigger2 = command = "holdback"
+trigger3 = command = "holdup"
+trigger4 = command = "holddown"
+y = 0
+
+[State 3100,VarReset]
+type = VarSet
+trigger1 = command = "holdfwd"
+trigger2 = command = "holdback"
+trigger3 = command = "holdup"
+trigger4 = command = "holddown"
+v = 3
+value = 0
+
+[State 3100, UpBorder]
+type = PosSet
+trigger1 = Pos Y < -405
+y = -405
+
+[State 3100, DownBordera]
+type = PosAdd
+trigger1 = P2BodyDist Y > 405
+trigger1 = Vel Y < 0
+y = 1
+
+[State 3100, DownBorderb]
+type = VelSet
+trigger1 = P2BodyDist Y > 405
+trigger1 = Vel Y < 0
+y = 0
+
+[State 3100, GoDown1]
+type = VelAdd
+trigger1 = command = "holddown"
+y = 0.2
+
+[State 3100,GoDown2]
+type = VelSet
+trigger1 = command = "holddown" && Vel Y < 0
+y = 0
+
+[State 3100, GoDownAnim]
+type = ChangeAnim
+trigger1 = Anim != 3104 && command = "holddown"
+trigger2 = Var(30) = 1 && Anim != 3104 && p2bodydist Y >= -50
+value = 3104
+
+[State 3100, AIChaseDown]
+type = VelAdd
+triggerall = Var(30) = 1
+trigger1 = p2bodydist Y >= -50
+y = 0.2
+
+[State 3100, GoUp1]
+type = VelAdd
+trigger1 = command = "holdup"
+y = -0.2
+
+[State 3100,GoUp2]
+type = VelSet
+trigger1 = command = "holdup" && Vel Y > 0
+y = 0
+
+[State 3100, GoUpAnim]
+type = ChangeAnim
+trigger1 = Anim != 3103 && command = "holdup"
+trigger2 = Var(30) = 1 && p2bodydist Y <= 50
+value = 3103
+
+[State 3100, AIChaseUp]
+type = VelAdd
+triggerall = Var(30) = 1
+trigger1 = p2bodydist Y <= 50
+y = -0.2
+
+[State 3100, GoBack1]
+type = VelAdd
+trigger1 = command = "holdback"
+x = -0.14
+
+[State 3100,GoBack2]
+type = VelSet
+trigger1 = command = "holdback" && Vel X > 0
+x = 0
+
+[State 3100, GoBackAnim]
+type = ChangeAnim
+trigger1 = Anim != 3102 && command = "holdback"
+;trigger2 = Var(30) = 1 && Anim != 3102 && p2bodydist X <= -50
+value = 3102
+
+;[State 3100, AIChaseBack]
+;type = VelAdd
+;triggerall = Var(30) = 1
+;trigger1 = Anim != 3102 && p2bodydist X <= -50
+;x = -0.1
+
+[State 3100, GoFwd1]
+type = VelAdd
+trigger1 = command = "holdfwd"
+x = 0.2
+
+[State 3100,GoFwd2]
+type = VelSet
+trigger1 = command = "holdfwd" && Vel X < 0
+x = 0
+
+[State 3100, GoFwdAnim]
+type = ChangeAnim
+trigger1 = Anim != 3101 && command = "holdfwd"
+trigger2 = Var(30) = 1 && Anim != 3101 && p2bodydist X >= 50
+value = 3101
+
+[State 3100, AIChaseForward]
+type = VelAdd
+triggerall = Var(30) = 1
+trigger1 = p2bodydist X >= 50
+x = 0.2
+
+[State 3100, AIChaseForward]
+type = VelSet
+triggerall = Var(30) = 1
+trigger1 = p2bodydist X <= 40
+x = 0
+
+;[State 3100, Guard]
+;type = ChangeState
+;trigger1 = p2movetype = A && command = "holdback"
+;value = 130
+
+[State 3100,Turn]
+type = Turn
+trigger1 = P2dist X < 0
+
+[State 3100,Land]
+type = ChangeState
+trigger1 = Pos Y >= 0
+value = 50
+ctrl = 1
+
+[State 3100,End]
+type = ChangeState
+trigger1 = Time > 2
+trigger1 = command = "fly"
+value = 3105
+ctrl = 1
+
+[State 3100,WinALose]
+type = ChangeState
+trigger1 = Win = 1
+trigger2 = Lose = 1
+value = 3105
+
+;---------------------------------------------------------------------------
+;-=What is this?=-
+[Statedef 3105]
+type    = A
+movetype= A
+physics = A
+juggle  = 0
+poweradd= 0
+ctrl = 0
+anim = 3105
+
+[State 3105, PlaySND]
+type = PlaySnd
+trigger1 = time = 1
+value = 3000, 0
+volume = 255
+
+[State 3105, 3]
+type = VelAdd
+trigger1 = AnimElem = 1
+trigger1 = AnimElem <= 2
+x = -0.3
+
+[State 3105, 3]
+type = VelSet
+trigger1 = AnimElem = 3
+x = 0
+
+[State 210, 3]
+type = ChangeState
+trigger1 = animtime = 1
+value = 3106
+
+;---------------------------------------------------------------------------
+;-=Stop asking questions!=-
+[Statedef 3106]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+ctrl = 0
+velset = 0
+
+[State 3106, 3]
+type = PosSet
+trigger1 = Vel Y = 0
+y = 0
+
+[State 3106, Anim]
+type = ChangeAnim
+trigger1 = Pos Y >= 0
+trigger1 = Vel Y > 0
+value = 3106
+
+[State 3106, 1]
+type = Velset
+trigger1 = Pos Y >= 0
+trigger1 = Vel Y > 0
+y = 0
+
+[State 3106, 3]
+type = ChangeState
+trigger1 = animtime = 1
+value = 50
+ctrl = 1

@@ -1,0 +1,36 @@
+;=======================================;
+;        Character Def File for:        ;
+;      Guldo by Redneck by Redneck      ;
+;     for MUGEN v. (version number)     ;
+;       Maker's Website HTTP here       ;
+;                                       ;
+;   Made with MUGEN Editing Ensemble    ;
+;     (http://ragnaroknemo.cjb.net)     ;
+;=======================================;
+
+[Info]
+name ="Guldo by Redneck"
+displayname ="Guldo"
+versiondate =02.03.2005
+mugenversion =29.02.2006
+author ="Redneck"
+pal.defaults=1,2,3,4,5
+;pal.defaults = 
+
+[Files]
+cns =Guldo.cns
+cmd =Guldo.cmd
+stcommon =common.cns
+sprite =Guldo.sff
+anim =Guldo.air
+st =Guldo.st
+sound =Guldo.snd
+pal1=Guldo.act
+pal2=Devil.act
+pal3=Purple.act
+pal4=sulset.act
+st1=AI.st
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=

@@ -1,0 +1,22 @@
+; ここにキャラ情報を書いてください
+[Info]
+name = "Bonus Kun"        ;キャラの名前
+displayname = "Bonus Kun" ;表示されるキャラの名前
+versiondate = 04,14,2001   ;キャラの更新情報
+mugenversion = 04,14,2001   ;キャラが動くmugenのバージョン
+author = "bad darkness"         ;キャラの製作者名
+pal.defaults = 6,3,4,2      ;敵としてでるキャラのパレット
+
+; Files for the player
+[Files]
+cmd     = bk.cmd   ;キャラのコマンド
+cns     = bk.cns   ;キャラのプログラム
+st      = bk.cns   ;キャラのプログラム
+stcommon = common1.cns 
+sprite  = bk.sff   ;キャラの絵
+anim    = bk.air   ;キャラの動き
+sound   = bk.snd   ;キャラの音
+pal1    = bk.act  ;キャラの色（最大１２個）
+pal2    = bk2.act  ;キャラの色（最大１２個）
+pal3    = bk3.act  ;キャラの色（最大１２個）
+pal4    = bk4.act  ;キャラの色（最大１２個）
